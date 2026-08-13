@@ -2,6 +2,132 @@
 
 > **Tikslas:** QA_AGENT priima vartotojo testų klaidas, fiksuoja čia ir įrašo sprendimus į `TODO.md`.
 
+## 2026-08-13 – M10–12 hygiene closeout (69 → 41)
+
+**Statusas:** PASS (gates) · gyvas turinys vis dar FREEZE  
+**Apimtis:** ne antras 47×7 auditas; nevaryti į 0. Eilė I1 dump → I2 linter → I3 copy → I0 baseline.
+
+| Žingsnis | Kas daryta                                                                                                                                                                  | Rezultatas                                |
+| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| I1       | Live dump (69): 20 `parity-numbers`, 16 length-drift, 14 markdown, 9 lt-missing, 8 filler-repeat                                                                            | Triažas: Copy-fix vs linter-noise vs Keep |
+| I2       | `1-page`/`1 puslapio`, `3A`, `n8n`, `L0–L3`, `Module N`/`M4–M6` ne KPI; nested `pathLabel`/`.label`; same-slide CTA skip; EN-only `shortTitle` skip; A5 korpusas iki `10.8` | Unit: `m1012HygieneParity.test.ts`        |
+| I3       | `100` EN `~25–30 min` + Modules 4–6 (ux-batch + build-en); `124.5` be EN-only hint/partialSolution; `confirmation confirmation`                                             | Tikri P0, ne LT fatten                    |
+| I0       | `--write-baseline` **41** fingerprints                                                                                                                                      | `priimta liekana 41; nevaryti į 0`        |
+
+**Keep-noise (lieka 41):** `parity-markdown` (14); `10.7` glossary length/`500`; `10.35`/`10.36` whenHint „2–3 žingsniai“ vs EN words; `128` summary struktūra / `ownWorkTemplate`; `112` META numbering; `10.51` extra EN `1`.
+
+| Gate / artefaktas                  | Rezultatas             |
+| ---------------------------------- | ---------------------- |
+| `build:modules-en-m10-m12`         | ✅                     |
+| `generate:core-data`               | ✅ (corporate12 slice) |
+| `audit:m1012-content-hygiene:gate` | ✅ baseline **41**     |
+| `m1012HygieneParity` unit          | ✅ 6 tests             |
+
+**Verdict:** Hygiene gate = no new fingerprints. Antras content sweep / count→0 — ne.
+
+## 2026-08-13 – Promptų biblioteka 6 skirsnis Micro po vertinimo
+
+**Statusas:** PASS (gates)  
+**Apimtis:** antras item’as `after-eval-one-action` šalia Flagship `prompt-quality-5`; EN twin; `validate:schema` tikrina ir `promptLibrary-en.json`.
+
+| Gate / artefaktas                                                  | Rezultatas |
+| ------------------------------------------------------------------ | ---------- |
+| `validate:schema` (`promptLibrary.json` + `promptLibrary-en.json`) | ✅         |
+| `audit:lt-address`                                                 | ✅         |
+| `audit:en-spelling`                                                | ✅         |
+
+**Sprendimas:** Micro (vienas placeholderis, vienas klausimas); tas pats kortelės lukštas. Feature Doc nereikia.
+
+## 2026-08-13 – Katalogo M3→M4 ready-check hinge
+
+**Statusas:** PASS (gates)  
+**Apimtis:** katalogo UX polish — juosta iš footerio po coming-soon į grid hinge prieš `base-cycle-2`.
+
+| Gate / artefaktas                                          | Rezultatas               |
+| ---------------------------------------------------------- | ------------------------ |
+| `modulesPageNextStep` unit (`shouldShowModulesReadyCheck`) | ✅                       |
+| `ModulesPage.catalogUx` DOM eilė + hide M4/quiz            | ✅ (18 tests in 2 files) |
+| `audit:lt-address` + `audit:en-spelling`                   | ✅                       |
+| `lint`                                                     | ✅                       |
+
+**Sprendimas:** `ModulesReadyCheckStrip` = next-step lukštas, brand `primary`; sąlyga M3 done ∧ ¬M4 ∧ ¬quizCompleted. Feature Doc nereikia.
+
+## 2026-08-13 – M10 T09 10.65 split → 10.655
+
+**Statusas:** PASS (gates) · owner visual: 10.65 spec hero + 10.655 incident hero ⏳  
+**Apimtis:** freeze išimtis – optional dense skaidrė išskaidyta; pin **v1.6.2**.
+
+| Gate / artefaktas                                   | Rezultatas                                              |
+| --------------------------------------------------- | ------------------------------------------------------- |
+| `build:modules-en-m10-m12`                          | ✅ (10.655 eilėje)                                      |
+| `generate:core-data` / `--check`                    | ✅                                                      |
+| `validate:schema`                                   | ✅                                                      |
+| `audit-footer-numbers` LT+EN                        | ✅ (M10 32 skaidrės)                                    |
+| `audit:m1012`                                       | ✅                                                      |
+| `audit:teaching-elements --strict` + `--check-docs` | ✅ (`m10_incident_playbook` → 10.655; table `s5`)       |
+| `audit:accent-budget:m1012`                         | ✅                                                      |
+| `audit:slide-titles`                                | ✅                                                      |
+| `audit:m1012-content-hygiene:gate`                  | ✅ (69 findings; 10.65/10.655 fingerprintai atnaujinti) |
+| `slidePhaseConfig` + `m10m12LayoutGeometry`         | ✅ 43                                                   |
+
+**Verdict:** Ilgas kelias `10.64 → 10.65 → 10.655 → 10.66`. Trumpas kelias slepia abi optional. Rankinė: abi schemos išsiskleidžia kaip slide center.
+
+---
+
+## 2026-08-13 – M10 testerio batch T01–T08 Must chrome (Wave 7)
+
+**Statusas:** PASS (gates) · owner visual re-walk ⏳ · T01 I5 parked  
+**Apimtis:** freeze išimtis T01–T08 Must chrome; ne P3; pin **v1.6.2**.
+
+| Gate / artefaktas                        | Rezultatas                                                                                                                   |
+| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `build:modules-en-m10-m12`               | ✅                                                                                                                           |
+| `validate:schema`                        | ✅                                                                                                                           |
+| `audit:m1012`                            | ✅                                                                                                                           |
+| `audit:m1012-content-hygiene:gate`       | ✅ **71 → 70** (tyčia: 10.25/10.15 echo kirpimas; `--write-baseline`)                                                        |
+| `audit:lt-address` / `audit:en-spelling` | ✅                                                                                                                           |
+| Targeted tests                           | ✅ AABB, orch polish, trigger/3A layout, DiagramLocalization, Depth/Readiness/HumanControl, ChoiceControl, ContentBlockSlide |
+| T01 I5 (pills → legend)                  | **Parked** — dual picker lieka, kol savininkas peržiūri tas pačias 8 būsenas                                                 |
+| Corporate12 pin                          | **v1.6.2** (neperpinta)                                                                                                      |
+
+**Verdict:** Must chrome į training HEAD. Visual DoD = savininko re-walk tų pačių 8 ekranų (CI žalia ≠ screenshot).
+
+---
+
+## 2026-08-13 – M10–12 testerio intake atidarytas (Phase A)
+
+**Statusas:** OPEN (fiksavimas) · gyvas turinys FREEZE  
+**Apimtis:** testerio pastabos M10–12 po content freeze (1.6.2). Ne naujas polish ciklas.
+
+| Gate / artefaktas | Rezultatas                                                                           |
+| ----------------- | ------------------------------------------------------------------------------------ |
+| Intake žurnalas   | [`intake/M10_M12_TESTER_INTAKE_2026-08.md`](intake/M10_M12_TESTER_INTAKE_2026-08.md) |
+| Live JSON / EN    | **neliečiama** kol savininkas sako „tvarkom batch“                                   |
+| TODO              | §1.3 `M1012-T0` ✅ · `M1012-T1` laukia RAW                                           |
+
+**Verdict:** freeze lieka; testerio signalas eina į intake, ne į `modules.json`.
+
+---
+
+## 2026-08-13 – Parent repo pin v1.6.2 vs live /anatomy/
+
+**Statusas:** GitHub ✅ · live ⏳  
+**Apimtis:** palyginta [DITreneris/promptanatomy](https://github.com/DITreneris/promptanatomy) `main` su šio repo tag `v1.6.2` ir su `https://www.promptanatomy.app/anatomy/`.
+
+| Gate / artefaktas        | Rezultatas                                                                                                                                                           |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Parent submodule pointer | ✅ `apps/prompt-anatomy` = `c35a1f5` ([inzinerija tree](https://github.com/DITreneris/inzinerija/tree/c35a1f5032a0f6ec9a5b6ef47a5a7d3cf993f1d1))                     |
+| Parent README / golden   | ✅ dokumentuoja pin `c35a1f5` / v1.6.2                                                                                                                               |
+| Parent merge             | ✅ [PR #92](https://github.com/DITreneris/promptanatomy/pull/92) → `main` (`d4af71b`, 2026-08-13)                                                                    |
+| Parent CI                | ✅ Golden Legacy green (run po merge)                                                                                                                                |
+| Parent build script      | ✅ `scripts/vercel-build.sh` → `VITE_MAX_BUILD_MODULE=12` + `npm run build:corporate12`                                                                              |
+| Parent magic-link map    | ✅ `api/generate-access-link.js` `ACCESS_TIER_VALUES = [3, 6, 9, 12]` (`highest_plan=12` → `access_tier=12`)                                                         |
+| Live `/anatomy/`         | ⏳ HTTP 200, bet `HomePage-*.js` vis dar `import` `RetrievalDueCard` — tai **1.6.1** Home, ne 1.6.2 (`home-recall-link`). Vercel prod dar neperjungė bundle / cache. |
+
+**Verdict:** 1.6.2 **matosi viešai GitHub** parent repo. **Ne** dar kaip live training SPA. MON-2 / CAV-B1 = pin done, prod verify open.
+
+---
+
 ## 2026-08-13 – Release 1.6.2 / corporate12 marketing pin
 
 **Statusas:** ✅ READY FOR TAG.  
@@ -14,7 +140,7 @@
 | Automated gates (prior closeout) | ✅ lint · `audit:governance` · hygiene gate baseline **71** · tests **165/1005** (`TEST_REPORT` 2026-08-12) |
 | Marketing cutover                | pin **v1.6.2** in `promptanatomy` submodule (`apps/prompt-anatomy`)                                         |
 
-**Verdict:** šiame repo tag `v1.6.2`; realus prod cutover = marketing repo (`promptanatomy`) submodule checkout.
+**Verdict:** šiame repo tag `v1.6.2`; marketing GitHub pin vėliau tą pačią dieną (žr. įrašą aukščiau).
 
 ---
 

@@ -28,7 +28,10 @@ import {
   shouldShowChapterRecovery,
   shouldShowChapterStartBadge,
 } from '../utils/chapterStarts';
-import { pickModulesPageNextStep } from '../utils/modulesPageNextStep';
+import {
+  pickModulesPageNextStep,
+  shouldShowModulesReadyCheck,
+} from '../utils/modulesPageNextStep';
 import { getDueRetrieval } from '../utils/retrievalSchedule';
 import { getIsMvpMode } from '../utils/mvpMode';
 import { getTierForModule } from '../constants/pricing';
@@ -50,6 +53,7 @@ import {
 import AccessGateScreen from './AccessGateScreen';
 import { moduleWord } from '../utils/ltPlural';
 import ModulesNextStepStrip from './ModulesNextStepStrip';
+import ModulesReadyCheckStrip from './ModulesReadyCheckStrip';
 import EvaluatorPracticeSection from './EvaluatorPracticeSection';
 
 interface ModulesPageProps {
@@ -121,7 +125,10 @@ const TRACK_MODULE_IDS: number[][] = [
   [16, 17, 18],
 ];
 
-type DisplayGridItem = ModuleGridItem | { type: 'materials' };
+type DisplayGridItem =
+  | ModuleGridItem
+  | { type: 'materials' }
+  | { type: 'readyCheck' };
 
 /** Insert „Mano medžiaga“ after last tier-accessible module card (before locked tracks). */
 function insertMaterialsAfterAccessible(
@@ -145,6 +152,23 @@ function insertMaterialsAfterAccessible(
     ...items.slice(0, lastAccessibleIdx + 1),
     materialsItem,
     ...items.slice(lastAccessibleIdx + 1),
+  ];
+}
+
+/** Insert M3→M4 ready-check strip immediately before the M4–M6 subsection. */
+function insertReadyCheckBeforeCycle2(
+  items: DisplayGridItem[],
+  enabled: boolean
+): DisplayGridItem[] {
+  if (!enabled) return items;
+  const cycle2Idx = items.findIndex(
+    (item) => item.type === 'subsection' && item.id === 'base-cycle-2'
+  );
+  if (cycle2Idx === -1) return items;
+  return [
+    ...items.slice(0, cycle2Idx),
+    { type: 'readyCheck' as const },
+    ...items.slice(cycle2Idx),
   ];
 }
 
@@ -430,14 +454,23 @@ function ModulesPage({
     earnedHandoutArtifacts.length > 0 ||
     (Boolean(onRequestCertificate) && earnedCertificateTiers.length > 0);
 
+  const showReadyCheck = shouldShowModulesReadyCheck({
+    hasQuizHandler: Boolean(onGoToQuiz),
+    completedModuleIds: progress.completedModules,
+    quizCompleted: progress.quizCompleted,
+  });
+
   const displayGridItems = useMemo(
     () =>
-      insertMaterialsAfterAccessible(
-        moduleGridItems,
-        maxAccessible,
-        hasMaterials
+      insertReadyCheckBeforeCycle2(
+        insertMaterialsAfterAccessible(
+          moduleGridItems,
+          maxAccessible,
+          hasMaterials
+        ),
+        showReadyCheck
       ),
-    [moduleGridItems, maxAccessible, hasMaterials]
+    [moduleGridItems, maxAccessible, hasMaterials, showReadyCheck]
   );
 
   const handleMaterialHandoutDownload = useCallback(
@@ -574,6 +607,15 @@ function ModulesPage({
                   </p>
                 </div>
               </section>
+            );
+          }
+
+          if (item.type === 'readyCheck') {
+            if (!onGoToQuiz) return null;
+            return (
+              <div key="ready-check" className="md:col-span-2 xl:col-span-3">
+                <ModulesReadyCheckStrip onGoToQuiz={onGoToQuiz} t={t} />
+              </div>
             );
           }
 
@@ -1093,30 +1135,6 @@ function ModulesPage({
           </section>
         );
       })}
-
-      {/* Soft CTA po M3 – branduolio pasitikrinimas prieš pažangesnius modulius */}
-      {onGoToQuiz &&
-        progress.completedModules.includes(3) &&
-        !progress.quizCompleted &&
-        completedCount < totalModules && (
-          <Card className="p-5 sm:p-6 border border-brand-200 dark:border-brand-800 bg-brand-50/60 dark:bg-brand-900/20 text-center animate-fade-in">
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
-              {t('readyCheckBeforeM4')}
-            </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 max-w-xl mx-auto">
-              {t('readyCheckBeforeM4Body')}
-            </p>
-            <CTAButton
-              variant="secondary"
-              onClick={onGoToQuiz}
-              className="px-6 py-3 rounded-xl font-semibold group"
-              aria-label={t('readyCheckBeforeM4Aria')}
-            >
-              {t('readyCheckBeforeM4')}
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </CTAButton>
-          </Card>
-        )}
 
       {/* Completion message */}
       {completedCount === totalModules && (

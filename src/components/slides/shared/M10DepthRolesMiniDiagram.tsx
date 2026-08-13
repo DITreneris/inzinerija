@@ -17,6 +17,7 @@ import {
 } from './m10DepthRolesContent';
 import type { M10Locale } from './m10DiagramContent';
 import type { DepthId } from './m10DepthRolesModel';
+import { DEPTH_FILL_OPACITY } from './m10DepthRolesLabTokens';
 import {
   getDepthPillRow,
   getDiagramHeight,
@@ -119,30 +120,53 @@ export default function M10DepthRolesMiniDiagram({
       {pills.map((pill) => {
         const opt = byId[pill.id];
         const active = depth === pill.id;
-        const opacity = active
-          ? DIAGRAM_TOKENS.opacity.active
-          : Math.max(DIAGRAM_TOKENS.opacity.inactive, 0.88);
+        const fillOpacity = DEPTH_FILL_OPACITY[pill.id];
         return (
           <g key={pill.id}>
-            <g opacity={opacity} aria-hidden>
+            <g aria-hidden>
               <rect
                 x={pill.x}
                 y={pill.y}
                 width={pill.width}
                 height={pill.height}
                 rx={M10_DEPTH_PILL.radius}
-                fill={active ? palette.brand : palette.bgEnd}
-                stroke={active ? palette.brandDark : palette.border}
-                strokeWidth={active ? 2.5 : 1.5}
+                fill={palette.brand}
+                fillOpacity={active ? Math.max(fillOpacity, 0.92) : fillOpacity}
+                stroke={active ? palette.brandDark : palette.brand}
+                strokeWidth={active ? 2.75 : 1.5}
+                strokeOpacity={active ? 1 : 0.55 + fillOpacity * 0.4}
               />
               <text
                 x={pill.x + pill.width / 2}
-                y={pill.y + 34}
+                y={pill.y + 22}
                 textAnchor="middle"
-                fontSize={typography.rolesHub.subtitle.desktop}
+                fontSize={12}
                 fontWeight={typography.titleWeight}
                 fill={active ? palette.whiteText : palette.brandDark}
                 fontFamily={DIAGRAM_TOKENS.font}
+              >
+                {opt.label}
+              </text>
+              <text
+                x={pill.x + pill.width / 2}
+                y={pill.y + 40}
+                textAnchor="middle"
+                fontSize={10}
+                fontWeight={500}
+                fill={active ? palette.whiteText : palette.muted}
+                fontFamily={DIAGRAM_TOKENS.font}
+              >
+                {opt.levelLabel}
+              </text>
+              <text
+                x={pill.x + pill.width / 2}
+                y={pill.y + 54}
+                textAnchor="middle"
+                fontSize={9}
+                fontWeight={500}
+                fill={active ? palette.whiteText : palette.muted}
+                fontFamily={DIAGRAM_TOKENS.font}
+                opacity={0.85}
               >
                 {opt.code}
               </text>

@@ -51,7 +51,7 @@ Tu **nekomentuoji teorijos**. Tu **diagnozuoji patirtį**.
 | Struktūra, skaidrių tipai, content           | `src/data/modules.json`                                  |
 | Atsiliepimai (gyvas testavimas, segmentai)   | `docs/VARTOTOJU_ATSILIEPIMAI_BENDRAS.md` (pasirinktinai) |
 
-**Branduolio pasitikrinimas (global):** po M3 – soft „ar verta eiti į M4+“; **ne** hard gate. Skirti nuo M2/M5/M8 kelio testų. Diagnostika: ar nav/CTA skamba kaip final exam (trintis) vs readiness.
+**Branduolio pasitikrinimas (global):** po M3 – soft „ar verta eiti į M4+“; **ne** hard gate. Kataloge = M3→M4 **hinge** (prieš M4–M6 subsection), ne puslapio footer po coming-soon. Skirti nuo M2/M5/M8 kelio testų. Diagnostika: ar nav/CTA skamba kaip final exam (trintis) vs readiness.
 
 **M16–18 Kodo kelias:** teorija (M16) → Path Test brief (M17) → projektas PACKET→DoD (M18). Soft DoD / transfer closer = **done** `TE-M1618-M5`. TE Could closed (won’t-now / C2 done); open = D3 Deferred §1.5. **Ne** painioti su M7 optional viz (sk. 100–106). Hard deploy URL ≠ privalomas vartas.
 

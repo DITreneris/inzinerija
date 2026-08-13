@@ -14,7 +14,11 @@ import {
   getDepthOptions,
   getDepthRolesUiLabels,
 } from './m10DepthRolesContent';
-import { LAB_SHELL_CLASS, ROUTER_TOGGLE_CLASS } from './m10DepthRolesLabTokens';
+import {
+  LAB_SHELL_CLASS,
+  ROUTER_TOGGLE_CLASS,
+  DEPTH_UNSELECTED_WASH,
+} from './m10DepthRolesLabTokens';
 import {
   buildDepthRolesArtefactParts,
   isTeamDepth,
@@ -69,8 +73,9 @@ export default function M10DepthRolesLabBlock() {
 
   const choiceOptions = depths.map((d) => ({
     id: d.id,
-    label: `${d.label} (${d.code})`,
+    label: d.label,
     description: d.description,
+    unselectedClassName: DEPTH_UNSELECTED_WASH[d.id],
   }));
 
   return (

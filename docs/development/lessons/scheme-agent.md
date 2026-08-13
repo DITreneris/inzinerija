@@ -2,8 +2,10 @@
 
 > Formatas: `YYYY-MM-DD | kontekstas | problema | sprendimas | failai` (`dod_01.md` §5).
 
-## Pamokos
-
+2026-08-13 | LMS inactive vs teaching dim | Token grindys `opacity.inactive` ≥0.85 (tests) per silpnos 10.35/10.25 unselected palyginimui; temptation = nuleisti globalų tokeną | Dim = lokalus orphan (`TREE_DIM_OPACITY` / `BAND_DIM_OPACITY` ~0.4); LMS floor palikti process spines | diagramTokens.ts, M10ToolDecisionTreeDiagram.tsx, M10ThreeAStrategyDiagram.tsx
+2026-08-13 | M10 10.15 types off-shaft | Label Y virš chip'ų ≠ AABB: header šalia chip'ų vis tiek gali kirsti ↑ kotą | Testuok `pillIntersectsStroke(label, upStroke)`, ne `typesLabelY < typeRowY`; palik gap į kairę nuo shaft | m10TriggerFlowLayout.ts, M10TriggerFlowDiagram.tsx
+2026-08-13 | M10 10.35 testeris sprendimo variklis | Sutampa hero/Shell/ne-rainbow; Cursor tik su viso medžio perrašymu į DI sistemas; extra CTA / accent geltona | Logika lieka automate; Workato orientyras; 3 taktai; selected brand; Copy lieka Daryk; ne Langflow 5-a | M10ToolDecisionTree*, SOT §3c, GOLDEN §3.1b, intake R.M10-T07 v03
+2026-08-13 | M10 10.482 testeris W7 disciplina | Label-on-stroke + kopėčios FAIL; testeris siūlo žvaigždę ir vieną anchor visoms ašims | Clearance viena, anchor pagal ašį; bus lengvinti ne perbraižyti; Kartoti lieka amber; tokenai A–D jau yra | M10Orchestrator*, DIAGRAM_KIT W7, intake R.M10-T05 v03
 2026-08-03 | Wave E orphan hex | Local Schema/ContextFlow `TOKENS = { '#hex' }` duplicated brand/slate that already live on `DIAGRAM_TOKENS`; LlmAutoregressive role fills are semantic (not track remaps) | Alias exact matches to `DIAGRAM_TOKENS` / tones; promote unique stage fills to `LLM_AUTOREGRESSIVE_ROLE_COLORS`; leave cyan `activeGlow` | diagramTokens.ts, Schema3*.tsx, Schema4Diagram.tsx, ContextFlowDiagram.tsx, LlmAutoregressiveDiagram.tsx
 2026-08-02 | LlmArch mobile stack | Dual DOM copies of Input/LLM/Output would break return-path refs; 600/520 scroll shell hid an already-stackable architecture | Single tree `flex-col lg:flex-row` + dual FlowArrow (down/right); `resolveReturnRoutePad`; Block `reflow` | LlmArchDiagramDiagram.tsx, llmArchReturnPath.ts, LlmArchDiagramBlock.tsx
 2026-08-01 | M18 launch gates S4-INDIV | Horizontal 5-step ≈ `m16_delivery_gates` / `m18_diff_ritual` clone | Metaphor `tollgate-barriers` (booth roof + boom + PROTECTED lock); overlay `pattern: linear-process` Shell=Taip; ne emoji | M18LaunchGatesDiagram.tsx, DIAGRAMU*M16*M18_REGISTRY.md, teaching-elements-overlay.json

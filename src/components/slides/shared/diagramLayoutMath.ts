@@ -60,3 +60,56 @@ export function equalBoxRowWidth(
   if (boxCount <= 0) return 0;
   return boxCount * boxW + Math.max(0, boxCount - 1) * gap;
 }
+
+/** Axis-aligned box for pill ∩ stroke / pill ∩ pill tests (W7 / T05–T06). */
+export type LayoutRect = { x: number; y: number; w: number; h: number };
+
+export function rectsAabbIntersect(a: LayoutRect, b: LayoutRect): boolean {
+  return (
+    a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y
+  );
+}
+
+/** Treat an axis-aligned stroke as a thin rect (horizontal or vertical). */
+export function strokeAabb(opts: {
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+  strokeWidth: number;
+}): LayoutRect {
+  const minX = Math.min(opts.x1, opts.x2);
+  const minY = Math.min(opts.y1, opts.y2);
+  const maxX = Math.max(opts.x1, opts.x2);
+  const maxY = Math.max(opts.y1, opts.y2);
+  const hw = opts.strokeWidth / 2;
+  return {
+    x: minX - hw,
+    y: minY - hw,
+    w: maxX - minX + opts.strokeWidth,
+    h: maxY - minY + opts.strokeWidth,
+  };
+}
+
+export function pillIntersectsStroke(
+  pill: LayoutRect,
+  stroke: {
+    x1: number;
+    y1: number;
+    x2: number;
+    y2: number;
+    strokeWidth: number;
+  }
+): boolean {
+  return rectsAabbIntersect(pill, strokeAabb(stroke));
+}
+
+/** Centered pill rect from an edge-label anchor (cx, cy). */
+export function pillRectFromCenter(
+  cx: number,
+  cy: number,
+  w: number,
+  h: number
+): LayoutRect {
+  return { x: cx - w / 2, y: cy - h / 2, w, h };
+}

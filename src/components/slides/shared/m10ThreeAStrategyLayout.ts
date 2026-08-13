@@ -3,7 +3,6 @@
  * + vertical legend under the bar (3 rows).
  * Comparison singleton layout (not W3 funnelStack / portal bars).
  */
-import { centerAxisStart } from './diagramLayoutMath';
 
 export const THREE_A_SHARES = [0.8, 0.15, 0.05] as const;
 
@@ -11,15 +10,17 @@ export const THREE_A_SHARES = [0.8, 0.15, 0.05] as const;
 export const THREE_A_LEGEND_MIN_ROW_GAP = 22;
 
 export const M10_THREE_A_LAYOUT = {
-  viewBoxW: 600,
-  viewBoxH: 232,
+  viewBoxW: 680,
+  viewBoxH: 256,
   padX: 24,
-  barY: 28,
-  barH: 56,
+  /** Extra right margin so “5 %” sits beside the thin segment. */
+  padRight: 72,
+  barY: 32,
+  barH: 72,
   /** Gap from bar bottom to first legend baseline. */
-  legendGapY: 28,
-  legendRowH: 28,
-  legendStartY: 28 + 56 + 28, // barY + barH + legendGapY
+  legendGapY: 32,
+  legendRowH: 30,
+  legendStartY: 32 + 72 + 32, // barY + barH + legendGapY
   /** Min hit width for touch (5% visual may be narrower). */
   minHitW: 44,
 } as const;
@@ -34,11 +35,15 @@ export type ThreeALegendItem = {
 };
 
 export function threeATrackW(): number {
-  return M10_THREE_A_LAYOUT.viewBoxW - M10_THREE_A_LAYOUT.padX * 2;
+  return (
+    M10_THREE_A_LAYOUT.viewBoxW -
+    M10_THREE_A_LAYOUT.padX -
+    M10_THREE_A_LAYOUT.padRight
+  );
 }
 
 export function threeATrackX(): number {
-  return centerAxisStart(M10_THREE_A_LAYOUT.viewBoxW, threeATrackW());
+  return M10_THREE_A_LAYOUT.padX;
 }
 
 /** Segment widths; last absorbs rounding so sum === trackW. */

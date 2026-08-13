@@ -2,12 +2,48 @@
 
 > Tikslas: viena vieta po release ar didesnio Unreleased sprinto patikrinti, ar agentų įėjimo dokumentai, release/ops dokumentai ir techniniai registry atitinka faktinę kodo bazę.
 
-**Baseline:** 1.6.2 corporate12 cutover pin (content freeze · katalogas · SCHEME-CENTRAL W1 · CATALOG-HOME · Docs Lean)  
+**Baseline:** 1.6.2 corporate12 cutover pin + training HEAD T01–T08 + T09 · hygiene **41** · katalogo hinge · AppNav freeze  
 **Testai:** tag **1.6.2** = **165/1005**; tag 1.6.1 freeze = 161/982  
-**Data:** 2026-08-13  
+**Data:** 2026-08-13 (T09 + hygiene closeout sync)  
 **Šaltiniai:** `package.json`, `CHANGELOG.md`, `docs/development/RELEASE_QA_RUN.md`, `docs/development/RELEASE_QA_CHECKLIST.md`, `docs/development/DOCS_MAINTENANCE.md`.
 
 ## Sync lentelė
+
+### M10 testerio Must + T09 + hygiene closeout – 2026-08-13
+
+| #   | Failas                                    | Laukas      | Buvo                | Turi būti                                            | Done |
+| --- | ----------------------------------------- | ----------- | ------------------- | ---------------------------------------------------- | ---- |
+| 1   | `TODO.md` §1.3                            | pipeline    | T0–T3 [x] lentelė   | Must shipped → archive; open = I5 / Should / M11–M12 | [x]  |
+| 2   | `ROADMAP.md`                              | v4.24       | T01–T08 only        | **v4.25** T09 + hygiene **41**                       | [x]  |
+| 3   | hygiene baseline                          | count       | 70 / 69             | **41** (linter + copy; `--write-baseline`)           | [x]  |
+| 4   | `CHANGELOG` Unreleased TOC                | tree        | T01–T08 + T09 + 41  | + AppNav / hinge / prompt Micro                      | [x]  |
+| 5   | `intake/M10_M12_TESTER_INTAKE_2026-08.md` | T09 / 70    | T01–T08; hygiene 70 | T09 apdorota; liekana **41**                         | [x]  |
+| 6   | archive `TODO_DONE_SPRINTS_2026-08.md`    | 08-13 block | nėra                | T0–T3 / T09 / hygiene / hinge / AppNav / Micro       | [x]  |
+
+### M10 testerio batch T01–T08 closeout – 2026-08-13
+
+| #   | Failas                                        | Laukas     | Buvo              | Turi būti                                  | Done |
+| --- | --------------------------------------------- | ---------- | ----------------- | ------------------------------------------ | ---- |
+| 1   | `TODO.md` §1.3                                | M1012-T3   | [ ] Wave pipeline | [x] Must chrome shipped; I5 parked         | [x]  |
+| 2   | `intake/M10_M12_TESTER_INTAKE_2026-08.md`     | T01–T08    | open / netaisyta  | apdorota; Phase B shipped                  | [x]  |
+| 3   | hygiene baseline                              | count      | 71                | **70** (echo kirpimas; `--write-baseline`) | [x]  |
+| 4   | `CHANGELOG` / `TEST_REPORT` / `ROADMAP` v4.24 | Unreleased | Phase B open      | T01–T08 Must chrome ✅; pin v1.6.2         | [x]  |
+
+### M10–12 testerio intake OPEN – 2026-08-13
+
+| #   | Failas                                      | Laukas        | Buvo                 | Turi būti                                       | Done |
+| --- | ------------------------------------------- | ------------- | -------------------- | ----------------------------------------------- | ---- |
+| 1   | `TODO.md` §1.3                              | open pipeline | freeze = stop        | freeze gyvam turiniui + testerio intake Phase A | [x]  |
+| 2   | `intake/M10_M12_TESTER_INTAKE_2026-08.md`   | naujas        | nėra                 | Phase A žurnalas OPEN                           | [x]  |
+| 3   | `M10_M12_CONTENT_DEEP_AUDIT` + plain intake | status        | CLOSED / FREEZE only | FREEZE + pointeris į testerio intake            | [x]  |
+
+### Parent pin observed – 2026-08-13
+
+| #   | Failas                                                    | Laukas     | Buvo                      | Turi būti                                            | Done |
+| --- | --------------------------------------------------------- | ---------- | ------------------------- | ---------------------------------------------------- | ---- |
+| 1   | `TODO.md` MON-2 / CAV-B1                                  | status     | execute in marketing repo | GitHub pin ✅ PR #92; live `/anatomy/` ⏳            | [x]  |
+| 2   | `MARKETING_SUBMODULE_PIN_CORPORATE12` + memo 06 + HANDOFF | pin status | future cutover wording    | GitHub done `c35a1f5`; prod verify open              | [x]  |
+| 3   | `TEST_REPORT.md` / `CHANGELOG` Unreleased                 | evidence   | tag-only                  | parent PR #92 + live HomePage still RetrievalDueCard | [x]  |
 
 ### Release 1.6.2 – 2026-08-13
 

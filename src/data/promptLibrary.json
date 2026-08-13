@@ -114,6 +114,13 @@
           "title": "Prompto kokybės patikrinimas (pagal 5 principus)",
           "goal": "Įklijuok savo promptą ir paleisk. Tikrina pagal 5 principus, tinka RAG ir agentams.",
           "prompt": "ROLE:\nTu esi patyręs promptų inžinierius ir mokymų treneris.\nTavo tikslas – kritiškai įvertinti prompto kokybę ir pasiūlyti pagerinimus.\n\nTASK:\nĮvertink pateiktą promptą pagal 5 principus:\n1) Aiškumas\n2) Eksperimentavimas\n3) Nuo paprasto → prie sudėtingo\n4) Kontekstas\n5) Žodžių pasirinkimas\n\nINPUT:\n[pateikiamas promptas]\n\nEVALUATION FORMAT:\n1. Įvertinimo lentelė (1–5 balai kiekvienam principui)\n2. Trumpas paaiškinimas, KODĖL skirtas toks balas\n3. 3 svarbiausios silpnos vietos\n4. Pasiūlyta patobulinta prompto versija\n\nRULES:\n- Būk konkretus, be bendrinių frazių\n- Jei trūksta informacijos – aiškiai įvardink\n- Jei promptas per sudėtingas – pasiūlyk paprastesnę V1 versiją\n- Neperrašinėk be reikalo – taisyk tik tai, kas duoda realią naudą\n\nOUTPUT:\nStruktūruotas, aiškus, praktiškai pritaikomas atsakymas."
+        },
+        {
+          "id": "after-eval-one-action",
+          "title": "Po vertinimo: vienas veiksmas darbe",
+          "goal": "Po 5 principų vertinimo. Įklijuok DI atsakymą — gausi vieną klausimą, ką keisti darbe.",
+          "logika": "Įvertink → vienas veiksmas darbe",
+          "prompt": "Ką tik gavau prompto įvertinimą pagal 5 principus:\n\n[ĮKLIJUOK ĮVERTINIMĄ]\n\nUžduok man 1 klausimą: kurį vieną silpniausią dalyką pataisysiu ir paleisiu darbe per 24–48 val.?\nPo mano atsakymo – 1 konkretus patarimas."
         }
       ]
     }

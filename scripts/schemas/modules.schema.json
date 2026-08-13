@@ -335,10 +335,11 @@
                               "type": "string",
                               "enum": [
                                 "chips",
+                                "choice",
                                 "prompt-tool",
                                 "manipulation-contrast"
                               ],
-                              "description": "chips = default bar; prompt-tool = EDA (M7/90); manipulation-contrast = Blogas|Geras (M7/67)"
+                              "description": "chips = default bar; choice = ChoiceControl cards (10.48); prompt-tool = EDA (M7/90); manipulation-contrast = Blogas|Geras (M7/67)"
                             },
                             "autoSelect": {
                               "type": "boolean",
@@ -365,6 +366,7 @@
                                     "minimum": 0
                                   },
                                   "whenHint": { "type": "string" },
+                                  "description": { "type": "string" },
                                   "pushSignal": { "type": "string" },
                                   "badExample": { "type": "string" }
                                 }

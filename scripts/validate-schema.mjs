@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * A-M1: JSON Schema + CI validacija.
- * Validates modules.json (required). Optionally promptLibrary.json and glossary.json.
+ * Validates modules.json (required). Optionally promptLibrary.json / promptLibrary-en.json and glossary.json.
  * Exit 0 = OK, 1 = validation failed (build should fail).
  */
 import Ajv from 'ajv';
@@ -492,14 +492,18 @@ function validateModulesEnM46() {
 
 function validatePromptLibrary() {
   const schema = loadJson(join(__dirname, 'schemas', 'promptLibrary.schema.json'));
-  const data = loadJson(join(dataDir, 'promptLibrary.json'));
-  const validate = ajv.compile(schema);
-  if (!validate(data)) {
-    console.error('promptLibrary.json validation failed:\n');
-    validate.errors.forEach((err) => console.error(`  ${err.instancePath || '/'}: ${err.message}`));
-    return false;
+  const files = ['promptLibrary.json', 'promptLibrary-en.json'];
+
+  for (const file of files) {
+    const data = loadJson(join(dataDir, file));
+    const validate = ajv.compile(schema);
+    if (!validate(data)) {
+      console.error(`${file} validation failed:\n`);
+      validate.errors.forEach((err) => console.error(`  ${err.instancePath || '/'}: ${err.message}`));
+      return false;
+    }
+    console.log(`${file}: OK`);
   }
-  console.log('promptLibrary.json: OK');
   return true;
 }
 

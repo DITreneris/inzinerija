@@ -4,7 +4,8 @@
 > Live SOT: `docs/turinio_pletra_moduliai_10_11_12.md` + `src/data/modules.json` (M10–12).  
 > **Turinio deep audit (2026-08-12):** [`M10_M12_CONTENT_DEEP_AUDIT_2026-08.md`](../M10_M12_CONTENT_DEEP_AUDIT_2026-08.md) — 47 sk. LT+EN; P0 ir P1 batch’ai pritaikyti (EN filler / `taskFrame` / `123` / glossary / kalba / hint ladder / kanonas).  
 > Ankstesnis tobulinimo ciklas (Wave1–2): `M10_M12_TOBULINIMO_INTAKE_2026-07.md`.  
-> **Statusas:** **CLOSED / FREEZE** 2026-08-12 — 11 M10 intake Must (§898) ✅; deep-audit P0/P1/P2 ✅; hygiene baseline 71. **NEXT = stop** (ne naujas polish ciklas).
+> **Statusas:** **CLOSED / FREEZE** 2026-08-12 — 11 M10 intake Must (§898) ✅; deep-audit P0/P1/P2 ✅; hygiene baseline 71. **Šis ciklas = stop** (ne naujas polish).  
+> **Naujas ciklas (tik fiksavimas):** testerio pastabos → [`M10_M12_TESTER_INTAKE_2026-08.md`](M10_M12_TESTER_INTAKE_2026-08.md). Gyvas turinys lieka FREEZE.
 
 ---
 

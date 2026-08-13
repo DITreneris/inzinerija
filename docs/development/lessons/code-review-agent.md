@@ -6,6 +6,7 @@
 
 ## Pamokos
 
+2026-08-13 | ChoiceControl default / LMS inactive | Diff keičia ChoiceControl default wash/legend arba `DIAGRAM_TOKENS.opacity.inactive` <0.85 = sibling regresija (M7/M9/M13 + layout testai) | Reikalauti opt-in props / lokalaus dim; `variant: choice` tik 10.48; freeze = ne P3 | ChoiceControl.tsx, diagramTokens.ts, ContentBlockSlide.tsx
 2026-07-31 | Scheme enlarge re-enable | Diff su `showEnlargeControl={true}` / naujas „Išskleisti schemą“ ant Shell Block = politika regresija po Variant 1 | Block: reikalauti dense-static priežasties arba revert; default false | EnlargeableDiagram.tsx, SCHEME_AGENT.md §3.11
 2026-07-13 | M4 sk. 53.5 Satori→SVG | prarasti caption laukai migracijoje | diff YAML vs portalBeatContent prieš „done“ | portal-beat re migration
 2026-07-13 | M4 sk. 53.5 | awareness polish be retest | ne skelbti slide done; 48h protokolas | TEST_REPORT.md

@@ -73,6 +73,8 @@ export function DiagramStatusBadge({
   );
 }
 
+export type DiagramNavMode = 'visible' | 'sr-only';
+
 interface DiagramStepNavProps<TStep extends DiagramStepSummary> {
   steps: TStep[];
   currentStep: number;
@@ -80,6 +82,8 @@ interface DiagramStepNavProps<TStep extends DiagramStepSummary> {
   ariaLabel: string;
   stepAria: (index: number, title: string) => string;
   density?: InteractiveDiagramDensity;
+  /** sr-only = keyboard a11y without a second visual picker (T08). Default visible. */
+  navMode?: DiagramNavMode;
 }
 
 export function DiagramStepNav<TStep extends DiagramStepSummary>({
@@ -89,11 +93,12 @@ export function DiagramStepNav<TStep extends DiagramStepSummary>({
   ariaLabel,
   stepAria,
   density = 'default',
+  navMode = 'visible',
 }: DiagramStepNavProps<TStep>) {
   const isHero = density === 'hero';
   return (
     <nav
-      className={`flex flex-wrap justify-center ${isHero ? 'gap-1' : 'gap-1.5'}`}
+      className={`flex flex-wrap justify-center ${isHero ? 'gap-1' : 'gap-1.5'}${navMode === 'sr-only' ? ' sr-only' : ''}`}
       aria-label={ariaLabel}
     >
       {steps.map((step, idx) => {
@@ -216,6 +221,8 @@ interface InteractiveDiagramShellProps<TStep extends DiagramStepSummary> {
   density?: InteractiveDiagramDensity;
   /** Hero status: “Step n of total” / “Žingsnis n iš total” */
   stepOfLabel?: string;
+  /** Default visible. sr-only keeps keyboard stepper without a dual picker. */
+  navMode?: DiagramNavMode;
 }
 
 export function InteractiveDiagramShell<TStep extends DiagramStepSummary>({
@@ -233,6 +240,7 @@ export function InteractiveDiagramShell<TStep extends DiagramStepSummary>({
   children,
   density = 'default',
   stepOfLabel,
+  navMode = 'visible',
 }: InteractiveDiagramShellProps<TStep>) {
   const gap = density === 'hero' ? 'space-y-2' : 'space-y-4';
   return (
@@ -253,6 +261,7 @@ export function InteractiveDiagramShell<TStep extends DiagramStepSummary>({
         ariaLabel={navAria}
         stepAria={stepAria}
         density={density}
+        navMode={navMode}
       />
       <DiagramExplanation title={explanationTitle} density={density}>
         {explanation}

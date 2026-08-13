@@ -34,7 +34,10 @@ export default function M10ThreeAStrategyBlock() {
           onStepSelect={setCurrentStep}
           stepAria={labels.stepAria}
           explanationTitle={step.title}
-          explanation={<p>{renderBold(step.body)}</p>}
+          explanation={
+            <p className="whitespace-pre-line">{renderBold(step.body)}</p>
+          }
+          navMode="sr-only"
         >
           <M10ThreeAStrategyDiagram
             locale={loc}

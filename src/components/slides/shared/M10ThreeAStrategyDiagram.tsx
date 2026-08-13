@@ -15,6 +15,8 @@ import {
 } from './m10ThreeAStrategyLayout';
 
 const INNER_PCT_MIN_W = 72;
+/** Stronger than LMS opacity.inactive floor – local to 3A. */
+const BAND_DIM_OPACITY = 0.42;
 
 export default function M10ThreeAStrategyDiagram({
   locale = 'lt',
@@ -68,7 +70,7 @@ export default function M10ThreeAStrategyDiagram({
   return (
     <svg
       viewBox={`0 0 ${W} ${H}`}
-      className={`w-full max-w-3xl mx-auto block ${className}`}
+      className={`w-full max-w-5xl mx-auto block ${className}`}
       role="img"
       aria-label={`${L.aria}${isInteractive ? ` ${L.hint}` : ''}`}
     >
@@ -115,10 +117,23 @@ export default function M10ThreeAStrategyDiagram({
         const opacity = isInteractive
           ? isActive
             ? DIAGRAM_TOKENS.opacity.active
-            : DIAGRAM_TOKENS.opacity.inactive
+            : BAND_DIM_OPACITY
           : 1;
         const cx = seg.x + seg.w / 2;
         const showInnerPct = seg.w >= INNER_PCT_MIN_W;
+        const isAuton = i === 2;
+        const strokeColor = isAuton
+          ? tones.amber.stroke
+          : isActive
+            ? palette.brandDark
+            : palette.brand;
+        const strokeW = isAuton
+          ? isActive
+            ? DIAGRAM_TOKENS.stroke.active
+            : 2
+          : isActive
+            ? DIAGRAM_TOKENS.stroke.active
+            : DIAGRAM_TOKENS.stroke.inactive;
         return (
           <g key={`seg-${i}`}>
             <g
@@ -133,12 +148,8 @@ export default function M10ThreeAStrategyDiagram({
                 height={seg.h}
                 rx={i === 0 ? DIAGRAM_TOKENS.radius.box : 4}
                 fill={r.fill}
-                stroke={isActive ? palette.brandDark : palette.brand}
-                strokeWidth={
-                  isActive
-                    ? DIAGRAM_TOKENS.stroke.active
-                    : DIAGRAM_TOKENS.stroke.inactive
-                }
+                stroke={strokeColor}
+                strokeWidth={strokeW}
               />
               {showInnerPct && (
                 <text
@@ -154,6 +165,19 @@ export default function M10ThreeAStrategyDiagram({
                 </text>
               )}
             </g>
+            {isAuton && (
+              <text
+                x={seg.x + seg.w + 10}
+                y={seg.y + seg.h / 2 + 5}
+                textAnchor="start"
+                fill={tones.amber.stroke}
+                fontSize={DIAGRAM_TOKENS.typography.stepLabel.desktop}
+                fontWeight="700"
+                fontFamily={DIAGRAM_TOKENS.font}
+              >
+                {r.pct}
+              </text>
+            )}
             {isInteractive && (
               <DiagramStepHitArea
                 x={hit.x}
@@ -176,7 +200,7 @@ export default function M10ThreeAStrategyDiagram({
         const rowOpacity = isInteractive
           ? isActive
             ? DIAGRAM_TOKENS.opacity.active
-            : DIAGRAM_TOKENS.opacity.inactive
+            : BAND_DIM_OPACITY
           : 1;
         const titleX = item.x + 14;
         const subX = item.x + 168;

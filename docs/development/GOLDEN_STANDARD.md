@@ -1,8 +1,9 @@
 # Golden standard – vienas etalonas viskam
 
 > **Paskirtis:** Vienas dokumentas – visi standartai: šriftai, spalvos, blokų hierarchija, skaidrių tipai ir jų užpildymo schemos, turinio išdėstymas, modulio identitetas. **CONTENT_AGENT, UI_UX_AGENT, DATA_AGENT ir CODING_AGENT privalo laikytis šio dokumento.**
-> **Versija:** 2.3.20  
-> **Data:** 2026-07-29  
+> **Versija:** 2.3.21  
+> **Data:** 2026-08-13  
+> **2.3.21:** §3.1c / §3.8.1 – ChoiceControl opt-in only; `toolChoiceBar.variant: choice` **tik 10.48**; antras vizualus picker = FAIL (`navMode="sr-only"`).  
 > **2.3.20:** §3.1b/c – consumer `M10TeamReadinessLabBlock` (10.255 `m10_team_readiness_lab`: 3 dimensijų komandos DI praktikos nuotrauka; be balo; Shell=Ne).
 > **2.3.20:** §6c kalbos konvencijos – LT `tu` + EN American English; vartai `audit:lt-address` / `audit:en-spelling`.
 > **2.3.19:** §6b Content-track visual exception (M13–15); §3.1b path Choice `optionTone: rose` kai `moduleAccent === 'rose'`.
@@ -120,7 +121,8 @@
 | A11y            | `radiogroup` + `role="radio"` + `aria-checked`; `min-h-[44px]`; rodyklės keičia pasirinkimą                                                                                                                                                                                              |
 | `value`         | `T \| null` (null = dar nepasirinkta, pvz. M7 / M6 jump / lab prieš režimą)                                                                                                                                                                                                              |
 | `columns`       | `1 \| 2 \| 3` (default 2); decision lab gali naudoti `1` (vertikalus sąrašas)                                                                                                                                                                                                            |
-| Hint            | Viena `statusHint` eilutė po grid – be description dublio                                                                                                                                                                                                                                |
+| Hint            | Viena `statusHint` eilutė po grid – be description dublio. Opt-in: `legendMode` `sr-only` / `hidden` (10.255 dublio legendai).                                                                                                                                                           |
+| Unselected wash | Default = balta. Opt-in `toneVisibleWhenUnselected` + `optionTone` = būsenos plovimas **prieš** pick (10.255). M7/M9/M13 **nenaudoja**.                                                                                                                                                  |
 
 **Consumeriai:**
 
@@ -142,9 +144,9 @@
 | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Scope         | Išimtis **tik** lab surface viduje `*Block` (pvz. `M10HumanControlSimulatorBlock`, `M4PromptModeSimulatorBlock`, `M10TeamReadinessLabBlock`, `M10DepthRolesLabBlock`, `M13ConsistencyLockLabBlock`). Slide chrome (Trumpai / Daryk / Patikra) – §3.2 accent biudžetas **be** pakeitimų. Kopijuojama taisyklė / profilis – lab `CopyButton`, ne atskira content-block „Kopijuojamas promptas“ siena. 10.255 / 10.45 / 13.325: brand-only Choice + status mirror OK; 13.325 papildomai ref checklist + Simptomas\|Fix (SCHEME §2.2c). |
 | Risk palette  | Lab viduje leidžiama: brand / amber / rose / slate (stake) + emerald (fit) + amber (mismatch) + rose (error). Token SOT: `m10HumanControlLabTokens.ts` / `m4PromptModeLabTokens.ts` (M4 be finansinės kritinės rose – stake = duomenų / haliucinacijos rizika). UI: **strip** (3 chips, be empty), timing juosta, 2 trade meteriai.                                                                                                                                                                                                 |
-| ChoiceControl | Default selected = **brand**. Lab gali perduoti optional `optionTone` per option id; M4/M7 path **nenaudoja** tone.                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ChoiceControl | Default selected = **brand**. Lab gali perduoti optional `optionTone` per option id; M4/M7 path **nenaudoja** tone. Opt-in: `toneVisibleWhenUnselected` (10.255 ordinali skalė prieš pick); `selectedUsesBrand` (10.26 selected ≠ severity).                                                                                                                                                                                                                                                                                        |
 | A11y          | Spalva **+** tekstinis chip / ikona (ne tik spalva). Dark: `*/20` fills.                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| Draudžiama    | Purple glow, neon, module emerald/violet stack ant path ChoiceControl, SVG Shell / `density=hero`, empty „nėra scenarijaus“ celės (žr. SCHEME §2.2c W1.1).                                                                                                                                                                                                                                                                                                                                                                          |
+| Draudžiama    | Purple glow, neon, module emerald/violet stack ant path ChoiceControl, SVG Shell / `density=hero`, empty „nėra scenarijaus“ celės (žr. SCHEME §2.2c W1.1). Antras **vizualus** ChoiceControl (dual picker) — antras kelias = Shell `navMode="sr-only"` arba mapa chip’ai. Default wash/legend **nekeisti** (M7/M9/M13).                                                                                                                                                                                                             |
 
 ### 3.2 content-block (veiksmo skaidrės)
 
@@ -152,7 +154,7 @@
 
 **Sekcijų schema:** Trumpai (LT) / In short (EN), accent → Daryk dabar / Do now (brand) → Kopijuojamas promptas / Copy-paste prompt → Patikra / Quality check (accent) → Optional (terms, collapsible).
 
-**Accent biudžetas:** max 2× `accent` (Trumpai + Patikra); Daryk dabar privalo būti `brand`. CI: `npm run audit:accent-budget` (M10–12 – `audit:accent-budget:m1012` release-preflight). **Išimtys (neprivalomas deep / recap):** M10 `10.65`, M12 `125` – gali neturėti pilno GOLDEN ciklo, jei pažymėta optional.
+**Accent biudžetas:** max 2× `accent` (Trumpai + Patikra); Daryk dabar privalo būti `brand`. CI: `npm run audit:accent-budget` (M10–12 – `audit:accent-budget:m1012` release-preflight). **Išimtys (neprivalomas deep / recap):** M12 `125` – gali neturėti pilno GOLDEN ciklo, jei pažymėta optional.
 
 | Sekcija                         | blockVariant | Turinio taisyklė                                     |
 | ------------------------------- | ------------ | ---------------------------------------------------- |
@@ -569,12 +571,15 @@ Embedded sub-laukas įdedamas į `content-block`, kai užtenka mažo veiksmo toj
 | `linkedRowIndex`                               | Rodo tik susietą copyable sekciją (filtras).                                          | M7 sk. 734, 731, 733, 77, 76; M10/10.48, 10.35 (`sections[].linkedRowIndex`)                 |
 | `toolChoiceBar.variant: prompt-tool`           | Promptų įrankio surface: sample data → ChoiceControl → Formato preview → linked Copy. | **Etalonas:** M7 sk. 90 (`PromptFilterToolSurface`); default `chips` kitur.                  |
 | `toolChoiceBar.variant: manipulation-contrast` | Manipuliacijų kontrastas: ChoiceControl → Blogas\|Geras + pushSignal → linked Copy.   | **Etalonas:** M7 sk. 67 (`ManipulationContrastToolSurface`); brother of prompt-tool.         |
+| `toolChoiceBar.variant: choice`                | Brand ChoiceControl 2–3 col + descriptor (Tinka/Netinka); selected ≠ accent.          | **Tik 10.48.** Default M4–M9 chip bar’ų **nemigruoti**. Embed, ne naujas Pattern.            |
 
 **`toolChoiceBar` be lentelės:** kai skaidrė turi tik copyable promptus (ne `table`), `ContentSlides` renderina bar be `presentationToolsBlock`. Žr. [`LENTELIU_STANDARTAS.md`](LENTELIU_STANDARTAS.md) M7/734.
 
 **`prompt-tool`:** `variant: "prompt-tool"` – be auto-select (value null iki pasirinkimo); brand `ChoiceControl` + static EDA juosta; `sampleData` / `sequenceHint` / `whenHint`; Formatas preview iš `formatPreview` arba `copyable` eilutės `Formatas:` / `Format:`. Kind lieka embed (ne `interactive-control-lab`).
 
 **`manipulation-contrast`:** `variant: "manipulation-contrast"` – be auto-select; brand `ChoiceControl` 2×2; `choices[].pushSignal` + `badExample`; Geras stulpelis iš linked `copyable`; linked Copy po surface. Kind = embed (ne lab). Copyable klasė **L – Lab** (`M7_PROMPT_MATURITY.md`).
+
+**`choice`:** `variant: "choice"` – **tik 10.48**; brand `ChoiceControl` 2–3 col + descriptor; selected brand (ne `bg-accent-500`). Kind = embed. Default M4–M9 chip bar’ų nemigruoti.
 
 **`preCopyCheckBlock` vieta:** be `linkedRowIndex` – renderinti **prieš pirmą sekciją su `copyable`** (ne skaidrės viršuje), kad teorija eitų pirma; su `linkedRowIndex` – esamas kelias (prieš pirmą collapsible / po bar). Testas: `ContentBlockSlide.preCopyPlacement.test.tsx`.
 
@@ -667,7 +672,7 @@ Kiekvieno modulio **pirmoji skaidrė** – vienas aiškus naudos sakinys.
 
 ### 5.5 Sticky stacking (z-index ir `top` offset)
 
-AppNav aukštis yra **dinaminis** – desktop meniu gali persilaužti į 2 eilutes, kai viewport < ~1280px. Todėl visi sticky elementai po AppNav turi naudoti CSS kintamąjį, ne hardcoded reikšmę.
+AppNav aukštis yra **dinaminis**: `xl+` – viena eilutė; `lg`–`xl` – destinacijos gali būti antra **pilno pločio** eilutė (tyčia, ne kairė krūva); žemiau `lg` – hamburgeris. Todėl visi sticky elementai po AppNav turi naudoti CSS kintamąjį, ne hardcoded reikšmę.
 
 | Elementas              | Pozicionavimas                            | z-index |
 | ---------------------- | ----------------------------------------- | ------- |
@@ -804,7 +809,7 @@ Modulis N atrakintas, kai `progress.completedModules` turi (N-1).
 **UX taisyklės:**
 
 1. Virš katalogo gali būti tik vienas dominuojantis „Kitas tavo žingsnis“ signalas arba recovery kortelė tuščiai pažangai; nekrauti atskiros didelės kartojimo / vertintojo kortelės virš modulių.
-2. Bendra pažanga rodoma AppNav ir modulio kortelių progresuose; kataloge ji leidžiama tik kaip next-step meta chip po pagrindiniu CTA („Tavo pažanga: X iš Y · Z %“), ne kaip atskira didelė kortelė.
+2. Bendra pažanga rodoma AppNav (kompaktinis takelis + %, ne pill-juosta ir ne katalogo dublikatas) ir modulio kortelių progresuose; kataloge ji leidžiama tik kaip next-step meta chip po pagrindiniu CTA („Tavo pažanga: X iš Y · Z %“), ne kaip atskira didelė kortelė.
 3. Next-step kortelė turi būti premium tankio: kompaktiškas white/card paviršius, subtilus border/shadow, aiškus content/action grid ir viena dešinės pusės CTA + statuso sistema. Vėlesnis polish sprendžia tankį, radius ir surface separation – ne prideda dekoracijų.
 4. Papildoma centrinė „Bendra pažanga“ kortelė katalogo viršuje nekartojama.
 5. Kartojimas („Laikas pasikartoti“) kataloge yra antrinis veiksmas šalia next-step, o prompto vertintojas – kontekstinė papildoma praktika po katalogo, susieta su konkrečiu moduliu.
@@ -812,7 +817,8 @@ Modulis N atrakintas, kai `progress.completedModules` turi (N-1).
 7. Ribą imti iš **access tier** (`maxAccessible`), ne iš sekencinio lock (sekvenciniai `<= maxAccessible` lieka virš materials).
 8. Bazės M1–6 lieka **vienas** track (pricing / sertifikatai); M4–M6 skiria tik subsection, ne atskiras kelias.
 9. 1024 px pločio zonoje katalogas turi likti skaitomas: naudoti 2 stulpelius iki `xl`, o 3 stulpelius tik platesniame desktop.
-10. Testai: `ModulesPage.materials.test.tsx` (pozicija tier=6; download/sertifikatai), `ModulesPage.catalogUx.test.tsx` (next-step / kartojimas / vertintojas / progreso nedubliavimas).
+10. Testai: `ModulesPage.materials.test.tsx` (pozicija tier=6; download/sertifikatai), `ModulesPage.catalogUx.test.tsx` (next-step / kartojimas / vertintojas / progreso nedubliavimas / M3→M4 ready-check).
+11. M3→M4 branduolio pasitikrinimas kataloge = hinge juosta grid’e **prieš** `base-cycle-2` (next-step lukštas, brand `primary` CTA). Ne po coming-soon, ne antras hero virš katalogo, ne hard gate. Slėpti kai M4 baigtas arba `quizCompleted`.
 
 **Home vs katalogas:** katalogas valdo next-step (vienas primary „Kitas tavo žingsnis“). Home hero CTA lieka vienas primary (`Tęsti` / `Pradėti`); kartojimas Home = antrinis tekstinis linkas po hero CTA (tas pats balsas kaip `nextStepRecallCta`), **ne** atskira `RetrievalDueCard` hero kortelė. Nedėti antros next-step juostos Home.
 
@@ -872,7 +878,7 @@ Modulis N atrakintas, kai `progress.completedModules` turi (N-1).
 | **Footeriai (nuoseklūs nr.)**                         | .cursor/rules/footer-slide-numbers.mdc, .cursor/skills/orchestrator/SKILL.md                                              |
 | **Skaidrių taškai (navigacija)**                      | ModuleView.tsx §8.5 – viena eilutė, overflow-x-auto, ilgiems moduliams mažesni taškai                                     |
 | **Modulio chrome (breadcrumb vs Prev)**               | ModuleView + ModuleBreadcrumb §8.6 – escape = Moduliai; player = Ankstesnė / Tęsti                                        |
-| **ModulesPage katalogas (track / materials)**         | §8.4 – track chrome, bazės subsection M4–M6, „Mano medžiaga“ po `maxAccessible`                                           |
+| **ModulesPage katalogas (track / materials)**         | §8.4 – track chrome, bazės subsection M4–M6, M3→M4 ready-check hinge, „Mano medžiaga“ po `maxAccessible`                  |
 | **Sertifikatai moduliuose (atkartojamas standartas)** | §3.7 – kada išduoti, certificateContent.json (tiers, websiteUrl, websiteCta), PDF maketas, UI; CERTIFICATE_CONTENT_SOT.md |
 
 ---

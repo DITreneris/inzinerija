@@ -643,7 +643,7 @@ export function getOrchestratorEdgeLabelAnchor(
     return { x, y, midX, midY };
   }
 
-  const edgeBump = edgeId === 'research-tools' ? 4 : 0;
+  const edgeBump = edgeId === 'research-tools' ? 16 : 0;
   const vClear = pillW / 2 + 14 + edgeBump;
   const rightX = midX + vClear;
   const leftX = midX - vClear;
@@ -683,6 +683,7 @@ export interface DesktopFanoutGeometry {
   assignPill: { x: number; y: number };
   agentsLane: { x: number; y: number; w: number; h: number };
   agentsBand: { x: number; y: number };
+  agentsHeader: { x: number; y: number; w: number; h: number };
 }
 
 export interface DesktopFaninGeometry {
@@ -748,6 +749,14 @@ export function getDesktopFanoutGeometry(
     h: headerH + research.h + 8,
   };
 
+  const bandSize = estimateOrchestratorPillSize('Vykdymo agentai');
+  const agentsHeader = {
+    x: agentsLane.x + 8,
+    y: laneTop + 4,
+    w: bandSize.w + 10,
+    h: 20,
+  };
+
   return {
     trunkX,
     busY,
@@ -757,14 +766,11 @@ export function getDesktopFanoutGeometry(
     dropPaths,
     assignPill: { x: assignPillX, y: assignPillY },
     agentsLane,
-    /**
-     * Start just right of research drop (LT “Vykdymo agentai” too wide for
-     * left-of-drop pocket); below bus, above agent tops.
-     */
+    agentsHeader,
+    /** Baseline inside header chip; painted after busPath. */
     agentsBand: {
-      x: leftCx + 10,
-      // ≥16 px under bus before agent tops (header zone air)
-      y: busY + 14,
+      x: agentsHeader.x + 8,
+      y: agentsHeader.y + 14,
     },
   };
 }

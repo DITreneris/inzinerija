@@ -1,9 +1,9 @@
 # Promptų anatomija – Plėtros roadmap
 
-> **Atnaujinta:** 2026-08-13 | Roadmap **v4.22** (Docs Lean · M1012 content freeze · CATALOG-HOME ✅ · release **1.6.2**)  
-> **App:** 1.6.2 (tag = corporate12 pin) · **Training HEAD:** 1.6.2 (katalogas + content audit + SCHEME-CENTRAL W1 + Home retrieval demote). **Ne** retag 1.6.1.  
+> **Atnaujinta:** 2026-08-13 | Roadmap **v4.25** (T01–T08 + T09 Must ✅ · hygiene liekana **41** · Docs Lean · CATALOG-HOME ✅ · release **1.6.2**)  
+> **App:** 1.6.2 (tag = corporate12 pin) · **Training HEAD:** 1.6.2 + T01–T08 + T09 + hygiene closeout + katalogo hinge + AppNav freeze + promptų Micro. **Ne** retag 1.6.1. **Ne** automatinis re-pin.  
 > **Done santrauka:** [`CODEBASE_WHAT_IS_DONE.md`](docs/development/CODEBASE_WHAT_IS_DONE.md) · [`CHANGELOG.md`](CHANGELOG.md) · archive [`TODO_DONE_SPRINTS_2026-08.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-08.md)  
-> **Open darbai:** [`TODO.md`](TODO.md) §1.4 MON · §1.5 Deferred (D3) · §1.7 TOOL-5 · §1.6 Caveats B1/B2. Learning P0/P1 **nėra**.
+> **Open darbai:** [`TODO.md`](TODO.md) T01 I5 parked · Should 2-as pass · M11–M12 testerio eilutės · §1.4 MON · §1.5 Deferred (D3) · §1.7 TOOL-5 · §1.6 Caveats B1/B2. Learning P0/P1 **nėra**.
 
 **Nuosavybė:** šis repo = turinio / pedagogikos / UI kokybės OS. Marketingas (env, PostHog, CRO) → kitas repo.  
 **Principas:** M1–9 production; **M10–12 corporate + content freeze**; **M13–15 corporate + learner plain**; M16–18 authoring + TE + plain ✅ · TE Could closed.  
@@ -17,16 +17,16 @@ M1–6 pilnai · M7–9 production tier 9 · M10–15 corporate cuts ✅ · M10�
 
 ### Open gaps (production ladder)
 
-| Horizon | Scope                          | Status                                                                            | Prioritetas   |
-| ------- | ------------------------------ | --------------------------------------------------------------------------------- | ------------- |
-| **A**   | M1–9 corporate micro polish    | **done**                                                                          | —             |
-| **B**   | M10–12 corporate production    | **done** (repo exit + B-V + **M1012-DEEP** + **content audit freeze** 2026-08-12) | —             |
-| **C**   | M13–15 corporate production    | **done** · learner plain ✅ · M13P-TRIM ✅                                        | —             |
-| **M79** | M7–9 scheme / skaitomumo ROI   | **done**                                                                          | archive       |
-| **E**   | Transfer & Retention (UJ-MUST) | **done**                                                                          | archive       |
-| **D**   | M16–18 Kodo inžinerija         | authoring+TE+ritmas+plain ✅ · D3 future                                          | Deferred §1.5 |
-| **UX**  | Katalogas / Home kelionė       | **done** (CATALOG-HOME 2026-08-12)                                                | —             |
-| **MON** | marketing (env, PostHog, CRO)  | out of scope                                                                      | TODO §1.4     |
+| Horizon | Scope                          | Status                                                                | Prioritetas   |
+| ------- | ------------------------------ | --------------------------------------------------------------------- | ------------- |
+| **A**   | M1–9 corporate micro polish    | **done**                                                              | —             |
+| **B**   | M10–12 corporate production    | **done** + testerio Must T01–T08 + T09 ✅ (I5 parked; hygiene **41**) | TODO §1.3     |
+| **C**   | M13–15 corporate production    | **done** · learner plain ✅ · M13P-TRIM ✅                            | —             |
+| **M79** | M7–9 scheme / skaitomumo ROI   | **done**                                                              | archive       |
+| **E**   | Transfer & Retention (UJ-MUST) | **done**                                                              | archive       |
+| **D**   | M16–18 Kodo inžinerija         | authoring+TE+ritmas+plain ✅ · D3 future                              | Deferred §1.5 |
+| **UX**  | Katalogas / Home kelionė       | **done** (CATALOG-HOME 2026-08-12)                                    | —             |
+| **MON** | marketing (env, PostHog, CRO)  | out of scope                                                          | TODO §1.4     |
 
 ---
 
@@ -34,7 +34,7 @@ M1–6 pilnai · M7–9 production tier 9 · M10–15 corporate cuts ✅ · M10�
 
 ### Done context (ne open)
 
-- Corporate12/15 cuts ✅ · M1012-DEEP + content audit freeze ✅ · M13–18 plain ✅ · SCHEME-CENTRAL W1 (governance CI) ✅ · CATALOG-HOME ✅.
+- Corporate12/15 cuts ✅ · M1012-DEEP + content audit freeze (hygiene **41**) ✅ · M13–18 plain ✅ · SCHEME-CENTRAL W1 ✅ · CATALOG-HOME ✅ · M10 testerio Must T01–T08 + T09 ✅.
 - Archive: [`TODO_DONE_SPRINTS_2026-08.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-08.md).
 
 ### Horizon D – M16–18 Kodo inžinerija
@@ -93,7 +93,7 @@ CI: schema, lint, test, **governance**, MVP + M1–9 + corporate12 + corporate15
 | Tier 12/15 cutover checklist | [`MARKETING_HANDOFF_CHECKLIST.md`](docs/deployment/MARKETING_HANDOFF_CHECKLIST.md) |
 | Ticketų statusai             | [`TODO.md`](TODO.md) §1.4                                                          |
 
-**Pin:** cutover target **v1.6.2**. Later Unreleased ≠ automatinis re-pin.
+**Pin:** GitHub `promptanatomy` = **v1.6.2** / `c35a1f5` (PR #92). Live `/anatomy/` 1.6.2 ⏳. Later Unreleased ≠ automatinis re-pin.
 
 ---
 
@@ -112,4 +112,4 @@ CI: schema, lint, test, **governance**, MVP + M1–9 + corporate12 + corporate15
 | Marketing handoff     | `DEPLOYMENT.md`, `MON_P0_EXECUTION_PLAN.md`                                                       |
 | Done TODO snapshot    | [`TODO_DONE_SPRINTS_2026-08.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-08.md)           |
 
-**Sinchronas:** open gaps ↔ TODO §1 · **2026-08-12** Docs Lean + CATALOG-HOME ✅.
+**Sinchronas:** open gaps ↔ TODO §1 · **2026-08-13** T09 + hygiene liekana **41** (ROADMAP **v4.25**).

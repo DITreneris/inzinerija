@@ -22,6 +22,12 @@ import {
   isProseField,
   isChromeField,
 } from './lib/m1012-content-corpus.mjs';
+import {
+  numbersIn,
+  isRepeatableChrome,
+  isParityLtMissingExempt,
+  isSameSlideFillerRepeat,
+} from './lib/m1012-hygiene-parity.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..');
@@ -157,12 +163,6 @@ const BUILD_FILLER = [
   'A key term used in agent engineering.',
 ];
 
-/** Paths where an identical value across slides is by design, not filler. */
-function isRepeatableChrome(path) {
-  return /(^title$|^subtitle$|^shortTitle$|^pathLabel$|heading|^label$|templateLabel|reflectionTitle|introHeading|^term$|content\.title|instructions\.title|taskFrame)/.test(
-    path
-  );
-}
 
 const SEVERITY = {
   'en-build-filler': 'P0',
@@ -222,14 +222,6 @@ function countOf(text, re) {
   return (text.match(re) || []).length;
 }
 
-function numbersIn(text) {
-  const withoutUrls = text.replace(/https?:\/\/\S+/g, '');
-  const raw = withoutUrls.match(/\d+(?:[.,]\d+)?/g) || [];
-  return raw
-    .map((n) => n.replace(',', '.'))
-    .map((n) => String(parseFloat(n)))
-    .sort();
-}
 
 function markdownShape(text) {
   return {
@@ -363,6 +355,7 @@ function checkParity(slide, path, lt, en) {
     return;
   }
   if (!lt && en) {
+    if (isParityLtMissingExempt(path)) return;
     add(slide, path, 'parity', 'parity-lt-missing', en.slice(0, 140), 'yra tik EN');
     return;
   }
@@ -510,6 +503,7 @@ for (const lang of ['lt', 'en']) {
   }
   for (const [value, hits] of byValue) {
     if (hits.length < 3) continue;
+    if (isSameSlideFillerRepeat(hits)) continue;
     if (BUILD_FILLER.some((f) => value.includes(f))) continue; // already reported
     const places = hits.map((h) => `${h.slide.slideId}:${h.path}`).join(' | ');
     add(hits[0].slide, hits[0].path, lang, 'filler-repeat', value.slice(0, 100), `${hits.length}x: ${places}`.slice(0, 400));

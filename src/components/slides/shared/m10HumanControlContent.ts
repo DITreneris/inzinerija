@@ -34,7 +34,9 @@ export function getHumanControlUiLabels(locale: M10Locale) {
     return {
       regionAria: 'Human control simulator: choose scenario and oversight mode',
       scenarioLegend: 'Choose a business scenario',
+      scenarioSubtitle: 'What the process does',
       modeLegend: 'Control mode',
+      modeSubtitle: 'How it is overseen',
       recommendHeading: 'Recommended mode',
       bestFit: 'Best fit',
       mismatch: 'Reconsider',
@@ -88,7 +90,9 @@ export function getHumanControlUiLabels(locale: M10Locale) {
     regionAria:
       'Žmogaus kontrolės simuliatorius: pasirink scenarijų ir kontrolės režimą',
     scenarioLegend: 'Pasirink verslo scenarijų',
+    scenarioSubtitle: 'Ką procesas daro',
     modeLegend: 'Kontrolės režimas',
+    modeSubtitle: 'Kaip prižiūrima',
     recommendHeading: 'Rekomenduojamas režimas',
     bestFit: 'Tinkamiausias',
     mismatch: 'Persvarstyk',

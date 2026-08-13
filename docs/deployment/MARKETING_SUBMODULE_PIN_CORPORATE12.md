@@ -11,6 +11,8 @@
 
 Po inzinerija app tag **v1.6.2** (corporate12 repo-ready + toolchain advisories closed) atnaujinti marketing monorepo submodule ir deploy'inti **M1–12** bundle (`build:corporate12`) į `https://www.promptanatomy.app/anatomy/`, su Supabase Phase 1 `access_tier=12` (be Stripe).
 
+**Statusas 2026-08-13:** GitHub pin **done** — `promptanatomy` `main` submodule = `c35a1f5` / **v1.6.2** ([PR #92](https://github.com/DITreneris/promptanatomy/pull/92); CI Golden Legacy ✅). Parent build jau `scripts/vercel-build.sh` → `VITE_MAX_BUILD_MODULE=12` + `build:corporate12`; `generate-access-link` `ACCESS_TIER_VALUES = [3, 6, 9, 12]`. Live `https://www.promptanatomy.app/anatomy/` **dar ne 1.6.2**: `HomePage-*.js` vis dar `import` `RetrievalDueCard` (1.6.2 Home = antrinis `home-recall-link`). Vercel prod deploy / cache — marketing.
+
 **Ne šis runbook:** learning freeze pin `v1.4.9` (lieka M1–9); corporate15 / tier 15; Stripe €199.
 
 ---

@@ -13,9 +13,9 @@ export const M10_DEPTH_ROLES_VIEWBOX = {
 } as const;
 
 export const M10_DEPTH_PILL = {
-  width: 138,
-  height: 56,
-  gap: 12,
+  width: 142,
+  height: 68,
+  gap: 10,
   radius: 12,
   /** Caption air under SVG title (LMS lab etalon – not cramped under title). */
   startY: 58,

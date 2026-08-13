@@ -1060,9 +1060,65 @@ export function ContentBlockSlide({
                     })()}
                   {section.toolChoiceBar &&
                     !section.presentationToolsBlock &&
+                    section.toolChoiceBar.variant === 'choice' &&
+                    (() => {
+                      const bar = section.toolChoiceBar!;
+                      const choiceOptions = (bar.choices ?? []).map(
+                        (choice) => ({
+                          id: String(choice.rowIndex),
+                          label: choice.label,
+                          description: choice.description,
+                        })
+                      );
+                      const activeChoice = (bar.choices ?? []).find(
+                        (c) => c.rowIndex === selectedToolRowIndex
+                      );
+                      return (
+                        <div className="mb-4 space-y-4">
+                          {bar.question ? (
+                            <h3 className="text-base font-bold text-gray-900 dark:text-white">
+                              {bar.question}
+                            </h3>
+                          ) : null}
+                          <ChoiceControl
+                            legend={bar.question ?? t('chooseTaskTypeAria')}
+                            legendMode={bar.question ? 'sr-only' : 'visible'}
+                            options={choiceOptions}
+                            value={
+                              selectedToolRowIndex == null
+                                ? null
+                                : String(selectedToolRowIndex)
+                            }
+                            onChange={(id) =>
+                              setSelectedToolRowIndex(Number(id))
+                            }
+                            columns={3}
+                            size="compact"
+                          />
+                          {selectedToolRowIndex != null &&
+                          activeChoice?.whenHint ? (
+                            <div
+                              role="status"
+                              aria-live="polite"
+                              data-tool-choice-live
+                              className="rounded-xl border border-brand-200 bg-brand-50/70 p-3 dark:border-brand-800 dark:bg-brand-900/20"
+                            >
+                              <p
+                                className={`${typographyClasses.body} mb-0 text-gray-800 dark:text-gray-200`}
+                                data-tool-choice-when-hint
+                              >
+                                {renderBodyWithBold(activeChoice.whenHint)}
+                              </p>
+                            </div>
+                          ) : null}
+                        </div>
+                      );
+                    })()}
+                  {section.toolChoiceBar &&
+                    !section.presentationToolsBlock &&
                     section.toolChoiceBar.variant !== 'prompt-tool' &&
-                    section.toolChoiceBar.variant !==
-                      'manipulation-contrast' && (
+                    section.toolChoiceBar.variant !== 'manipulation-contrast' &&
+                    section.toolChoiceBar.variant !== 'choice' && (
                       <div
                         className="mb-4 space-y-3"
                         role="region"

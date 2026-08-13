@@ -87,7 +87,7 @@ function EdgeAnnotation({
   label,
   fill,
   textFill,
-  fillOpacity = 0.92,
+  fillOpacity = 1,
 }: {
   x: number;
   y: number;
@@ -452,14 +452,18 @@ export default function M10OrchestratorDiagram({
         y={isCompactDiagram ? 18 : 28}
         textAnchor="middle"
         fill={palette.brandDark}
-        fontSize={DIAGRAM_TOKENS.typography.title.compact}
+        fontSize={
+          isCompactDiagram
+            ? DIAGRAM_TOKENS.typography.title.compact
+            : DIAGRAM_TOKENS.typography.title.desktop
+        }
         fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
         fontFamily={DIAGRAM_TOKENS.font}
       >
         {L.title}
       </text>
 
-      {/* Soft agents lane with header (desktop) — always on */}
+      {/* Soft agents lane (desktop) — always on; header painted after bus */}
       {fanout ? (
         <rect
           x={fanout.agentsLane.x}
@@ -472,20 +476,6 @@ export default function M10OrchestratorDiagram({
           stroke={palette.border}
           strokeWidth={1}
         />
-      ) : null}
-
-      {fanout ? (
-        <text
-          x={fanout.agentsBand.x}
-          y={fanout.agentsBand.y}
-          textAnchor="start"
-          fill={palette.muted}
-          fontSize={DIAGRAM_TOKENS.typography.subtitle.desktop}
-          fontWeight={DIAGRAM_TOKENS.typography.edgeLabel.weight}
-          fontFamily={DIAGRAM_TOKENS.font}
-        >
-          {L.agentsBand}
-        </text>
       ) : null}
 
       {/* Non-fanout / non-fanin edges — always on, focus/map opacity */}
@@ -566,7 +556,7 @@ export default function M10OrchestratorDiagram({
             d={fanout.busPath}
             fill="none"
             stroke={flowColor}
-            strokeWidth={DIAGRAM_TOKENS.stroke.flow}
+            strokeWidth={DIAGRAM_TOKENS.stroke.inactive}
             strokeLinecap="round"
           />
           {fanout.dropPaths.map((drop) => (
@@ -583,7 +573,31 @@ export default function M10OrchestratorDiagram({
         </g>
       ) : null}
 
-      {/* Desktop orthogonal fan-in (agents → evaluator) — always on */}
+      {fanout ? (
+        <g aria-hidden>
+          <rect
+            x={fanout.agentsHeader.x}
+            y={fanout.agentsHeader.y}
+            width={fanout.agentsHeader.w}
+            height={fanout.agentsHeader.h}
+            rx={4}
+            fill={palette.bgEnd}
+            stroke={palette.border}
+            strokeWidth={1}
+          />
+          <text
+            x={fanout.agentsBand.x}
+            y={fanout.agentsBand.y}
+            textAnchor="start"
+            fill={palette.brandDark}
+            fontSize={DIAGRAM_TOKENS.typography.stepLabel.desktop}
+            fontWeight={DIAGRAM_TOKENS.typography.edgeLabel.weight}
+            fontFamily={DIAGRAM_TOKENS.font}
+          >
+            {L.agentsBand}
+          </text>
+        </g>
+      ) : null}
       {fanin ? (
         <g opacity={faninOpacity}>
           {fanin.dropPaths.map((drop) => (

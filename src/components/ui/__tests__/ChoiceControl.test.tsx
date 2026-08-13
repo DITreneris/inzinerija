@@ -113,4 +113,66 @@ describe('ChoiceControl', () => {
     expect(full.className).toContain('border-l-4');
     expect(full.className).toContain('border-l-rose-500');
   });
+
+  it('keeps unselected cards white when toneVisibleWhenUnselected is omitted', () => {
+    render(
+      <ChoiceControl
+        legend="Pasirink"
+        options={options}
+        value="full"
+        onChange={vi.fn()}
+        optionTone={{ short: 'brand', full: 'rose' }}
+      />
+    );
+    const short = screen.getByRole('radio', { name: /Trumpas kelias/i });
+    expect(short.className).toContain('bg-white');
+    expect(short.className).not.toContain('bg-brand-50/70');
+  });
+
+  it('washes unselected cards when toneVisibleWhenUnselected is true', () => {
+    render(
+      <ChoiceControl
+        legend="Pasirink"
+        options={options}
+        value="full"
+        onChange={vi.fn()}
+        optionTone={{ short: 'brand', full: 'rose' }}
+        toneVisibleWhenUnselected
+      />
+    );
+    const short = screen.getByRole('radio', { name: /Trumpas kelias/i });
+    expect(short.className).toContain('bg-brand-50/70');
+    expect(short.className).not.toContain('bg-white');
+  });
+
+  it('hides the legend visually when legendMode is sr-only', () => {
+    render(
+      <ChoiceControl
+        legend="Pasirink kelią"
+        options={options}
+        value={null}
+        onChange={vi.fn()}
+        legendMode="sr-only"
+      />
+    );
+    const legend = screen.getByText('Pasirink kelią');
+    expect(legend.className).toContain('sr-only');
+  });
+
+  it('uses brand selected chrome when selectedUsesBrand is true', () => {
+    render(
+      <ChoiceControl
+        legend="Pasirink"
+        options={options}
+        value="full"
+        onChange={vi.fn()}
+        optionTone={{ short: 'brand', full: 'rose' }}
+        selectedUsesBrand
+      />
+    );
+    const full = screen.getByRole('radio', { name: /Ilgas kelias/i });
+    expect(full.className).toContain('border-brand-500');
+    expect(full.className).not.toContain('border-rose-500');
+    expect(full.className).toContain('border-l-rose-500');
+  });
 });

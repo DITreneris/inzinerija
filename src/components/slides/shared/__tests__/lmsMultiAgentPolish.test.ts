@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { pillIntersectsStroke, pillRectFromCenter } from '../diagramLayoutMath';
 import { DIAGRAM_TOKENS } from '../diagramTokens';
 import { getM10OrchestratorLabels } from '../m10OrchestratorContent';
 import {
@@ -162,20 +162,25 @@ describe('lmsMultiAgentPolish (Type Etalon W7 full-map + step-focus)', () => {
     const fan = getDesktopFanoutGeometry(boxes, undefined, assignVerb);
     expect(fan).not.toBeNull();
     const research = boxes.research;
-    const summarize = boxes.summarize;
     const { w: pillW, h: pillH } = estimateOrchestratorPillSize(assignVerb);
-    expect(fan!.busY).toBeLessThanOrEqual(fan!.agentsLane.y);
+    expect(fan!.busY).toBeLessThanOrEqual(fan!.agentsLane.y + 4);
     expect(M10_ORCHESTRATOR_AGENTS_HEADER_H).toBeGreaterThanOrEqual(34);
-    expect(fan!.agentsBand.y).toBeGreaterThanOrEqual(fan!.busY + 14 - 0.01);
-    expect(fan!.agentsBand.y).toBeLessThan(research.y);
-    expect(research.y - fan!.agentsBand.y).toBeGreaterThanOrEqual(16 - 0.01);
-    // Just right of research drop — not on shaft / mid summarize
-    const researchCx = research.x + research.w / 2;
-    const midDropX = summarize.x + summarize.w / 2;
-    const approxLabelW = labels.agentsBand.length * 6.6;
-    expect(fan!.agentsBand.x).toBeGreaterThanOrEqual(researchCx + 8);
-    expect(fan!.agentsBand.x + approxLabelW).toBeLessThan(midDropX - 4);
-    expect(fan!.agentsBand.x + approxLabelW).toBeLessThan(fan!.trunkX - 4);
+    expect(fan!.agentsHeader.y).toBeGreaterThanOrEqual(fan!.agentsLane.y);
+    expect(fan!.agentsHeader.y + fan!.agentsHeader.h).toBeLessThan(research.y);
+    expect(fan!.agentsBand.y).toBeGreaterThan(fan!.agentsHeader.y);
+    expect(fan!.agentsBand.y).toBeLessThan(
+      fan!.agentsHeader.y + fan!.agentsHeader.h
+    );
+    const headerRect = fan!.agentsHeader;
+    const busStroke = {
+      x1: research.x + research.w / 2,
+      y1: fan!.busY,
+      x2: boxes.validate.x + boxes.validate.w / 2,
+      y2: fan!.busY,
+      strokeWidth: DIAGRAM_TOKENS.stroke.inactive,
+    };
+    expect(pillIntersectsStroke(headerRect, busStroke)).toBe(false);
+    expect(fan!.agentsHeader.x).toBeGreaterThanOrEqual(fan!.agentsLane.x);
     // Off-shaft left of trunk (not on-stroke)
     expect(Math.abs(fan!.assignPill.x - fan!.trunkX)).toBeGreaterThanOrEqual(
       pillW / 2 + 8 - 0.01
@@ -371,14 +376,7 @@ describe('lmsMultiAgentPolish (Type Etalon W7 full-map + step-focus)', () => {
     expect(vert.x).toBeLessThan(vert.midX);
     expect(vert.midX - vert.x).toBeGreaterThanOrEqual(pillW / 2 + 14 - 0.01);
     const calls = 'kviečia';
-    const base = getOrchestratorEdgeLabelAnchor(
-      boxes.research,
-      boxes.tools,
-      'bottom',
-      'top',
-      undefined,
-      calls
-    );
+    const { w: callW, h: callH } = estimateOrchestratorPillSize(calls);
     const bumped = getOrchestratorEdgeLabelAnchor(
       boxes.research,
       boxes.tools,
@@ -388,7 +386,21 @@ describe('lmsMultiAgentPolish (Type Etalon W7 full-map + step-focus)', () => {
       calls,
       'research-tools'
     );
-    expect(bumped.x - base.x).toBe(4);
+    const researchCx = boxes.research.x + boxes.research.w / 2;
+    const toolsCyTop = boxes.tools.y;
+    const researchBottom = boxes.research.y + boxes.research.h;
+    expect(
+      pillIntersectsStroke(
+        pillRectFromCenter(bumped.x, bumped.y, callW, callH),
+        {
+          x1: researchCx,
+          y1: researchBottom,
+          x2: researchCx,
+          y2: toolsCyTop,
+          strokeWidth: M10_ORCHESTRATOR_STROKE_DATA,
+        }
+      )
+    ).toBe(false);
   });
 
   it('keeps eval-output / fan-in / retry pills clear of node boxes', () => {

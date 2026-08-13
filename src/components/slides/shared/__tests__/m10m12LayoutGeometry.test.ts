@@ -23,6 +23,7 @@ import {
 import { getM12MultiAgentSchemaLabels } from '../m12MultiAgentSchemaContent';
 import { getM10LearningLoopLabels } from '../m10LearningLoopContent';
 import { DIAGRAM_TOKENS } from '../diagramTokens';
+import { pillIntersectsStroke } from '../diagramLayoutMath';
 import {
   AGENT_WORKFLOW_ARROW,
   AGENT_WORKFLOW_BOX,
@@ -41,6 +42,8 @@ import {
   buildAgentWorkflowDesktopBoxes,
 } from '../agentWorkflowLayout';
 import {
+  getM10TriggerTypesLabelRect,
+  getM10TriggerUpStroke,
   M10_TRIGGER_FLOW_LAYOUT,
   M10_TRIGGER_FLOW_STEP_COUNT,
 } from '../m10TriggerFlowLayout';
@@ -232,13 +235,19 @@ describe('m10TriggerFlowLayout', () => {
     expect(getM10TriggerFlowStepExplanations('en')).toHaveLength(3);
   });
 
-  it('fits trigger-type chips under the main row inside the viewBox', () => {
+  it('fits trigger-type chips as a sub-block off the ↑ shaft', () => {
     const L = M10_TRIGGER_FLOW_LAYOUT;
+    expect(L.boxH).toBeGreaterThanOrEqual(58);
     expect(L.typeRowY + L.typeChipH).toBeLessThan(L.height);
-    expect(L.typesLabelY).toBeLessThan(L.typeRowY);
     expect(L.yMain + L.boxH).toBeLessThan(L.typeRowY);
     const rowW = 3 * L.boxW + 2 * L.gap;
     expect(L.x0 + rowW).toBeLessThanOrEqual(L.width);
+    expect(
+      pillIntersectsStroke(
+        getM10TriggerTypesLabelRect(),
+        getM10TriggerUpStroke()
+      )
+    ).toBe(false);
   });
 });
 

@@ -40,7 +40,7 @@ describe('M10TeamReadinessLabBlock', () => {
       within(groups[2]).getByRole('radio', { name: /Fragmentuotai/i })
     );
 
-    expect(screen.getByText('Profilis paruoštas')).toBeInTheDocument();
+    expect(screen.getByText(/Profilis paruoštas/)).toBeInTheDocument();
     expect(
       screen.getAllByText(/Sukurk vieną prompto šabloną/i).length
     ).toBeGreaterThan(0);
@@ -91,8 +91,14 @@ describe('M10TeamReadinessLabBlock', () => {
       screen.getByRole('region', { name: /Team readiness snapshot/i })
     ).toBeInTheDocument();
     expect(screen.getByText(/No score/i)).toBeInTheDocument();
-    expect(screen.getAllByText(/Team use/i).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/Prompt structure/i).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/Learning rhythm/i).length).toBeGreaterThan(0);
+    expect(
+      screen.getAllByText(/How consistently does the team use/i).length
+    ).toBeGreaterThan(0);
+    expect(
+      screen.getAllByText(/How structured are instructions/i).length
+    ).toBeGreaterThan(0);
+    expect(
+      screen.getAllByText(/How does the team review/i).length
+    ).toBeGreaterThan(0);
   });
 });

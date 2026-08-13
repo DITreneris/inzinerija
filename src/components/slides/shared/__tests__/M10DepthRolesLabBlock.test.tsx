@@ -21,15 +21,16 @@ describe('M10DepthRolesLabBlock', () => {
     expect(
       screen.getByRole('region', { name: /Agentų gylis ir rolės/i })
     ).toBeInTheDocument();
-    expect(screen.getByText('Gylio lygiai')).toBeInTheDocument();
+    expect(screen.getByText('Proceso lygiai')).toBeInTheDocument();
     expect(screen.getAllByRole('radio')).toHaveLength(4);
     expect(
       container.querySelectorAll('svg [role="button"], svg [tabindex="0"]')
     ).toHaveLength(0);
-    expect(container.querySelector('svg')?.textContent).not.toContain(
-      'Pokalbis'
-    );
-    expect(screen.getByText(/Pirmiausia pasirink gylį/i)).toBeInTheDocument();
+    expect(container.querySelector('svg')?.textContent).toContain('Pokalbis');
+    expect(container.querySelector('svg')?.textContent).toContain('Lygis 0');
+    expect(
+      screen.getByText(/Pirmiausia pasirink proceso lygį/i)
+    ).toBeInTheDocument();
     expect(
       screen.queryByRole('button', { name: /Kopijuoti promptą/i })
     ).not.toBeInTheDocument();
@@ -40,7 +41,7 @@ describe('M10DepthRolesLabBlock', () => {
 
   it('reveals team roles, router toggle and artifact after Komanda', () => {
     renderWithProviders(<M10DepthRolesLabBlock />);
-    fireEvent.click(screen.getByRole('radio', { name: /Komanda \(L2\)/i }));
+    fireEvent.click(screen.getByRole('radio', { name: /Komanda/i }));
     expect(screen.getByText(/Komandos rolės/i)).toBeInTheDocument();
     expect(
       screen.getByRole('checkbox', { name: /Pridėti maršrutizatorių/i })
@@ -61,7 +62,7 @@ describe('M10DepthRolesLabBlock', () => {
 
   it('restores depth and router flag after remount', () => {
     const { unmount } = renderWithProviders(<M10DepthRolesLabBlock />);
-    fireEvent.click(screen.getByRole('radio', { name: /Komanda \(L2\)/i }));
+    fireEvent.click(screen.getByRole('radio', { name: /Komanda/i }));
     fireEvent.click(
       screen.getByRole('checkbox', { name: /Pridėti maršrutizatorių/i })
     );
@@ -92,10 +93,8 @@ describe('M10DepthRolesLabBlock', () => {
   it('renders EN labels without taxonomy jargon', () => {
     setLocale('en');
     renderWithProviders(<M10DepthRolesLabBlock />);
-    expect(screen.getByText('Depth levels')).toBeInTheDocument();
+    expect(screen.getByText('Process levels')).toBeInTheDocument();
     expect(screen.queryByText(/taxonomy/i)).not.toBeInTheDocument();
-    expect(
-      screen.getByRole('radio', { name: /Chat \(L0\)/i })
-    ).toBeInTheDocument();
+    expect(screen.getByRole('radio', { name: /Chat/i })).toBeInTheDocument();
   });
 });

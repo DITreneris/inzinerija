@@ -356,10 +356,11 @@ export interface ContentBlockSection {
     question?: string;
     /**
      * `chips` (default) – accent button bar; null until learner picks.
+     * `choice` – ChoiceControl cards (10.48 workflow patterns).
      * `prompt-tool` – ChoiceControl + sample data + EDA strip (M7/90).
      * `manipulation-contrast` – ChoiceControl + Blogas|Geras panel (M7/67).
      */
-    variant?: 'chips' | 'prompt-tool' | 'manipulation-contrast';
+    variant?: 'chips' | 'prompt-tool' | 'manipulation-contrast' | 'choice';
     /**
      * When `true`, chips auto-select the first choice on mount (legacy catalog).
      * Default / omitted / `false` = null until the learner picks (M79-S1b).
@@ -372,6 +373,8 @@ export interface ContentBlockSection {
     choices: {
       label: string;
       rowIndex: number;
+      /** 1-line card descriptor (choice variant) */
+      description?: string;
       /** One-line “when to pick” (prompt-tool) */
       whenHint?: string;
       /** What the biased prompt pushes (manipulation-contrast) */

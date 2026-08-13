@@ -14,7 +14,7 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 | Skiltis                     | Ką rasite                                                                                                                                                                             |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **[Unreleased]**            | _(tuščia po 1.6.2 cut)_                                                                                                                                                               |
+| **[Unreleased]**            | T01–T08 + T09 Must; hygiene liekana **41**; katalogo hinge; AppNav freeze; promptų Micro; pin **v1.6.2**.                                                                             |
 | **[1.6.2] – 2026-08-13**    | M10–12 content freeze; katalogo UX + CATALOG-HOME; SCHEME-CENTRAL W1 governance CI; Docs Lean; tests **165/1005**; corporate12 pin **v1.6.2**.                                        |
 | **[1.6.1] – 2026-08-12**    | Node.js 24 runtime bump; CI matrica 22.x / 24.x; ESLint 9 flat config; Vite 7 + Vitest 4; advisory sweep 27 → **0**; corporate12 cutover pin target **v1.6.1**.                       |
 | **[1.6.0] – 2026-08-11**    | M10–12 deep audit remediation; kalbos konvencijų vartai (LT `tu` / EN American, GOLDEN §6c); M13–18 learner plain; TE Must/Should + C2; corporate15 / tier 15; preflight **161/982**. |
@@ -52,6 +52,30 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 ---
 
 ## [Unreleased]
+
+### Added
+
+- **Promptų biblioteka 6 skirsnis – Micro po vertinimo (2026-08-13):** antras item’as `after-eval-one-action` šalia Flagship 5 principų vertintojo (`prompt-quality-5`). Vienas placeholderis, vienas klausimas (ką pataisyti ir paleisti darbe per 24–48 val.); nebekartoja lentelės ir perrašymo. LT+EN; tas pats kortelės lukštas. `validate:schema` dabar tikrina ir `promptLibrary-en.json`.
+
+### Changed
+
+- **AppNav chrome freeze (2026-08-13):** viena eilutė nuo `xl`; `lg`–`xl` destinacijos = antroji pilno pločio eilutė (ne kairė krūva). Kurso pažanga = mini takelis + %, be pill kapsulės; slėpti kai 0 % arba modulyje. Nuimtas `min-w-[8.5rem]`. `max-w-7xl` lieka.
+
+- **M10–12 hygiene closeout (2026-08-13):** I2 linteris nebežymi `1-page` / `3A` / `n8n` / `L0–L3` / `Module N` kaip KPI; `pathLabel`/`.label` chrome; same-slide CTA ne filler; EN-only `shortTitle` ne skylė; korpusas apima `10.8`. I3: `100` trukmė **25–30 min** + Modules 4–6; `124.5` be EN-only hint/partialSolution; `confirmation confirmation` kirpta. Baseline **69 → 41**. Priimta liekana **41**; nevaryti į 0.
+
+- **Katalogo M3→M4 ready-check hinge (2026-08-13):** branduolio pasitikrinimo juosta iš puslapio apačios (po coming-soon, pilkas `secondary`) perkelta į bazės grid’ą prieš „Kontekstas ir projektas (M4–M6)“. Rodoma tik kai M3 baigtas, M4 nebaigtas ir patikra nepadaryta. Lukštas = next-step brolis (white/card, brand eyebrow, `primary` CTA). Copy: title ≠ mygtukas, trukmė, „M4 neužsirakina“, be LT „check“. Nav / ModuleComplete / all-complete kortelė nepaliesti.
+
+- **M10 testerio batch T09 10.65 split (2026-08-13):** optional `10.65` išskaidytas į **Gilesnė eigos specifikacija** (`m10_workflow_spec` + testai) ir **Kai eiga lūžta** (`10.655`, `m10_incident_playbook` + saugumas). Vienas herojus per skaidrę; V1 tiltas (paslaugos lygis / klaidos / auditas → 5 veiksmai); M12 `123` pointeris → **Kai eiga lūžta**. LT chip **Paslaugos lygis** (EN SLA). GOLDEN §3.2 ciklo išimtis nuo 10.65 nuimta. Hygiene findings **70 → 69**.
+
+- **M10 testerio batch T01–T08 Must chrome (2026-08-13):** freeze išimtis, ne P3 polish. T01 `10.45` gylis = vardas + L\* + viena brand intensyvumo kopėčia (dual picker lieka; I5 parked). T02 `10.255` wash + hierarchija + rezultatas = silpniausia dim. T03 `10.26` parent wells; selected ≠ severity. T04 `10.48` chips → ChoiceControl (`variant: choice`), šablonas + Tinka/Netinka. T05 `10.482` W7: lane header po bus, AABB clearance, `title.desktop`. T06 `10.15` hero + tipai off-shaft + Shell 3 taktai; terminas **internetinis pranešimas**. T07 `10.35` hero + brand selected + Workato orientyras; Cursor ne šaka. T08 `10.25` kirptas echo; Shell kada-ne; 5 % punch šalia (plotis lieka). Hygiene **71 → 70** (tyčia, echo kirpimas). Pin **v1.6.2** lieka. TODO §1.3 `M1012-T3` ✅.
+
+- **M10–12 testerio batch Phase B atidarytas (2026-08-13):** savininkas „tvarkom batch“. Freeze **išimtis** = T01–T08 Must chrome; hygiene nevaryti į 0; jokio P3 polish. Triažas: Must = locked intake specs; Should = 2-as pass; Won’t = rainbow / desktop enlarge / Cursor kaip 10.35 šaka / naujas Pattern.
+
+- **M10–12 testerio intake OPEN (2026-08-13):** gyvas turinys lieka **FREEZE**. Phase A žurnalas [`M10_M12_TESTER_INTAKE_2026-08.md`](docs/development/intake/M10_M12_TESTER_INTAKE_2026-08.md).
+
+- **Parent pin observed (2026-08-13):** [promptanatomy](https://github.com/DITreneris/promptanatomy) `main` submodule = `c35a1f5` / **v1.6.2** ([PR #92](https://github.com/DITreneris/promptanatomy/pull/92), CI ✅). Live `https://www.promptanatomy.app/anatomy/` HomePage chunk vis dar importuoja `RetrievalDueCard` → prod bundle dar **ne** 1.6.2.
+
+- **Training `main` Unreleased (2026-08-13):** T01–T08 + T09 + hygiene **41** + AppNav freeze + katalogo hinge + promptų Micro įeina į training `main`. **Pin lieka v1.6.2**; live verify vis dar marketingas. Ne 1.6.3 tagas / ne automatinis re-pin.
 
 ---
 

@@ -175,7 +175,12 @@ export function getPhaseLabel(
         slideId === 10.64
       )
         lt = 'Integracijos';
-      else if (slideId === 10.65 || slideId === 10.66 || slideId === 10.7)
+      else if (
+        slideId === 10.65 ||
+        slideId === 10.655 ||
+        slideId === 10.66 ||
+        slideId === 10.7
+      )
         lt = 'Neprivaloma';
       else if (slideId === 10.8) lt = 'Santrauka';
     }

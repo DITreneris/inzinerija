@@ -14,6 +14,8 @@ export interface DepthOptionCopy {
   label: string;
   description: string;
   code: string;
+  /** First-teaching line: Lygis 0 / Level 0 */
+  levelLabel: string;
 }
 
 export function getDepthRolesUiLabels(locale: M10Locale) {
@@ -21,13 +23,13 @@ export function getDepthRolesUiLabels(locale: M10Locale) {
     return {
       regionAria:
         'Agent depth and roles: choose depth for your process, then roles if Team',
-      diagramTitle: 'Depth levels',
+      diagramTitle: 'Process levels',
       rolesStripTitle: 'Team roles',
       hint: 'Think of one real work process.',
       examples: 'e.g. email · research · RFP · form → CRM',
       decisionRule:
         'Rule: start from Agent – pick Team or Flow only when one agent is not enough or you need a trigger.',
-      depthLegend: 'Choose depth for your process',
+      depthLegend: 'Choose the process level',
       teamRolesNote:
         'Team needs three roles: coordinator, specialist, evaluator. Router only if you need sorting by request type before the coordinator.',
       routerToggle: 'Add router (sorts requests by type before coordinator)',
@@ -36,7 +38,7 @@ export function getDepthRolesUiLabels(locale: M10Locale) {
         'Copy and fill [X] with your process. Detail inputs/outputs on the next checkpoint.',
       copyLabel: 'Copy prompt',
       copiedLabel: 'Copied',
-      chooseDepthFirst: 'Choose a depth first – then you can copy.',
+      chooseDepthFirst: 'Choose a process level first – then you can copy.',
       edgeDelegates: 'delegates',
       edgeDelivers: 'delivers',
       edgeReturns: 'returns',
@@ -49,13 +51,13 @@ export function getDepthRolesUiLabels(locale: M10Locale) {
   return {
     regionAria:
       'Agentų gylis ir rolės: pasirink gylį savo procesui, tada roles jei Komanda',
-    diagramTitle: 'Gylio lygiai',
+    diagramTitle: 'Proceso lygiai',
     rolesStripTitle: 'Komandos rolės',
     hint: 'Pagalvok apie vieną realų savo procesą.',
     examples: 'pvz. laiškas · tyrimas · sutartis · forma → klientų sistema',
     decisionRule:
       'Pradėk nuo Agento. Komandą rinkis, kai reikia kelių rolių, o Srautą – kai veiksmus automatiškai paleidžia įvykis.',
-    depthLegend: 'Pasirink gylį savo procesui',
+    depthLegend: 'Pasirink proceso lygį',
     teamRolesNote:
       'Komandai reikia trijų rolių: koordinatoriaus, specialisto ir vertintojo. Maršrutizatorių pridėk tik kai užklausas pirmiausia reikia išskirstyti pagal tipą.',
     routerToggle: 'Pridėti maršrutizatorių (išskirsto pagal tipą)',
@@ -64,7 +66,8 @@ export function getDepthRolesUiLabels(locale: M10Locale) {
       'Nukopijuok ir užpildyk [X] savo procesu. Įvestis / išvestis – kitame kontroliniame taške.',
     copyLabel: 'Kopijuoti promptą',
     copiedLabel: 'Nukopijuota',
-    chooseDepthFirst: 'Pirmiausia pasirink gylį – tada galėsi kopijuoti.',
+    chooseDepthFirst:
+      'Pirmiausia pasirink proceso lygį – tada galėsi kopijuoti.',
     edgeDelegates: 'deleguoja',
     edgeDelivers: 'pateikia',
     edgeReturns: 'grąžina',
@@ -83,24 +86,28 @@ export function getDepthOptions(locale: M10Locale): DepthOptionCopy[] {
         label: 'Chat',
         description: 'One question-and-answer exchange is enough',
         code: 'L0',
+        levelLabel: 'Level 0',
       },
       {
         id: 'agent',
         label: 'Agent',
         description: 'Several steps + tools, one agent',
         code: 'L1',
+        levelLabel: 'Level 1',
       },
       {
         id: 'team',
         label: 'Team',
         description: 'Several roles and handoffs',
         code: 'L2',
+        levelLabel: 'Level 2',
       },
       {
         id: 'flow',
         label: 'Flow',
         description: 'Trigger → actions (automation)',
         code: 'L3',
+        levelLabel: 'Level 3',
       },
     ];
   }
@@ -110,24 +117,28 @@ export function getDepthOptions(locale: M10Locale): DepthOptionCopy[] {
       label: 'Pokalbis',
       description: 'Užtenka vieno klausimo–atsakymo',
       code: 'L0',
+      levelLabel: 'Lygis 0',
     },
     {
       id: 'agent',
       label: 'Agentas',
       description: 'Keli žingsniai + įrankiai, vienas agentas',
       code: 'L1',
+      levelLabel: 'Lygis 1',
     },
     {
       id: 'team',
       label: 'Komanda',
       description: 'Kelios rolės ir perdavimai',
       code: 'L2',
+      levelLabel: 'Lygis 2',
     },
     {
       id: 'flow',
       label: 'Srautas',
       description: 'Įvykis automatiškai paleidžia veiksmus',
       code: 'L3',
+      levelLabel: 'Lygis 3',
     },
   ];
 }

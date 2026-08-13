@@ -37,6 +37,43 @@ export interface AppNavProps {
   setIsMobileMenuOpen: (open: boolean) => void;
 }
 
+function CourseProgressMeter({
+  percent,
+  compact,
+  label,
+}: {
+  percent: number;
+  compact?: boolean;
+  label: string;
+}) {
+  return (
+    <div className="flex items-center gap-2" role="img" aria-label={label}>
+      <div
+        className={`${compact ? 'w-12' : 'w-14'} h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden`}
+        aria-hidden="true"
+      >
+        <div
+          className="h-full bg-gradient-to-r from-brand-500 to-accent-500 rounded-full transition-all duration-500"
+          style={{ width: `${percent}%` }}
+        />
+      </div>
+      {!compact && (
+        <span className="text-xs font-semibold text-brand-600 dark:text-brand-400">
+          {percent}%
+        </span>
+      )}
+    </div>
+  );
+}
+
+function destClass(active: boolean) {
+  return `flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all ${focusRingClasses.brand} ${touchTargetClasses.minimumHeight} justify-center whitespace-nowrap ${
+    active
+      ? 'bg-brand-600 dark:bg-brand-500 text-white shadow-lg shadow-brand-500/25 border-b-2 border-accent-500 rounded-b-xl'
+      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 active:scale-95 border-b-2 border-transparent'
+  }`;
+}
+
 export function AppNav({
   currentPage,
   onNavigate,
@@ -52,6 +89,8 @@ export function AppNav({
     onNavigate(page);
     setIsMobileMenuOpen(false);
   };
+  const showMeter = overallProgress > 0 && currentPage !== 'module';
+  const modulesActive = currentPage === 'modules' || currentPage === 'module';
 
   useEffect(() => {
     const el = navRef.current;
@@ -69,6 +108,92 @@ export function AppNav({
     return () => ro.disconnect();
   }, []);
 
+  const renderThemeToggle = () => (
+    <button
+      type="button"
+      onClick={onToggleDark}
+      className={`p-2.5 rounded-xl text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 transition-colors ${touchTargetClasses.minimum} ${focusRingClasses.brand} flex items-center justify-center`}
+      aria-label={t('toggleDark')}
+    >
+      <Moon className="w-5 h-5 dark:hidden" strokeWidth={1.5} />
+      <Sun className="w-5 h-5 hidden dark:block" strokeWidth={1.5} />
+    </button>
+  );
+
+  const destButtons = (
+    <>
+      <button
+        onClick={() => nav('home')}
+        className={destClass(currentPage === 'home')}
+        aria-label={t('homeAria')}
+        aria-current={currentPage === 'home' ? 'page' : undefined}
+      >
+        <Home className="w-5 h-5" strokeWidth={1.5} />
+        <span
+          className={currentPage === 'home' ? 'font-semibold' : 'font-medium'}
+        >
+          {t('home')}
+        </span>
+      </button>
+
+      <button
+        onClick={() => nav('modules')}
+        className={destClass(modulesActive)}
+        aria-label={t('modulesAria')}
+        aria-current={modulesActive ? 'page' : undefined}
+      >
+        <BookOpen className="w-5 h-5" strokeWidth={1.5} />
+        <span className={modulesActive ? 'font-semibold' : 'font-medium'}>
+          {t('modules')}
+        </span>
+      </button>
+
+      <button
+        onClick={() => nav('glossary')}
+        className={destClass(currentPage === 'glossary')}
+        aria-label={t('glossaryAria')}
+        aria-current={currentPage === 'glossary' ? 'page' : undefined}
+      >
+        <BookMarked className="w-5 h-5" strokeWidth={1.5} />
+        <span
+          className={
+            currentPage === 'glossary' ? 'font-semibold' : 'font-medium'
+          }
+        >
+          {t('glossary')}
+        </span>
+      </button>
+
+      <button
+        onClick={() => nav('tools')}
+        className={destClass(currentPage === 'tools')}
+        aria-label={t('toolsAria')}
+        aria-current={currentPage === 'tools' ? 'page' : undefined}
+      >
+        <Wrench className="w-5 h-5" strokeWidth={1.5} />
+        <span
+          className={currentPage === 'tools' ? 'font-semibold' : 'font-medium'}
+        >
+          {t('tools')}
+        </span>
+      </button>
+
+      <button
+        onClick={() => nav('quiz')}
+        className={destClass(currentPage === 'quiz')}
+        aria-label={t('quizAria')}
+        aria-current={currentPage === 'quiz' ? 'page' : undefined}
+      >
+        <ClipboardCheck className="w-5 h-5" strokeWidth={1.5} />
+        <span
+          className={currentPage === 'quiz' ? 'font-semibold' : 'font-medium'}
+        >
+          {t('quiz')}
+        </span>
+      </button>
+    </>
+  );
+
   return (
     <nav
       ref={navRef}
@@ -77,11 +202,11 @@ export function AppNav({
     >
       <h1 className="sr-only">{t('appTitle')}</h1>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-wrap justify-between items-center min-h-16 gap-y-2 py-2">
+        <div className="flex flex-wrap xl:flex-nowrap items-center justify-between min-h-16 gap-x-4 gap-y-2 py-2">
           <button
             type="button"
             onClick={() => nav('home')}
-            className={`flex items-center gap-3 flex-shrink-0 rounded-xl transition-opacity hover:opacity-90 ${focusRingClasses.brand} ${touchTargetClasses.minimumHeight}`}
+            className={`flex items-center gap-3 shrink-0 rounded-xl transition-opacity hover:opacity-90 ${focusRingClasses.brand} ${touchTargetClasses.minimumHeight}`}
             aria-label={t('appTitle')}
             aria-current={currentPage === 'home' ? 'page' : undefined}
           >
@@ -92,209 +217,62 @@ export function AppNav({
             </span>
           </button>
 
-          {/* Desktop Navigation – min-w nav mygtukams kad keičiant LT/EN meniu nešoktų */}
-          <div className="hidden lg:flex flex-wrap items-center justify-end gap-2">
-            {/* Hide overall % inside module view – ModuleView N/M is the primary signal (LMS polish I5) */}
-            {overallProgress > 0 && currentPage !== 'module' && (
+          {/* lg: contents so dest can basis-full on the outer row; xl: one right cluster */}
+          <div className="hidden lg:contents xl:flex xl:items-center xl:gap-4">
+            <div className="flex items-center gap-3 shrink-0">
+              {showMeter && (
+                <CourseProgressMeter
+                  percent={overallProgress}
+                  label={t('progressLabel', { percent: overallProgress })}
+                />
+              )}
+              {renderThemeToggle()}
               <div
-                className="flex items-center gap-2 mr-4 px-3 py-1.5 bg-brand-50 dark:bg-brand-900/20 rounded-full"
-                role="img"
-                aria-label={t('progressLabel', { percent: overallProgress })}
+                className="flex items-center rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden"
+                role="group"
+                aria-label={t('langSwitchAria')}
               >
-                <div
-                  className="w-24 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden"
-                  aria-hidden="true"
+                <button
+                  type="button"
+                  onClick={() => setLocale('lt')}
+                  className={`px-3 py-2 text-sm font-medium ${touchTargetClasses.minimumHeight} transition-colors ${
+                    locale === 'lt'
+                      ? 'bg-brand-600 text-white dark:bg-brand-500'
+                      : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
+                  }`}
+                  aria-pressed={locale === 'lt'}
                 >
-                  <div
-                    className="h-full bg-gradient-to-r from-brand-500 to-accent-500 rounded-full transition-all duration-500"
-                    style={{ width: `${overallProgress}%` }}
-                  />
-                </div>
-                <span className="text-xs font-semibold text-brand-600 dark:text-brand-400">
-                  {overallProgress}%
-                </span>
+                  {t('langLt')}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setLocale('en')}
+                  className={`px-3 py-2 text-sm font-medium ${touchTargetClasses.minimumHeight} transition-colors ${
+                    locale === 'en'
+                      ? 'bg-brand-600 text-white dark:bg-brand-500'
+                      : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
+                  }`}
+                  aria-pressed={locale === 'en'}
+                >
+                  {t('langEn')}
+                </button>
               </div>
-            )}
-
-            <button
-              onClick={onToggleDark}
-              className={`p-2.5 rounded-xl text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 transition-colors ${touchTargetClasses.minimum} ${focusRingClasses.brand} flex items-center justify-center`}
-              aria-label={t('toggleDark')}
-            >
-              <Moon className="w-5 h-5 dark:hidden" strokeWidth={1.5} />
-              <Sun className="w-5 h-5 hidden dark:block" strokeWidth={1.5} />
-            </button>
-
-            <div
-              className="flex items-center rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden"
-              role="group"
-              aria-label={t('langSwitchAria')}
-            >
-              <button
-                type="button"
-                onClick={() => setLocale('lt')}
-                className={`px-3 py-2 text-sm font-medium ${touchTargetClasses.minimumHeight} transition-colors ${
-                  locale === 'lt'
-                    ? 'bg-brand-600 text-white dark:bg-brand-500'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
-                }`}
-                aria-pressed={locale === 'lt'}
-              >
-                {t('langLt')}
-              </button>
-              <button
-                type="button"
-                onClick={() => setLocale('en')}
-                className={`px-3 py-2 text-sm font-medium ${touchTargetClasses.minimumHeight} transition-colors ${
-                  locale === 'en'
-                    ? 'bg-brand-600 text-white dark:bg-brand-500'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
-                }`}
-                aria-pressed={locale === 'en'}
-              >
-                {t('langEn')}
-              </button>
             </div>
 
-            <button
-              onClick={() => nav('home')}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all ${focusRingClasses.brand} ${touchTargetClasses.minimumHeight} min-w-[8.5rem] justify-center whitespace-nowrap ${
-                currentPage === 'home'
-                  ? 'bg-brand-600 dark:bg-brand-500 text-white shadow-lg shadow-brand-500/25 border-b-2 border-accent-500 rounded-b-xl'
-                  : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 active:scale-95 border-b-2 border-transparent'
-              }`}
-              aria-label={t('homeAria')}
-              aria-current={currentPage === 'home' ? 'page' : undefined}
-            >
-              <Home className="w-5 h-5" strokeWidth={1.5} />
-              <span
-                className={
-                  currentPage === 'home' ? 'font-semibold' : 'font-medium'
-                }
-              >
-                {t('home')}
-              </span>
-            </button>
-
-            <button
-              onClick={() => nav('modules')}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all ${focusRingClasses.brand} ${touchTargetClasses.minimumHeight} min-w-[8.5rem] justify-center whitespace-nowrap ${
-                currentPage === 'modules' || currentPage === 'module'
-                  ? 'bg-brand-600 dark:bg-brand-500 text-white shadow-lg shadow-brand-500/25 border-b-2 border-accent-500 rounded-b-xl'
-                  : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 active:scale-95 border-b-2 border-transparent'
-              }`}
-              aria-label={t('modulesAria')}
-              aria-current={
-                currentPage === 'modules' || currentPage === 'module'
-                  ? 'page'
-                  : undefined
-              }
-            >
-              <BookOpen className="w-5 h-5" strokeWidth={1.5} />
-              <span
-                className={
-                  currentPage === 'modules' || currentPage === 'module'
-                    ? 'font-semibold'
-                    : 'font-medium'
-                }
-              >
-                {t('modules')}
-              </span>
-            </button>
-
-            <button
-              onClick={() => nav('glossary')}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all ${focusRingClasses.brand} ${touchTargetClasses.minimumHeight} min-w-[8.5rem] justify-center whitespace-nowrap ${
-                currentPage === 'glossary'
-                  ? 'bg-brand-600 dark:bg-brand-500 text-white shadow-lg shadow-brand-500/25 border-b-2 border-accent-500 rounded-b-xl'
-                  : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 active:scale-95 border-b-2 border-transparent'
-              }`}
-              aria-label={t('glossaryAria')}
-              aria-current={currentPage === 'glossary' ? 'page' : undefined}
-            >
-              <BookMarked className="w-5 h-5" strokeWidth={1.5} />
-              <span
-                className={
-                  currentPage === 'glossary' ? 'font-semibold' : 'font-medium'
-                }
-              >
-                {t('glossary')}
-              </span>
-            </button>
-
-            <button
-              onClick={() => nav('tools')}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all ${focusRingClasses.brand} ${touchTargetClasses.minimumHeight} min-w-[8.5rem] justify-center whitespace-nowrap ${
-                currentPage === 'tools'
-                  ? 'bg-brand-600 dark:bg-brand-500 text-white shadow-lg shadow-brand-500/25 border-b-2 border-accent-500 rounded-b-xl'
-                  : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 active:scale-95 border-b-2 border-transparent'
-              }`}
-              aria-label={t('toolsAria')}
-              aria-current={currentPage === 'tools' ? 'page' : undefined}
-            >
-              <Wrench className="w-5 h-5" strokeWidth={1.5} />
-              <span
-                className={
-                  currentPage === 'tools' ? 'font-semibold' : 'font-medium'
-                }
-              >
-                {t('tools')}
-              </span>
-            </button>
-
-            <button
-              onClick={() => nav('quiz')}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all ${focusRingClasses.brand} ${touchTargetClasses.minimumHeight} min-w-[8.5rem] justify-center whitespace-nowrap ${
-                currentPage === 'quiz'
-                  ? 'bg-brand-600 dark:bg-brand-500 text-white shadow-lg shadow-brand-500/25 border-b-2 border-accent-500 rounded-b-xl'
-                  : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 active:scale-95 border-b-2 border-transparent'
-              }`}
-              aria-label={t('quizAria')}
-              aria-current={currentPage === 'quiz' ? 'page' : undefined}
-            >
-              <ClipboardCheck className="w-5 h-5" strokeWidth={1.5} />
-              <span
-                className={
-                  currentPage === 'quiz' ? 'font-semibold' : 'font-medium'
-                }
-              >
-                {t('quiz')}
-              </span>
-            </button>
+            <div className="flex items-center gap-2 basis-full xl:basis-auto justify-between xl:justify-end">
+              {destButtons}
+            </div>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex lg:hidden items-center gap-2">
-            {overallProgress > 0 && currentPage !== 'module' && (
-              <div
-                className="flex items-center gap-1.5 px-2 py-1 bg-brand-50 dark:bg-brand-900/20 rounded-full"
-                role="img"
-                aria-label={t('progressShort', { percent: overallProgress })}
-              >
-                <div
-                  className="w-12 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden"
-                  aria-hidden="true"
-                >
-                  <div
-                    className="h-full bg-gradient-to-r from-brand-500 to-accent-500 rounded-full transition-all duration-500"
-                    style={{ width: `${overallProgress}%` }}
-                  />
-                </div>
-                <span className="hidden lg:inline text-xs font-semibold text-brand-600 dark:text-brand-400">
-                  {overallProgress}%
-                </span>
-              </div>
+          <div className="flex lg:hidden items-center gap-3">
+            {showMeter && (
+              <CourseProgressMeter
+                percent={overallProgress}
+                compact
+                label={t('progressShort', { percent: overallProgress })}
+              />
             )}
-
-            <button
-              onClick={onToggleDark}
-              className={`p-2.5 rounded-xl text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 transition-colors ${touchTargetClasses.minimum} ${focusRingClasses.brand} flex items-center justify-center`}
-              aria-label={t('toggleDark')}
-            >
-              <Moon className="w-5 h-5 dark:hidden" strokeWidth={1.5} />
-              <Sun className="w-5 h-5 hidden dark:block" strokeWidth={1.5} />
-            </button>
-
+            {renderThemeToggle()}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={`p-2.5 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors ${touchTargetClasses.minimum} ${focusRingClasses.brand} flex items-center justify-center`}
@@ -310,7 +288,6 @@ export function AppNav({
           </div>
         </div>
 
-        {/* Mobile Menu Dropdown */}
         {isMobileMenuOpen && (
           <div className="lg:hidden border-t border-gray-200/50 dark:border-gray-800 animate-fade-in overflow-hidden">
             <div className="py-2 space-y-1">
@@ -324,7 +301,7 @@ export function AppNav({
                 aria-label={t('homeAria')}
                 aria-current={currentPage === 'home' ? 'page' : undefined}
               >
-                <Home className="w-5 h-5 flex-shrink-0" />
+                <Home className="w-5 h-5 shrink-0" />
                 <span
                   className={
                     currentPage === 'home' ? 'font-semibold' : 'font-medium'
@@ -337,24 +314,16 @@ export function AppNav({
               <button
                 onClick={() => nav('modules')}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-left min-h-[48px] border-b-2 ${
-                  currentPage === 'modules' || currentPage === 'module'
+                  modulesActive
                     ? 'bg-brand-600 dark:bg-brand-500 text-white shadow-lg shadow-brand-500/25 border-accent-500'
                     : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 active:scale-95 border-transparent'
                 }`}
                 aria-label={t('modulesAria')}
-                aria-current={
-                  currentPage === 'modules' || currentPage === 'module'
-                    ? 'page'
-                    : undefined
-                }
+                aria-current={modulesActive ? 'page' : undefined}
               >
-                <BookOpen className="w-5 h-5 flex-shrink-0" />
+                <BookOpen className="w-5 h-5 shrink-0" />
                 <span
-                  className={
-                    currentPage === 'modules' || currentPage === 'module'
-                      ? 'font-semibold'
-                      : 'font-medium'
-                  }
+                  className={modulesActive ? 'font-semibold' : 'font-medium'}
                 >
                   {t('modules')}
                 </span>
@@ -370,7 +339,7 @@ export function AppNav({
                 aria-label={t('glossaryAria')}
                 aria-current={currentPage === 'glossary' ? 'page' : undefined}
               >
-                <BookMarked className="w-5 h-5 flex-shrink-0" />
+                <BookMarked className="w-5 h-5 shrink-0" />
                 <span
                   className={
                     currentPage === 'glossary' ? 'font-semibold' : 'font-medium'
@@ -390,7 +359,7 @@ export function AppNav({
                 aria-label={t('toolsAria')}
                 aria-current={currentPage === 'tools' ? 'page' : undefined}
               >
-                <Wrench className="w-5 h-5 flex-shrink-0" />
+                <Wrench className="w-5 h-5 shrink-0" />
                 <span
                   className={
                     currentPage === 'tools' ? 'font-semibold' : 'font-medium'
@@ -410,7 +379,7 @@ export function AppNav({
                 aria-label={t('quizAria')}
                 aria-current={currentPage === 'quiz' ? 'page' : undefined}
               >
-                <ClipboardCheck className="w-5 h-5 flex-shrink-0" />
+                <ClipboardCheck className="w-5 h-5 shrink-0" />
                 <span
                   className={
                     currentPage === 'quiz' ? 'font-semibold' : 'font-medium'

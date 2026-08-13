@@ -9,32 +9,36 @@ export function getM10TriggerFlowLabels(locale: M10Locale) {
     return {
       title: 'Workflow chain',
       trigger: 'Trigger',
-      triggerSub: 'starts the flow',
+      triggerSub: 'event starts it',
       condition: 'Condition',
       conditionSub: 'if needed',
       action: 'Action',
       actionSub: 'system step',
       typesLabel: 'Trigger types',
       typeForm: 'Form',
+      typeFormSub: 'a person submits',
       typeSchedule: 'Schedule',
-      typeWebhook: 'Webhook',
-      typesHint: 'Webhook = a trigger type',
-      aria: 'Workflow: Trigger, Condition, Action; Webhook is a trigger type',
+      typeScheduleSub: 'a schedule',
+      typeWebhook: 'Notice',
+      typeWebhookSub: 'another system',
+      aria: 'Workflow: Trigger, Condition, Action; an incoming web notification is a trigger type',
     };
   }
   return {
     title: 'Darbo eigos grandinė',
     trigger: 'Paleidiklis',
-    triggerSub: 'įvykis pradeda eigą',
+    triggerSub: 'įvykis pradeda',
     condition: 'Sąlyga',
     conditionSub: 'jei reikia',
     action: 'Veiksmas',
-    actionSub: 'veiksmas sistemoje',
+    actionSub: 'ką padaro sistema',
     typesLabel: 'Paleidiklio tipai',
     typeForm: 'Forma',
+    typeFormSub: 'pateikia žmogus',
     typeSchedule: 'Laikas',
+    typeScheduleSub: 'tvarkaraštis',
     typeWebhook: 'Pranešimas',
-    typesHint: 'Internetinis pranešimas (webhook) = paleidiklio tipas',
+    typeWebhookSub: 'kita sistema',
     aria: 'Darbo eiga: Paleidiklis, Sąlyga, Veiksmas; internetinis pranešimas yra paleidiklio tipas',
   };
 }
@@ -52,7 +56,7 @@ export function getM10ThreeALabels(locale: M10Locale) {
       auton: 'AUTONOMIZE',
       autonPct: '5 %',
       autonSub: 'Agents only with limits',
-      hint: 'Tap a band – when to choose it',
+      hint: 'Choose a band – when it fits and when it does not',
       aria: '3A strategy: Automate eighty percent, Augment fifteen, Autonomize five',
       regionAria: '3A strategy – three bands',
       youAreHere: 'You are here:',
@@ -73,7 +77,7 @@ export function getM10ThreeALabels(locale: M10Locale) {
     auton: 'Autonomizuoti',
     autonPct: '5 %',
     autonSub: 'Agentai tik su ribomis',
-    hint: 'Paspausk juostą – kada rinktis',
+    hint: 'Pasirink juostą – kada tinka ir kada ne',
     aria: '3A strategija: Automatizuoti 80 %, Asistuoti 15 %, Autonomizuoti 5 %',
     regionAria: '3A strategija – trys juostos',
     youAreHere: 'Tu esi čia:',
@@ -84,36 +88,36 @@ export function getM10ThreeALabels(locale: M10Locale) {
   };
 }
 
-/** Shell walkthrough – SOT 10.25: Kiek / Kodėl / Pvz. */
+/** Shell walkthrough – 10.25: 3 beats (what+why · example · when not). */
 export function getM10ThreeAExplanations(locale: M10Locale): StepExplanation[] {
   if (locale === 'en') {
     return [
       {
-        title: 'AUTOMATIZE',
-        body: '**80 %** – rule-based (no human at each step). Why: fewer errors, predictable. E.g. form → CRM → email.',
+        title: 'Automate',
+        body: '**What + why:** rules with no human at every step – fewer errors, predictable.\n**Example:** form → CRM → email.\n**When not:** you need a sign-off, or tone / facts must be approved.',
       },
       {
-        title: 'AUGMENT',
-        body: '**15 %** – human decides, model helps (summary, classification). Why: judgment / accountability. E.g. draft → human approve → send.',
+        title: 'Augment',
+        body: '**What + why:** a human decides, the model helps – judgment and ownership stay with you.\n**Example:** draft → human approval → send.\n**When not:** the template is stable and a mistake is cheap (automate instead).',
       },
       {
-        title: 'AUTONOMIZE',
-        body: '**5 %** – agents with guardrails and escalation. Why: costly / risky – keep this band small. E.g. research agent → quality check → escalate if unsure.',
+        title: 'Autonomize',
+        body: '**What + why:** agents with limits and escalation – a narrow band, because it is costly and risky.\n**Example:** research agent → quality check → escalate if unsure.\n**When not:** there is no limit, no audit, and nobody to escalate to.',
       },
     ];
   }
   return [
     {
       title: 'Automatizuoti',
-      body: '**80 %** – taisyklėmis (be žmogaus kiekviename žingsnyje). Kodėl: mažiau klaidų, nuspėjama. Pvz.: forma → CRM → laiškas.',
+      body: '**Kas + kodėl:** taisyklės be žmogaus kiekviename žingsnyje – mažiau klaidų, nuspėjama.\n**Pvz.:** forma → CRM → laiškas.\n**Kada ne:** reikia atsakomybės parašo ar tono / faktų patvirtinimo.',
     },
     {
       title: 'Asistuoti',
-      body: '**15 %** – žmogus sprendžia, DI padeda (santrauka, klasifikacija). Kodėl: reikia sprendimo / atsakomybės. Pvz.: juodraštis → žmogaus patvirtinimas → siuntimas.',
+      body: '**Kas + kodėl:** žmogus sprendžia, DI padeda – atsakomybė lieka tau.\n**Pvz.:** juodraštis → žmogaus patvirtinimas → siuntimas.\n**Kada ne:** šablonas stabilus ir klaida pigi (tada automatizuok).',
     },
     {
       title: 'Autonomizuoti',
-      body: '**5 %** – agentai su ribomis ir eskalacija. Kodėl: brangu / rizikinga – tik siaura juosta. Pvz.: tyrimo agentas → kokybės kontrolė → eskalacija, jei neaišku.',
+      body: '**Kas + kodėl:** agentai su ribomis ir eskalacija – siaura juosta, nes brangu ir rizikinga.\n**Pvz.:** tyrimo agentas → kokybės kontrolė → eskalacija, jei neaišku.\n**Kada ne:** nėra ribos, audito ir kam eskaluoti.',
     },
   ];
 }
@@ -124,18 +128,18 @@ export function getM10ToolTreeLeaves(locale: M10Locale): M10ToolLeaf[] {
   if (locale === 'en') {
     return [
       { id: 'm365', condition: 'Office 365 daily', tool: 'Power Automate' },
-      { id: 'quick', condition: 'Non-tech, quick start', tool: 'Zapier' },
-      { id: 'logic', condition: 'Complex logic + cost', tool: 'Make.com' },
-      { id: 'host', condition: 'Self-host / data on-prem', tool: 'n8n' },
-      { id: 'ent', condition: 'Enterprise governance', tool: 'Workato' },
+      { id: 'quick', condition: 'Quick start', tool: 'Zapier' },
+      { id: 'logic', condition: 'Complex logic', tool: 'Make.com' },
+      { id: 'host', condition: 'Data on-prem', tool: 'n8n' },
+      { id: 'ent', condition: 'Enterprise', tool: 'Workato' },
     ];
   }
   return [
     { id: 'm365', condition: 'Office 365 kasdien', tool: 'Power Automate' },
-    { id: 'quick', condition: 'Netechninė komanda, greitai', tool: 'Zapier' },
-    { id: 'logic', condition: 'Sudėtinga logika + kaina', tool: 'Make.com' },
-    { id: 'host', condition: 'Savas serveris / duomenys pas mus', tool: 'n8n' },
-    { id: 'ent', condition: 'Didelės įmonės valdymas', tool: 'Workato' },
+    { id: 'quick', condition: 'Greitas startas', tool: 'Zapier' },
+    { id: 'logic', condition: 'Sudėtinga logika', tool: 'Make.com' },
+    { id: 'host', condition: 'Duomenys pas mus', tool: 'n8n' },
+    { id: 'ent', condition: 'Įmonės valdymas', tool: 'Workato' },
   ];
 }
 
@@ -144,16 +148,70 @@ export function getM10ToolTreeLabels(locale: M10Locale) {
     return {
       title: 'Tool choice (workflow)',
       root: 'Your context?',
-      pick: 'Tap a branch',
-      aria: 'Decision tree for automation tools',
+      pick: 'Choose a situation',
+      landmark: 'landmark',
+      aria: 'Decision tree for automation tools. Workato is an enterprise landmark, not a quick-start pick.',
     };
   }
   return {
     title: 'Darbo eigos įrankio pasirinkimas',
     root: 'Tavo kontekstas?',
-    pick: 'Paspausk šaką',
-    aria: 'Sprendimų medis automatizavimo įrankiams',
+    pick: 'Pasirink situaciją',
+    landmark: 'orientyras',
+    aria: 'Sprendimų medis automatizavimo įrankiams. Workato – įmonės orientyras, ne greito starto pasirinkimas.',
   };
+}
+
+/** Shell 3 beats from existing whenHint (when · example · when not). Workato = landmark. */
+export function getM10ToolTreeExplanations(
+  locale: M10Locale
+): StepExplanation[] {
+  if (locale === 'en') {
+    return [
+      {
+        title: 'Power Automate',
+        body: '**When:** Teams / Outlook / SharePoint every day.\n**Example:** Outlook PDF → SharePoint → Teams.\n**When not:** your core systems are not Microsoft.',
+      },
+      {
+        title: 'Zapier',
+        body: '**When:** a non-technical team needs a quick start.\n**Example:** Calendly → calendar → reminder email.\n**When not:** complex logic or data on your own servers.',
+      },
+      {
+        title: 'Make.com',
+        body: '**When:** conditions, loops, and better unit cost.\n**Example:** Shopify order → stock → supplier alert.\n**When not:** a simple 2–3 step flow is enough.',
+      },
+      {
+        title: 'n8n',
+        body: '**When:** a technical team, data on your side.\n**Example:** incoming web notification → database → Slack alert.\n**When not:** no IT, or you need a quick SaaS start.',
+      },
+      {
+        title: 'Workato',
+        body: '**Landmark:** enterprise governance – not a fourth quick-start pick.\n**Example:** many systems, audit, SSO.\n**Commit** with one of the four tools below.',
+      },
+    ];
+  }
+  return [
+    {
+      title: 'Power Automate',
+      body: '**Kada:** kasdien Teams / Outlook / SharePoint.\n**Pvz.:** Outlook PDF → SharePoint → Teams.\n**Netinka:** pagrindinės sistemos – ne Microsoft.',
+    },
+    {
+      title: 'Zapier',
+      body: '**Kada:** netechninė komanda, greitas startas.\n**Pvz.:** Calendly → kalendorius → priminimo laiškas.\n**Netinka:** sudėtinga logika ar duomenys savo serveriuose.',
+    },
+    {
+      title: 'Make.com',
+      body: '**Kada:** sąlygos, ciklai, geresnė kaina.\n**Pvz.:** Shopify užsakymas → atsargos → tiekėjo įspėjimas.\n**Netinka:** užtenka paprasto 2–3 žingsnių srauto.',
+    },
+    {
+      title: 'n8n',
+      body: '**Kada:** techninė komanda, duomenys savo pusėje.\n**Pvz.:** internetinis pranešimas → duomenų bazė → Slack įspėjimas.\n**Netinka:** nėra IT arba reikia greito SaaS.',
+    },
+    {
+      title: 'Workato',
+      body: '**Orientyras:** didelės įmonės valdymas – ne ketvirtas greito starto variantas.\n**Pvz.:** daug sistemų, auditas, SSO.\n**Įsipareigok** iš keturių įrankių žemiau.',
+    },
+  ];
 }
 
 export function getM10WorkflowSpecLabels(locale: M10Locale) {
@@ -181,7 +239,7 @@ export function getM10WorkflowSpecLabels(locale: M10Locale) {
       'Sąlyga',
       'Veiksmai',
       'Išvestis',
-      'SLA',
+      'Paslaugos lygis',
       'Klaidos',
       'Auditas',
     ],
@@ -204,37 +262,37 @@ export function getM10IncidentPlaybookLabels(locale: M10Locale) {
   };
 }
 
-/** Shell step explanations – titles from labels; short bodies for walkthrough. */
+/** Shell 3 beats (what · example · common mistake) – not a box-sub echo. */
 export function getM10TriggerFlowStepExplanations(locale: M10Locale) {
   const L = getM10TriggerFlowLabels(locale);
   if (locale === 'en') {
     return [
       {
         title: L.trigger,
-        body: `${L.triggerSub}. Types: ${L.typeForm}, ${L.typeSchedule}, ${L.typeWebhook}.`,
+        body: '**What:** the event that starts the flow.\n**Example:** a form, a set time, or an incoming web notification.\n**Common mistake:** mixing it up with the action.',
       },
       {
         title: L.condition,
-        body: 'Optional branch / filter – skip until Trigger + Action already work.',
+        body: '**What:** whether the flow should continue (optional on the first flow).\n**Example:** if a new client; if the amount is over a limit.\n**Common mistake:** adding a condition before Trigger + Action already work.',
       },
       {
         title: L.action,
-        body: L.actionSub,
+        body: '**What:** what the **system** does.\n**Example:** an email, a CRM record, a task.\n**Common mistake:** calling the trigger itself an action.',
       },
     ];
   }
   return [
     {
       title: L.trigger,
-      body: `${L.triggerSub}. Tipai: ${L.typeForm}, ${L.typeSchedule}, ${L.typeWebhook}.`,
+      body: '**Kas:** įvykis, kuris pradeda eigą.\n**Pvz.:** forma, nustatytas laikas ar internetinis pranešimas.\n**Dažna klaida:** painioti su veiksmu.',
     },
     {
       title: L.condition,
-      body: 'Papildoma šaka arba filtras – kol Paleidiklis ir Veiksmas neveikia, dar neįtrauk.',
+      body: '**Kas:** ar eiga turi tęstis (nebūtina pirmai eigai).\n**Pvz.:** jei naujas klientas; jei suma virš ribos.\n**Dažna klaida:** dėti sąlygą, kol Paleidiklis ir Veiksmas dar neveikia.',
     },
     {
       title: L.action,
-      body: L.actionSub,
+      body: '**Kas:** ką **sistema** padaro.\n**Pvz.:** laiškas, CRM įrašas, užduotis.\n**Dažna klaida:** vadinti veiksmu patį paleidiklį.',
     },
   ];
 }

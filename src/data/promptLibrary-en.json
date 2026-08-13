@@ -114,6 +114,13 @@
           "title": "Prompt quality check (by 5 principles)",
           "goal": "Paste your prompt and run. Checks against 5 principles, suitable for RAG and agents.",
           "prompt": "ROLE:\nYou are an experienced prompt engineer and training facilitator.\nYour goal is to critically evaluate prompt quality and suggest improvements.\n\nTASK:\nEvaluate the given prompt against 5 principles:\n1) Clarity\n2) Experimentation\n3) From simple to complex\n4) Context\n5) Word choice\n\nINPUT:\n[prompt provided]\n\nEVALUATION FORMAT:\n1. Evaluation table (1–5 score per principle)\n2. Brief explanation of WHY that score\n3. 3 main weak points\n4. Suggested improved prompt version\n\nRULES:\n- Be specific, no generic phrases\n- If information is missing – state it clearly\n- If prompt is too complex – suggest a simpler V1\n- Don’t rewrite unnecessarily – only fix what adds real value\n\nOUTPUT:\nStructured, clear, practically applicable response."
+        },
+        {
+          "id": "after-eval-one-action",
+          "title": "After the check: one action at work",
+          "goal": "After the 5-principle check. Paste the AI reply — you get one question about what to change at work.",
+          "logika": "Evaluate → one action at work",
+          "prompt": "I just got a prompt evaluation against 5 principles:\n\n[PASTE THE EVALUATION]\n\nAsk me 1 question: which single weakest part will I fix and run at work within 24–48 hours?\nAfter I answer — 1 concrete tip."
         }
       ]
     }

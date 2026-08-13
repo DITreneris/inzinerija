@@ -17,11 +17,11 @@
 ## 1. Trumpa santrauka
 
 - **Training repo jau ready:** `npm run build:corporate12`, `*-m1-m12.json`, magic-link tier **12** (`MAGIC_LINK_TIERS` + `api/verify-access`).
-- **Cutover = jūsų pusė:** Vercel build → `build:corporate12` **ir** Supabase / `generate-access-link` siunčia `access_tier=12` (ne cap į 9).
+- **Cutover GitHub (2026-08-13):** submodule pin **v1.6.2** / `c35a1f5` ([PR #92](https://github.com/DITreneris/promptanatomy/pull/92)); parent `vercel-build.sh` jau `build:corporate12`; `generate-access-link` mapina `12→12`. **Live `/anatomy/` 1.6.2** — dar nepatvirtinta (Vercel).
 - **Prieiga** = HMAC magic link (kaip M7–9). Supabase saugo entitlement (`user_access`); **ne** login į mokymų SPA.
 - **Phase 1 (dabar):** upsert el. paštui `highest_plan=12` → `generate-access-link` → redirect į `/anatomy/` su token.
 - **Phase 2 (ne dabar):** Stripe Agentų SKU €199 → tas pats `access_tier=12`.
-- **Pin:** submodule `apps/prompt-anatomy` → tag **v1.6.2** (ne learning freeze `v1.4.9`).
+- **Pin:** submodule `apps/prompt-anatomy` → tag **v1.6.2** / SHA `c35a1f5` (GitHub `main`; ne learning freeze `v1.4.9`).
 
 ---
 
@@ -187,9 +187,9 @@ Po sėkmingo verify (200):
 ## 12. Cutover B vykdymo checklist (v1.6.2)
 
 **Tikslus tag:** `v1.6.2`  
-**Submodule SHA:** marketing repo patikrina `git rev-parse v1.6.2` po `git fetch --tags`.
+**Submodule SHA:** `c35a1f5` (GitHub `main` 2026-08-13). Live prod verify ⏳.
 
-1. `apps/prompt-anatomy` submodule checkout → `v1.6.2`.
+1. ✅ `apps/prompt-anatomy` submodule checkout → `v1.6.2` (PR #92).
 2. Vercel Preview/Production env: `VITE_MAX_BUILD_MODULE=12`, build script `npm run build:corporate12`, be `VITE_MVP_MODE` ir be `VITE_MAX_ACCESSIBLE_MODULE`.
 3. Parent API: `verify-access` whitelist priima `12`; `generate-access-link` mapina `highest_plan=12` į `access_tier=12` (ne 12→9).
 4. Smoke: tier 0 → AccessGate; tier 9 → M1–9; tier 12 → M10 atsidaro; build log rodo `MAX_BUILD_MODULE=12` ir submodule `v1.6.2`.

@@ -12,24 +12,24 @@
             "whyBenefit": "After this module you will understand how to design AI agents – from the cycle and tools to integrations and prompt architecture.",
             "heroStat": "You already know the 6 blocks and context engineering.",
             "heroText": "Now – agent engineering.",
-            "heroSubText": "Design agents for your processes – taxonomy, multi-agent coordination, no-code tools. Context – Module 4.",
+            "heroSubText": "You will design agents for your processes – depth levels and roles, multi-agent coordination, no-code tools. You will apply context engineering from Modules 4–6 to agents.",
             "firstActionCTA": "On the next slide, copy the quick check: in one sentence, tell an agent apart from a simple question-and-answer exchange.",
             "outcomes": [
               "Understand agent taxonomy (L0–L3) and multi-agent roles",
               "Use 5 workflow patterns and system prompts",
               "Know how to choose tools and limit risks"
             ],
-            "duration": "~20–25 min",
+            "duration": "~25–30 min",
             "audience": "For business specialists and engineers who have completed Modules 4–6 (Context engineering).",
             "howToUseModule": {
               "heading": "Choose a path",
               "short": {
                 "label": "Short path",
-                "description": "Without the optional slides (GitHub deep dive, testing/security deep dive, glossary)."
+                "description": "Skip extra slides (GitHub, deeper spec and incident playbook, glossary)."
               },
               "full": {
-                "label": "Full path",
-                "description": "All slides, including the optional ones."
+                "label": "Long path",
+                "description": "All slides, including optional ones."
               }
             },
             "footer": "Next – slide 2: Path in this module"
@@ -44,7 +44,7 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "**MUST path:** agent cycle → 3A strategy → depth and roles → 5 workflow patterns → role and system prompt → tools → when to choose an agent → errors and limits → workflow concepts → automation platforms → launch.\n\n**Optional:** GitHub, deeper spec, glossary, summary. Term definitions – on the **Key concepts** slide.",
+                "body": "**MUST path:** agent cycle → 3A strategy → depth and roles → 5 workflow patterns → role and system prompt → tools → when to choose an agent → errors and limits → workflow concepts → automation platforms → launch.\n\n**Optional:** GitHub, deeper spec and incident playbook, glossary, summary. Term definitions – on the **Key concepts** slide.",
                 "blockVariant": "accent"
               },
               {
@@ -151,17 +151,12 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "3A is a **decision portfolio**, not “more agents = better”. Most work – rules (**fewer errors**, predictable); a smaller share – human + AI (judgment and ownership); the smallest – agents with limits (costly and risky). **80/15/5** protects speed and safety – it is not a maturity ladder to autopilot.",
+                "body": "3A is a **decision portfolio**: automate 80 %, augment 15 %, autonomize 5 %.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Three bands – when to choose",
-                "body": "**Automate (80 %)** – what it is: rules that do not need a human at every step. Why: fewer errors, predictable. E.g., form → CRM → email.\n\n**Augment (15 %)** – how much: human decides, AI helps. Why: ownership or context needed. E.g.: AI draft → human approves → send.\n\n**Autonomize (5 %)** – how much: agent with limits and escalation. Why: narrow band – higher risk. E.g.: feedback → sentiment → escalate to a human.",
-                "blockVariant": "brand"
-              },
-              {
                 "heading": "3A strategy (diagram)",
-                "body": "Click a band – when to choose. Then assign your processes below.",
+                "body": "Choose a band – when it fits and when it does not.",
                 "image": "m10_three_a_strategy",
                 "blockVariant": "brand"
               },
@@ -240,35 +235,41 @@
               },
               {
                 "heading": "Do this now",
-                "body": "Pick **one** pattern for your process. After you choose, you will see only that pattern’s plan – copy it and fill it in. After the warm-up – orchestration walkthrough (HOW, not only the pattern).",
+                "body": "Pick one pattern. After you choose, you get that pattern’s plan.",
                 "blockVariant": "brand",
                 "toolChoiceBar": {
-                  "question": "Which pattern will you apply to your process?",
+                  "variant": "choice",
+                  "question": "Choose a process pattern",
                   "choices": [
                     {
                       "label": "Chain",
                       "rowIndex": 0,
-                      "whenHint": "**Yes:** steps run one after another. **No:** types differ or several work in parallel."
+                      "description": "Steps in order",
+                      "whenHint": "Fits: steps run one after another. Does not fit: types differ or several work in parallel."
                     },
                     {
                       "label": "Routing",
                       "rowIndex": 1,
-                      "whenHint": "**Yes:** different branch by type (complaint / inquiry). **No:** every case follows the same sequence."
+                      "description": "Path by type",
+                      "whenHint": "Fits: a different branch by type (complaint / inquiry). Does not fit: every case follows the same sequence."
                     },
                     {
                       "label": "Parallel",
                       "rowIndex": 2,
-                      "whenHint": "**Yes:** several sources / specialists at once, then merge. **No:** the result depends on a prior step."
+                      "description": "At once, then merge",
+                      "whenHint": "Fits: several sources / specialists at once, then merge. Does not fit: the result depends on a prior step."
                     },
                     {
                       "label": "Coordinator",
                       "rowIndex": 3,
-                      "whenHint": "**Yes:** you need to split sub-tasks dynamically. **No:** a fixed chain without assignment is enough."
+                      "description": "Splits to specialists",
+                      "whenHint": "Fits: you need to split sub-tasks dynamically. Does not fit: a fixed chain without assignment is enough."
                     },
                     {
                       "label": "Generator + evaluator",
                       "rowIndex": 4,
-                      "whenHint": "**Yes:** draft + QC (email, FAQ, report). **No:** the quality risk is low – Agent (L1) is enough."
+                      "description": "Draft and check",
+                      "whenHint": "Fits: draft + quality check (email, FAQ, report). Does not fit: quality risk is low – an Agent is enough."
                     }
                   ]
                 }
@@ -464,7 +465,7 @@
             "nextSteps": [
               "Business automation tools – when to use Zapier, Make, n8n, or Power Automate.",
               "Hosting – where the agent / API runs (Railway, Render, Fly.io).",
-              "Optional: GitHub as a code source; specification, testing, security.",
+              "Optional: GitHub as a code source; deeper spec and incident playbook.",
               "Module summary and test (Module 11)."
             ],
             "recap": {
@@ -749,7 +750,7 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "Before Module 12 practice, prepare a one-page workflow brief: the flow itself, three tests, and a rule for when a human decides. You will check this same artifact on the next slide and reuse it in practice.",
+                "body": "Before Module 12 practice, prepare a one-page workflow brief: the flow itself, three tests, and a rule for when a human decides. You will check the same artifact on the quality evaluator slide and reuse it in practice.",
                 "blockVariant": "accent"
               },
               {
@@ -759,7 +760,7 @@
               },
               {
                 "heading": "Do this now",
-                "body": "Copy one template and fill it with your process. The quality evaluator in the next step will point to one place worth fixing.",
+                "body": "Copy one template and fill it with your process. Later, the quality evaluator will point to one place worth fixing.",
                 "blockVariant": "brand"
               },
               {

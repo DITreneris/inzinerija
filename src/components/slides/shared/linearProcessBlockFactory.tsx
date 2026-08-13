@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { useLocale } from '../../../contexts/LocaleContext';
+import { renderBold } from '../../../utils/renderBold';
 import {
   useStepDiagram,
   type StepExplanation,
@@ -61,7 +62,9 @@ export function createLinearProcessBlock({
             onStepSelect={setCurrentStep}
             stepAria={diagramLabels.stepAria}
             explanationTitle={step.title}
-            explanation={<p>{step.body}</p>}
+            explanation={
+              <p className="whitespace-pre-line">{renderBold(step.body)}</p>
+            }
           >
             {renderDiagram({
               locale: loc,

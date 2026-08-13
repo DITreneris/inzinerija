@@ -75,7 +75,7 @@ teaching-elements-overlay.json         ← curated Pattern / Shell / maturity
 
 | Bucket                         |                N |
 | ------------------------------ | ---------------: |
-| Skaidrės                       |              336 |
+| Skaidrės                       |              337 |
 | Naudoti SlideType              |               42 |
 | Live `sections[].image` unique |               48 |
 | Live `sections[].image` fields |               50 |
@@ -102,7 +102,7 @@ _Šaltinis: `modules.json` + `diagramRenderers`; overlay `updatedAt`: **2026-08-
 | `diagram:llm_arch`                  | M4/56                  | `comparison-mode-architecture` | Ne    |        4 | LlmArchDiagramBlock                              |
 | `diagram:llm_autoregressive`        | M4/44                  | `cycle-feedback`               | Taip  |        3 | LlmAutoregressiveBlock                           |
 | `diagram:m10_agent_orchestrator`    | M10/10.482             | `multi-agent-flow`             | Taip  |        4 | M10OrchestratorBlock                             |
-| `diagram:m10_incident_playbook`     | M10/10.65              | `linear-process`               | Taip  |        3 | M10IncidentPlaybookBlock                         |
+| `diagram:m10_incident_playbook`     | M10/10.655             | `linear-process`               | Taip  |        3 | M10IncidentPlaybookBlock                         |
 | `diagram:m10_learning_loop`         | M10/10.49              | `cycle-feedback`               | Taip  |        3 | M10LearningLoopBlock                             |
 | `diagram:m10_three_a_strategy`      | M10/10.25              | `comparison`                   | Taip  |        3 | M10ThreeAStrategyBlock                           |
 | `diagram:m10_tool_decision_tree`    | M10/10.35              | `decision-tree`                | Taip  |        3 | M10ToolDecisionTreeBlock                         |
@@ -274,7 +274,7 @@ _Šaltinis: `modules.json` + `diagramRenderers`; overlay `updatedAt`: **2026-08-
 | `table:m10:10.36:s1` | M10/10.36 | ne              | Kur paleisti – keturi sluoksniai                                   |
 | `table:m10:10.36:s2` | M10/10.36 | ne              | Kur paleisti – orientacija (Railway / Render / Fly.io)             |
 | `table:m10:10.37:s1` | M10/10.37 | ne              | GitHub kaip kodo šaltinis                                          |
-| `table:m10:10.65:s7` | M10/10.65 | ne              | Darbo eigos testavimas: 10 scenarijų (collapsible)                 |
+| `table:m10:10.65:s5` | M10/10.65 | ne              | Gilesnė eigos specifikacija: 10 scenarijų (collapsible)            |
 
 ## Kind × maturity scorecard (TE-4)
 

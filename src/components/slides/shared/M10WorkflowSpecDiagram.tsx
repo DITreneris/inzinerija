@@ -30,7 +30,8 @@ const PROCESS_ARROW = getProcessArrowMarkerGeom();
 const MARKER = PROCESS_ARROW.tipLen;
 
 function textLines(label: string) {
-  if (label.length <= 10) return [label];
+  const parts = label.split(' ').filter(Boolean);
+  if (parts.length >= 2) return parts;
   return [label];
 }
 

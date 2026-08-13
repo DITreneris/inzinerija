@@ -79,6 +79,12 @@ describe('ModulesPage catalog-first UX', () => {
     ).toBeTruthy();
     expect(screen.queryByText('Bendra pažanga')).not.toBeInTheDocument();
     expect(screen.getAllByText('Kitas žingsnis')).toHaveLength(1);
+    expect(
+      screen.queryByRole('heading', {
+        level: 2,
+        name: 'Ar 6 blokų sistema tvirta?',
+      })
+    ).not.toBeInTheDocument();
   });
 
   it('keeps due recall secondary inside the next-step strip', () => {
@@ -130,5 +136,92 @@ describe('ModulesPage catalog-first UX', () => {
       evaluator.compareDocumentPosition(chapterStarts) &
         Node.DOCUMENT_POSITION_FOLLOWING
     ).toBeTruthy();
+  });
+
+  it('places the M3→M4 ready-check strip before the cycle-2 subsection', () => {
+    renderWithProviders(
+      <ModulesPage
+        onModuleSelect={() => {}}
+        onGoToQuiz={() => {}}
+        progress={progress({ completedModules: [1, 2, 3] })}
+      />
+    );
+
+    const m3 = screen.getByRole('heading', { level: 3, name: 'Modulis 3' });
+    const readyCheck = screen.getByRole('heading', {
+      level: 2,
+      name: 'Ar 6 blokų sistema tvirta?',
+    });
+    const cycle2 = screen.getByRole('heading', {
+      level: 2,
+      name: 'Kontekstas ir projektas (M4–M6)',
+    });
+
+    expect(screen.getByText('Kitas tavo žingsnis')).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', {
+        name: /Atidaryti branduolio pasitikrinimą prieš Modulį 4/i,
+      })
+    ).toBeInTheDocument();
+    expect(
+      m3.compareDocumentPosition(readyCheck) & Node.DOCUMENT_POSITION_FOLLOWING
+    ).toBeTruthy();
+    expect(
+      readyCheck.compareDocumentPosition(cycle2) &
+        Node.DOCUMENT_POSITION_FOLLOWING
+    ).toBeTruthy();
+  });
+
+  it('hides the ready-check strip after M4 is completed', () => {
+    renderWithProviders(
+      <ModulesPage
+        onModuleSelect={() => {}}
+        onGoToQuiz={() => {}}
+        progress={progress({ completedModules: [1, 2, 3, 4] })}
+      />
+    );
+
+    expect(
+      screen.queryByRole('heading', {
+        level: 2,
+        name: 'Ar 6 blokų sistema tvirta?',
+      })
+    ).not.toBeInTheDocument();
+  });
+
+  it('hides the ready-check strip when the quiz is already completed', () => {
+    renderWithProviders(
+      <ModulesPage
+        onModuleSelect={() => {}}
+        onGoToQuiz={() => {}}
+        progress={progress({
+          completedModules: [1, 2, 3],
+          quizCompleted: true,
+        })}
+      />
+    );
+
+    expect(
+      screen.queryByRole('heading', {
+        level: 2,
+        name: 'Ar 6 blokų sistema tvirta?',
+      })
+    ).not.toBeInTheDocument();
+  });
+
+  it('hides the ready-check strip without a quiz handler', () => {
+    renderWithProviders(
+      <ModulesPage
+        onModuleSelect={() => {}}
+        progress={progress({ completedModules: [1, 2, 3] })}
+      />
+    );
+
+    expect(
+      screen.queryByRole('heading', {
+        level: 2,
+        name: 'Ar 6 blokų sistema tvirta?',
+      })
+    ).not.toBeInTheDocument();
   });
 });

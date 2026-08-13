@@ -509,7 +509,7 @@ Ar man reikia GitHub + auto-deploy, ar užtenka Zapier/Make? Atsakyk 3 eilutėmi
 
 ## 3d0. Minimalus darbo eigos aprašymas (skaidrė 10.64 – privaloma)
 
-**Vieta:** po 10.37 (optional), prieš optional 10.65.
+**Vieta:** po 10.37 (optional), prieš optional 10.65 / 10.655.
 
 **Tikslas:** MUST branduolys pagrindiniame kelyje – be dense optional 10.65. Dalyvis neša tą patį aprašymą į 10.66 QC ir M12 lab'us (121–123).
 
@@ -519,46 +519,68 @@ Ar man reikia GitHub + auto-deploy, ar užtenka Zapier/Make? Atsakyk 3 eilutėmi
 
 **Minimalus aprašymas:** (A) eiga – Paleidiklis, įvestis, Sąlyga (jei reikia), 3–5 Veiksmai, rezultatas, klaidos kelias; (B) 3 bandymai – sėkmės kelias, trūksta lauko, sistema neatsako arba įrašas kartojasi; (C) žmogaus sprendimas – kada stabdyti, kas tvirtina, ką fiksuoti. Rodyti vieną užpildytą mini pavyzdį.
 
-**CopyButton:** vienas A/B/C „Minimalus darbo eigos aprašymas“ (žr. `modules.json` 10.64). Incidentų planas ir modelio kainos gilinimas priklauso 10.65.
+**CopyButton:** vienas A/B/C „Minimalus darbo eigos aprašymas“ (žr. `modules.json` 10.64). Aštuonių blokų gilinimas ir 10 testavimo scenarijų priklauso **10.65**; incidentų planas ir saugumas – **10.655**. Modelio kainos collapsible lieka **10.65**.
 
 **Patikra:** Ar yra **A, B ir C**? Ar kolega iš vieno puslapio suprastų eigą, tris bandymus ir žmogaus sprendimą?
 
-**Ryšys:** 10.26 – kontrolės lab (W1.1 risk strip) + kopijuojama taisyklė lab viduje; 10.51 – juodraštis + golden; 10.64 – pilnas aprašymas; 10.65 – optional deep; 10.66 – vertina 10.64 artefaktą.
+**Ryšys:** 10.26 – kontrolės lab (W1.1 risk strip) + kopijuojama taisyklė lab viduje; 10.51 – juodraštis + golden; 10.64 – pilnas aprašymas; 10.65 – optional spec + testai; 10.655 – optional incidentų planas + saugumas; 10.66 – vertina 10.64 artefaktą.
 
 **Tiltas iš 10.37:** Footer `Toliau – skaidrė 25: Minimalus aprašymas` / EN `Next – slide 25: Minimum brief`.
 
 ---
 
-## 3d. Darbo eigos testavimas ir saugumas (skaidrė 10.65 – neprivaloma)
+## 3d. Gilesnė eigos specifikacija (skaidrė 10.65 – neprivaloma)
 
-**Po 10.64 aprašymo.** Jei aprašymas jau užpildytas – ši skaidrė optional: diagramos, 10 edge-case, incident playbook, saugumas. Antraštė be `(neprivaloma)` – tik `optional: true` + UI badge.
+**Po 10.64 aprašymo, prieš 10.655.** Optional gilinimas: aštuoni specifikacijos blokai ir trys kokybės testai. Antraštė be `(neprivaloma)` – tik `optional: true` + UI badge. Trumpas kelias abi skaidres (`10.65` ir `10.655`) slepia.
 
-**Micro-cycle (GOLDEN §3.2 ant optional deep):** Trumpai → 2 diagramos → 8 blokų (collapsible) → **Daryk** → **Copy checklist** → **Patikra** → 10 scenarijų / 3 testai (collapsible) → Saugumas → Kaina ir modelio pasirinkimas (collapsible). Learner subtitle ir Trumpai nevartoja „Neprivaloma“; kelią žymi `optional: true` ir UI badge.
+**GOLDEN §3.2 ciklas (vienas herojus):** Trumpai → **Aštuoni specifikacijos blokai** (`m10_workflow_spec`, brand) → Daryk → Copy checklist → Patikra → optional: 10 scenarijų + kaina (collapsible). Antraštėje nerašyti „(diagrama)“.
 
-**Vizualizacija:** dvi atskiros React schemos, ne viena tanki kombinacija: `m10_workflow_spec` (8 blokų workflow specifikacija) ir `m10_incident_playbook` (5 incidentų žingsniai). „Peržiūrėti pilname dydyje“ atidaro tą patį React vaizdą modale.
+**Tiltas į 10.655:** Trumpai sako, kad paskutiniai trys blokai – **paslaugos lygis**, klaidos ir auditas – paruošia kitą žingsnį. Learner LT copy nevartoja bare **SLA** (EN overlay palieka SLA).
+
+**Patikra:** ar aštuoniuose blokuose yra paslaugos lygis, klaidų kelias ir audito žurnalas – ne 10.64 B/C aidas.
+
+**Vizualizacija:** viena React schema `m10_workflow_spec` (8 blokų snake). Incidentų schema **nėra** šioje skaidrėje.
 
 **Standartinė workflow specifikacija (1 puslapis)** – kiekvienam lab'ui rekomenduojama vieno puslapio specifikacija (MUST branduolys – skaidrė **10.64**; čia – išsamus 8 blokų gidas):
 
-| Blokas                        | Turinys                                                      |
-| ----------------------------- | ------------------------------------------------------------ |
-| **Trigger**                   | Kas paleidžia (įvykis, dažnumas).                            |
-| **Input schema**              | Kokie laukai, formatai, privalomi/optional.                  |
-| **Condition**                 | Sąlygos (pvz. jei laukas X > 500).                           |
-| **Actions**                   | Žingsnių sąrašas (1, 2, 3…) su įrankiais.                    |
-| **Output**                    | Ką gauname (įrašas CRM, laiškas, ticket).                    |
-| **SLA, retries, rate limits** | Max laukimo laikas, kiek kartų bandyti, API limitai.         |
-| **Error handling**            | Ką darom klaidos atveju (retry, alert, žmogaus eskalacija).  |
-| **Audit log**                 | Ką fiksuojame ir kur (run_id, laikas, žingsnis, rezultatas). |
+| Blokas                       | Turinys                                                      |
+| ---------------------------- | ------------------------------------------------------------ |
+| **Trigger**                  | Kas paleidžia (įvykis, dažnumas).                            |
+| **Input schema**             | Kokie laukai, formatai, privalomi/optional.                  |
+| **Condition**                | Sąlygos (pvz. jei laukas X > 500).                           |
+| **Actions**                  | Žingsnių sąrašas (1, 2, 3…) su įrankiais.                    |
+| **Output**                   | Ką gauname (įrašas CRM, laiškas, ticket).                    |
+| **Paslaugos lygis, retries** | Max laukimo laikas, kiek kartų bandyti, API limitai.         |
+| **Error handling**           | Ką darom klaidos atveju (retry, alert, žmogaus eskalacija).  |
+| **Audit log**                | Ką fiksuojame ir kur (run_id, laikas, žingsnis, rezultatas). |
 
 **Testavimo rinkinys (minimalus)** – 10 edge-case scenarijų prieš paleidžiant į „gyvą“ naudojimą: (1) tušti laukai (privalomi tušti), (2) neteisingas el. pašto formatas, (3) dublikatai (tas pats įrašas du kartus), (4) timeout (API neatsako laiku), (5) webhook duplikatai (tas pats webhook gaunamas du kartus), (6) specialieji simboliai / ilgas tekstas laukuose, (7) neleistinos reikšmės (pvz. ne skaičius ten, kur tikimasi skaičiaus), (8) trūkstami laukai (schema pasikeitė), (9) rate limit pasiektas (429), (10) autentifikacijos klaida (401/403). **Idempotency (paprasta kalba):** taisyklės, kad **tas pats veiksmas neįvyktų du kartus** dėl pasikartojančio webhook ar paspaudimo – pvz. unikalus užklausos ID; jei įrašas su tuo ID jau yra – atnaujinti, ne kurti naują.
 
-**Saugumas ir atitiktis:** learner copy išskaidytas į 4 veiksmus: (1) siųsti tik būtinus duomenis ir maskuoti asmens duomenis, (2) raktus laikyti platformos saugykloje ir riboti redagavimo prieigą, (3) rizikingą veiksmą stabdyti žmogaus sprendimui, (4) žurnale fiksuoti tikslą, duomenis, sprendimą ir rezultatą. ES DI aktą įvardyti kaip atsekamumo ir valdymo reikalavimų kontekstą, ne kaip nepaaiškintą etiketę.
+**Kaina ir modelio pasirinkimas:** collapsible šioje skaidrėje (ne 10.655).
 
 **Įrankių pasirinkimo medis:** **JSON skaidrėje 10.65** – ne kartoti lentelę; trumpa nuoroda: „Žr. skaidrę **Verslo automatizavimo įrankiai** – interaktyvi schema ir pasirinkimas; išsamiau – **Automatizavimo įrankiai verslui**, §21.“
 
+---
+
+## 3d-a. Kai eiga lūžta (skaidrė 10.655 – neprivaloma)
+
+**Po 10.65, prieš 10.66.** Optional: penki incidentų veiksmai, tada saugumo taisyklės. Antraštė be `(neprivaloma)` – tik `optional: true` + UI badge.
+
+**GOLDEN §3.2 ciklas (vienas herojus):** Trumpai → **Penki veiksmai, kai eiga lūžta** (`m10_incident_playbook`, brand) → Daryk → Copy planas → Patikra → Saugumas ir atitiktis (brand, po Patikros). Antraštėje nerašyti „(diagrama)“.
+
+**Tiltas iš 10.65 (V1):** specifikacijos paslaugos lygis, klaidos ir auditas čia virsta penkiais veiksmais. Copyable paima tuos tris laukus, tada 5 žingsnius (kas sustabdo, kur rašai, kam praneši, kas tvirtina).
+
+**Patikra:** penki veiksmai iš eilės + kas tvirtina prieš taisymą; jei ne – grįžk į **Gilesnė eigos specifikacija**.
+
+**Vizualizacija:** viena React schema `m10_incident_playbook` (5 žingsnių grandinė).
+
+**Saugumas ir atitiktis:** learner copy išskaidytas į 4 veiksmus: (1) siųsti tik būtinus duomenis ir maskuoti asmens duomenis, (2) raktus laikyti platformos saugykloje ir riboti redagavimo prieigą, (3) rizikingą veiksmą stabdyti žmogaus sprendimui, (4) žurnale fiksuoti tikslą, duomenis, sprendimą ir rezultatą. ES DI aktą įvardyti kaip atsekamumo ir valdymo reikalavimų kontekstą, ne kaip nepaaiškintą etiketę.
+
+**M12 123:** incidentų plano (5 žingsniai) pointeris – skaidrė **Kai eiga lūžta** (ne 10.64 ir ne senasis 10.65 pavadinimas). Trumpas kelias vis tiek gauna 5 žingsnius 123 šablone.
+
 ### 3d1 Agentų kokybės vertintojas (10.66)
 
-**Tikslas:** Vienas vertintojo promptas po 10.65. Dalyvis įklijuoja savo agento ar darbo eigos aprašymą, o DI patikrina jį pagal aiškumo, testavimo ir žmogaus kontrolės kriterijus. Learner title ir shortTitle nevartoja „QC“.
+**Tikslas:** Vienas vertintojo promptas po 10.655. Dalyvis įklijuoja savo agento ar darbo eigos aprašymą, o DI patikrina jį pagal aiškumo, testavimo ir žmogaus kontrolės kriterijus. Learner title ir shortTitle nevartoja „QC“.
 
 **Struktūra:** `evaluator-prompt-block`, be naujo renderio. Pagal GOLDEN_STANDARD §3.2b turi būti vienas vertintojo promptas ir atskiri žingsniai, kaip juo naudotis.
 
@@ -962,13 +984,13 @@ Pamoka po bandymo: ką atnaujinti kitam kartui
 
 ### MUST (be šito mokymai nėra pilno pristatymo kelias)
 
-| Elementas                                     | Vieta                                                                                                    | Pastaba                                                                                                                                                                                     |
-| --------------------------------------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **3 realūs lab'ai su artefaktais**            | **M12** – 3 practice-scenario (Lab #1 Automatizuoti, Lab #2 Asistuoti, Lab #3 Autonomizuoti)             | §8.2. Artefaktai: workflow schema, laukų mappingas, test cases, logų screenshot'ai. Pilnas aprašymas: [AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md](AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md) §17.         |
-| **Standartinė workflow specifikacija (1 p.)** | **M10** – **skaidrė 10.64** (MUST minimalus aprašymas); Copy ir juodraštis taip pat 10.5 / 10.51         | Trigger, input schema, condition, actions, output; error handling; HITL. Giliau – optional 10.65 + ref. §18.                                                                                |
-| **Testavimo rinkinys (minimalus)**            | **M10** – **10.64** (3 bandymo atvejai MUST); optional 10.65 – 10 edge-case                              | MUST: happy path + trūksta lauko + API/timeout ar webhook dublikatas. Pilnas 10 – ref. §19.                                                                                                 |
-| **Saugumo/atitikties mini-modulis**           | **M10** – **10.26** režimų simuliatorius → HITL eilutė **10.64**; optional 10.65 – PII, access, incident | MUST: kada tvirtina žmogus (be „HITL“ antraštėje). Deep – optional 10.65 + ref. §20.                                                                                                        |
-| **Įrankių pasirinkimo sprendimų medis**       | **M10** – skaidrė 10.1 (kelio apžvalga) arba 10.4 (įrankių pasirinkimas); pilnas algoritmas – ref. doc   | Jei Office 365 heavy → Power Automate. Jei non-tech + greitai → Zapier. Jei sudėtinga logika + kaina → Make. Jei kontrolė + savihost → n8n. Jei enterprise governance → Workato. Ref.: §21. |
+| Elementas                                     | Vieta                                                                                                     | Pastaba                                                                                                                                                                                     |
+| --------------------------------------------- | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **3 realūs lab'ai su artefaktais**            | **M12** – 3 practice-scenario (Lab #1 Automatizuoti, Lab #2 Asistuoti, Lab #3 Autonomizuoti)              | §8.2. Artefaktai: workflow schema, laukų mappingas, test cases, logų screenshot'ai. Pilnas aprašymas: [AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md](AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md) §17.         |
+| **Standartinė workflow specifikacija (1 p.)** | **M10** – **skaidrė 10.64** (MUST minimalus aprašymas); Copy ir juodraštis taip pat 10.5 / 10.51          | Trigger, input schema, condition, actions, output; error handling; HITL. Giliau – optional 10.65 + ref. §18.                                                                                |
+| **Testavimo rinkinys (minimalus)**            | **M10** – **10.64** (3 bandymo atvejai MUST); optional 10.65 – 10 edge-case                               | MUST: happy path + trūksta lauko + API/timeout ar webhook dublikatas. Pilnas 10 – ref. §19.                                                                                                 |
+| **Saugumo/atitikties mini-modulis**           | **M10** – **10.26** režimų simuliatorius → HITL eilutė **10.64**; optional 10.655 – PII, access, incident | MUST: kada tvirtina žmogus (be „HITL“ antraštėje). Deep – optional 10.655 + ref. §20.                                                                                                       |
+| **Įrankių pasirinkimo sprendimų medis**       | **M10** – skaidrė 10.1 (kelio apžvalga) arba 10.4 (įrankių pasirinkimas); pilnas algoritmas – ref. doc    | Jei Office 365 heavy → Power Automate. Jei non-tech + greitai → Zapier. Jei sudėtinga logika + kaina → Make. Jei kontrolė + savihost → n8n. Jei enterprise governance → Workato. Ref.: §21. |
 
 ### SHOULD (stipriai pakelia vertę, mažina fail'ų skaičių)
 
@@ -982,13 +1004,13 @@ Pamoka po bandymo: ką atnaujinti kitam kartui
 
 ### 2026-08 M10–M12 deep audit remediation anchors
 
-| Spraga                        | Vieta                | Live turinio sprendimas                                                                                                                                    |
-| ----------------------------- | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| MCP / jungčių sluoksnis       | **10.4**             | Platformos aiškinamos per tris įrankių sluoksnius: platformos funkcijos, jungtys / MCP / API, agentiniai režimai su failais ir atmintimi.                  |
-| Prompt injection per įrankius | **10.6**             | MUST saugiklis: nepasitikėti įrankio grąžintu tekstu kaip instrukcija; išorinį turinį laikyti duomenimis, o sistemines taisykles – viršesnėmis.            |
-| Kaina ir modelio pasirinkimas | **10.64**            | Minimalus aprašymas turi numatyti pigų modelį klasifikavimui / filtravimui, stipresnį modelį rašymui ar sprendimui, ir ribą, kada sustabdyti brangų kelią. |
-| Struktūrizuotas perdavimas    | **120.5**            | Perdavimo taisyklė turi JSON / schemos laukus: `task_id`, `source_role`, `target_role`, `payload`, `quality_gate`, `human_review`.                         |
-| Atitiktis / DI aktas          | **10.65** + **10.7** | 2–3 eilutės apie asmens duomenis, sprendimų poveikį ir dokumentavimo pareigą; žodynėlyje – „DI aktas / atitiktis“.                                         |
+| Spraga                        | Vieta                 | Live turinio sprendimas                                                                                                                                    |
+| ----------------------------- | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| MCP / jungčių sluoksnis       | **10.4**              | Platformos aiškinamos per tris įrankių sluoksnius: platformos funkcijos, jungtys / MCP / API, agentiniai režimai su failais ir atmintimi.                  |
+| Prompt injection per įrankius | **10.6**              | MUST saugiklis: nepasitikėti įrankio grąžintu tekstu kaip instrukcija; išorinį turinį laikyti duomenimis, o sistemines taisykles – viršesnėmis.            |
+| Kaina ir modelio pasirinkimas | **10.64**             | Minimalus aprašymas turi numatyti pigų modelį klasifikavimui / filtravimui, stipresnį modelį rašymui ar sprendimui, ir ribą, kada sustabdyti brangų kelią. |
+| Struktūrizuotas perdavimas    | **120.5**             | Perdavimo taisyklė turi JSON / schemos laukus: `task_id`, `source_role`, `target_role`, `payload`, `quality_gate`, `human_review`.                         |
+| Atitiktis / DI aktas          | **10.655** + **10.7** | 2–3 eilutės apie asmens duomenis, sprendimų poveikį ir dokumentavimo pareigą; žodynėlyje – „DI aktas / atitiktis“.                                         |
 
 ### WANT (galima vėlesniam išplėtimui)
 

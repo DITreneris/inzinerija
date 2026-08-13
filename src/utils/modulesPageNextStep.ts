@@ -63,3 +63,17 @@ export function pickModulesPageNextStep<TModule extends ModuleCandidate>({
     ) ?? null
   );
 }
+
+/** Catalog M3→M4 hinge: show only while M3 is done, M4 is not, and the core check is unfinished. */
+export function shouldShowModulesReadyCheck(input: {
+  hasQuizHandler: boolean;
+  completedModuleIds: readonly number[];
+  quizCompleted: boolean;
+}): boolean {
+  return (
+    input.hasQuizHandler &&
+    input.completedModuleIds.includes(3) &&
+    !input.completedModuleIds.includes(4) &&
+    !input.quizCompleted
+  );
+}

@@ -1,5 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { pickModulesPageNextStep } from '../modulesPageNextStep';
+import {
+  pickModulesPageNextStep,
+  shouldShowModulesReadyCheck,
+} from '../modulesPageNextStep';
 
 const modules = Array.from({ length: 6 }, (_, index) => ({ id: index + 1 }));
 
@@ -78,5 +81,67 @@ describe('pickModulesPageNextStep', () => {
     });
 
     expect(next).toBeNull();
+  });
+});
+
+describe('shouldShowModulesReadyCheck', () => {
+  it('shows when M3 is done, M4 is not, quiz is unfinished, and a handler exists', () => {
+    expect(
+      shouldShowModulesReadyCheck({
+        hasQuizHandler: true,
+        completedModuleIds: [1, 2, 3],
+        quizCompleted: false,
+      })
+    ).toBe(true);
+  });
+
+  it('shows when M4 is started but not completed', () => {
+    expect(
+      shouldShowModulesReadyCheck({
+        hasQuizHandler: true,
+        completedModuleIds: [1, 2, 3],
+        quizCompleted: false,
+      })
+    ).toBe(true);
+  });
+
+  it('hides when the quiz is already completed', () => {
+    expect(
+      shouldShowModulesReadyCheck({
+        hasQuizHandler: true,
+        completedModuleIds: [1, 2, 3],
+        quizCompleted: true,
+      })
+    ).toBe(false);
+  });
+
+  it('hides when M4 is already completed', () => {
+    expect(
+      shouldShowModulesReadyCheck({
+        hasQuizHandler: true,
+        completedModuleIds: [1, 2, 3, 4],
+        quizCompleted: false,
+      })
+    ).toBe(false);
+  });
+
+  it('hides without a quiz handler', () => {
+    expect(
+      shouldShowModulesReadyCheck({
+        hasQuizHandler: false,
+        completedModuleIds: [1, 2, 3],
+        quizCompleted: false,
+      })
+    ).toBe(false);
+  });
+
+  it('hides before M3 is completed', () => {
+    expect(
+      shouldShowModulesReadyCheck({
+        hasQuizHandler: true,
+        completedModuleIds: [1, 2],
+        quizCompleted: false,
+      })
+    ).toBe(false);
   });
 });

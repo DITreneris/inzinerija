@@ -79,7 +79,7 @@ const SHOTS = [
     name: 'm1012-c3c6-m10-10.65',
     moduleId: 10,
     slideIndex: 26,
-    expect: /Testav|Security|saugum|incident|playbook/i,
+    expect: /Specifikacija|specification|Aštuoni|Eight|spec/i,
   },
   {
     name: 'm1012-c4-m11-110',

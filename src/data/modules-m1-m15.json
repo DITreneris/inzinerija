@@ -12278,7 +12278,7 @@
               "heading": "Pasirink kelią",
               "short": {
                 "label": "Trumpas kelias",
-                "description": "Be papildomų skaidrių (GitHub, gilesnis testavimas ir saugumas, žodynėlis)."
+                "description": "Be papildomų skaidrių (GitHub, gilesnė specifikacija ir incidentų planas, žodynėlis)."
               },
               "full": {
                 "label": "Ilgas kelias",
@@ -12297,7 +12297,7 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "**Būtinas kelias:** agentų ciklas → 3A strategija → gylis ir rolės → 5 darbo eigos šablonai → rolė ir sisteminis promptas → įrankiai → kada rinktis agentą → klaidos ir ribos → darbo eigos sąvokos → automatizavimo platformos → paleidimas.\n\n**Neprivaloma:** GitHub, gilesnė specifikacija, žodynėlis, santrauka. Sąvokų apibrėžimai – skaidrėje **Pagrindinės sąvokos**.",
+                "body": "**Būtinas kelias:** agentų ciklas → 3A strategija → gylis ir rolės → 5 darbo eigos šablonai → rolė ir sisteminis promptas → įrankiai → kada rinktis agentą → klaidos ir ribos → darbo eigos sąvokos → automatizavimo platformos → paleidimas.\n\n**Neprivaloma:** GitHub, gilesnė specifikacija ir incidentų planas, žodynėlis, santrauka. Sąvokų apibrėžimai – skaidrėje **Pagrindinės sąvokos**.",
                 "blockVariant": "accent"
               },
               {
@@ -12457,17 +12457,12 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "3A – **sprendimų portfelis**, ne „kuo daugiau agentų, tuo geriau“. Didžioji dalis – taisyklės (**mažiau klaidų**, nuspėjamos); mažesnė – žmogus + DI (sprendimas ir atsakomybė); mažiausia – agentai su ribomis (brangu ir rizikinga). **80/15/5** saugo greitį ir saugumą; tai ne brandos kopėčios iki autopiloto.",
+                "body": "3A – **sprendimų portfelis**: 80 % automatizuok, 15 % asistuok, 5 % autonomizuok.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Trys juostos – kada rinktis",
-                "body": "**Automatizuoti (80 %)** – kaip: taisyklės be žmogaus kiekviename žingsnyje. Kodėl: mažiau klaidų, nuspėjama. Pvz.: forma → CRM → laiškas.\n\n**Asistuoti (15 %)** – kiek: žmogus sprendžia, DI padeda. Kodėl: reikia atsakomybės ar konteksto. Pvz.: DI santrauka → žmogus tvirtina → siuntimas.\n\n**Autonomizuoti (5 %)** – kiek: agentas su ribomis ir eskalacija. Kodėl: siaura juosta – didesnė rizika. Pvz.: atsiliepimai → nuotaika → eskalacija žmogui.",
-                "blockVariant": "brand"
-              },
-              {
                 "heading": "3A strategija (diagrama)",
-                "body": "Paspausk juostą – kada rinktis. Tada priskirk savo procesus žemiau.",
+                "body": "Pasirink juostą – kada tinka ir kada ne.",
                 "image": "m10_three_a_strategy",
                 "blockVariant": "brand"
               },
@@ -12690,35 +12685,41 @@
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Pasirink **vieną** šabloną savo procesui. Po pasirinkimo matysi tik to šablono planą – nukopijuok ir užpildyk. Po savitikros – orkestravimo simuliacija (KAIP, ne tik šablonas).",
+                "body": "Pasirink vieną šabloną. Po pasirinkimo gausi to šablono planą.",
                 "blockVariant": "brand",
                 "toolChoiceBar": {
-                  "question": "Kurį šabloną taikysi savo procesui?",
+                  "variant": "choice",
+                  "question": "Pasirink proceso šabloną",
                   "choices": [
                     {
                       "label": "Grandinė",
                       "rowIndex": 0,
-                      "whenHint": "**Taip:** žingsniai eina vienas po kito. **Ne:** tipai skiriasi arba keli dirba lygiagrečiai."
+                      "description": "Žingsniai iš eilės",
+                      "whenHint": "Tinka: žingsniai eina vienas po kito. Netinka: tipai skiriasi arba keli dirba lygiagrečiai."
                     },
                     {
                       "label": "Maršrutizavimas",
                       "rowIndex": 1,
-                      "whenHint": "**Taip:** pagal tipą skirtinga šaka (skundas / užklausa). **Ne:** visi atvejai eina ta pačia seka."
+                      "description": "Kelias pagal tipą",
+                      "whenHint": "Tinka: pagal tipą skirtinga šaka (skundas / užklausa). Netinka: visi atvejai eina ta pačia seka."
                     },
                     {
                       "label": "Lygiagretus",
                       "rowIndex": 2,
-                      "whenHint": "**Taip:** keli šaltiniai / specialistai vienu metu, vėliau sujungimas. **Ne:** rezultatas priklauso nuo ankstesnio žingsnio."
+                      "description": "Vienu metu, tada sujungti",
+                      "whenHint": "Tinka: keli šaltiniai / specialistai vienu metu, vėliau sujungimas. Netinka: rezultatas priklauso nuo ankstesnio žingsnio."
                     },
                     {
                       "label": "Koordinatorius",
                       "rowIndex": 3,
-                      "whenHint": "**Taip:** reikia dinamiškai skaidyti į smulkesnes užduotis. **Ne:** užtenka fiksuotos grandinės be paskirstymo."
+                      "description": "Skaido specialistams",
+                      "whenHint": "Tinka: reikia dinamiškai skaidyti į smulkesnes užduotis. Netinka: užtenka fiksuotos grandinės be paskirstymo."
                     },
                     {
                       "label": "Generatorius + vertintojas",
                       "rowIndex": 4,
-                      "whenHint": "**Taip:** juodraštis + QC (laiškas, FAQ, ataskaita). **Ne:** rezultatas be kokybės rizikos – pakanka L1."
+                      "description": "Juodraštis ir patikra",
+                      "whenHint": "Tinka: juodraštis + kokybės patikra (laiškas, DUK, ataskaita). Netinka: rezultatas be kokybės rizikos – pakanka Agento."
                     }
                   ]
                 }
@@ -13155,12 +13156,12 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Darbo eigos branduolys – trys žingsniai: **Paleidiklis (trigger)** → **Sąlyga (condition)** → **Veiksmas (action)**. **Internetinis pranešimas (webhook)** yra paleidiklio tipas, o ne ketvirtas žingsnis.",
+                "body": "Darbo eigos branduolys – trys žingsniai: **Paleidiklis** → **Sąlyga** → **Veiksmas**. **Internetinis pranešimas** yra paleidiklio tipas, o ne ketvirtas žingsnis.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Darbo eigos grandinė",
-                "body": "Paleidiklis → Sąlyga (jei reikia) → Veiksmas. Paleidiklio tipai: forma, laikas ir internetinis pranešimas.",
+                "body": "",
                 "image": "m10_trigger_flow",
                 "blockVariant": "brand"
               },
@@ -13220,7 +13221,7 @@
             "nextSteps": [
               "Verslo automatizavimo įrankiai – kada Zapier, Make, n8n ar Power Automate.",
               "Paleidimas – kur veikia agentas / API (Railway, Render, Fly.io).",
-              "Neprivaloma: GitHub kaip kodo šaltinis; specifikacija, testavimas, saugumas.",
+              "Neprivaloma: GitHub kaip kodo šaltinis; gilesnė specifikacija ir incidentų planas.",
               "Modulio santrauka ir testas (Modulis 11)."
             ],
             "recap": {
@@ -13254,7 +13255,7 @@
               },
               {
                 "heading": "Įrankių pasirinkimo medis",
-                "body": "Paspausk šaką – pamatysi, kuris įrankis tinka tavo kontekstui (įskaitant didelėms organizacijoms skirtą Workato).",
+                "body": "Pasirink situaciją – pamatysi, kodėl tinka, kuo stiprus, kada rinktis kitą.",
                 "image": "m10_tool_decision_tree",
                 "blockVariant": "brand"
               },
@@ -13320,7 +13321,7 @@
               },
               {
                 "heading": "Daugiau apie kiekvieną",
-                "body": "**Zapier:** daug integracijų; greitas startas; silpnybė – kaina didelėms apimtims.\n\n**Make.com:** vilkimas ir numetimas (drag & drop), sąlygos ir ciklai; silpnybė – mokymosi kreivė.\n\n**n8n:** atvirojo kodo (open-source), savo serveriuose; silpnybė – reikia IT žinių.\n\n**Power Automate:** Microsoft saugumas ir licencijavimas; silpnybė – ribota už Microsoft.\n\n**Didelės įmonės valdymas** (auditoriai, atitiktis) → **Workato** – žr. medį aukščiau.\n\nGilesnė medžiaga – neprivalomoje skaidrėje **Darbo eigos testavimas ir saugumas**.",
+                "body": "**Zapier:** daug integracijų; greitas startas; silpnybė – kaina didelėms apimtims.\n\n**Make.com:** vilkimas ir numetimas (drag & drop), sąlygos ir ciklai; silpnybė – mokymosi kreivė.\n\n**n8n:** atvirojo kodo (open-source), savo serveriuose; silpnybė – reikia IT žinių.\n\n**Power Automate:** Microsoft saugumas ir licencijavimas; silpnybė – ribota už Microsoft.\n\n**Didelės įmonės valdymas** (auditoriai, atitiktis) → **Workato** – žr. medį aukščiau.\n\nGilesnė medžiaga – neprivalomose skaidrėse **Gilesnė eigos specifikacija** ir **Kai eiga lūžta**.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -13551,7 +13552,7 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Prieš Modulio 12 praktikas parenk vieno puslapio darbo eigos aprašymą: pati eiga, trys bandymai ir taisyklė, kada sprendžia žmogus. Tą patį artefaktą tikrinsi kitoje skaidrėje ir juo naudosiesi praktikoje.",
+                "body": "Prieš Modulio 12 praktikas parenk vieno puslapio darbo eigos aprašymą: pati eiga, trys bandymai ir taisyklė, kada sprendžia žmogus. Tą patį artefaktą tikrinsi kokybės vertintojo skaidrėje ir juo naudosiesi praktikoje.",
                 "blockVariant": "accent"
               },
               {
@@ -13561,7 +13562,7 @@
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Nukopijuok vieną šabloną ir užpildyk savo procesu. Kitame žingsnyje kokybės vertintojas parodys vieną vietą, kurią verta pataisyti.",
+                "body": "Nukopijuok vieną šabloną ir užpildyk savo procesu. Vėliau kokybės vertintojas parodys vieną vietą, kurią verta pataisyti.",
                 "blockVariant": "brand"
               },
               {
@@ -13575,41 +13576,28 @@
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Toliau – skaidrė 28: Testavimas ir saugumas"
+            "footer": "Toliau – skaidrė 28: Specifikacija ir testai"
           },
           "shortTitle": "Minimalus eigos aprašymas"
         },
         {
           "id": 10.65,
-          "title": "Darbo eigos testavimas ir saugumas",
-          "subtitle": "Gilesni testai, incidentų planas ir duomenų apsauga",
+          "title": "Gilesnė eigos specifikacija",
+          "subtitle": "Aštuoni blokai ir trys kokybės testai",
           "type": "content-block",
           "optional": true,
           "content": {
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Pagilink minimalų aprašymą, kai eiga jungia kelias sistemas, naudoja asmens duomenis arba gali paveikti klientus ir pinigus. Čia pridėsi daugiau bandymų, incidentų planą ir saugumo taisykles.",
+                "body": "Pagilink minimalų aprašymą iki aštuonių blokų. Pirmi penki = kaip eiga veikia. Paskutiniai trys – paslaugos lygis, klaidos ir auditas – paruošia kitą žingsnį.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Darbo eigos specifikacija (diagrama)",
-                "body": "**8 blokai** nuo paleidiklio iki audito žurnalo. Detaliau – išskleidžiamame bloke žemiau.",
+                "heading": "Aštuoni specifikacijos blokai",
+                "body": "Paspausk bloką.",
                 "image": "m10_workflow_spec",
                 "blockVariant": "brand"
-              },
-              {
-                "heading": "Incidentų planas (diagrama)",
-                "body": "**5 žingsniai:** sustabdyti → fiksuoti → įvertinti → pranešti → ištaisyti.",
-                "image": "m10_incident_playbook",
-                "blockVariant": "brand"
-              },
-              {
-                "heading": "8 blokų specifikacija",
-                "body": "**Paleidiklis (trigger)** – kas pradeda eigą. **Įvesties schema** – privalomi laukai. **Sąlyga (condition)** – kada keičiasi kelias. **Veiksmai (actions)** – žingsniai ir įrankiai. **Išvestis (output)** – rezultatas. **Paslaugos lygis (SLA)** – laukimas ir kartojimai. **Klaidų tvarkymas** – kartoti, įspėti arba perduoti žmogui. **Audito žurnalas** – vykdymo ID, laikas, žingsnis ir rezultatas.",
-                "blockVariant": "terms",
-                "collapsible": true,
-                "collapsedByDefault": true
               },
               {
                 "heading": "Daryk dabar",
@@ -13623,7 +13611,7 @@
               },
               {
                 "heading": "Patikra",
-                "body": "Ar aprašyme yra bent **3 bandymai** ir taisyklė, **kada tvirtina žmogus**? Jei ne – grįžk į skaidrę „Minimalus eigos aprašymas“.",
+                "body": "Ar aštuoniuose blokuose yra **paslaugos lygis** (kiek laukti ir kartoti), **klaidų kelias** ir **audito žurnalas**? Jei ne – grįžk į skaidrę „Minimalus eigos aprašymas“ ir papildyk juodraštį.",
                 "blockVariant": "accent"
               },
               {
@@ -13649,18 +13637,6 @@
                 }
               },
               {
-                "heading": "3 DI agento kokybės testai",
-                "body": "(1) Tuščia įvestis – ar grąžina „Nepavyko“? (2) Klaidingas faktas – ar nepatvirtina? (3) Per ilgas tekstas – ar nepalūžta be pranešimo?",
-                "blockVariant": "terms",
-                "collapsible": true,
-                "collapsedByDefault": true
-              },
-              {
-                "heading": "Saugumas ir atitiktis",
-                "body": "1. **Duomenys:** į DI siųsk tik būtinus laukus; vardus, kontaktus ir kitus asmens duomenis užmaskuok, jei jų nereikia.\n2. **Raktai ir prieiga:** API raktus laikyk platformos saugykloje, o ne kode; redaguoti eigą gali tik paskirti žmonės.\n3. **Žmogaus sprendimas:** prieš finansinį veiksmą, masinį duomenų eksportą ar svarbų sprendimą sustabdyk eigą ir gauk patvirtinimą.\n4. **Žurnalas:** fiksuok tikslą, naudotus duomenis, žmogaus sprendimą ir rezultatą. Tokios atsekamumo taisyklės padeda laikytis įmonės politikos ir ES DI akto reikalavimų.",
-                "blockVariant": "brand"
-              },
-              {
                 "heading": "Kaina ir modelio pasirinkimas",
                 "body": "Paprastam klasifikavimui, filtrui ar dublikatų paieškai rinkis pigesnį modelį. Klientui matomam tekstui, sudėtingam sprendimui ar rizikos vertinimui skirk stipresnį modelį. Nustatyk kainos ribą: ją viršijus eiga sustoja arba yra perduodama žmogui.",
                 "blockVariant": "terms",
@@ -13668,9 +13644,53 @@
                 "collapsedByDefault": true
               }
             ],
-            "footer": "Toliau – skaidrė 29: Kokybės vertintojas"
+            "footer": "Toliau – skaidrė 29: Incidentų planas"
           },
-          "shortTitle": "Testavimas ir saugumas"
+          "shortTitle": "Specifikacija ir testai"
+        },
+        {
+          "id": 10.655,
+          "title": "Kai eiga lūžta",
+          "subtitle": "Penki veiksmai, tada saugumo taisyklės",
+          "type": "content-block",
+          "optional": true,
+          "content": {
+            "sections": [
+              {
+                "heading": "Trumpai",
+                "body": "Kai eiga jau paleista ir kažkas nutinka: sustabdyk, užfiksuok, įvertink apimtį, pranešk, tada taisyk. Specifikacijos paslaugos lygis, klaidos ir auditas čia virsta penkiais veiksmais.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Penki veiksmai, kai eiga lūžta",
+                "body": "Paspausk žingsnį.",
+                "image": "m10_incident_playbook",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Daryk dabar",
+                "body": "Paimk paslaugos lygį, klaidų kelią ir audito žurnalą iš specifikacijos. Nukopijuok planą ir įrašyk, kas sustabdo, kur rašai ir kas tvirtina prieš taisymą.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Kopijuojamas planas",
+                "body": "Įklijuok į DI arba komandos dokumentą.",
+                "copyable": "Mano eigos incidentų planas\n\nIš specifikacijos:\nPaslaugos lygis (kiek laukti, kiek kartų kartoti): [ ]\nKlaidų kelias: [ ]\nAudito žurnalas: [ ]\n\n5 veiksmai:\n1. Stabdyti: [kas sustabdo]\n2. Fiksuoti: [kur rašau]\n3. Apimtis: [ką tikrinu]\n4. Pranešti: [kam]\n5. Ištaisyti: [kas tvirtina prieš taisymą]"
+              },
+              {
+                "heading": "Patikra",
+                "body": "Ar planas turi **penkis veiksmus iš eilės** ir **kas tvirtina prieš taisymą**? Jei ne – grįžk į skaidrę „Gilesnė eigos specifikacija“ ir paimk paslaugos lygį, klaidas ir auditą.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Saugumas ir atitiktis",
+                "body": "1. **Duomenys:** į DI siųsk tik būtinus laukus; vardus, kontaktus ir kitus asmens duomenis užmaskuok, jei jų nereikia.\n2. **Raktai ir prieiga:** API raktus laikyk platformos saugykloje, o ne kode; redaguoti eigą gali tik paskirti žmonės.\n3. **Žmogaus sprendimas:** prieš finansinį veiksmą, masinį duomenų eksportą ar svarbų sprendimą sustabdyk eigą ir gauk patvirtinimą.\n4. **Žurnalas:** fiksuok tikslą, naudotus duomenis, žmogaus sprendimą ir rezultatą. Tokios atsekamumo taisyklės padeda laikytis įmonės politikos ir ES DI akto reikalavimų.",
+                "blockVariant": "brand"
+              }
+            ],
+            "footer": "Toliau – skaidrė 30: Kokybės vertintojas"
+          },
+          "shortTitle": "Incidentų planas"
         },
         {
           "id": 10.66,
@@ -13708,7 +13728,7 @@
               "templateLabel": "Žingsniai: vertintojas tikrina tavo specifikaciją",
               "template": "1. Nukopijuok vertintojo promptą iš bloko aukščiau.\n2. Įklijuok jį į DI.\n3. Įklijuok savo agentinį promptą arba darbo eigos specifikaciją.\n4. Pataisyk bent vieną vietą, kurią vertintojas pažymėjo kaip „taisyti“.\n5. Pakartok vertinimą ir patikrink, ar visi 5 kriterijai turi aiškų atsakymą.\n\nVertintojas ir tavo promptas nėra konkurentai: vertintojas padeda pagerinti tavo artefaktą prieš praktiką."
             },
-            "footer": "Toliau – skaidrė 30: Žodynėlis"
+            "footer": "Toliau – skaidrė 31: Žodynėlis"
           }
         },
         {
@@ -13808,7 +13828,7 @@
                 "definition": "Ciklas: suprasti → pasirinkti įrankį → vykdyti → stebėti rezultatą → kartoti arba baigti."
               }
             ],
-            "footer": "Toliau – skaidrė 31: Modulio 10 santrauka"
+            "footer": "Toliau – skaidrė 32: Modulio 10 santrauka"
           },
           "shortTitle": "Žodynėlis"
         },
@@ -14628,13 +14648,13 @@
             "context": "Srautas (rolės): **Klasifikatorius** → **Nuotaikos specialistas** → **Eskalacijos koordinatorius** → užklausa. Atsiliepimai (CRM / forma) → nuotaikos vertinimas su DI → eskalacija → užklausa (Jira, Trello, Teams).",
             "data": "Užduotis: apibrėžti slenksčius, eskalacijos taisykles ir paruošti artefaktus – schemą, nuorodą į incidentų planą.",
             "constraints": "Naudok Make, n8n arba Zapier su DI moduliu. Jei neturi paskyros ar DI modulio, su ChatGPT sugeneruok platformai paruoštą vedamąjį dokumentą pagal Make / n8n / Zapier šabloną. Nurodyk, kada kurti užklausą ir kokius laukus užpildyti.",
-            "expectedFormat": "Artefaktai: darbo eigos schema (1 p.) arba platformai paruoštas vedamasis dokumentas, nuotaikos slenksčių apibrėžimas, eskalacijos taisyklės, nuoroda į incidentų planą (5 žingsniai) – skaidrė **Darbo eigos testavimas ir saugumas**."
+            "expectedFormat": "Artefaktai: darbo eigos schema (1 p.) arba platformai paruoštas vedamasis dokumentas, nuotaikos slenksčių apibrėžimas, eskalacijos taisyklės, nuoroda į incidentų planą (5 žingsniai) – skaidrė **Kai eiga lūžta**."
           },
           "practicalTask": {
             "title": "Užfiksuok autonominę darbo eigą ir taisykles",
             "placeholder": "Įrašyk nuotaikos slenksčius, eskalacijos taisykles ir darbo eigos santrauką…",
             "templateLabel": "Nuotaikos ir eskalacijos taisyklės",
-            "template": "Pirmiausia užpildyk **Darbo eigos testavimas ir saugumas**, tada šią eigą.\n\nNuotaikos slenksčiai: jei įvertinimas mažesnis nei 3 žvaigždutės arba atsiliepimas neigiamas – sukurti užklausą ir pranešti komandai. Eskalacijos taisyklė: užklausos laukai „nuotaika“ ir „originalus_tekstas“ (trumpas).\n\nIncidentų planas: sustabdyti → fiksuoti → įvertinti → pranešti → ištaisyti (žr. **Darbo eigos testavimas ir saugumas**).",
+            "template": "Pirmiausia užpildyk **Kai eiga lūžta**, tada šią eigą.\n\nNuotaikos slenksčiai: jei įvertinimas mažesnis nei 3 žvaigždutės arba atsiliepimas neigiamas – sukurti užklausą ir pranešti komandai. Eskalacijos taisyklė: užklausos laukai „nuotaika“ ir „originalus_tekstas“ (trumpas).\n\nIncidentų planas: sustabdyti → fiksuoti → įvertinti → pranešti → ištaisyti (žr. **Kai eiga lūžta**).",
             "explanation": "Aiškios taisyklės apsaugo nuo neteisingos masinės eskalacijos.",
             "allowMarkWithoutAnswer": true,
             "instructions": {
@@ -14657,8 +14677,8 @@
                 {
                   "step": 3,
                   "title": "Užrašyk darbo eigos schemą (1 p.) ir nuorodą į incidentų planą (5 žingsniai)",
-                  "description": "5 žingsniai: sustabdyti, fiksuoti, įvertinti, pranešti, ištaisyti – skaidrė **Darbo eigos testavimas ir saugumas**.",
-                  "hint": "Patarimas: incidentų planą imk iš skaidrės „Darbo eigos testavimas ir saugumas“.",
+                  "description": "5 žingsniai: sustabdyti, fiksuoti, įvertinti, pranešti, ištaisyti – skaidrė **Kai eiga lūžta**.",
+                  "hint": "Patarimas: incidentų planą imk iš skaidrės „Kai eiga lūžta“.",
                   "partialSolution": "Dalinis karkasas: sustabdyti → fiksuoti → įvertinti → pranešti → ištaisyti."
                 }
               ]

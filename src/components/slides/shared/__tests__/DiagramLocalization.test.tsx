@@ -526,14 +526,15 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
     it('renders M10 depth/roles hybrid lab in both locales (no 8-step shell)', () => {
       setLocale('en');
       const { container: en } = renderWithProviders(<M10DepthRolesLabBlock />);
-      expect(en.textContent).toContain('Depth levels');
+      expect(en.textContent).toContain('Process levels');
       expect(en.textContent).not.toMatch(/taxonomy/i);
-      expect(en.textContent).toContain('Choose depth for your process');
-      expect(en.textContent).toContain('Chat (L0)');
-      expect(en.textContent).toContain('Choose a depth first');
+      expect(en.textContent).toContain('Choose the process level');
+      expect(en.textContent).toContain('Chat');
+      expect(en.textContent).toContain('Level 0');
+      expect(en.textContent).toContain('Choose a process level first');
       expect(en.querySelectorAll('nav button')).toHaveLength(0);
       expect(en.textContent).not.toContain('Team – select L2');
-      fireEvent.click(within(en).getByRole('radio', { name: /Team \(L2\)/i }));
+      fireEvent.click(within(en).getByRole('radio', { name: /Team/i }));
       expect(en.textContent).toContain('Team roles');
       expect(en.textContent).toContain('Add router');
       expect(en.textContent).toContain('Coordinator');
@@ -541,14 +542,13 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
 
       setLocale('lt');
       const { container: lt } = renderWithProviders(<M10DepthRolesLabBlock />);
-      expect(lt.textContent).toContain('Gylio lygiai');
+      expect(lt.textContent).toContain('Proceso lygiai');
       expect(lt.textContent).not.toMatch(/taksonomij/i);
-      expect(lt.textContent).toContain('Pasirink gylį savo procesui');
-      expect(lt.textContent).toContain('Pokalbis (L0)');
+      expect(lt.textContent).toContain('Pasirink proceso lygį');
+      expect(lt.textContent).toContain('Pokalbis');
+      expect(lt.textContent).toContain('Lygis 0');
       expect(lt.querySelectorAll('nav button')).toHaveLength(0);
-      fireEvent.click(
-        within(lt).getByRole('radio', { name: /Komanda \(L2\)/i })
-      );
+      fireEvent.click(within(lt).getByRole('radio', { name: /Komanda/i }));
       expect(lt.textContent).toContain('Komandos rolės');
       expect(lt.textContent).toContain('Pridėti maršrutizatorių');
       expect(lt.textContent).toContain('Gylio lygis: Komanda (L2)');
@@ -557,20 +557,18 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
     it('renders M10 trigger flow in both locales', () => {
       setLocale('en');
       const { container: en } = renderWithProviders(<M10TriggerFlowBlock />);
-      expect(en.textContent).toContain('Workflow chain');
-      expect(en.textContent).toContain('starts the flow');
-      expect(en.textContent).toContain('Webhook = a trigger type');
+      expect(en.textContent).toContain('Trigger types');
+      expect(en.textContent).toContain('the event that starts the flow');
+      expect(en.textContent).toContain('incoming web notification');
       expect(en.textContent).toMatch(/1\s*\/\s*3/);
       expect(en.querySelectorAll('nav button')).toHaveLength(3);
       expect(en.textContent).not.toContain('paleidžia srautą');
 
       setLocale('lt');
       const { container: lt } = renderWithProviders(<M10TriggerFlowBlock />);
-      expect(lt.textContent).toContain('Darbo eigos grandinė');
-      expect(lt.textContent).toContain('įvykis pradeda eigą');
-      expect(lt.textContent).toContain(
-        'Internetinis pranešimas (webhook) = paleidiklio tipas'
-      );
+      expect(lt.textContent).toContain('Paleidiklio tipai');
+      expect(lt.textContent).toContain('įvykis, kuris pradeda eigą');
+      expect(lt.textContent).toContain('internetinis pranešimas');
       expect(lt.textContent).toMatch(/1\s*\/\s*3/);
       expect(lt.querySelectorAll('nav button')).toHaveLength(3);
     });
@@ -686,7 +684,6 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
 
     it.each([
       ['M10 depth roles lab', () => <M10DepthRolesLabBlock />],
-      ['M10 trigger flow', () => <M10TriggerFlowBlock />],
       ['M10 workflow spec', () => <M10WorkflowSpecBlock />],
       ['M10 incident playbook', () => <M10IncidentPlaybookBlock />],
       ['M12 three labs', () => <M12ThreeLabsBlock />],
@@ -697,6 +694,16 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       const { container } = renderWithProviders(renderComponent());
 
       expectDarkPaletteTitle(container);
+    });
+
+    it('uses the dark text palette on M10 trigger-type chip labels', () => {
+      setLocale('lt');
+      setDarkTheme();
+      const { container } = renderWithProviders(<M10TriggerFlowBlock />);
+      const chip = Array.from(container.querySelectorAll('svg text')).find(
+        (node) => node.textContent === 'Forma'
+      );
+      expect(chip).toHaveAttribute('fill', '#e2e8f0');
     });
 
     it('uses the dark diagram palette in M10 3A strategy', () => {
@@ -713,16 +720,18 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       const { container: en } = renderWithProviders(
         <M10ToolDecisionTreeBlock />
       );
-      expect(en.textContent).toContain('Tool choice (workflow)');
-      expect(en.textContent).toContain('Tap a branch');
+      expect(en.textContent).toContain('Your context?');
+      expect(en.textContent).toContain('When:');
       expect(en.textContent).toContain('Power Automate');
+      expect(en.textContent).toContain('landmark');
 
       setLocale('lt');
       const { container: lt } = renderWithProviders(
         <M10ToolDecisionTreeBlock />
       );
-      expect(lt.textContent).toContain('Darbo eigos įrankio pasirinkimas');
-      expect(lt.textContent).toContain('Paspausk šaką');
+      expect(lt.textContent).toContain('Tavo kontekstas?');
+      expect(lt.textContent).toContain('orientyras');
+      expect(lt.textContent).toContain('Kada:');
     });
 
     it('keeps keyboard interaction in HTML nav / pointer-only SVG hit areas', () => {
@@ -736,13 +745,15 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       ).toHaveLength(0);
     });
 
-    it('uses the dark text palette in the decision tree title', () => {
+    it('uses the dark text palette on decision-tree branch criteria', () => {
       setLocale('lt');
       setDarkTheme();
 
       const { container } = renderWithProviders(<M10ToolDecisionTreeBlock />);
-
-      expectDarkPaletteTitle(container);
+      const criterion = Array.from(container.querySelectorAll('svg text')).find(
+        (node) => node.textContent?.includes('Office 365')
+      );
+      expect(criterion).toHaveAttribute('fill', '#e2e8f0');
     });
   });
 

@@ -156,27 +156,41 @@ export default function M10HumanControlSimulatorBlock() {
         onSelectScenario={setScenarioId}
       />
 
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-        <ChoiceControl
-          legend={ui.scenarioLegend}
-          options={scenarioOptions}
-          value={scenarioId}
-          onChange={setScenarioId}
-          columns={1}
-          size="compact"
-          optionTone={scenarioTone}
-        />
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+        <div className="rounded-2xl border border-brand-200/80 bg-brand-50/50 p-4 dark:border-brand-800/60 dark:bg-brand-950/30 sm:p-5">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+            {ui.scenarioSubtitle}
+          </p>
+          <ChoiceControl
+            legend={ui.scenarioLegend}
+            options={scenarioOptions}
+            value={scenarioId}
+            onChange={setScenarioId}
+            columns={1}
+            size="compact"
+            optionTone={scenarioTone}
+            toneVisibleWhenUnselected
+            selectedUsesBrand
+          />
+        </div>
 
-        <ChoiceControl
-          legend={ui.modeLegend}
-          options={modeOptions}
-          value={selectedMode}
-          onChange={setSelectedMode}
-          columns={2}
-          size="compact"
-          statusHint={statusHint}
-          optionTone={modeTone}
-        />
+        <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4 dark:border-slate-700 dark:bg-slate-900/40 sm:p-5">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+            {ui.modeSubtitle}
+          </p>
+          <ChoiceControl
+            legend={ui.modeLegend}
+            options={modeOptions}
+            value={selectedMode}
+            onChange={setSelectedMode}
+            columns={2}
+            size="compact"
+            statusHint={statusHint}
+            optionTone={modeTone}
+            toneVisibleWhenUnselected
+            selectedUsesBrand
+          />
+        </div>
       </div>
 
       {feedbackReady && selectedMode != null && (
@@ -377,22 +391,22 @@ function RiskStrip({
               data-scenario-shortcut={id}
               onClick={() => onSelectScenario(id)}
               onMouseDown={(event) => event.preventDefault()}
-              className={`min-w-[calc(50%-0.25rem)] flex-1 sm:min-w-[9.5rem] rounded-xl border-2 px-3 py-2.5 text-left transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
+              className={`inline-flex min-h-[44px] min-w-[7.5rem] flex-1 items-center gap-2 rounded-full border px-3 py-1.5 text-left transition-all duration-200 focus:outline-none sm:flex-none ${
                 active
-                  ? `${toneCls.selectedBorder} ${toneCls.selectedBg} ${toneCls.selectedRing} shadow-sm`
-                  : `border-transparent ${toneCls.softBg} hover:border-brand-300 dark:hover:border-brand-700`
+                  ? 'border-brand-500 bg-white shadow-sm ring-2 ring-brand-200 dark:bg-gray-900 dark:ring-brand-800'
+                  : 'border-transparent bg-white/80 hover:border-brand-300 dark:bg-gray-900/50 dark:hover:border-brand-700'
               }`}
             >
               <span
-                className={`mb-1.5 inline-flex rounded-full px-1.5 py-0.5 ${typographyClasses.label} font-bold ${toneCls.chip}`}
+                className={`inline-flex rounded-full px-1.5 py-0.5 ${typographyClasses.label} font-bold ${toneCls.chip}`}
               >
                 {stakeChip[stake]}
               </span>
-              <span className="block text-xs font-bold text-gray-900 dark:text-white">
+              <span className="text-xs font-semibold text-gray-800 dark:text-gray-100">
                 S{index + 1}
               </span>
               <span
-                className={`mt-1 block ${typographyClasses.small} leading-snug text-slate-500 dark:text-slate-400`}
+                className={`hidden ${typographyClasses.small} text-slate-500 dark:text-slate-400 sm:inline`}
               >
                 {bandHint} · {revHint}
               </span>

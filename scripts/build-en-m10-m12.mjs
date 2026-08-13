@@ -45,6 +45,10 @@ const SHORT_TITLE_EN = {
   'Kur paleisti programą ar agentą': 'Where your app or agent runs',
   'GitHub kaip kodo šaltinis': 'GitHub as a code source',
   'Minimalus eigos aprašymas': 'Minimal workflow brief',
+  'Specifikacija ir testai': 'Spec and tests',
+  'Gilesnė eigos specifikacija': 'Deeper workflow specification',
+  'Incidentų planas': 'Incident playbook',
+  'Kai eiga lūžta': 'When the workflow breaks',
   'Testavimas ir saugumas': 'Testing and security',
   'QC vertintojas': 'QC evaluator',
   'Kokybės vertintojas': 'Quality evaluator',
@@ -88,7 +92,7 @@ const en = {
             heroStat: 'You already know the 6 blocks and context engineering.',
             heroText: 'Now – agent engineering.',
             heroSubText:
-              'Design agents for your processes – taxonomy, multi-agent coordination, no-code tools. Context – Module 4.',
+              'You will design agents for your processes – depth levels and roles, multi-agent coordination, no-code tools. You will apply context engineering from Modules 4–6 to agents.',
             firstActionCTA:
               'On the next slide, copy the quick check: in one sentence, tell an agent apart from a simple question-and-answer exchange.',
             outcomes: [
@@ -96,9 +100,21 @@ const en = {
               'Use 5 workflow patterns and system prompts',
               'Know how to choose tools and limit risks',
             ],
-            duration: '~20–25 min',
+            duration: '~25–30 min',
             audience:
               'For business specialists and engineers who have completed Modules 4–6 (Context engineering).',
+            howToUseModule: {
+              heading: 'Choose a path',
+              short: {
+                label: 'Short path',
+                description:
+                  'Skip extra slides (GitHub, deeper spec and incident playbook, glossary).',
+              },
+              full: {
+                label: 'Long path',
+                description: 'All slides, including optional ones.',
+              },
+            },
           },
         },
         {
@@ -110,7 +126,7 @@ const en = {
             sections: [
               {
                 heading: 'In short',
-                body: '**MUST path:** agent cycle → 3A strategy → depth and roles → 5 workflow patterns → role and system prompt → tools → when to choose an agent → errors and limits → workflow concepts → automation platforms → launch.\n\n**Optional:** GitHub, deeper spec, glossary, summary. Term definitions – on the **Key concepts** slide.',
+                body: '**MUST path:** agent cycle → 3A strategy → depth and roles → 5 workflow patterns → role and system prompt → tools → when to choose an agent → errors and limits → workflow concepts → automation platforms → launch.\n\n**Optional:** GitHub, deeper spec and incident playbook, glossary, summary. Term definitions – on the **Key concepts** slide.',
               },
               {
                 heading: 'Quick win in 60 sec.',
@@ -228,15 +244,11 @@ const en = {
             sections: [
               {
                 heading: 'In short',
-                body: '3A is a **decision portfolio**, not “more agents = better”. Most work – rules (**fewer errors**, predictable); a smaller share – human + AI (judgment and ownership); the smallest – agents with limits (costly and risky). **80/15/5** protects speed and safety – it is not a maturity ladder to autopilot.',
-              },
-              {
-                heading: 'Three bands – when to choose',
-                body: '**Automate (80 %)** – what it is: rules that do not need a human at every step. Why: fewer errors, predictable. E.g., form → CRM → email.\n\n**Augment (15 %)** – how much: human decides, AI helps. Why: ownership or context needed. E.g.: AI draft → human approves → send.\n\n**Autonomize (5 %)** – how much: agent with limits and escalation. Why: narrow band – higher risk. E.g.: feedback → sentiment → escalate to a human.',
+                body: '3A is a **decision portfolio**: automate 80 %, augment 15 %, autonomize 5 %.',
               },
               {
                 heading: '3A strategy (diagram)',
-                body: 'Click a band – when to choose. Then assign your processes below.',
+                body: 'Choose a band – when it fits and when it does not.',
               },
               {
                 heading: 'Example',
@@ -369,39 +381,45 @@ const en = {
               },
               {
                 heading: 'Do this now',
-                body: 'Pick **one** pattern for your process. After you choose, you will see only that pattern’s plan – copy it and fill it in. After the warm-up – orchestration walkthrough (HOW, not only the pattern).',
+                body: 'Pick one pattern. After you choose, you get that pattern’s plan.',
                 toolChoiceBar: {
-                  question: 'Which pattern will you apply to your process?',
+                  variant: 'choice',
+                  question: 'Choose a process pattern',
                   choices: [
                     {
                       label: 'Chain',
                       rowIndex: 0,
+                      description: 'Steps in order',
                       whenHint:
-                        '**Yes:** steps run one after another. **No:** types differ or several work in parallel.',
+                        'Fits: steps run one after another. Does not fit: types differ or several work in parallel.',
                     },
                     {
                       label: 'Routing',
                       rowIndex: 1,
+                      description: 'Path by type',
                       whenHint:
-                        '**Yes:** different branch by type (complaint / inquiry). **No:** every case follows the same sequence.',
+                        'Fits: a different branch by type (complaint / inquiry). Does not fit: every case follows the same sequence.',
                     },
                     {
                       label: 'Parallel',
                       rowIndex: 2,
+                      description: 'At once, then merge',
                       whenHint:
-                        '**Yes:** several sources / specialists at once, then merge. **No:** the result depends on a prior step.',
+                        'Fits: several sources / specialists at once, then merge. Does not fit: the result depends on a prior step.',
                     },
                     {
                       label: 'Coordinator',
                       rowIndex: 3,
+                      description: 'Splits to specialists',
                       whenHint:
-                        '**Yes:** you need to split sub-tasks dynamically. **No:** a fixed chain without assignment is enough.',
+                        'Fits: you need to split sub-tasks dynamically. Does not fit: a fixed chain without assignment is enough.',
                     },
                     {
                       label: 'Generator + evaluator',
                       rowIndex: 4,
+                      description: 'Draft and check',
                       whenHint:
-                        '**Yes:** draft + QC (email, FAQ, report). **No:** the quality risk is low – Agent (L1) is enough.',
+                        'Fits: draft + quality check (email, FAQ, report). Does not fit: quality risk is low – an Agent is enough.',
                     },
                   ],
                 },
@@ -732,11 +750,11 @@ const en = {
             sections: [
               {
                 heading: 'In short',
-                body: 'A workflow has three core steps: **Trigger** → **Condition** → **Action**. A **webhook** is a trigger type, not a fourth step.',
+                body: 'A workflow has three core steps: **Trigger** → **Condition** → **Action**. An **incoming web notification** is a trigger type, not a fourth step.',
               },
               {
                 heading: 'Workflow chain',
-                body: 'Trigger → Condition (if needed) → Action. Trigger types: form, schedule, and webhook.',
+                body: '',
                 image: 'm10_trigger_flow',
               },
               {
@@ -786,7 +804,7 @@ const en = {
               },
               {
                 heading: 'Tool selection tree',
-                body: 'Tap or click a branch to see which tool fits your context (including enterprise Workato).',
+                body: 'Choose a situation – you will see why it fits, where it is strong, and when to pick another.',
                 image: 'm10_tool_decision_tree',
               },
               {
@@ -857,7 +875,7 @@ const en = {
               },
               {
                 heading: 'More about each',
-                body: '**Zapier:** many integrations; quick start; weakness – cost at scale.\n\n**Make.com:** drag & drop, conditions and loops; weakness – learning curve.\n\n**n8n:** open source, self-hosted; weakness – needs IT skills.\n\n**Power Automate:** Microsoft security and licensing; weakness – limited outside Microsoft.\n\n**Enterprise governance** (auditors, compliance) → **Workato** – see the tree above.\n\nDeeper material – see the optional slide **Workflow testing and security**.',
+                body: '**Zapier:** many integrations; quick start; weakness – cost at scale.\n\n**Make.com:** drag & drop, conditions and loops; weakness – learning curve.\n\n**n8n:** open source, self-hosted; weakness – needs IT skills.\n\n**Power Automate:** Microsoft security and licensing; weakness – limited outside Microsoft.\n\n**Enterprise governance** (auditors, compliance) → **Workato** – see the tree above.\n\nDeeper material – see the optional slides **Deeper workflow specification** and **When the workflow breaks**.',
                 collapsible: true,
                 collapsedByDefault: true,
               },
@@ -872,7 +890,7 @@ const en = {
             sections: [
               {
                 heading: 'In short',
-                body: 'Before Module 12 practice, prepare a one-page workflow brief: the flow itself, three tests, and a rule for when a human decides. You will check and reuse the same artifact in practice.',
+                body: 'Before Module 12 practice, prepare a one-page workflow brief: the flow itself, three tests, and a rule for when a human decides. You will check the same artifact on the quality evaluator slide and reuse it in practice.',
               },
               {
                 heading: 'Minimal brief',
@@ -880,7 +898,7 @@ const en = {
               },
               {
                 heading: 'Do this now',
-                body: 'Copy one template and fill it with your process. The quality evaluator in the next step will point to one place worth fixing.',
+                body: 'Copy one template and fill it with your process. Later, the quality evaluator will point to one place worth fixing.',
               },
               {
                 heading: 'Copyable template',
@@ -897,29 +915,20 @@ const en = {
         },
         {
           id: 10.65,
-          title: 'Workflow testing and security',
-          subtitle: 'Deeper tests, incident response, and data protection',
+          title: 'Deeper workflow specification',
+          subtitle: 'Eight blocks and three quality tests',
+          type: 'content-block',
+          optional: true,
           content: {
             sections: [
               {
                 heading: 'In short',
-                body: 'Deepen the minimal brief when a workflow connects several systems, uses personal data, or can affect customers and money. Add more tests, an incident plan, and security rules.',
+                body: 'Deepen the minimal brief to eight blocks. The first five = how the flow works. The last three – SLA, errors, and audit – prepare the next step.',
               },
               {
-                heading: 'Workflow specification (diagram)',
-                body: '**8 blocks** from Trigger to the audit log. More detail is in the collapsible block below.',
+                heading: 'Eight specification blocks',
+                body: 'Click a block.',
                 image: 'm10_workflow_spec',
-              },
-              {
-                heading: 'Incident playbook (diagram)',
-                body: '**5 steps:** stop → record → assess → notify → fix.',
-                image: 'm10_incident_playbook',
-              },
-              {
-                heading: '8-block specification',
-                body: '**Trigger** – what starts it. **Input schema** – required fields. **Condition** – rules. **Actions** – steps + tools. **Output** – result. **SLA / limits** – wait times and retries. **Error handling** – retry, alert, escalate. **Audit log** – run_id, time, step, result.',
-                collapsible: true,
-                collapsedByDefault: true,
               },
               {
                 heading: 'Do this now',
@@ -929,11 +938,11 @@ const en = {
                 heading: 'Copyable checklist',
                 body: 'Paste the brief into [ ] and run it in your AI tool.',
                 copyable:
-                  'Here is my minimal workflow brief:\n[PASTE BRIEF]\n\nCheck three quality tests:\n(1) Empty input – does it return a clear “Failed”? "Failed"?\n(2) False fact – does it refuse to confirm?\n(3) Very long text – does it stay stable and say what went wrong?\n\nAnswer briefly: YES/NO for each + 1 gap if any.',
+                  'Here is my minimal workflow brief:\n[PASTE BRIEF]\n\nCheck three quality tests:\n(1) Empty input – does it return a clear “Failed”?\n(2) False fact – does it refuse to confirm?\n(3) Very long text – does it stay stable and say what went wrong?\n\nAnswer briefly: YES/NO for each + 1 gap if any.',
               },
               {
                 heading: 'Check',
-                body: 'Does the brief have at least **3 trials** and a rule for **when a human approves**? If not – go back to **Minimal workflow brief**.',
+                body: 'Do the eight blocks include an **SLA** (how long to wait and how many retries), an **error path**, and an **audit log**? If not – go back to **Minimal workflow brief** and complete the draft.',
               },
               {
                 heading: '10 test scenarios',
@@ -957,20 +966,48 @@ const en = {
                 },
               },
               {
-                heading: '3 AI agent quality tests',
-                body: '(1) Empty input – does it return a clear “Failed”? "Failed"? (2) False fact – does it refuse to confirm? (3) Very long text – does it stay stable and say what went wrong?',
-                collapsible: true,
-                collapsedByDefault: true,
-              },
-              {
-                heading: 'Security and compliance',
-                body: '1. **Data:** send only required fields to AI; mask names, contacts, and other personal data when they are not needed.\n2. **Keys and access:** keep API keys in the platform vault, not in code; only assigned people may edit the workflow.\n3. **Human decision:** pause before a financial action, bulk data export, or high-impact decision.\n4. **Record:** log the goal, the data used, the human decision, and the result. This traceability supports company policy and EU AI Act requirements.',
-              },
-              {
                 heading: 'Cost and model choice',
                 body: 'Use a cheaper model for classification, filtering, or duplicate checks. Reserve a stronger model for customer-facing text, complex decisions, or risk assessment. Set a cost threshold: above it, stop or send the work to a human.',
                 collapsible: true,
                 collapsedByDefault: true,
+              },
+            ],
+          },
+        },
+        {
+          id: 10.655,
+          title: 'When the workflow breaks',
+          subtitle: 'Five actions, then security rules',
+          type: 'content-block',
+          optional: true,
+          content: {
+            sections: [
+              {
+                heading: 'In short',
+                body: 'When the flow is already running and something happens: stop, record, assess the scope, notify, then fix. The spec’s SLA, errors, and audit become five actions here.',
+              },
+              {
+                heading: 'Five actions when the workflow breaks',
+                body: 'Click a step.',
+                image: 'm10_incident_playbook',
+              },
+              {
+                heading: 'Do this now',
+                body: 'Take the SLA, error path, and audit log from the specification. Copy the plan and write who stops it, where you log, and who approves before the fix.',
+              },
+              {
+                heading: 'Copyable plan',
+                body: 'Paste it into AI or a team document.',
+                copyable:
+                  'My workflow incident playbook\n\nFrom the specification:\nSLA (how long to wait, how many retries): [ ]\nError path: [ ]\nAudit log: [ ]\n\n5 actions:\n1. Stop: [who stops it]\n2. Record: [where I write]\n3. Scope: [what I check]\n4. Notify: [whom]\n5. Fix: [who approves before the fix]',
+              },
+              {
+                heading: 'Check',
+                body: 'Does the plan have **five actions in order** and **who approves before the fix**? If not – go back to **Deeper workflow specification** and take the SLA, errors, and audit.',
+              },
+              {
+                heading: 'Security and compliance',
+                body: '1. **Data:** send only required fields to AI; mask names, contacts, and other personal data when they are not needed.\n2. **Keys and access:** keep API keys in the platform vault, not in code; only assigned people may edit the workflow.\n3. **Human decision:** pause before a financial action, bulk data export, or high-impact decision.\n4. **Record:** log the goal, the data used, the human decision, and the result. This traceability supports company policy and EU AI Act requirements.',
               },
             ],
           },
@@ -1398,7 +1435,7 @@ const en = {
               type: 'mcq',
               bloomLevel: 3,
               question:
-                'Scenario: a client fills in a form on your website; you want the new entry to go into Google Sheets and the client to get an email confirmation confirmation. What should you do first when designing the flow (Zapier, Make, etc.)?',
+                'Scenario: a client fills in a form on your website; you want the new entry to go into Google Sheets and the client to get an email confirmation. What should you do first when designing the flow (Zapier, Make, etc.)?',
               options: [
                 'Define the trigger – what starts the flow (e.g. a new form submission) – then the actions (Sheets, email)',
                 'First write only a long AI chat text with no link to the form or the email',
@@ -1967,7 +2004,7 @@ en.modules.push({
         constraints:
           'Use Make, n8n or Zapier with an AI module. If you do not have an account or AI module, use ChatGPT to generate a platform-ready implementation guide from the Make / n8n / Zapier template. State when to create a ticket and which fields to fill.',
         expectedFormat:
-          'Artifacts: workflow diagram (1 p.) or platform-ready implementation guide, sentiment threshold definition, escalation rules, link to incident playbook (5 steps) – slide **Workflow testing and security**.',
+          'Artifacts: workflow diagram (1 p.) or platform-ready implementation guide, sentiment threshold definition, escalation rules, link to incident playbook (5 steps) – slide **When the workflow breaks**.',
       },
       practicalTask: {
         title: 'Record autonomous workflow and rules',
@@ -1975,7 +2012,7 @@ en.modules.push({
           'Enter sentiment thresholds, escalation rules and workflow summary…',
         templateLabel: 'Sentiment and escalation rules',
         template:
-          'First fill **Workflow testing and security**, then this flow.\n\nSentiment thresholds: if the rating is under 3 stars or the sentiment is negative – create a ticket and notify the team. Escalation rule: ticket fields “sentiment”, “original_text” (short).\n\nIncident playbook: stop → record → assess → notify → fix (see **Workflow testing and security**).',
+          'First fill **When the workflow breaks**, then this flow.\n\nSentiment thresholds: if the rating is under 3 stars or the sentiment is negative – create a ticket and notify the team. Escalation rule: ticket fields “sentiment”, “original_text” (short).\n\nIncident playbook: stop → record → assess → notify → fix (see **When the workflow breaks**).',
         explanation: 'Clear rules prevent wrong mass escalation.',
         instructions: {
           title: 'Steps and artifacts',
@@ -2004,9 +2041,9 @@ en.modules.push({
               title:
                 'Write workflow diagram (1 p.) and link to incident playbook (5 steps)',
               description:
-                '5 steps: stop, record, assess, notify, fix – slide **Workflow testing and security**.',
+                '5 steps: stop, record, assess, notify, fix – slide **When the workflow breaks**.',
               hint:
-                'Hint: take the incident playbook from **Workflow testing and security**.',
+                'Hint: take the incident playbook from **When the workflow breaks**.',
               partialSolution:
                 'Partial skeleton: stop → record → assess → notify → fix.',
             },
@@ -2022,7 +2059,7 @@ en.modules.push({
             'Build sentiment-based escalation workflow. Define thresholds and what to do in an incident.',
         },
         template:
-          'First fill **Workflow testing and security**, then this flow.\n\nSentiment thresholds: if the rating is under 3 stars or the sentiment is negative – create a ticket and notify the team. Escalation rule: ticket fields “sentiment”, “original_text” (short).\n\nIncident playbook: stop → record → assess → notify → fix (see **Workflow testing and security**).',
+          'First fill **When the workflow breaks**, then this flow.\n\nSentiment thresholds: if the rating is under 3 stars or the sentiment is negative – create a ticket and notify the team. Escalation rule: ticket fields “sentiment”, “original_text” (short).\n\nIncident playbook: stop → record → assess → notify → fix (see **When the workflow breaks**).',
         templateLabel: 'Sentiment and escalation rules',
         instructions: {
           title: 'Steps and artifacts',
@@ -2044,7 +2081,7 @@ en.modules.push({
               title:
                 'Write workflow diagram (1 p.) and link to incident playbook (5 steps)',
               description:
-                '5 steps: stop, record, assess, notify, fix – slide **Workflow testing and security**.',
+                '5 steps: stop, record, assess, notify, fix – slide **When the workflow breaks**.',
             },
           ],
         },
@@ -2146,49 +2183,25 @@ en.modules.push({
               step: 1,
               title: 'Run the coordinator prompt',
               description: 'Get plan with roles and handoff.',
-              hint:
-                'Hint: ask for roles, inputs, outputs, and the handoff rule in one answer.',
-              partialSolution:
-                'Partial example: coordinator splits the task into research and writing, then defines what each role hands to the evaluator.',
             },
             {
               step: 2,
               title: 'Run the specialist prompt',
               description: 'Pass coordinator output as input.',
-              hint:
-                'Hint: copy only the coordinator output the specialist needs; do not paste unrelated notes.',
-              partialSolution:
-                'Partial example: input – coordinator plan; output – summary, facts, open questions.',
             },
             {
               step: 3,
               title: 'Run the evaluator prompt',
               description: 'Check and record 1 test case.',
-              hint:
-                'Hint: make the evaluator check criteria, missing data, and whether the answer is ready to send.',
-              partialSolution:
-                'Partial example: facts match sources; tone is clear; missing data returns a revision list.',
             },
             {
               step: 4,
               title: 'Write the Skill pack',
               description:
                 'Combine the 3 prompts into one reusable Skill pack: name, when to use, roles, steps, limits, check, and lesson.',
-              hint:
-                'Hint: use the SKILL PACK block in the template and fill every field with one short line.',
-              partialSolution:
-                'Partial skeleton: name; when to use; roles; steps; limits; check; lesson after test.',
             },
           ],
         },
-      },
-      content: {
-        scenarioTitle: 'Coordinator + 2 specialists',
-        scenarioDescription:
-          '3 CopyButton prompts: coordinator, specialist, evaluator. Run manual pipeline. Artifacts: diagram + 3 prompts + 1 test case.',
-        template:
-          'COORDINATOR: You are the coordinator. Task: [DESCRIBE]. Break the task into 2 subtasks, assign roles, and define the handoff rules.\n\nSPECIALIST: You are [researcher/writer]. Input: [from coordinator]. Do [X]. Output: [format].\n\nEVALUATOR: Check that all criteria are met. If not – return for revision with specific points.\n\nSKILL PACK:\nName: [e.g. RFP summary chain]\nWhen to use: [for which task]\nRoles: coordinator, specialist, evaluator\nSteps: [1–5]\nLimits: what AI does not do / when it asks a human\nCheck: 1 test case + expected answer\nLesson after test: what to update next time',
-        templateLabel: '3 prompts – coordinator, specialist, evaluator',
       },
     },
     {
@@ -2617,6 +2630,9 @@ function fallbackTitle(value) {
     return 'Hosting: where the agent and API run';
   if (text.includes('GitHub')) return 'GitHub as a code source';
   if (text.includes('Minimalus darbo')) return 'Minimal workflow brief';
+  if (text.includes('Gilesnė eigos') || text.includes('specifikacija ir testai'))
+    return 'Deeper workflow specification';
+  if (text.includes('Kai eiga lūžta')) return 'When the workflow breaks';
   if (text.includes('testavimas ir saugumas') || text.includes('Testavimas'))
     return 'Workflow testing and security';
   if (text.includes('QC vertintojas') || text.includes('Agentų QC'))

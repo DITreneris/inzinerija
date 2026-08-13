@@ -50,7 +50,11 @@ export function getTeamReadinessUiLabels(locale: M10Locale) {
         'No score: the weakest selected dimension determines the next action.',
       incomplete: 'Not complete yet',
       complete: 'Profile ready',
+      progressLabel: 'Dimensions filled',
       selected: 'Selected',
+      insightAdHoc: 'Practice happens one person at a time.',
+      insightFragmented: 'Good habits exist, but they are not shared.',
+      insightSystematic: 'The team works to a shared rhythm.',
       gapLabel: 'Main gap',
       weakDimensions: 'Weakest dimensions',
       noAutonomyReminder:
@@ -77,7 +81,11 @@ export function getTeamReadinessUiLabels(locale: M10Locale) {
     notScore: 'Be balo: kitą veiksmą lemia silpniausia pasirinkta dimensija.',
     incomplete: 'Dar neužpildyta',
     complete: 'Profilis paruoštas',
+    progressLabel: 'Užpildyta dimensijų',
     selected: 'Pasirinkta',
+    insightAdHoc: 'Praktika vyksta pavieniui.',
+    insightFragmented: 'Įpročiai yra, bet komanda jais nesidalija.',
+    insightSystematic: 'Komanda dirba pagal bendrą ritmą.',
     gapLabel: 'Pagrindinis tarpas',
     weakDimensions: 'Silpniausios dimensijos',
     noAutonomyReminder:
@@ -274,6 +282,17 @@ export function getSelectedStateLabel(
     return getTeamReadinessUiLabels(locale).incomplete;
   }
   return levelLabel(locale, levelId);
+}
+
+export function getLevelInsight(
+  locale: M10Locale,
+  levelId: TeamReadinessLevelId | undefined
+): string | null {
+  if (!levelId) return null;
+  const ui = getTeamReadinessUiLabels(locale);
+  if (levelId === 'ad_hoc') return ui.insightAdHoc;
+  if (levelId === 'fragmented') return ui.insightFragmented;
+  return ui.insightSystematic;
 }
 
 export function getAllReadinessLevelIds() {

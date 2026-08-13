@@ -1,12 +1,10 @@
 import { useLocale } from '../../../contexts/LocaleContext';
+import { renderBold } from '../../../utils/renderBold';
 import { useStepDiagram } from '../../../utils/useStepDiagram';
 import EnlargeableDiagram from './EnlargeableDiagram';
 import { InteractiveDiagramShell } from './diagramKit';
 import M10ToolDecisionTreeDiagram from './M10ToolDecisionTreeDiagram';
-import {
-  getM10ToolTreeLeaves,
-  getM10ToolTreeLabels,
-} from './m10DiagramContent';
+import { getM10ToolTreeExplanations } from './m10DiagramContent';
 
 const ENLARGE = {
   lt: 'Įrankių pasirinkimo medis',
@@ -31,13 +29,8 @@ const LABELS = {
 export default function M10ToolDecisionTreeBlock() {
   const { locale } = useLocale();
   const loc = locale === 'en' ? 'en' : 'lt';
-  const leaves = getM10ToolTreeLeaves(loc);
-  const treeLabels = getM10ToolTreeLabels(loc);
+  const steps = getM10ToolTreeExplanations(loc);
   const labels = LABELS[loc];
-  const steps = leaves.map((leaf) => ({
-    title: leaf.tool,
-    body: `${treeLabels.pick}: ${leaf.condition}`,
-  }));
   const { currentStep, setCurrentStep, step, totalSteps } =
     useStepDiagram(steps);
 
@@ -57,7 +50,9 @@ export default function M10ToolDecisionTreeBlock() {
           onStepSelect={setCurrentStep}
           stepAria={labels.stepAria}
           explanationTitle={step.title}
-          explanation={<p>{step.body}</p>}
+          explanation={
+            <p className="whitespace-pre-line">{renderBold(step.body)}</p>
+          }
         >
           <M10ToolDecisionTreeDiagram
             locale={loc}

@@ -21,6 +21,8 @@ export type ChoiceOption<T extends string = string> = {
   label: string;
   description?: string;
   icon?: LucideIcon;
+  /** Unselected-only extra classes (e.g. ordinal brand wash on 10.45). */
+  unselectedClassName?: string;
 };
 
 export type ChoiceControlProps<T extends string = string> = {
@@ -39,6 +41,21 @@ export type ChoiceControlProps<T extends string = string> = {
    * Partial map: missing ids fall back to brand.
    */
   optionTone?: Partial<Record<T, ChoiceOptionTone>>;
+  /**
+   * Opt-in: show optionTone wash on unselected cards (not white).
+   * Default false — M7/M9/M13 keep current white unselected.
+   */
+  toneVisibleWhenUnselected?: boolean;
+  /**
+   * visible = current legend. sr-only = a11y label only.
+   * hidden = aria-label on radiogroup, no legend node.
+   */
+  legendMode?: 'visible' | 'sr-only' | 'hidden';
+  /**
+   * When true, selected chrome is always brand (border+tint+✓).
+   * optionTone then only paints stripe / unselected wash — 10.26 selected ≠ severity.
+   */
+  selectedUsesBrand?: boolean;
 };
 
 const columnClasses: Record<1 | 2 | 3, string> = {
@@ -93,6 +110,16 @@ const TONE_STRIPE: Record<ChoiceOptionTone, string> = {
   slate: 'border-l-slate-500',
 };
 
+const TONE_UNSELECTED_WASH: Record<ChoiceOptionTone, string> = {
+  brand:
+    'border-brand-200 dark:border-brand-800 bg-brand-50/70 dark:bg-brand-900/20',
+  amber:
+    'border-amber-200 dark:border-amber-800 bg-amber-50/80 dark:bg-amber-900/20',
+  rose: 'border-rose-200 dark:border-rose-800 bg-rose-50/80 dark:bg-rose-900/20',
+  slate:
+    'border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800/40',
+};
+
 export default function ChoiceControl<T extends string>({
   legend,
   options,
@@ -103,6 +130,9 @@ export default function ChoiceControl<T extends string>({
   className = '',
   statusHint,
   optionTone,
+  toneVisibleWhenUnselected = false,
+  legendMode = 'visible',
+  selectedUsesBrand = false,
 }: ChoiceControlProps<T>): ReactElement {
   const baseId = useId();
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -166,22 +196,37 @@ export default function ChoiceControl<T extends string>({
     <div className={className.trim() || undefined}>
       <div
         role="radiogroup"
-        aria-labelledby={`${baseId}-legend`}
+        aria-labelledby={
+          legendMode === 'hidden' ? undefined : `${baseId}-legend`
+        }
+        aria-label={legendMode === 'hidden' ? legend : undefined}
         className="space-y-3"
       >
-        <p
-          id={`${baseId}-legend`}
-          className="text-sm font-bold text-gray-900 dark:text-white"
-        >
-          {legend}
-        </p>
+        {legendMode !== 'hidden' ? (
+          <p
+            id={`${baseId}-legend`}
+            className={
+              legendMode === 'sr-only'
+                ? 'sr-only'
+                : 'text-sm font-bold text-gray-900 dark:text-white'
+            }
+          >
+            {legend}
+          </p>
+        ) : null}
         <div className={columnClasses[columns]}>
           {options.map((option, index) => {
             const isSelected = value === option.id;
             const Icon = option.icon;
             const tone: ChoiceOptionTone = optionTone?.[option.id] ?? 'brand';
-            const selectedTone = TONE_SELECTED[tone];
+            const selectedTone =
+              TONE_SELECTED[selectedUsesBrand ? 'brand' : tone];
             const stripe = useTone ? `border-l-4 ${TONE_STRIPE[tone]}` : '';
+            const unselectedWash =
+              option.unselectedClassName ??
+              (toneVisibleWhenUnselected && useTone
+                ? TONE_UNSELECTED_WASH[tone]
+                : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/80 hover:border-brand-300 dark:hover:border-brand-700 hover:shadow-md');
             return (
               <button
                 key={option.id}
@@ -199,7 +244,7 @@ export default function ChoiceControl<T extends string>({
                 className={`relative flex flex-col items-start text-left ${touchTargetClasses.minimumHeight} border-2 transition-all duration-200 ${focusRingClasses.brandOnWhite} ${sizeClasses[size]} ${stripe} ${
                   isSelected
                     ? `${selectedTone.border} ${selectedTone.bg} shadow-sm ${selectedTone.ring}`
-                    : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/80 hover:border-brand-300 dark:hover:border-brand-700 hover:shadow-md'
+                    : `${unselectedWash} ${option.unselectedClassName ? 'hover:shadow-md' : ''}`
                 }`}
               >
                 <span className="flex items-center gap-3 w-full">

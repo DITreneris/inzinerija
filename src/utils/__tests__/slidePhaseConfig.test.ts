@@ -75,6 +75,7 @@ describe('slidePhaseConfig', () => {
       expect(getPhaseLabel(10, 10.36)).toBe('Integracijos');
       expect(getPhaseLabel(10, 10.37)).toBe('Integracijos');
       expect(getPhaseLabel(10, 10.65)).toBe('Neprivaloma');
+      expect(getPhaseLabel(10, 10.655)).toBe('Neprivaloma');
       expect(getPhaseLabel(10, 10.66)).toBe('Neprivaloma');
       expect(getPhaseLabel(10, 10.8)).toBe('Santrauka');
     });
@@ -86,6 +87,7 @@ describe('slidePhaseConfig', () => {
       expect(getPhaseLabel(10, 10.4, undefined, 'en')).toBe('Prompts & safety');
       expect(getPhaseLabel(10, 10.45, undefined, 'en')).toBe('Multi-agent');
       expect(getPhaseLabel(10, 10.65, undefined, 'en')).toBe('Optional');
+      expect(getPhaseLabel(10, 10.655, undefined, 'en')).toBe('Optional');
     });
   });
 

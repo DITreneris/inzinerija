@@ -10,6 +10,7 @@ import ChoiceControl from '../../ui/ChoiceControl';
 import CopyButton from './CopyButton';
 import {
   formatTeamReadinessProfile,
+  getLevelInsight,
   getSelectedStateLabel,
   getTeamReadinessDimensions,
   getTeamReadinessLevels,
@@ -55,6 +56,10 @@ export default function M10TeamReadinessLabBlock() {
     [loc, selections]
   );
 
+  const filledCount = TEAM_READINESS_DIMENSION_IDS.filter(
+    (id) => selections[id] != null
+  ).length;
+
   const levelOptions = levels.map((level) => ({
     id: level.id,
     label: level.label,
@@ -83,27 +88,29 @@ export default function M10TeamReadinessLabBlock() {
         selections={selections}
         weakestDimensions={weakestDimensions}
         isComplete={isComplete}
+        filledCount={filledCount}
       />
 
-      <div className="space-y-4">
-        {dimensions.map((dimension) => {
+      <div className="space-y-8">
+        {dimensions.map((dimension, index) => {
           const Icon = DIMENSION_ICONS[dimension.id];
+          const insight = getLevelInsight(loc, selections[dimension.id]);
           return (
-            <div
-              key={dimension.id}
-              className="rounded-xl border border-brand-200/70 bg-white/80 p-3 dark:border-brand-800/50 dark:bg-gray-900/40"
-            >
-              <div className="mb-3 flex items-start gap-2">
-                <span className="inline-flex rounded-lg bg-brand-50 p-2 text-brand-700 dark:bg-brand-900/40 dark:text-brand-200">
-                  <Icon className="h-4 w-4" aria-hidden />
+            <div key={dimension.id} className="space-y-3">
+              <div className="flex items-start gap-3">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-600 text-sm font-bold text-white dark:bg-brand-500">
+                  {index + 1}
                 </span>
-                <div>
-                  <p className="text-sm font-bold text-gray-900 dark:text-white">
-                    {dimension.legend}
+                <span className="mt-0.5 inline-flex rounded-lg bg-brand-100 p-2.5 text-brand-800 dark:bg-brand-900/50 dark:text-brand-100">
+                  <Icon className="h-5 w-5" aria-hidden />
+                </span>
+                <div className="min-w-0">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                    {dimension.shortLabel}
                   </p>
-                  <p className="text-xs text-gray-600 dark:text-gray-400">
+                  <h3 className="text-base font-bold text-gray-900 dark:text-white">
                     {dimension.prompt}
-                  </p>
+                  </h3>
                 </div>
               </div>
               <ChoiceControl
@@ -117,20 +124,29 @@ export default function M10TeamReadinessLabBlock() {
                 }
                 columns={3}
                 size="compact"
-                statusHint={`${ui.selected}: ${getSelectedStateLabel(
-                  loc,
-                  selections[dimension.id]
-                )}`}
+                legendMode="sr-only"
                 optionTone={LEVEL_OPTION_TONE}
+                toneVisibleWhenUnselected
               />
+              {insight ? (
+                <p className="text-sm text-slate-600 dark:text-slate-300">
+                  {insight}
+                </p>
+              ) : null}
             </div>
           );
         })}
       </div>
 
-      <div className="rounded-xl border border-brand-200 bg-brand-50/70 p-4 dark:border-brand-800 dark:bg-brand-900/20">
+      <div
+        className={`rounded-2xl border-2 p-5 dark:border-brand-700 ${
+          isComplete
+            ? 'border-brand-400 bg-brand-50 dark:bg-brand-900/30'
+            : 'border-brand-200 bg-brand-50/70 dark:bg-brand-900/20'
+        }`}
+      >
         <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
-          <h3 className="text-sm font-bold text-gray-900 dark:text-white">
+          <h3 className="text-base font-bold text-gray-900 dark:text-white">
             {ui.profileHeading}
           </h3>
           {isComplete ? (
@@ -175,12 +191,14 @@ function ReadinessSummary({
   selections,
   weakestDimensions,
   isComplete,
+  filledCount,
 }: {
   locale: 'lt' | 'en';
   ui: ReturnType<typeof getTeamReadinessUiLabels>;
   selections: TeamReadinessSelections;
   weakestDimensions: TeamReadinessDimensionId[];
   isComplete: boolean;
+  filledCount: number;
 }) {
   const dimensions = getTeamReadinessDimensions(locale);
   return (
@@ -199,7 +217,7 @@ function ReadinessSummary({
               : 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-100'
           }`}
         >
-          {isComplete ? ui.complete : ui.incomplete}
+          {filledCount}/3 · {isComplete ? ui.complete : ui.incomplete}
         </span>
       </div>
       <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">

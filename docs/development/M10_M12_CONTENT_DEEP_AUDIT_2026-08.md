@@ -5,6 +5,7 @@
 > **Rubrika:** K1 aiškumas · K2 išbaigtumas · K3 tikslumas · K4 praktika · K5 LT kalba · K6 EN kalba · K7 LT↔EN atitikimas  
 > **Metodas:** I0 korpusas → I1 mechaninė higiena → I2 10 turinio subagentų → I3 LT/EN korektūra → I4 cross-cutting → I5 citatų verifikacija (98,5 %) → I6 sintezė → I7 adversarinis kalibravimas  
 > **Statusas:** **CLOSED / FREEZE** 2026-08-12 — P0 ✅ · P1 ✅ · P2 ✅; hygiene baseline **71** (`audit:m1012-content-hygiene:gate`). **Nevaryti į 0; jokių naujų turinio/P3 batch’ų.**  
+> **Išimtis 2026-08-13:** testerio pastaboms atidarytas Phase A intake [`intake/M10_M12_TESTER_INTAKE_2026-08.md`](intake/M10_M12_TESTER_INTAKE_2026-08.md). Gyvas turinys vis tiek **FREEZE** — intake = fiksavimas, ne pataisos.  
 > **Pirmtakas (UI/UX ašys):** [`M10_M12_DEEP_AUDIT_2026-08.md`](M10_M12_DEEP_AUDIT_2026-08.md) — **šis dokumentas = turinio ašis**, ne UI.
 
 ---
@@ -202,7 +203,8 @@ P2 batch ✅: warm-up/test leak, LT/EN P2 polish ir hygiene liekanos; intake Mus
 
 - Scratch ataskaitos: `tmp/m1012-audit/` (batch-_, findings-_, lang-_, cross-_, adversarial-I7.md)
 - UI/UX pirmtakas: [`M10_M12_DEEP_AUDIT_2026-08.md`](M10_M12_DEEP_AUDIT_2026-08.md)
-- Plain intake: [`intake/M10_M12_PLAIN_PEDAGOGY_INTAKE_2026-08.md`](intake/M10_M12_PLAIN_PEDAGOGY_INTAKE_2026-08.md)
+- Plain intake (CLOSED): [`intake/M10_M12_PLAIN_PEDAGOGY_INTAKE_2026-08.md`](intake/M10_M12_PLAIN_PEDAGOGY_INTAKE_2026-08.md)
+- Testerio intake (OPEN, Phase A): [`intake/M10_M12_TESTER_INTAKE_2026-08.md`](intake/M10_M12_TESTER_INTAKE_2026-08.md)
 - SOT: [`turinio_pletra_moduliai_10_11_12.md`](../turinio_pletra_moduliai_10_11_12.md)
 - Gairės: [`PAPRASTOS_KALBOS_GAIRES.md`](PAPRASTOS_KALBOS_GAIRES.md)
 
@@ -210,5 +212,5 @@ P2 batch ✅: warm-up/test leak, LT/EN P2 polish ir hygiene liekanos; intake Mus
 CHANGES: turinio deep audit 47 sk. + hygiene gate + P0/P1/P2 remediacija
 CHECKS: audit:m1012; audit:m1012-content-hygiene:gate; build:modules-en-m10-m12
 RISKS: hygiene parity liekanos (71) = freeze, ne backlog
-NEXT: stop — M10–12 turinio ROI baigtas
+NEXT: gyvas turinys stop; testerio pastabos → intake/M10_M12_TESTER_INTAKE_2026-08.md (Phase A)
 ```
