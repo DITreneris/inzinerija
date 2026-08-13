@@ -1,8 +1,8 @@
 # Dokumentacijos greita nuoroda (agentams)
 
 > **Tikslas:** Mažas kontekstas – SOT ir kritiniai keliai. **Lean:** `docs/LEAN_INDEX.md` (≤25). Pilnas: `docs/DOCUMENTATION_INDEX.md`.  
-> **Atnaujinta:** 2026-08-12 (Docs Lean · M10–12 content freeze · CATALOG-HOME ✅ · Unreleased post-v1.6.1). Archyvas = ne SOT. Taisyklės: `DOCS_MAINTENANCE.md` §1c.
-> **Open:** learning P0/P1 **nėra**. TOOL-5 P2 · Wave D3 Deferred §1.5 · Marketing / MON – ne default. Pin cutover = **v1.6.1**.
+> **Atnaujinta:** 2026-08-13 (release **1.6.2** · Docs Lean · M10–12 content freeze · CATALOG-HOME ✅). Archyvas = ne SOT. Taisyklės: `DOCS_MAINTENANCE.md` §1c.
+> **Open:** learning P0/P1 **nėra**. TOOL-5 P2 · Wave D3 Deferred §1.5 · Marketing / MON – ne default. Pin cutover = **v1.6.2**.
 
 ---
 

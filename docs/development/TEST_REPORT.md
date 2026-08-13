@@ -2,6 +2,22 @@
 
 > **Tikslas:** QA_AGENT priima vartotojo testų klaidas, fiksuoja čia ir įrašo sprendimus į `TODO.md`.
 
+## 2026-08-13 – Release 1.6.2 / corporate12 marketing pin
+
+**Statusas:** ✅ READY FOR TAG.  
+**Apimtis:** `v1.6.2` uždaro post-1.6.1 Unreleased (M10–12 content freeze, katalogo UX, SCHEME-CENTRAL W1, Docs Lean, CATALOG-HOME) ir tampa Horizon B corporate12 pin target. **Ne** retag `v1.6.1`. Learning pin `v1.4.9` lieka iki marketing cutover.
+
+| Gate / artefaktas                | Rezultatas                                                                                                  |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| Release truth                    | ✅ `package.json` / lockfile / README / CHANGELOG → **1.6.2**                                               |
+| Corporate12 handoff docs         | ✅ memo 06 + pin runbook + marketing checklist → **v1.6.2**                                                 |
+| Automated gates (prior closeout) | ✅ lint · `audit:governance` · hygiene gate baseline **71** · tests **165/1005** (`TEST_REPORT` 2026-08-12) |
+| Marketing cutover                | pin **v1.6.2** in `promptanatomy` submodule (`apps/prompt-anatomy`)                                         |
+
+**Verdict:** šiame repo tag `v1.6.2`; realus prod cutover = marketing repo (`promptanatomy`) submodule checkout.
+
+---
+
 ## 2026-08-12 – Docs Lean + CATALOG-HOME (Unreleased post-v1.6.1)
 
 **Statusas:** ✅ PASS (training-side closeout). **Ne** 1.6.1 retag; **ne** 1.6.2 bump (tik paprašius).  

@@ -1,13 +1,13 @@
 # Promptų anatomija – Plėtros roadmap
 
-> **Atnaujinta:** 2026-08-12 | Roadmap **v4.22** (Docs Lean · M1012 content freeze · CATALOG-HOME ✅ · Unreleased post-v1.6.1)  
-> **App:** 1.6.1 (tag = corporate12 pin) · **Training HEAD:** Unreleased (katalogas + content audit + SCHEME-CENTRAL W1 + Home retrieval demote) — **ne** retag 1.6.1.  
+> **Atnaujinta:** 2026-08-13 | Roadmap **v4.22** (Docs Lean · M1012 content freeze · CATALOG-HOME ✅ · release **1.6.2**)  
+> **App:** 1.6.2 (tag = corporate12 pin) · **Training HEAD:** 1.6.2 (katalogas + content audit + SCHEME-CENTRAL W1 + Home retrieval demote). **Ne** retag 1.6.1.  
 > **Done santrauka:** [`CODEBASE_WHAT_IS_DONE.md`](docs/development/CODEBASE_WHAT_IS_DONE.md) · [`CHANGELOG.md`](CHANGELOG.md) · archive [`TODO_DONE_SPRINTS_2026-08.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-08.md)  
 > **Open darbai:** [`TODO.md`](TODO.md) §1.4 MON · §1.5 Deferred (D3) · §1.7 TOOL-5 · §1.6 Caveats B1/B2. Learning P0/P1 **nėra**.
 
 **Nuosavybė:** šis repo = turinio / pedagogikos / UI kokybės OS. Marketingas (env, PostHog, CRO) → kitas repo.  
 **Principas:** M1–9 production; **M10–12 corporate + content freeze**; **M13–15 corporate + learner plain**; M16–18 authoring + TE + plain ✅ · TE Could closed.  
-**Production:** RC **1.6.1** = corporate12 cutover pin (+ corporate15 repo-ready); learning pin **v1.4.9** until marketing cutover; default `build:production` = M1–9.
+**Production:** RC **1.6.2** = corporate12 cutover pin (+ corporate15 repo-ready); learning pin **v1.4.9** until marketing cutover; default `build:production` = M1–9.
 
 ---
 
@@ -76,7 +76,7 @@ PDF M5/M6 rankinė · broken links · mobile 375px · docs index nuorodos.
 | **Corporate12 (ready)**  | `VITE_MAX_BUILD_MODULE=12` (`build:corporate12`) | M1–12               |
 | **Corporate15 (ready)**  | `VITE_MAX_BUILD_MODULE=15` (`build:corporate15`) | M1–15               |
 | Authoring / local full   | default `modules.json`                           | M1–18               |
-| Magic link (**tier 12**) | repo ✅; marketing cutover pin **v1.6.1**        |                     |
+| Magic link (**tier 12**) | repo ✅; marketing cutover pin **v1.6.2**        |                     |
 | Magic link (**tier 15**) | repo ✅; marketing cutover                       |                     |
 
 CI: schema, lint, test, **governance**, MVP + M1–9 + corporate12 + corporate15 build.
@@ -93,7 +93,7 @@ CI: schema, lint, test, **governance**, MVP + M1–9 + corporate12 + corporate15
 | Tier 12/15 cutover checklist | [`MARKETING_HANDOFF_CHECKLIST.md`](docs/deployment/MARKETING_HANDOFF_CHECKLIST.md) |
 | Ticketų statusai             | [`TODO.md`](TODO.md) §1.4                                                          |
 
-**Pin:** cutover target **v1.6.1**. Training Unreleased / būsimas 1.6.2 ≠ automatinis re-pin.
+**Pin:** cutover target **v1.6.2**. Later Unreleased ≠ automatinis re-pin.
 
 ---
 

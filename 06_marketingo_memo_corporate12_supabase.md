@@ -2,7 +2,7 @@
 
 **Kam:** Pagrindinės platformos (promptanatomy monorepo, Supabase + Vercel) komanda  
 **Nuo:** Mokymų app (Prompt Anatomy / inzinerija) kūrėjai  
-**Data:** 2026-08-12  
+**Data:** 2026-08-13  
 **Tema:** Horizon B cutover – vienas production build su moduliais 1–12 (`build:corporate12`), magic link `access_tier=12`, Phase 1 per Supabase (be Stripe).
 
 **Susiję dokumentai:**
@@ -21,7 +21,7 @@
 - **Prieiga** = HMAC magic link (kaip M7–9). Supabase saugo entitlement (`user_access`); **ne** login į mokymų SPA.
 - **Phase 1 (dabar):** upsert el. paštui `highest_plan=12` → `generate-access-link` → redirect į `/anatomy/` su token.
 - **Phase 2 (ne dabar):** Stripe Agentų SKU €199 → tas pats `access_tier=12`.
-- **Pin:** submodule `apps/prompt-anatomy` → tag **v1.6.1** (ne learning freeze `v1.4.9`).
+- **Pin:** submodule `apps/prompt-anatomy` → tag **v1.6.2** (ne learning freeze `v1.4.9`).
 
 ---
 
@@ -150,7 +150,7 @@ Po sėkmingo verify (200):
 - [ ] Valid tier 9 link → M1–9 open; M10+ locked / neatrakinami
 - [ ] Supabase email (`highest_plan=12`) → `generate-access-link` → URL su `access_tier=12`
 - [ ] Tier 12 browser → M10 atsidaro; `localStorage.verified_access_tier` = `"12"`
-- [ ] Submodule SHA build log’e = **v1.6.1** (arba sutartas SHA)
+- [ ] Submodule SHA build log’e = **v1.6.2** (arba sutartas SHA)
 - [ ] Build log: `VITE_MAX_BUILD_MODULE=12` / `build:corporate12`
 
 ---
@@ -175,7 +175,7 @@ Po sėkmingo verify (200):
 
 ## 11. Vykdymo seka (copy-paste)
 
-1. Pin submodule → **v1.6.1** ([pin runbook](docs/deployment/MARKETING_SUBMODULE_PIN_CORPORATE12.md)).
+1. Pin submodule → **v1.6.2** ([pin runbook](docs/deployment/MARKETING_SUBMODULE_PIN_CORPORATE12.md)).
 2. Preview env: `build:corporate12` / `VITE_MAX_BUILD_MODULE=12`.
 3. Parent: `verify-access` whitelist +12; `generate-access-link` map **12→12**.
 4. Supabase upsert test email `highest_plan=12`.
@@ -184,15 +184,15 @@ Po sėkmingo verify (200):
 
 ---
 
-## 12. Cutover B vykdymo checklist (v1.6.1)
+## 12. Cutover B vykdymo checklist (v1.6.2)
 
-**Tikslus tag:** `v1.6.1`  
-**Submodule SHA:** marketing repo patikrina `git rev-parse v1.6.1` po `git fetch --tags`.
+**Tikslus tag:** `v1.6.2`  
+**Submodule SHA:** marketing repo patikrina `git rev-parse v1.6.2` po `git fetch --tags`.
 
-1. `apps/prompt-anatomy` submodule checkout → `v1.6.1`.
+1. `apps/prompt-anatomy` submodule checkout → `v1.6.2`.
 2. Vercel Preview/Production env: `VITE_MAX_BUILD_MODULE=12`, build script `npm run build:corporate12`, be `VITE_MVP_MODE` ir be `VITE_MAX_ACCESSIBLE_MODULE`.
 3. Parent API: `verify-access` whitelist priima `12`; `generate-access-link` mapina `highest_plan=12` į `access_tier=12` (ne 12→9).
-4. Smoke: tier 0 → AccessGate; tier 9 → M1–9; tier 12 → M10 atsidaro; build log rodo `MAX_BUILD_MODULE=12` ir submodule `v1.6.1`.
+4. Smoke: tier 0 → AccessGate; tier 9 → M1–9; tier 12 → M10 atsidaro; build log rodo `MAX_BUILD_MODULE=12` ir submodule `v1.6.2`.
 5. Prod deploy tik po žalio Preview smoke. Tier 9 klientų regresija: M1–9 lieka atrakinta, M10+ lieka locked.
 
 ---

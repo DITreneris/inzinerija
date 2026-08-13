@@ -2,12 +2,21 @@
 
 > Tikslas: viena vieta po release ar didesnio Unreleased sprinto patikrinti, ar agentų įėjimo dokumentai, release/ops dokumentai ir techniniai registry atitinka faktinę kodo bazę.
 
-**Baseline:** 1.6.1 corporate12 cutover pin + Unreleased post-1.6.1 (content freeze · katalogas · SCHEME-CENTRAL W1 · CATALOG-HOME) + Docs Lean 2026-08  
-**Testai:** tag 1.6.1 = 161/982; Unreleased HEAD = **165/1005** (`TEST_REPORT` 2026-08-12 Docs Lean)  
-**Data:** 2026-08-12  
+**Baseline:** 1.6.2 corporate12 cutover pin (content freeze · katalogas · SCHEME-CENTRAL W1 · CATALOG-HOME · Docs Lean)  
+**Testai:** tag **1.6.2** = **165/1005**; tag 1.6.1 freeze = 161/982  
+**Data:** 2026-08-13  
 **Šaltiniai:** `package.json`, `CHANGELOG.md`, `docs/development/RELEASE_QA_RUN.md`, `docs/development/RELEASE_QA_CHECKLIST.md`, `docs/development/DOCS_MAINTENANCE.md`.
 
 ## Sync lentelė
+
+### Release 1.6.2 – 2026-08-13
+
+| #   | Failas                                                                               | Laukas             | Buvo                  | Turi būti                                        | Done |
+| --- | ------------------------------------------------------------------------------------ | ------------------ | --------------------- | ------------------------------------------------ | ---- |
+| 1   | `package.json` / `package-lock.json` / `README.md` / `CHANGELOG.md`                  | release truth      | 1.6.1 + Unreleased    | **1.6.2** release cut                            | [x]  |
+| 2   | `06_marketingo_memo_corporate12_supabase.md`                                         | cutover pin        | v1.6.1                | tag **v1.6.2**                                   | [x]  |
+| 3   | `DEPLOYMENT` + `MARKETING_HANDOFF_CHECKLIST` + `MARKETING_SUBMODULE_PIN_CORPORATE12` | marketing handoff  | pin v1.6.1            | pin **v1.6.2**, build `corporate12`, tier **12** | [x]  |
+| 4   | `VERSION_ANALIZE.md` / `TODO.md` / `TEST_REPORT.md` / `ROADMAP.md`                   | release/QA summary | Unreleased post-1.6.1 | **v1.6.2** Horizon B pin                         | [x]  |
 
 ### Unreleased post-1.6.1 / Docs Lean – 2026-08-12
 

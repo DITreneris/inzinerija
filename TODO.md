@@ -2,9 +2,9 @@
 
 **Nuosavybė:** šis repo = **turinys, pedagogika, UI/UX mokymosi patirtyje**, duomenų/authoring kokybė. Marketingas / monetizacija / PostHog / CRO → kitas repo ([`docs/deployment/`](docs/deployment/) handoff).  
 **Tikslas:** Open P0/P1 prioritetai (Docs Lean). Done istorija → [`TODO_DONE_SPRINTS_2026-08.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-08.md) · [`2026-07-31`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-31.md) · [`2026-07-28`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-28.md). SOT indeksas: `docs/DOCUMENTATION_QUICK_REF.md`.  
-**Legenda:** **P0 = mokymosi kokybės blokoriai**, P1 = turinio/authoring kokybė + corporate cut, P2 = polish. MON ≠ P0. **Atnaujinta:** 2026-08-12 (Docs Lean · M10–12 content freeze · CATALOG-HOME ✅ · Unreleased post-v1.6.1).
+**Legenda:** **P0 = mokymosi kokybės blokoriai**, P1 = turinio/authoring kokybė + corporate cut, P2 = polish. MON ≠ P0. **Atnaujinta:** 2026-08-13 (release **1.6.2** corporate12 pin).
 
-**Dabartinis fokusas (šiame repo):** learning P0/P1 **uždaryti**; open = **TOOL-5** (P2 infra) · marketing cutover / MON **out of scope** (§1.4) · Wave D3 corporate18 Deferred (§1.5). Ladder: [`ROADMAP.md`](ROADMAP.md). Pin: marketing corporate12 = **v1.6.1** (never amend). Automated: **165/1005**.
+**Dabartinis fokusas (šiame repo):** learning P0/P1 **uždaryti**; open = **TOOL-5** (P2 infra) · marketing cutover / MON **out of scope** (§1.4) · Wave D3 corporate18 Deferred (§1.5). Ladder: [`ROADMAP.md`](ROADMAP.md). Pin: marketing corporate12 = **v1.6.2** (never amend **v1.6.1**). Automated: **165/1005**.
 
 **Produktiniai sprendimai (santrauka):** gylis > Density CI; M79/M1315 ROI ✅; UJ-MUST ✅; M16–18 authoring+TE+plain ✅; M13 plain+TRIM ✅; M10–12 UI deep + turinio deep ✅ (**freeze**, hygiene 71); katalogas owns next-step; Home retrieval = antrinis.
 
@@ -34,12 +34,12 @@ M10–12 turinio ROI: **FREEZE** (baseline 71; nevaryti į 0).
 ### §1.4 Out of scope – marketing handoff
 
 > Ne default agentų P0. Vykdymas / env / KPI → marketing repo. Runbook: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md).  
-> **Horizon B cutover:** pin **v1.6.1** + `build:corporate12` — [`06_marketingo_memo_corporate12_supabase.md`](06_marketingo_memo_corporate12_supabase.md). Training HEAD may advance (Unreleased / 1.6.2); **cutover pin stays v1.6.1** unless marketing re-pins.
+> **Horizon B cutover:** pin **v1.6.2** + `build:corporate12` — [`06_marketingo_memo_corporate12_supabase.md`](06_marketingo_memo_corporate12_supabase.md). Training HEAD may advance after this tag; **cutover pin stays v1.6.2** unless marketing re-pins.
 
 | ID        | Užduotis                                                                | Status | Pastaba                                                                                      |
 | --------- | ----------------------------------------------------------------------- | ------ | -------------------------------------------------------------------------------------------- |
 | **MON-1** | Prod env: nėra `VITE_MAX_ACCESSIBLE_MODULE=6`; `VITE_VERIFY_ACCESS_URL` | [ ]    | Marketing Vercel · CAV-B1                                                                    |
-| **MON-2** | Submodule pin **v1.6.1** + corporate12 deploy                           | ⏳     | Learning pin **v1.4.9**; Horizon B pin target **v1.6.1**. Execute in marketing repo · CAV-B1 |
+| **MON-2** | Submodule pin **v1.6.2** + corporate12 deploy                           | ⏳     | Learning pin **v1.4.9**; Horizon B pin target **v1.6.2**. Execute in marketing repo · CAV-B1 |
 | **MON-3** | Verify-access smoke (magic link → tier)                                 | ⏳     | Browser ⏳; po cutover — tier **12** / **15** (tier **18** = CAV-C2)                         |
 | **MON-4** | PostHog/GA4 production + funnel dashboard                               | [ ]    | [`MON-4_POSTHOG_DEPLOY.md`](docs/deployment/MON-4_POSTHOG_DEPLOY.md) · CAV-B2                |
 | **MON-5** | Gate regression browser (tier 0 → AccessGate)                           | ⏳     | Auto ✅; browser ⏳                                                                          |
@@ -66,7 +66,7 @@ MON-6 ✅ – žr. archive / CHANGELOG.
 | **CAV-A1** | EN automated audits + RELEASE_QA §5c log | QA                  | [x]                                                        |
 | **CAV-A2** | Mobile @375 owner residual               | QA / owner          | [x]                                                        |
 | **CAV-A3** | PDF LT glyphs / links pre-release        | QA                  | [x] automated; owner open-PDF visual still recommended §5d |
-| **CAV-B1** | Magic link cutover                       | Marketing           | [ ] pin **v1.6.1**; execute in marketing repo              |
+| **CAV-B1** | Magic link cutover                       | Marketing           | [ ] pin **v1.6.2**; execute in marketing repo              |
 | **CAV-B2** | PostHog MON-4                            | Marketing           | [ ]                                                        |
 | **CAV-C1** | M1618 path handout                       | CONTENT→DATA→CODING | [x]                                                        |
 | **CAV-C2** | corporate18 + tier 18                    | Product + stack     | won’t-now until pricing call                               |
@@ -86,7 +86,7 @@ Pilnos lentelės: [`TODO_DONE_SPRINTS_2026-08.md`](docs/archive/development/TODO
 
 - M1–9 production · M10–15 corporate cuts · M16–18 authoring+TE+plain · UJ-MUST · M79/M1315 ROI ✅
 - M1012-DEEP + M1012 content audit (freeze) · LANG-SOT · katalogas UX · CATALOG-HOME · SCHEME-CENTRAL W1 ✅
-- Release **1.6.1** = corporate12 pin target; Unreleased = post-pin training HEAD
+- Release **1.6.2** = corporate12 pin target (supersedes v1.6.1; do not retag 1.6.1)
 
 ---
 
