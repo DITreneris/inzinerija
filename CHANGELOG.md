@@ -6,7 +6,7 @@ Visi reikšmingi pakeitimai šiame projekte dokumentuojami šiame faile.
 
 ### Kaip naršyti šį failą
 
-Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda skiltyje **[Unreleased]**; toliau eina **pažymėti leidimai** nuo naujausių (**[1.4.3]**, **[1.4.2]**, **[1.4.1]**, **[1.4.0]**, **[1.3.0]**). **Failo pabaigoje** paliktas ankstesnis **2.x** ir **1.0.0** žymėjimas – tai istorinis sluoksnis iš ankstesnės kūrimo fazės (prieš dabartinę **1.x** produkcijos liniją; žr. poskyrį _Ankstesnis versijų žymėjimas (2.x ir 1.0.0)_).
+Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda skiltyje **[Unreleased]**; toliau eina **pažymėti leidimai** nuo naujausių (**[1.6.2]**, **[1.6.1]**, **[1.6.0]**, **[1.5.0]**, **[1.4.9]** …). **Failo pabaigoje** paliktas ankstesnis **2.x** ir **1.0.0** žymėjimas – tai istorinis sluoksnis iš ankstesnės kūrimo fazės (prieš dabartinę **1.x** produkcijos liniją; žr. poskyrį _Ankstesnis versijų žymėjimas (2.x ir 1.0.0)_).
 
 **Greita paieška:** redaktoriuje ieškokite `## [` – atsiras visos versijų antraštės.
 
@@ -14,7 +14,7 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 | Skiltis                     | Ką rasite                                                                                                                                                                             |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **[Unreleased]**            | T01–T08 + T09 Must; hygiene liekana **41**; katalogo hinge; AppNav freeze; promptų Micro; pin **v1.6.2**.                                                                             |
+| **[Unreleased]**            | T01–T08 + T09 Must; hygiene liekana **41**; katalogo hinge; AppNav freeze; promptų Micro; visual QA PASS; tests **168/1033**; pin **v1.6.2**.                                         |
 | **[1.6.2] – 2026-08-13**    | M10–12 content freeze; katalogo UX + CATALOG-HOME; SCHEME-CENTRAL W1 governance CI; Docs Lean; tests **165/1005**; corporate12 pin **v1.6.2**.                                        |
 | **[1.6.1] – 2026-08-12**    | Node.js 24 runtime bump; CI matrica 22.x / 24.x; ESLint 9 flat config; Vite 7 + Vitest 4; advisory sweep 27 → **0**; corporate12 cutover pin target **v1.6.1**.                       |
 | **[1.6.0] – 2026-08-11**    | M10–12 deep audit remediation; kalbos konvencijų vartai (LT `tu` / EN American, GOLDEN §6c); M13–18 learner plain; TE Must/Should + C2; corporate15 / tier 15; preflight **161/982**. |
@@ -46,7 +46,7 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 - **LT/EN (i18n):** Pilnas UI; turinys M1–M15 per loader merge; 20 namespace (`lt.json` top-level); schemos/diagramos lokalizuoti.
 - **Sertifikatai, PDF atmintinės (M1/M4/M5/M6/M7–9/M10–12/M13–15), žodynėlis, apklausa, įrankiai, progresas:** Įgyvendinta. **Access tier** 3 / 6 / 9 / **12** / **15** (magic link); sertifikatai tier 1–5, įskaitant tier 4 po M10–12 + M11 ≥ 70 % ir tier 5 po M13–15 + M14 ≥ 70 %.
 - **Ekosistema M7–12:** `ECOSYSTEM_MAP.md`, blog deepen, spinoff analytics.
-- **Testai:** **165** failai / **1005** testai (2026-08-13 release 1.6.2). Validacija: prebuild schema (+ `audit:tools`); release gate `npm run audit:release-preflight` (incl. `audit:m1618`, `audit:en-spelling`, `audit:lt-address`, `audit:m1012-content-hygiene:gate`); `audit:governance` CI; M10–12 `audit:m1012`; M13–15 `audit:m1315`; M9 journey `validate:journey-m9`.
+- **Testai:** training HEAD **168** failai / **1033** testai (2026-08-14 Unreleased visual QA). Tag **1.6.2** freeze buvo **165/1005**. Validacija: prebuild schema (+ `audit:tools`); release gate `npm run audit:release-preflight` (incl. `audit:m1618`, `audit:en-spelling`, `audit:lt-address`, `audit:m1012-content-hygiene:gate`); `audit:governance` CI; M10–12 `audit:m1012`; M13–15 `audit:m1315`; M9 journey `validate:journey-m9`.
 - **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis ([DITreneris/promptanatomy](https://github.com/DITreneris/promptanatomy)); release **1.6.2** = corporate12 cutover pin target (+ corporate15 repo-ready); learning pin **v1.4.9** iki marketing cutover. Stripe M1–6 + Supabase→magic link M7–9; Horizon B handoff: [`06_marketingo_memo_corporate12_supabase.md`](06_marketingo_memo_corporate12_supabase.md), [`MARKETING_SUBMODULE_PIN_CORPORATE12.md`](docs/deployment/MARKETING_SUBMODULE_PIN_CORPORATE12.md); tier 9: [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md); vykdymas: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md), [`MARKETING_SUBMODULE_PIN_1.4.4.md`](docs/deployment/MARKETING_SUBMODULE_PIN_1.4.4.md).
 
 ---
@@ -64,6 +64,8 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 - **Promptų biblioteka 6 skirsnis – Micro po vertinimo (2026-08-13):** antras item’as `after-eval-one-action` šalia Flagship 5 principų vertintojo (`prompt-quality-5`). Vienas placeholderis, vienas klausimas (ką pataisyti ir paleisti darbe per 24–48 val.); nebekartoja lentelės ir perrašymo. LT+EN; tas pats kortelės lukštas. `validate:schema` dabar tikrina ir `promptLibrary-en.json`.
 
 ### Changed
+
+- **Unreleased visual QA + docs metric sync (2026-08-14):** Must-contract PASS (T01–T08 · T09 · AppNav · hinge · Micro). Training HEAD tests **168/1033** (tag 1.6.2 lieka **165/1005**). Pin **v1.6.2**; ne 1.6.3 / ne re-pin. Žurnalas: `TEST_REPORT` 2026-08-14.
 
 - **AppNav chrome freeze (2026-08-13):** viena eilutė nuo `xl`; `lg`–`xl` destinacijos = antroji pilno pločio eilutė (ne kairė krūva). Kurso pažanga = mini takelis + %, be pill kapsulės; slėpti kai 0 % arba modulyje. Nuimtas `min-w-[8.5rem]`. `max-w-7xl` lieka.
 

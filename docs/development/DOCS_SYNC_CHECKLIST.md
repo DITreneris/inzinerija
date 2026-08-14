@@ -2,12 +2,23 @@
 
 > Tikslas: viena vieta po release ar didesnio Unreleased sprinto patikrinti, ar agentų įėjimo dokumentai, release/ops dokumentai ir techniniai registry atitinka faktinę kodo bazę.
 
-**Baseline:** 1.6.2 corporate12 cutover pin + training HEAD T01–T08 + T09 · hygiene **41** · katalogo hinge · AppNav freeze  
-**Testai:** tag **1.6.2** = **165/1005**; tag 1.6.1 freeze = 161/982  
-**Data:** 2026-08-13 (T09 + hygiene closeout sync)  
+**Baseline:** 1.6.2 corporate12 cutover pin + training HEAD T01–T08 + T09 · hygiene **41** · katalogo hinge · AppNav freeze · Unreleased visual QA PASS  
+**Testai:** training HEAD **168/1033** (2026-08-14); tag **1.6.2** = **165/1005**; tag 1.6.1 freeze = 161/982  
+**Data:** 2026-08-14 (Unreleased visual QA + metric sync)  
 **Šaltiniai:** `package.json`, `CHANGELOG.md`, `docs/development/RELEASE_QA_RUN.md`, `docs/development/RELEASE_QA_CHECKLIST.md`, `docs/development/DOCS_MAINTENANCE.md`.
 
 ## Sync lentelė
+
+### Unreleased visual QA + metric sync – 2026-08-14
+
+| #   | Failas                                 | Laukas      | Buvo             | Turi būti                                                 | Done |
+| --- | -------------------------------------- | ----------- | ---------------- | --------------------------------------------------------- | ---- |
+| 1   | `TODO.md` antraštė                     | tests/data  | 165/1005 · 08-13 | **168/1033** · visual QA PASS · 08-14                     | [x]  |
+| 2   | `CODEBASE_WHAT_IS_DONE.md`             | tests/HEAD  | 165/1005         | HEAD **168/1033**; tag 1.6.2 lieka 165/1005               | [x]  |
+| 3   | `DOCUMENTATION_QUICK_REF.md`           | header      | 08-13            | 08-14 · visual QA · **168/1033**                          | [x]  |
+| 4   | `CHANGELOG` Unreleased TOC + santrauka | tests       | 165 HEAD         | Unreleased **168/1033**; tagged 1.6.2 eilutė nepaliečiama | [x]  |
+| 5   | `TEST_REPORT.md`                       | 08-14 block | —                | jau įrašyta (Must-contract PASS; ne 1.6.3)                | [x]  |
+| 6   | `ROADMAP.md`                           | open gaps   | 08-13            | visual QA PASS eilutė (v4.25)                             | [x]  |
 
 ### M10 testerio Must + T09 + hygiene closeout – 2026-08-13
 

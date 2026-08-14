@@ -1,7 +1,7 @@
 # Dokumentacijos greita nuoroda (agentams)
 
 > **Tikslas:** Mažas kontekstas – SOT ir kritiniai keliai. **Lean:** `docs/LEAN_INDEX.md` (≤25). Pilnas: `docs/DOCUMENTATION_INDEX.md`.  
-> **Atnaujinta:** 2026-08-13 (release **1.6.2** · T01–T08 + T09 Must ✅ · hygiene liekana **41** · gyvas turinys freeze · CATALOG-HOME ✅). Archyvas = ne SOT. Taisyklės: `DOCS_MAINTENANCE.md` §1c.
+> **Atnaujinta:** 2026-08-14 (release **1.6.2** · T01–T08 + T09 Must ✅ · hygiene liekana **41** · Unreleased visual QA PASS · tests **168/1033** · gyvas turinys freeze · CATALOG-HOME ✅). Archyvas = ne SOT. Taisyklės: `DOCS_MAINTENANCE.md` §1c.
 > **Open:** learning P0/P1 **nėra**. T01 I5 parked · Should 2-as pass · M11–M12 testerio eilutės [`M10_M12_TESTER_INTAKE_2026-08.md`](development/intake/M10_M12_TESTER_INTAKE_2026-08.md) · TOOL-5 P2 · Wave D3 Deferred §1.5 · Marketing / MON – ne default. GitHub pin = **v1.6.2** (PR #92); live `/anatomy/` verify ⏳.
 
 ---

@@ -1,9 +1,9 @@
 # Promptų anatomija – Plėtros roadmap
 
-> **Atnaujinta:** 2026-08-13 | Roadmap **v4.25** (T01–T08 + T09 Must ✅ · hygiene liekana **41** · Docs Lean · CATALOG-HOME ✅ · release **1.6.2**)  
+> **Atnaujinta:** 2026-08-14 | Roadmap **v4.25** (T01–T08 + T09 Must ✅ · hygiene liekana **41** · Docs Lean · CATALOG-HOME ✅ · release **1.6.2** · Unreleased visual QA PASS 2026-08-14)  
 > **App:** 1.6.2 (tag = corporate12 pin) · **Training HEAD:** 1.6.2 + T01–T08 + T09 + hygiene closeout + katalogo hinge + AppNav freeze + promptų Micro. **Ne** retag 1.6.1. **Ne** automatinis re-pin.  
 > **Done santrauka:** [`CODEBASE_WHAT_IS_DONE.md`](docs/development/CODEBASE_WHAT_IS_DONE.md) · [`CHANGELOG.md`](CHANGELOG.md) · archive [`TODO_DONE_SPRINTS_2026-08.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-08.md)  
-> **Open darbai:** [`TODO.md`](TODO.md) T01 I5 parked · Should 2-as pass · M11–M12 testerio eilutės · §1.4 MON · §1.5 Deferred (D3) · §1.7 TOOL-5 · §1.6 Caveats B1/B2. Learning P0/P1 **nėra**.
+> **Open darbai:** [`TODO.md`](TODO.md) T01 I5 parked · Should 2-as pass · M11–M12 testerio eilutės · §1.4 MON · §1.5 Deferred (D3) · §1.7 TOOL-5 · §1.6 Caveats B1/B2. Learning P0/P1 **nėra**. Unreleased visual QA PASS 2026-08-14 (Must-contract; palikti Unreleased).
 
 **Nuosavybė:** šis repo = turinio / pedagogikos / UI kokybės OS. Marketingas (env, PostHog, CRO) → kitas repo.  
 **Principas:** M1–9 production; **M10–12 corporate + content freeze**; **M13–15 corporate + learner plain**; M16–18 authoring + TE + plain ✅ · TE Could closed.  
@@ -112,4 +112,4 @@ CI: schema, lint, test, **governance**, MVP + M1–9 + corporate12 + corporate15
 | Marketing handoff     | `DEPLOYMENT.md`, `MON_P0_EXECUTION_PLAN.md`                                                       |
 | Done TODO snapshot    | [`TODO_DONE_SPRINTS_2026-08.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-08.md)           |
 
-**Sinchronas:** open gaps ↔ TODO §1 · **2026-08-13** T09 + hygiene liekana **41** (ROADMAP **v4.25**).
+**Sinchronas:** open gaps ↔ TODO §1 · **2026-08-14** Unreleased visual QA PASS · T09 + hygiene liekana **41** (ROADMAP **v4.25**).

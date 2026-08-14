@@ -4,6 +4,7 @@
 
 ## Pamokos
 
+2026-08-14 | Unreleased visual QA | Du lygiagretūs `vitest run` Windows + Vitest 4 forks – pilnas suite atrodo hung po `ErrorBoundary` stderr, nors izoliuoti failai žali | Vienas `test:run` su `--reporter=dot`; targeted RTL atskirai; closeout ≠ 1.6.3 / re-pin | TEST_REPORT.md 2026-08-14, vitest.config.ts
 2026-08-13 | M10–12 hygiene closeout | 69 findings ≠ 69 turinio skylių; `--write-baseline` prieš I2/I3 būtų užšaldęs `100` trukmę ir `124.5` EN-only hint | I1 dump → I2 linter → I3 copy → I0 baseline; gate = no new fingerprints, ne count→0; liekana **41** | audit-m1012-content-hygiene.mjs, TEST_REPORT.md, m1012-content-hygiene-baseline.json
 2026-08-13 | M10 testerio chrome closeout | CI + `audit:m1012` žali ≠ testerio visual DoD; echo kirpimas 71→70 atrodo kaip regresija | Visual gate = tos pačios 8 būsenos; `--write-baseline` tik tyčia; hygiene **70**, nevaryti į 0; T01 I5 parked | TEST_REPORT.md Wave 7, m1012-content-hygiene-baseline.json, TODO.md §1.3
 2026-08-12 | Unreleased post-pin suite | Pilnas `test:run` Windows + Vitest 4 kartais timeout’ina `App.quiz` / `ToolsPage` / lėtų auditų; izoliuotai žali | Closeout = lint + governance + hygiene gate + izoliuotas flake re-run; ne false-fail Docs Lean | TEST*REPORT 2026-08-12, TODO.md

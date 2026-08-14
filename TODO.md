@@ -2,9 +2,9 @@
 
 **Nuosavybė:** šis repo = **turinys, pedagogika, UI/UX mokymosi patirtyje**, duomenų/authoring kokybė. Marketingas / monetizacija / PostHog / CRO → kitas repo ([`docs/deployment/`](docs/deployment/) handoff).  
 **Tikslas:** Open P0/P1 prioritetai (Docs Lean). Done istorija → [`TODO_DONE_SPRINTS_2026-08.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-08.md) · [`2026-07-31`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-31.md) · [`2026-07-28`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-28.md). SOT indeksas: `docs/DOCUMENTATION_QUICK_REF.md`.  
-**Legenda:** **P0 = mokymosi kokybės blokoriai**, P1 = turinio/authoring kokybė + corporate cut, P2 = polish. MON ≠ P0. **Atnaujinta:** 2026-08-13 (M10 testerio Must T01–T08 + T09 + hygiene liekana **41** ✅ · parent pin **v1.6.2** · live `/anatomy/` verify ⏳).
+**Legenda:** **P0 = mokymosi kokybės blokoriai**, P1 = turinio/authoring kokybė + corporate cut, P2 = polish. MON ≠ P0. **Atnaujinta:** 2026-08-14 (Unreleased visual QA PASS · M10 testerio Must T01–T08 + T09 + hygiene liekana **41** ✅ · parent pin **v1.6.2** · live `/anatomy/` verify ⏳).
 
-**Dabartinis fokusas (šiame repo):** M10 testerio **Must** T01–T08 + T09 + hygiene closeout ✅. Learning P0/P1 **uždaryti**. Open residual (ne P0/P1): T01 I5 parked · Should 2-as pass tik po savininko · M11–M12 laukiama. Infra: TOOL-5 (§1.7) · MON **out of scope** (§1.4) · D3 Deferred (§1.5). Ladder: [`ROADMAP.md`](ROADMAP.md). Pin: GitHub `promptanatomy` = **v1.6.2** / `c35a1f5` (PR #92). Live `/anatomy/` ⏳. Automated: **165/1005**.
+**Dabartinis fokusas (šiame repo):** M10 testerio **Must** T01–T08 + T09 + hygiene closeout ✅. Unreleased visual QA PASS 2026-08-14 (Must-contract). Learning P0/P1 **uždaryti**. Open residual (ne P0/P1): T01 I5 parked · Should 2-as pass tik po savininko · M11–M12 laukiama. Infra: TOOL-5 (§1.7) · MON **out of scope** (§1.4) · D3 Deferred (§1.5). Ladder: [`ROADMAP.md`](ROADMAP.md). Pin: GitHub `promptanatomy` = **v1.6.2** / `c35a1f5` (PR #92). Live `/anatomy/` ⏳. Automated: **168/1033** (tag 1.6.2 = 165/1005).
 
 **Produktiniai sprendimai (santrauka):** gylis > Density CI; M79/M1315 ROI ✅; UJ-MUST ✅; M16–18 authoring+TE+plain ✅; M13 plain+TRIM ✅; M10–12 UI deep + turinio deep ✅ (**freeze gyvam turiniui**, hygiene liekana **41**; nevaryti į 0); katalogas owns next-step; Home retrieval = antrinis.
 

@@ -2,6 +2,55 @@
 
 > **Tikslas:** QA_AGENT priima vartotojo testų klaidas, fiksuoja čia ir įrašo sprendimus į `TODO.md`.
 
+## 2026-08-14 – Unreleased visual QA (Option 2)
+
+**Statusas:** PASS (gates + Must-contract + RTL) · no Must FAIL · no code fix  
+**Apimtis:** T01–T08 + T09 owner-visual ⏳ closeout per Must stulpelį; AppNav freeze; katalogo M3→M4 hinge; prompt Micro. **Ne** P3 / I5 / Should / hygiene→0. Pin **v1.6.2**.
+
+**Metodas:** Phase A gates + Phase B RTL + source Must-contract walk (C1–C5). Pixel @375 / `lg` / `xl` + dark — nėra browser harness šioje sesijoje; CSS/layout kontraktai patikrinti kode + geometrijos testais. CI žalia ≠ screenshot; čia Must stulpelis, ne Should 2-as pass.
+
+| Gate / artefaktas                                                                         | Rezultatas                                                                            |
+| ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `validate:schema` (įsk. `promptLibrary-en.json`)                                          | ✅                                                                                    |
+| `lint`                                                                                    | ✅                                                                                    |
+| `audit:governance`                                                                        | ✅ (core-data `--check` 17 failų · tools 87 · TE 201/201 · titles · accent · footers) |
+| `audit:m1012`                                                                             | ✅                                                                                    |
+| `audit:m1012-content-hygiene:gate`                                                        | ✅ baseline **41** (P2:14 · P1:16 · P0:11 linterio, ne product P0)                    |
+| `test:run`                                                                                | ✅ **168/1033** (1.6.2 freeze buvo 165/1005; Unreleased pridėjo kontraktus)           |
+| Targeted RTL (AppNav · catalogUx · diagramRenderers · slidePhaseConfig · Depth/Readiness) | ✅ 6 failai / 59                                                                      |
+| T03/T05/T08 layout (HumanControl · m10m12Geometry · ThreeA)                               | ✅ 3 failai / 25                                                                      |
+
+### C1–C5 Must checklist
+
+| ID  | Paviršius              | Verdict | Pastaba                                                                                                                                                                                        |
+| --- | ---------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| C1  | AppNav freeze          | PASS    | `max-w-7xl` · `flex-wrap xl:flex-nowrap` · `lg:contents` + dest `basis-full` · `xl:flex` viena eilutė · meter hidden 0% / `module` · nėra `min-w-[8.5rem]` · `--app-nav-height` ResizeObserver |
+| C2  | Katalogo M3→M4 hinge   | PASS    | Strip prieš `base-cycle-2` · `CTAButton` `primary` · title ≠ CTA · „Apie 10 min · M4 neužsirakina“ · be LT „check“ · hide jei M4 / quiz / nėra handler                                         |
+| T01 | `10.45`                | PASS    | Vardas + Lygis N + L\* · brand intensyvumo kopėčia · ta pati hue kortelėse · dual picker **lieka** (I5 parked ≠ FAIL)                                                                          |
+| T02 | `10.255`               | PASS    | Wash + 1–2–3 · rezultatas = silpniausia dim · `Naudojimas`                                                                                                                                     |
+| T03 | `10.26`                | PASS    | Parent wells · `selectedUsesBrand` (selected ≠ severity) · RiskStrip = mapa                                                                                                                    |
+| T04 | `10.48`                | PASS    | `toolChoiceBar.variant: choice` · Tinka/Netinka                                                                                                                                                |
+| T05 | `10.482`               | PASS    | Lane header po bus · AABB clearance · `title.desktop` (geometry suite)                                                                                                                         |
+| T06 | `10.15`                | PASS    | Hero + tipai off-shaft · **internetinis pranešimas** · Shell 3 taktai                                                                                                                          |
+| T07 | `10.35`                | PASS    | 5 lapai · Workato = `orientyras` · Cursor **nėra** šaka                                                                                                                                        |
+| T08 | `10.25`                | PASS    | Echo kirptas · 5 % punch šalia (plotis lieka)                                                                                                                                                  |
+| C4  | T09 `10.65` → `10.655` | PASS    | Vienas `image` per skaidrę (`m10_workflow_spec` / `m10_incident_playbook`) · M12 `123` pointeris → **Kai eiga lūžta** · LT **Paslaugos lygis**                                                 |
+| C5  | Prompt Micro           | PASS    | `after-eval-one-action` šalia Flagship · vienas placeholderis · vienas 24–48 val. klausimas · tas pats kortelės lukštas · LT `tu` / EN American                                                |
+
+**Phase D:** Must FAIL nerasta → kodo nekeista. Hygiene baseline **41** nepalieta.
+
+### Identity memo
+
+- Tag **1.6.2** = corporate12 pin (`c35a1f5`, PR #92).
+- Training HEAD = 1.6.2 + Unreleased (T01–T08 · T09 · hygiene 41 · AppNav · hinge · Micro).
+- `package.json` lieka `"version": "1.6.2"`.
+- Rekomendacija: **palikti Unreleased** — 1.6.3 tik jei marketingas prašo naujo pin target.
+- **Ne** perpininti parent; live `/anatomy/` verify = MON-2 / CAV-B1.
+
+**Liekana (ne šios sesijos kodas):** T01 I5 parked · Should 2-as pass · M11–M12 RAW · owner pixel spot @375/`lg`/`xl` jei nori screenshot DoD.
+
+**Verdict:** Unreleased chrome Must-contract žalias. Ne 1.6.3. Ne re-pin.
+
 ## 2026-08-13 – M10–12 hygiene closeout (69 → 41)
 
 **Statusas:** PASS (gates) · gyvas turinys vis dar FREEZE  
