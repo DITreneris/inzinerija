@@ -79,7 +79,7 @@ Helpers: `diagramLayoutMath.ts` (`buildVerticalColumnOrigin`, `verticalColumnMar
 | Topology uniqueness | BiSchema hybrid, M9 HTML cards, M10 horizontal/snake – tokens only    |
 | Title               | Caption **17/700** (no raw `800`)                                     |
 
-Wired spine: `m7_da_pipeline` (etalon), DataPrep, MediaPipeline, ConsistencyLock, Postprod, TurinioWorkflow. Tokens-only: M10 trigger/spec/incident.
+Wired spine: `m7_da_pipeline` (etalon), DataPrep, MediaPipeline, ConsistencyLock, Postprod, TurinioWorkflow. Tokens-only: M10 spec/incident. **10.15** is the `process-config-hierarchy` sibling etalon (`hierarchyDropGeometry` — not a W8 wave; Pattern stays `linear-process`).
 
 **W2 etalon 1A (2026-07-24):** `M7DaPipelineDiagram` – flat step fills (no box gradient); `BOX_H` 58; desktop 600×440 / compact 340×280; `max-w-3xl`; arrow tip = `arrow.processTipLen` + `refX=0` (do **not** change legacy `arrow.markerLen`); local stepLabel 15 / stepSub 12; shell `stepOfLabel` + enlarge `top-right`.
 

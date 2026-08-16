@@ -1,27 +1,27 @@
 # Integracijos apžvalga: mokymo app kaip subproject (Vercel + marketingo repo)
 
 > **Tikslas:** Išoriniams agentams ir integratoriams – viena vieta suprasti, kas yra šis repo, kur production, kaip integruoti į marketingo monorepo ir ką marketingo pusė turi įgyvendinti.  
-> **Atnaujinta:** 2026-08-06 (corporate12 Supabase cutover kontraktas)
+> **Atnaujinta:** 2026-08-16 (12 live per Supabase; prod build = corporate12)
 
 ---
 
-## Production architektūra (2026-08-06)
+## Production architektūra (2026-08-16)
 
 **Production valdo marketing monorepo:** [DITreneris/promptanatomy](https://github.com/DITreneris/promptanatomy). Mokymų SPA – submodule `apps/prompt-anatomy/` (šis inzinerija repo).
 
-| Kanalas                       | Marketing API                                                               | Training unlock                                                                                                                      |
-| ----------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| **M1–6 (Stripe)**             | `api/success-redirect.js` → magic link `access_tier=3\|6`                   | [`App.tsx`](../../src/App.tsx) → `GET /api/verify-access` → `localStorage.verified_access_tier`                                      |
-| **M7–9 (Supabase)**           | `api/generate-access-link.js` (email → Supabase `user_access` → magic link) | Tas pats verify kelias; `highest_plan` → `access_tier` **9**                                                                         |
-| **M10–12 (Supabase Phase 1)** | Tas pats `generate-access-link` + `highest_plan=12`                         | Po Horizon B cutover: map **12 → `access_tier=12`** (nebe cap 12→9). Žr. [06 memo](../../06_marketingo_memo_corporate12_supabase.md) |
-| **Gate (tier 0)**             | —                                                                           | [`AccessGateScreen`](../../src/components/AccessGateScreen.tsx)                                                                      |
+| Kanalas                       | Marketing API                                                               | Training unlock                                                                                          |
+| ----------------------------- | --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| **M1–6 (Stripe)**             | `api/success-redirect.js` → magic link `access_tier=3\|6`                   | [`App.tsx`](../../src/App.tsx) → `GET /api/verify-access` → `localStorage.verified_access_tier`          |
+| **M7–9 (Supabase)**           | `api/generate-access-link.js` (email → Supabase `user_access` → magic link) | Tas pats verify kelias; `highest_plan` → `access_tier` **9**                                             |
+| **M10–12 (Supabase Phase 1)** | Tas pats `generate-access-link` + `highest_plan=12`                         | **Live:** map **12 → `access_tier=12`**. Žr. [06 memo](../../06_marketingo_memo_corporate12_supabase.md) |
+| **Gate (tier 0)**             | —                                                                           | [`AccessGateScreen`](../../src/components/AccessGateScreen.tsx)                                          |
 
 **Svarbu:** Supabase **neatrakina** training app tiesiogiai. Korporatyviniai klientai: Supabase upsert + vartotojas naudoja „Patikrink prieigą“ / `generate-access-link` → redirect su HMAC token.
 
-**Build prod (šiandien, iki Horizon B cutover):** marketing `scripts/vercel-build.sh` – `VITE_MAX_BUILD_MODULE=9`, `VITE_BASE_PATH=/anatomy/`, be `VITE_MVP_MODE`.  
-**Build po Horizon B cutover:** `build:corporate12` / `VITE_MAX_BUILD_MODULE=12` (M1–12 bundle). Abu sluoksniai (build + `access_tier`) privalomi — žr. memo 06 §2.
+**Build prod (šiandien):** marketing `scripts/vercel-build.sh` – `VITE_MAX_BUILD_MODULE=12`, `build:corporate12`, `VITE_BASE_PATH=/anatomy/`, be `VITE_MVP_MODE`.  
+**M1–9 profilis:** `build:production` / `VITE_MAX_BUILD_MODULE=9` — fallback, ne gyvas kanonas. Abu sluoksniai (build + `access_tier`) privalomi — žr. memo 06 §2.
 
-**Istorinis cap 12→9:** buvo teisingas, kol prod bundle buvo tik M1–9. Po `build:corporate12` cutover generatorius **privalo** siųsti `access_tier=12` kai `highest_plan=12`.
+**Istorinis cap 12→9:** buvo teisingas, kol prod bundle buvo tik M1–9. Dabar generatorius **siunčia** `access_tier=12` kai `highest_plan=12`.
 
 ---
 
@@ -37,11 +37,11 @@ Operacinės užduotys marketing komandai (env, Stripe redirect, smoke test, supp
 | **Submodule pin corporate12**          | [MARKETING_SUBMODULE_PIN_CORPORATE12.md](MARKETING_SUBMODULE_PIN_CORPORATE12.md)               |
 | PostHog                                | [MON-4_POSTHOG_DEPLOY.md](MON-4_POSTHOG_DEPLOY.md)                                             |
 
-TODO ID: MON-1–MON-8 (`TODO.md` §1.4). Horizon B cutover = CAV-B1.
+TODO ID: MON-1–MON-8 (`TODO.md` §1.4). Horizon B / CAV-B1 = **12 live**; MON-2/3 uždaryti.
 
 ## Kas yra šis repo
 
-Šis repozitorijus – **mokymo turinio ir UI šaltinis** (Promptų anatomija): **M1–6** MVP, **production M1–9** (tier 9), **corporate12/15** repo-ready, **full authoring M1–18** (DEV; magic-link ≤15); skaidrės, žodynėlis, įrankiai, apklausa, sertifikatai, PDF atmintinės. Turinys ir duomenys – čia (`src/data/*`, JSON).
+Šis repozitorijus – **mokymo turinio ir UI šaltinis** (Promptų anatomija): **M1–6** MVP (viešas Stripe), **prod bundle M1–12** (`corporate12`, 12 live per Supabase), **corporate15** repo-ready, **full authoring M1–18** (DEV; magic-link ≤15); M7–18 = corporate grant iki 2027-01. Turinys ir duomenys – čia (`src/data/*`, JSON).
 
 **Architektūra A:** full redagavimo SOT lieka `src/data/modules.json`, `glossary.json`, `tools.json`. Jei integracijos build naudoja `VITE_MVP_MODE=1`, runtime persijungia į `*-m1-m6.json` failus, bet tai nėra atskiras authoring modelis.
 
@@ -69,12 +69,12 @@ TODO ID: MON-1–MON-8 (`TODO.md` §1.4). Horizon B cutover = CAV-B1.
 
 ## Kas reikalinga iš šio repo
 
-| Kas                | Aprašymas                                                                                                                                                                                  |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Build output**   | Production (Vercel M1–9): `npm run build:production` → `dist/`. Horizon B: `npm run build:corporate12`. Dev/full SOT: `npm run build`. GitHub Pages demo: `VITE_MVP_MODE=1 npm run build`. |
-| **Base path**      | Env `VITE_BASE_PATH` – kelias, po kurio servinamas app (pvz. `/anatomy/`). **Vite production default:** `/inzinerija/` (GitHub Pages); monorepo build – nustatyti `/anatomy/`.             |
-| **Env lentelė**    | Žr. [DEPLOYMENT.md](DEPLOYMENT.md), [MARKETING_HANDOFF_CHECKLIST.md](MARKETING_HANDOFF_CHECKLIST.md) – `VITE_MAX_BUILD_MODULE=9\|12`, `VITE_VERIFY_ACCESS_URL`.                            |
-| **SEO / crawlers** | App kelias – `noindex`; GEO eksportas – [SEO_SUBMODULE.md](SEO_SUBMODULE.md). Root `robots.txt` / sitemap – marketingo repo.                                                               |
+| Kas                | Aprašymas                                                                                                                                                                                       |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Build output**   | Production (Vercel M1–12): `npm run build:corporate12` → `dist/`. M1–9 fallback: `npm run build:production`. Dev/full SOT: `npm run build`. GitHub Pages demo: `VITE_MVP_MODE=1 npm run build`. |
+| **Base path**      | Env `VITE_BASE_PATH` – kelias, po kurio servinamas app (pvz. `/anatomy/`). **Vite production default:** `/inzinerija/` (GitHub Pages); monorepo build – nustatyti `/anatomy/`.                  |
+| **Env lentelė**    | Žr. [DEPLOYMENT.md](DEPLOYMENT.md), [MARKETING_HANDOFF_CHECKLIST.md](MARKETING_HANDOFF_CHECKLIST.md) – `VITE_MAX_BUILD_MODULE=9\|12`, `VITE_VERIFY_ACCESS_URL`.                                 |
+| **SEO / crawlers** | App kelias – `noindex`; GEO eksportas – [SEO_SUBMODULE.md](SEO_SUBMODULE.md). Root `robots.txt` / sitemap – marketingo repo.                                                                    |
 
 ---
 
@@ -85,7 +85,7 @@ TODO ID: MON-1–MON-8 (`TODO.md` §1.4). Horizon B cutover = CAV-B1.
 | **Servuoti training statiką**              | Po pasirinktu path (pvz. `/anatomy`). SPA fallback: `/anatomy` ir `/anatomy/*` → training `index.html`. Statiniai failai (`assets/*`) – tiesiogiai iš dist. |
 | **Eksponuoti verify-access API**           | `GET /api/verify-access` pagal kontraktą (žr. žemiau). Domain root `/api/verify-access`.                                                                    |
 | **Supabase → magic link (M7–9)**           | `GET /api/generate-access-link?email=...` – tikrina `user_access`, generuoja redirect su HMAC token (`access_tier=9`).                                      |
-| **Supabase → magic link (M10–12 Phase 1)** | Tas pats endpoint; `highest_plan=12` → **`access_tier=12`** po corporate12 build cutover. Stripe Agentų SKU – Phase 2.                                      |
+| **Supabase → magic link (M10–12 Phase 1)** | Tas pats endpoint; `highest_plan=12` → **`access_tier=12`** (**live**). Stripe Agentų SKU – Phase 2.                                                        |
 | **Magic link redirect (Stripe M1–6)**      | Po Stripe checkout: `api/success-redirect.js` → training URL `access_tier=3\|6`.                                                                            |
 
 **Auth ir verify-access atsakomybė – marketingo app.** Šiame repo – tik kontrakto aprašas ir reference kodas.

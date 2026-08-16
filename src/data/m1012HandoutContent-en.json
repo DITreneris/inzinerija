@@ -17,7 +17,7 @@
     "Trigger – what starts the process: form, email, table, file, or manual action.",
     "Action – what the system does: gathers information, prepares a summary, creates a task.",
     "Tool – which tool it uses: search, API, spreadsheet, CRM, Teams, or Slack.",
-    "Human gate – where the human approves, rejects, or asks for a revision.",
+    "Human control – where the human approves, rejects, or asks for a revision.",
     "Log – where the result, error, and lesson for next time are stored."
   ],
   "promptPatterns": [
@@ -26,10 +26,10 @@
     "Evaluator: check facts, risks, tone, and whether the criteria were answered.",
     "Failure rule: if data is missing or a tool fails, write \"Failed\" and state the reason."
   ],
-  "starterPrompt": "META: You are an agent workflow coordinator. Goal – one repeatable process with a human approval gate.\nINPUT: Process: [e.g. customer request summary]. Trigger: [what starts it]. Sources and limits: [allowed / denied].\nOUTPUT: (1) 5-step flow (trigger → action → tool → human gate → log), (2) 3 role prompts (coordinator, specialist, evaluator), (3) one \"Failed\" case.\nQUALITY: If data is missing or a tool fails – stop and ask a human. Do not guess.",
+  "starterPrompt": "META: You are an agent workflow coordinator. Goal – one repeatable process with human control.\nINPUT: Process: [e.g. customer request summary]. Trigger: [what starts it]. Sources and limits: [allowed / denied].\nOUTPUT: (1) 5-step flow (trigger → action → tool → human control → log), (2) 3 role prompts (coordinator, specialist, evaluator), (3) one \"Failed\" case.\nQUALITY: If data is missing or a tool fails – stop and ask a human. Do not guess.",
   "reflectionSummary": "Within 24–48 hours, choose one process and run a small agent chain: coordinator → specialist → evaluator. Record one lesson and update the prompt.",
   "nextPageHeading": "What to do within 48 hours",
-  "nextPageIntro": "The Agent path is complete when you have one repeatable process: a diagram, prompts, a test case, and a clear human approval point.",
+  "nextPageIntro": "The Agent path is complete when you have one repeatable process: a diagram, prompts, a test case, and clear human control.",
   "primaryCtaLabel": "Agent orchestrator operating model (blog)",
   "secondaryCtaLabels": {
     "decide": "Decide your next step (Decide)",

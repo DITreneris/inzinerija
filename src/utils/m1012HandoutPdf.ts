@@ -111,7 +111,7 @@ async function buildM1012HandoutPdf(
 
   y = addPromptBlock(
     ctx,
-    isEn ? '5. Starter prompt' : '5. Starter promptas',
+    isEn ? '5. Starter prompt' : '5. Pradinis promptas',
     content.starterPrompt,
     y
   );

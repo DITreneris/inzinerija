@@ -6,32 +6,33 @@ Visi reikšmingi pakeitimai šiame projekte dokumentuojami šiame faile.
 
 ### Kaip naršyti šį failą
 
-Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda skiltyje **[Unreleased]**; toliau eina **pažymėti leidimai** nuo naujausių (**[1.6.2]**, **[1.6.1]**, **[1.6.0]**, **[1.5.0]**, **[1.4.9]** …). **Failo pabaigoje** paliktas ankstesnis **2.x** ir **1.0.0** žymėjimas – tai istorinis sluoksnis iš ankstesnės kūrimo fazės (prieš dabartinę **1.x** produkcijos liniją; žr. poskyrį _Ankstesnis versijų žymėjimas (2.x ir 1.0.0)_).
+Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda skiltyje **[Unreleased]**; toliau eina **pažymėti leidimai** nuo naujausių (**[1.6.3]**, **[1.6.2]**, **[1.6.1]**, **[1.6.0]**, **[1.5.0]**, **[1.4.9]** …). **Failo pabaigoje** paliktas ankstesnis **2.x** ir **1.0.0** žymėjimas – tai istorinis sluoksnis iš ankstesnės kūrimo fazės (prieš dabartinę **1.x** produkcijos liniją; žr. poskyrį _Ankstesnis versijų žymėjimas (2.x ir 1.0.0)_).
 
 **Greita paieška:** redaktoriuje ieškokite `## [` – atsiras visos versijų antraštės.
 
 ### Versijų antraštės (turinio medis)
 
-| Skiltis                     | Ką rasite                                                                                                                                                                             |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **[Unreleased]**            | T01–T08 + T09 Must; hygiene liekana **41**; katalogo hinge; AppNav freeze; promptų Micro; visual QA PASS; tests **168/1033**; pin **v1.6.2**.                                         |
-| **[1.6.2] – 2026-08-13**    | M10–12 content freeze; katalogo UX + CATALOG-HOME; SCHEME-CENTRAL W1 governance CI; Docs Lean; tests **165/1005**; corporate12 pin **v1.6.2**.                                        |
-| **[1.6.1] – 2026-08-12**    | Node.js 24 runtime bump; CI matrica 22.x / 24.x; ESLint 9 flat config; Vite 7 + Vitest 4; advisory sweep 27 → **0**; corporate12 cutover pin target **v1.6.1**.                       |
-| **[1.6.0] – 2026-08-11**    | M10–12 deep audit remediation; kalbos konvencijų vartai (LT `tu` / EN American, GOLDEN §6c); M13–18 learner plain; TE Must/Should + C2; corporate15 / tier 15; preflight **161/982**. |
-| **[1.5.0] – 2026-07-28**    | Corporate12 + tier 12 + M13 I2V; preflight **133/841**.                                                                                                                               |
-| **[1.4.9] – 2026-07-27**    | Learning QA closeout, PC-4, type gap fix, preflight **130/825**.                                                                                                                      |
-| **[1.4.8] – 2026-07-26**    | M9 quest redesign, M7 embeds, prompt maturity, tools/glossary, preflight.                                                                                                             |
-| **[1.4.7] – 2026-07-24**    | TE registry, Path Test Shell, practice closer, preflight fixes.                                                                                                                       |
-| **[1.4.6] – 2026-07-20**    | M79-31 6 keliai SOT, M10–12 Agent path, Lygis C, DS/accent gates.                                                                                                                     |
-| **[1.4.5] – 2026-07-15**    | M7–M9 P2 polish, M4 portal 2.1, preflight gates green, tag release.                                                                                                                   |
-| **[1.4.4] – 2026-07-09**    | P2 PDF/sertifikatai, DS W7–W10, cross-repo pre-launch docs ir vartai.                                                                                                                 |
-| **[1.4.3] – 2026-07-07**    | UX Banga 1, M13–15 EN overlay, M7–M12 consistency, audit gates.                                                                                                                       |
-| **[1.4.2] – 2026-07-01**    | DiagramKit M1–9, design tokens, M7–9 EN sweep, startup stabilumas.                                                                                                                    |
-| **[1.4.1] – 2026-06-30**    | M1–9 audit gates, LT/EN fixes, diagram i18n, M7–9 data sync (patch).                                                                                                                  |
-| **[1.4.0] – 2026-06-30**    | Tier 9, production M1–9, M10–12 authoring, ecosystem M7–12, CONV funnel.                                                                                                              |
-| **[1.3.0] – 2026-03-16**    | Production release: deploy, mokėjimai, pirmas pirkimas.                                                                                                                               |
-| **[1.2.0] – 2026-02-11**    | Ankstesnis pažymėtas leidinys (V1.2).                                                                                                                                                 |
-| **Ankstesnis 2.x ir 1.0.0** | Archyvas failo pabaigoje.                                                                                                                                                             |
+| Skiltis                     | Ką rasite                                                                                                                                                                                  |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **[Unreleased]**            | Po 1.6.3.                                                                                                                                                                                  |
+| **[1.6.3] – 2026-08-16**    | Testerio Must T01–T08 + T09; M11 chrome + item quality; sertifikatai/PDF; M11/M12 walked; 12 live; hygiene **41**; tests **171/1056**; training cut. Live pin kol neperpinsi = **v1.6.2**. |
+| **[1.6.2] – 2026-08-13**    | M10–12 content freeze; katalogo UX + CATALOG-HOME; SCHEME-CENTRAL W1 governance CI; Docs Lean; tests **165/1005**; corporate12 pin **v1.6.2**.                                             |
+| **[1.6.1] – 2026-08-12**    | Node.js 24 runtime bump; CI matrica 22.x / 24.x; ESLint 9 flat config; Vite 7 + Vitest 4; advisory sweep 27 → **0**; corporate12 cutover pin target **v1.6.1**.                            |
+| **[1.6.0] – 2026-08-11**    | M10–12 deep audit remediation; kalbos konvencijų vartai (LT `tu` / EN American, GOLDEN §6c); M13–18 learner plain; TE Must/Should + C2; corporate15 / tier 15; preflight **161/982**.      |
+| **[1.5.0] – 2026-07-28**    | Corporate12 + tier 12 + M13 I2V; preflight **133/841**.                                                                                                                                    |
+| **[1.4.9] – 2026-07-27**    | Learning QA closeout, PC-4, type gap fix, preflight **130/825**.                                                                                                                           |
+| **[1.4.8] – 2026-07-26**    | M9 quest redesign, M7 embeds, prompt maturity, tools/glossary, preflight.                                                                                                                  |
+| **[1.4.7] – 2026-07-24**    | TE registry, Path Test Shell, practice closer, preflight fixes.                                                                                                                            |
+| **[1.4.6] – 2026-07-20**    | M79-31 6 keliai SOT, M10–12 Agent path, Lygis C, DS/accent gates.                                                                                                                          |
+| **[1.4.5] – 2026-07-15**    | M7–M9 P2 polish, M4 portal 2.1, preflight gates green, tag release.                                                                                                                        |
+| **[1.4.4] – 2026-07-09**    | P2 PDF/sertifikatai, DS W7–W10, cross-repo pre-launch docs ir vartai.                                                                                                                      |
+| **[1.4.3] – 2026-07-07**    | UX Banga 1, M13–15 EN overlay, M7–M12 consistency, audit gates.                                                                                                                            |
+| **[1.4.2] – 2026-07-01**    | DiagramKit M1–9, design tokens, M7–9 EN sweep, startup stabilumas.                                                                                                                         |
+| **[1.4.1] – 2026-06-30**    | M1–9 audit gates, LT/EN fixes, diagram i18n, M7–9 data sync (patch).                                                                                                                       |
+| **[1.4.0] – 2026-06-30**    | Tier 9, production M1–9, M10–12 authoring, ecosystem M7–12, CONV funnel.                                                                                                                   |
+| **[1.3.0] – 2026-03-16**    | Production release: deploy, mokėjimai, pirmas pirkimas.                                                                                                                                    |
+| **[1.2.0] – 2026-02-11**    | Ankstesnis pažymėtas leidinys (V1.2).                                                                                                                                                      |
+| **Ankstesnis 2.x ir 1.0.0** | Archyvas failo pabaigoje.                                                                                                                                                                  |
 
 ---
 
@@ -41,19 +42,33 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 - **Moduliai 1–6:** Pilnai (teorija, testas, praktika, pažangus). Duomenys + EN merge.
 - **Moduliai 7–9:** Korporatyvinis kelias (Duomenų analizės kelias); production bundle per `npm run build:production` (`VITE_MAX_BUILD_MODULE=9`); **EN overlay** `modules-en-m7-m9.json` (branduolys + šakos + M8 testas + M9 scenarijai).
-- **Moduliai 10–12:** Agentų kelias; corporate cut `build:corporate12` (`*-m1-m12.json`); EN overlay `modules-en-m10-m12.json`; P2 artefaktai – `m1012` atmintinė ir tier 4 sertifikatas. Default Vercel pin vis dar M1–9.
+- **Moduliai 10–12:** Agentų kelias; corporate cut `build:corporate12` (`*-m1-m12.json`); EN overlay `modules-en-m10-m12.json`; P2 artefaktai – `m1012` atmintinė ir tier 4 sertifikatas. Prod bundle **M1–12**; **12 live per Supabase**.
 - **Moduliai 13–15:** Turinio inžinerijos kelias; corporate cut `build:corporate15` (`*-m1-m15.json`); EN overlay `modules-en-m13-m15.json`; P2 artefaktai – `m1315` atmintinė ir tier 5 sertifikatas.
 - **LT/EN (i18n):** Pilnas UI; turinys M1–M15 per loader merge; 20 namespace (`lt.json` top-level); schemos/diagramos lokalizuoti.
 - **Sertifikatai, PDF atmintinės (M1/M4/M5/M6/M7–9/M10–12/M13–15), žodynėlis, apklausa, įrankiai, progresas:** Įgyvendinta. **Access tier** 3 / 6 / 9 / **12** / **15** (magic link); sertifikatai tier 1–5, įskaitant tier 4 po M10–12 + M11 ≥ 70 % ir tier 5 po M13–15 + M14 ≥ 70 %.
 - **Ekosistema M7–12:** `ECOSYSTEM_MAP.md`, blog deepen, spinoff analytics.
-- **Testai:** training HEAD **168** failai / **1033** testai (2026-08-14 Unreleased visual QA). Tag **1.6.2** freeze buvo **165/1005**. Validacija: prebuild schema (+ `audit:tools`); release gate `npm run audit:release-preflight` (incl. `audit:m1618`, `audit:en-spelling`, `audit:lt-address`, `audit:m1012-content-hygiene:gate`); `audit:governance` CI; M10–12 `audit:m1012`; M13–15 `audit:m1315`; M9 journey `validate:journey-m9`.
-- **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis ([DITreneris/promptanatomy](https://github.com/DITreneris/promptanatomy)); release **1.6.2** = corporate12 cutover pin target (+ corporate15 repo-ready); learning pin **v1.4.9** iki marketing cutover. Stripe M1–6 + Supabase→magic link M7–9; Horizon B handoff: [`06_marketingo_memo_corporate12_supabase.md`](06_marketingo_memo_corporate12_supabase.md), [`MARKETING_SUBMODULE_PIN_CORPORATE12.md`](docs/deployment/MARKETING_SUBMODULE_PIN_CORPORATE12.md); tier 9: [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md); vykdymas: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md), [`MARKETING_SUBMODULE_PIN_1.4.4.md`](docs/deployment/MARKETING_SUBMODULE_PIN_1.4.4.md).
+- **Testai:** training **1.6.3** = **171** failai / **1056** testai (2026-08-16 preflight). Tag **1.6.2** freeze buvo **165/1005**. Validacija: prebuild schema (+ `audit:tools`); release gate `npm run audit:release-preflight` (incl. `audit:m1618`, `audit:en-spelling`, `audit:lt-address`, `audit:m1012-content-hygiene:gate`); `audit:governance` CI; M10–12 `audit:m1012`; M13–15 `audit:m1315`; M9 journey `validate:journey-m9`.
+- **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis ([DITreneris/promptanatomy](https://github.com/DITreneris/promptanatomy)); training cut **1.6.3**; live pin kol neperpinsi = **v1.6.2**; **12 live per Supabase**. Viešas Stripe = M1–6; M7–18 = corporate grant iki 2027-01. `v1.4.9` = istorinis learning freeze. Handoff: [`06_marketingo_memo_corporate12_supabase.md`](06_marketingo_memo_corporate12_supabase.md), [`MARKETING_SUBMODULE_PIN_CORPORATE12.md`](docs/deployment/MARKETING_SUBMODULE_PIN_CORPORATE12.md); `MON_P0_EXECUTION_PLAN.md` superseded.
 
 ---
 
 ## [Unreleased]
 
 ### Fixed
+
+### Added
+
+### Changed
+
+---
+
+## [1.6.3] – 2026-08-16
+
+_Testerio Must + M11 items + sertifikatai/PDF + walk close. Training cut **v1.6.3**. Tests **171/1056**. Live pin kol neperpinsi = **v1.6.2**._
+
+### Fixed
+
+- **M11 Path Test chrome + EN q6 (2026-08-16):** `WarmUpQuizSlide` paskutinis CTA kvietė `common.finish`, kurio nebuvo — LT rodė raktą `finish`. Pridėtas `common.finish` (Baigti / Finish); savitikros done-state ir `warmUpQuestionInfo` per `contentSlides` (ne „įskaita neįskaitoma“ / ne „testas neįskaitomas“). EN `m11-q6` scenarioContext dublikatas kirptas `build-en-m10-m12.mjs` + rebuild. Shared visiems `warm-up-quiz`. RTL `WarmUpQuizSlide` 3. Ne `generate:core-data` / ne 1.6.3.
 
 - **CI typecheck `m1012-hygiene-parity.mjs` (2026-08-13):** `m1012HygieneParity.test.ts` importavo `scripts/lib` be deklaracijos — `quality-gates` `tsc` exit 2. Tipai į `src/test/scripts-lib.d.ts` (tas pats šablonas kaip EN/LT gate `.mjs`).
 
@@ -64,6 +79,30 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 - **Promptų biblioteka 6 skirsnis – Micro po vertinimo (2026-08-13):** antras item’as `after-eval-one-action` šalia Flagship 5 principų vertintojo (`prompt-quality-5`). Vienas placeholderis, vienas klausimas (ką pataisyti ir paleisti darbe per 24–48 val.); nebekartoja lentelės ir perrašymo. LT+EN; tas pats kortelės lukštas. `validate:schema` dabar tikrina ir `promptLibrary-en.json`.
 
 ### Changed
+
+- **M11 / M12 owner walk close (2026-08-16):** **M11 walked, no RAW** · **M12 walked, no RAW**. Intake + TODO §1.3 walk eilutės uždarytos.
+
+- **Sertifikatų kompetencijos (2026-08-16):** 5 tier `programName` – teminės _Išmoko…_ eilutės (ne _Geba_; T2 kontekstas, T4 eiga/įrankiai/kontrolė, T5 + tekstas). `completionLine` / footer neliesti. LT + EN.
+
+- **Žmogaus kontrolė be „varto“ (2026-08-16):** gyvuose M10–12 tekstuose `žmogaus vartas` / `human gate` → **žmogaus kontrolė** / **human control** (žodynas HITL). Agentų kelio atmintinė: Paleidiklis / Veiksmas / Įrankis / Žmogaus kontrolė / Audito žurnalas. LT + EN build + core profiliai. Neliečia kokybės / paleidimo / CI vartų.
+
+- **Sertifikatų veidas opcija B (2026-08-16):** visų 5 tier PDF copy – oficialus kelio vardas + 1 kompetencijos eilutė; nuimti moduliai / ≥ 70 % / projektas nuo veido. Bendras footer be „promptų struktūros mokymas“. Schema `completionLine` ≤70 / `programName` ≤55. LT + EN (`certificateContent*.json`, ne `build-en-*`).
+
+- **M11 Path Test item quality (2026-08-16):** `111` q8 raktas = žmogaus patvirtinimas prieš siuntimą (`correct: 3`); išimtys lieka [0] kaip tikėtinas klaidingas. q6 = nuosekli grandinė be RFP (`correct: 1`). q1/q3/q7 distractoriai plausible-but-wrong (M10, ne absurdas). q4 / 10.6 neliesti. LT + `build:modules-en-m10-m12` + `generate:core-data`. SOT §7.2 sulygiuotas (q5 @ 10.64).
+
+- **Home hero CTA zona (2026-08-16):** returning-user apačia = progresas (`N iš T modulių baigta`, be nav `%`) + centruota grupė: gold `Tęsti` ir text-button `Pakartoti M{{n}} · 5 min.` (`home:recallCta`, 44 px, `px-3`). Ne `RetrievalDueCard`, ne katalogo `nextStepRecallCta`.
+
+- **M10 pritaikymo katalogas 12→4 (2026-08-16):** savininko batch. Keturi procesai (pardavimai / personalas / finansai / aptarnavimas) pirmą kartą mokomi `10.15` „Kur pritaikyti“ su etiketėmis Rizika / Rodiklis; `10.8` tik recap (ne „12 pritaikymo pavyzdžių“); hero stat = 1 eigos aprašymas. 10.1 nebevadina santraukos neprivaloma. Likę 8 – SOT ref, ne gyvas UI. LT + EN build. Be naujos skaidrės / Pattern / diagramos.
+
+- **M10 10.15 hierarchy stem (2026-08-16):** belongs-to kotas 2.5 `flow` (ne amber × 0.72 siūlas); „Paleidiklio tipas“ kairėje nuo ašies; T-lentyna virš tipų, be process antgalio. Amber tik pasirinktam chip. Be `modules.json`.
+
+- **M12 120.5 restore fork-in-pipe (2026-08-16):** grąžinta HEAD šakė vamzdyje (A virš / B po, tas pats x) + in-place scale (VB 1024×400, h 72, linear gap ≥32); veiksmažodžiai off-shaft su fonu, vienas takte. 2 eilių stalas / unknot koridoriai atšaukti. Title-only ir Trumpai palikti. Be `generate:core-data`.
+
+- **M10 10.35 tree readability v02 (2026-08-16):** kriterijai `edgeLabel` 12 px virš juostos (ne ant koto); dim tik unselected drop’ams (`TREE_DIM` 0.72); lapai be group-ghost ir be `#ffffff`; Workato solid + „orientyras“ (ne dashed); vienas trunk+bus, selected drop paskutinis; mobile `scroll` @ 800. Layout SOT `m10ToolDecisionTreeLayout.ts`. Be `modules.json`.
+
+- **M10 10.15 process-config-hierarchy etalonas (2026-08-16):** Kit sibling (ne W8): `hierarchyDropGeometry` – horizontalu + antgalis = srautas, vertikalu be antgalio = priklauso. Tipų juosta gyva tik Paleidiklio takte (lokalus orphan kituose). Amber = pasirinktas tipas (default Pranešimas). Paaiškinimas takte 0 += **Pasirinktas tipas** + HTML radiogroup (ne ChoiceControl). Dedicated Block; factory neliečiamas. Shell 3 taktai. Be `modules.json`.
+
+- **Owner status sync (2026-08-16):** **12 live per Supabase**; M7–18 = corporate grant iki 2027-01 (ne produkto skola). Pin **v1.6.2** / `c35a1f5`. `v1.4.9` nebe current pin. MON-2/3 `[x]`; MON-8 superseded; CAV-B1 `[x]`. Optional SPA chrome fingerprint ≠ cutover blokas. `MON_P0_EXECUTION_PLAN` superseded. Ne 1.6.3 / ne re-pin.
 
 - **Unreleased visual QA + docs metric sync (2026-08-14):** Must-contract PASS (T01–T08 · T09 · AppNav · hinge · Micro). Training HEAD tests **168/1033** (tag 1.6.2 lieka **165/1005**). Pin **v1.6.2**; ne 1.6.3 / ne re-pin. Žurnalas: `TEST_REPORT` 2026-08-14.
 

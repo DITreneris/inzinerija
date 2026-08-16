@@ -1,13 +1,13 @@
 # Promptų anatomija – Plėtros roadmap
 
-> **Atnaujinta:** 2026-08-14 | Roadmap **v4.25** (T01–T08 + T09 Must ✅ · hygiene liekana **41** · Docs Lean · CATALOG-HOME ✅ · release **1.6.2** · Unreleased visual QA PASS 2026-08-14)  
-> **App:** 1.6.2 (tag = corporate12 pin) · **Training HEAD:** 1.6.2 + T01–T08 + T09 + hygiene closeout + katalogo hinge + AppNav freeze + promptų Micro. **Ne** retag 1.6.1. **Ne** automatinis re-pin.  
+> **Atnaujinta:** 2026-08-16 | Roadmap **v4.27** (12 live per Supabase · M7–18 corporate iki 2027-01 · training **v1.6.3** · live pin **v1.6.2** kol neperpinsi · T01–T08 + T09 Must ✅ · hygiene **41**)  
+> **App live:** 1.6.2 (pin) · **Training cut:** **1.6.3**. **Ne** retag 1.6.1.  
 > **Done santrauka:** [`CODEBASE_WHAT_IS_DONE.md`](docs/development/CODEBASE_WHAT_IS_DONE.md) · [`CHANGELOG.md`](CHANGELOG.md) · archive [`TODO_DONE_SPRINTS_2026-08.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-08.md)  
-> **Open darbai:** [`TODO.md`](TODO.md) T01 I5 parked · Should 2-as pass · M11–M12 testerio eilutės · §1.4 MON · §1.5 Deferred (D3) · §1.7 TOOL-5 · §1.6 Caveats B1/B2. Learning P0/P1 **nėra**. Unreleased visual QA PASS 2026-08-14 (Must-contract; palikti Unreleased).
+> **Open darbai:** [`TODO.md`](TODO.md) T01 I5 parked · Should 2-as pass · §1.4 MON (1/4/5/7/CRO) · §1.5 Deferred (D3) · §1.7 TOOL-5 · §1.6 Caveats B2. Learning P0/P1 **nėra**.
 
 **Nuosavybė:** šis repo = turinio / pedagogikos / UI kokybės OS. Marketingas (env, PostHog, CRO) → kitas repo.  
 **Principas:** M1–9 production; **M10–12 corporate + content freeze**; **M13–15 corporate + learner plain**; M16–18 authoring + TE + plain ✅ · TE Could closed.  
-**Production:** RC **1.6.2** = corporate12 cutover pin (+ corporate15 repo-ready); learning pin **v1.4.9** until marketing cutover; default `build:production` = M1–9.
+**Production:** Training cut **1.6.3**; live pin kol neperpinsi = **v1.6.2**. **12 live per Supabase**. Viešas Stripe = M1–6. M7–18 = corporate grant iki **2027-01**. `build:corporate12` = gyvas kanonas (M1–12); `build:production` = M1–9 **profilis**, ne live. `v1.4.9` = istorinis learning freeze, ne current pin.
 
 ---
 
@@ -69,15 +69,15 @@ PDF M5/M6 rankinė · broken links · mobile 375px · docs index nuorodos.
 
 ## 4. Deploy
 
-| Scenarijus               | Env                                              | Rezultatas          |
-| ------------------------ | ------------------------------------------------ | ------------------- |
-| GitHub Pages preview     | `VITE_MVP_MODE=1`                                | M1–6 `/inzinerija/` |
-| Vercel production (now)  | `build:production` / `VITE_MAX_BUILD_MODULE=9`   | M1–9 `/anatomy/`    |
-| **Corporate12 (ready)**  | `VITE_MAX_BUILD_MODULE=12` (`build:corporate12`) | M1–12               |
-| **Corporate15 (ready)**  | `VITE_MAX_BUILD_MODULE=15` (`build:corporate15`) | M1–15               |
-| Authoring / local full   | default `modules.json`                           | M1–18               |
-| Magic link (**tier 12**) | repo ✅; marketing cutover pin **v1.6.2**        |                     |
-| Magic link (**tier 15**) | repo ✅; marketing cutover                       |                     |
+| Scenarijus                   | Env                                              | Rezultatas          |
+| ---------------------------- | ------------------------------------------------ | ------------------- |
+| GitHub Pages preview         | `VITE_MVP_MODE=1`                                | M1–6 `/inzinerija/` |
+| M1–9 profilis (fallback)     | `build:production` / `VITE_MAX_BUILD_MODULE=9`   | M1–9                |
+| **Vercel production (now)**  | `VITE_MAX_BUILD_MODULE=12` (`build:corporate12`) | M1–12 `/anatomy/`   |
+| **Corporate15 (repo-ready)** | `VITE_MAX_BUILD_MODULE=15` (`build:corporate15`) | M1–15               |
+| Authoring / local full       | default `modules.json`                           | M1–18               |
+| Magic link (**tier 12**)     | **live** per Supabase; pin **v1.6.2**            |                     |
+| Magic link (**tier 15**)     | repo ✅; corporate grant / later cutover         |                     |
 
 CI: schema, lint, test, **governance**, MVP + M1–9 + corporate12 + corporate15 build.
 
@@ -93,7 +93,7 @@ CI: schema, lint, test, **governance**, MVP + M1–9 + corporate12 + corporate15
 | Tier 12/15 cutover checklist | [`MARKETING_HANDOFF_CHECKLIST.md`](docs/deployment/MARKETING_HANDOFF_CHECKLIST.md) |
 | Ticketų statusai             | [`TODO.md`](TODO.md) §1.4                                                          |
 
-**Pin:** GitHub `promptanatomy` = **v1.6.2** / `c35a1f5` (PR #92). Live `/anatomy/` 1.6.2 ⏳. Later Unreleased ≠ automatinis re-pin.
+**Pin:** GitHub `promptanatomy` = **v1.6.2** / `c35a1f5` (PR #92). **12 live per Supabase.** Later Unreleased ≠ automatinis re-pin.
 
 ---
 
@@ -112,4 +112,4 @@ CI: schema, lint, test, **governance**, MVP + M1–9 + corporate12 + corporate15
 | Marketing handoff     | `DEPLOYMENT.md`, `MON_P0_EXECUTION_PLAN.md`                                                       |
 | Done TODO snapshot    | [`TODO_DONE_SPRINTS_2026-08.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-08.md)           |
 
-**Sinchronas:** open gaps ↔ TODO §1 · **2026-08-14** Unreleased visual QA PASS · T09 + hygiene liekana **41** (ROADMAP **v4.25**).
+**Sinchronas:** open gaps ↔ TODO §1 · **2026-08-16** 12 live per Supabase · M7–18 corporate iki 2027-01 · T09 + hygiene liekana **41** (ROADMAP **v4.26**).

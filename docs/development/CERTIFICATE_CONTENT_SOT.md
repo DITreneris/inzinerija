@@ -1,7 +1,20 @@
 # Sertifikatų turinio SOT
 
-> **Runtime / redagavimo tiesa:** [`src/data/certificateContent.json`](../../src/data/certificateContent.json).  
+> **Runtime / redagavimo tiesa:** [`src/data/certificateContent.json`](../../src/data/certificateContent.json) (LT) ir [`src/data/certificateContent-en.json`](../../src/data/certificateContent-en.json) (EN, tiesioginis — ne `build-en-*`).  
 > Šis failas – trumpas indeksas agentams (GOLDEN §3.7). Tekstų keitimai – per JSON; po to – PDF smoke (RELEASE_QA).
+
+## Veidas vs eligibility
+
+PDF veidas (opcija B): oficialus kelio vardas + **viena** kompetencijos eilutė.
+
+Ant veido **nėra** modulių numerių, _≥ 70 %_, baigiamojo / finalinio projekto. Tie kriterijai lieka `certificateEligibility.ts` ir unlock kortelėse (`lt.json` / `en.json`).
+
+| Laukas           | Veide    | Prasmė                                                       |
+| ---------------- | -------- | ------------------------------------------------------------ |
+| `completionLine` | Taip     | _sėkmingai baigė_ + kelio vardas (LT galininkas). ≤ 70 simb. |
+| `programName`    | Taip     | Kompetencija (_Išmoko…_). ≤ 55 simb.                         |
+| `label`          | Ne (PDF) | Nominatyvas katalogui                                        |
+| `footerText`     | Taip     | Bendras issuer, be „promptų struktūros mokymas“              |
 
 ## Bendri root laukai
 
@@ -22,10 +35,10 @@
 | 4    | Agentų kelias               | Po M10–12 + M11 ≥70%                           |
 | 5    | Turinio inžinerijos kelias  | Po M13–15 + M14 ≥70%                           |
 
-Tikslūs `introLine` / `completionLine` / `programName` / `footerText` – **tik** `certificateContent.json`.
+Tikslūs `introLine` / `completionLine` / `programName` / `footerText` – **tik** `certificateContent.json` / `-en.json`.
 
 ## Related
 
 - GOLDEN_STANDARD §3.7
-- `src/utils/certificateEligibility.ts` (jei egzistuoja) / ModuleCompleteScreen
+- `src/utils/certificateEligibility.ts` / ModuleCompleteScreen
 - Practice closer’iai: [`PRACTICE_CLOSER_PLAN.md`](PRACTICE_CLOSER_PLAN.md)

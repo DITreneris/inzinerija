@@ -1,4 +1,8 @@
-import { pillIntersectsStroke, pillRectFromCenter } from '../diagramLayoutMath';
+import {
+  pillIntersectsStroke,
+  pillRectFromCenter,
+  rectsAabbIntersect,
+} from '../diagramLayoutMath';
 import { DIAGRAM_TOKENS } from '../diagramTokens';
 import { getM10OrchestratorLabels } from '../m10OrchestratorContent';
 import {
@@ -46,18 +50,34 @@ import {
 import { getM12MultiAgentSchemaLabels } from '../m12MultiAgentSchemaContent';
 import {
   getM12BoxMap,
+  getM12DesktopFanStrokes,
+  getM12DesktopSpineStrokes,
+  getM12DesktopVerbPills,
   getM12EdgeOpacity,
   getM12FaninGeometry,
   getM12FanoutGeometry,
   getM12FeedbackLabelPos,
+  getM12FeedbackTroughYDesktop,
+  getM12MultiAgentCompactBoxes,
   getM12MultiAgentDesktopBoxes,
   getM12NodeOpacity,
+  getM12SpineVerbY,
+  M12_LINEAR_GAP_MIN,
   M12_MAP_EDGE_OPACITY,
+  M12_MIN_BOX_W,
+  M12_MULTI_AGENT_BOX_H,
+  M12_MULTI_AGENT_EDGES_DESKTOP,
   M12_MULTI_AGENT_MARKER_LEN,
   M12_MULTI_AGENT_STEP_COUNT,
   M12_MULTI_AGENT_STEP_NODE_IDS,
+  M12_MULTI_AGENT_VIEWBOX,
   M12_ORPHAN_OPACITY,
-  m12PillAabb,
+  m12BoxAsRect,
+  m12CompactBoxesFitViewBox,
+  m12DesktopBoxesFitViewBox,
+  m12FaninCollectBetweenForkAndEval,
+  m12ForkInPipe,
+  m12LinearSpineMinGap,
   m12PillsOverlap,
   m12SpineCenterYAligned,
   shouldShowM12EdgeLabel,
@@ -569,23 +589,78 @@ describe('m12 multi-agent brother (W7 layout polish)', () => {
     expect(M12_ORPHAN_OPACITY).toBeLessThan(DIAGRAM_TOKENS.opacity.inactive);
   });
 
+  it('keeps desktop fork-in-pipe floors inside max-w-5xl', () => {
+    expect(M12_MULTI_AGENT_VIEWBOX.desktop.width).toBeLessThanOrEqual(1024);
+    expect(M12_MULTI_AGENT_VIEWBOX.desktop.height).toBe(400);
+    expect(M12_MULTI_AGENT_BOX_H).toBeGreaterThanOrEqual(68);
+    expect(M12_MIN_BOX_W).toBeGreaterThanOrEqual(124);
+    const labels = getM12MultiAgentSchemaLabels('lt');
+    const list = getM12MultiAgentDesktopBoxes(labels);
+    const boxes = getM12BoxMap(list);
+    expect(m12DesktopBoxesFitViewBox(list)).toBe(true);
+    expect(m12SpineCenterYAligned(boxes)).toBe(true);
+    expect(m12ForkInPipe(boxes)).toBe(true);
+    expect(m12LinearSpineMinGap(boxes, M12_LINEAR_GAP_MIN)).toBe(true);
+    list.forEach((box) => {
+      expect(box.w).toBeGreaterThanOrEqual(M12_MIN_BOX_W);
+      expect(box.h).toBeGreaterThanOrEqual(68);
+    });
+  });
+
+  it('keeps A/B in one fork column and fan-in collect between A and Eval', () => {
+    const labels = getM12MultiAgentSchemaLabels('lt');
+    const boxes = getM12BoxMap(getM12MultiAgentDesktopBoxes(labels));
+    const fanin = getM12FaninGeometry(
+      boxes,
+      undefined,
+      labels.edgeVerbs.handsOff
+    );
+    expect(fanin).not.toBeNull();
+    expect(m12ForkInPipe(boxes)).toBe(true);
+    expect(m12FaninCollectBetweenForkAndEval(fanin!, boxes)).toBe(true);
+    expect(fanin!.collectX).toBeGreaterThan(
+      boxes.specialistA.x + boxes.specialistA.w
+    );
+    expect(fanin!.collectX).toBeLessThan(boxes.evaluator.x);
+    const specA = M12_MULTI_AGENT_EDGES_DESKTOP.find(
+      (e) => e.id === 'specialistA-evaluator'
+    );
+    const specB = M12_MULTI_AGENT_EDGES_DESKTOP.find(
+      (e) => e.id === 'specialistB-evaluator'
+    );
+    expect(specA?.fromAnchor).toBe('right');
+    expect(specA?.toAnchor).toBe('left');
+    expect(specB?.fromAnchor).toBe('right');
+    expect(specB?.toAnchor).toBe('left');
+  });
+
   it('aligns spine cy and builds orthogonal fan-out / fan-in', () => {
     const labels = getM12MultiAgentSchemaLabels('lt');
     const boxes = getM12BoxMap(getM12MultiAgentDesktopBoxes(labels));
     expect(m12SpineCenterYAligned(boxes)).toBe(true);
-    const fanout = getM12FanoutGeometry(boxes);
-    const fanin = getM12FaninGeometry(boxes);
+    const fanout = getM12FanoutGeometry(
+      boxes,
+      undefined,
+      labels.edgeVerbs.assigns
+    );
+    const fanin = getM12FaninGeometry(
+      boxes,
+      undefined,
+      labels.edgeVerbs.handsOff
+    );
     expect(fanout).not.toBeNull();
     expect(fanin).not.toBeNull();
     expect(fanout!.trunkPath).toMatch(/^M /);
     expect(fanout!.dropA).toMatch(/^M /);
-    // Horizontal drops have shaft (busX ≠ tipX)
-    const dropParts = fanout!.dropA.split(' ');
-    expect(Number(dropParts[1])).toBeLessThan(Number(dropParts[4]));
     expect(fanin!.trunkPath).toMatch(/^M /);
+    expect(
+      Math.abs(fanout!.assignPill.x - fanout!.busX)
+    ).toBeGreaterThanOrEqual(20);
+    expect(fanout!.assignPill.x).toBeLessThan(fanout!.busX);
+    expect(fanin!.handoffPill.x).toBeGreaterThan(fanin!.collectX);
   });
 
-  it('stages edge verb pills and keeps LT/EN verbs (not noun-echo)', () => {
+  it('stages one verb per pocket and keeps LT/EN verbs (not noun-echo)', () => {
     const lt = getM12MultiAgentSchemaLabels('lt');
     const en = getM12MultiAgentSchemaLabels('en');
     expect(lt.edgeVerbs.assigns).toBe('paskiria');
@@ -594,48 +669,74 @@ describe('m12 multi-agent brother (W7 layout polish)', () => {
     expect(en.edgeVerbs.handsOff).toBe('hands off');
     expect(shouldShowM12EdgeLabel('coord-assign', 0)).toBe(false);
     expect(shouldShowM12EdgeLabel('coord-assign', 2)).toBe(true);
+    expect(shouldShowM12EdgeLabel('spec-handoff', 2)).toBe(false);
+    expect(shouldShowM12EdgeLabel('evaluator-coordinator', 2)).toBe(false);
+    expect(shouldShowM12EdgeLabel('coord-assign', 3)).toBe(false);
+    expect(shouldShowM12EdgeLabel('spec-handoff', 3)).toBe(true);
     expect(shouldShowM12EdgeLabel('evaluator-coordinator', 4)).toBe(true);
   });
 
-  it('avoids pill∩pill AABB on staged desktop verbs (step 5)', () => {
-    const labels = getM12MultiAgentSchemaLabels('lt');
-    const boxes = getM12BoxMap(getM12MultiAgentDesktopBoxes(labels));
-    const fanout = getM12FanoutGeometry(boxes)!;
-    const fanin = getM12FaninGeometry(boxes)!;
-    const fb = getM12FeedbackLabelPos(boxes, false);
-    const pills = [
-      m12PillAabb(
-        (boxes.input.x + boxes.input.w + boxes.router.x) / 2,
-        boxes.input.y - 12,
-        labels.edgeVerbs.routes
-      ),
-      m12PillAabb(
-        (boxes.router.x + boxes.router.w + boxes.coordinator.x) / 2,
-        boxes.router.y - 12,
-        labels.edgeVerbs.selects
-      ),
-      m12PillAabb(
-        fanout.assignPill.x,
-        fanout.assignPill.y,
-        labels.edgeVerbs.assigns
-      ),
-      m12PillAabb(
-        fanin.handoffPill.x,
-        fanin.handoffPill.y,
-        labels.edgeVerbs.handsOff
-      ),
-      m12PillAabb(
-        (boxes.evaluator.x + boxes.evaluator.w + boxes.output.x) / 2,
-        boxes.evaluator.y - 12,
-        labels.edgeVerbs.approves
-      ),
-      m12PillAabb(fb.x, fb.y, labels.edgeVerbs.returns),
-    ];
-    for (let i = 0; i < pills.length; i++) {
-      for (let j = i + 1; j < pills.length; j++) {
-        expect(m12PillsOverlap(pills[i], pills[j])).toBe(false);
+  it('keeps desktop verb pills off strokes, boxes, and each other', () => {
+    for (const locale of ['lt', 'en'] as const) {
+      const labels = getM12MultiAgentSchemaLabels(locale);
+      const list = getM12MultiAgentDesktopBoxes(labels);
+      const boxes = getM12BoxMap(list);
+      const pills = getM12DesktopVerbPills(boxes, labels);
+      expect(pills).toHaveLength(6);
+      const bandY = getM12SpineVerbY(boxes, false);
+      const spinePills = pills.filter((p) =>
+        ['routes', 'selects', 'approves'].includes(p.key)
+      );
+      spinePills.forEach((p) => {
+        expect(p.rect.y + p.rect.h).toBeLessThanOrEqual(boxes.input.y - 8);
+        expect(p.rect.y + p.rect.h / 2).toBeCloseTo(bandY, 5);
+      });
+      const strokes = [
+        ...getM12DesktopSpineStrokes(boxes),
+        ...getM12DesktopFanStrokes(boxes, labels),
+      ];
+      const flowW = DIAGRAM_TOKENS.stroke.flow;
+      pills.forEach((pill) => {
+        strokes.forEach((stroke) => {
+          expect(
+            pillIntersectsStroke(pill.rect, { ...stroke, strokeWidth: flowW }),
+            `${locale} ${pill.key}∩${stroke.id}`
+          ).toBe(false);
+        });
+        list.forEach((box) => {
+          expect(
+            rectsAabbIntersect(pill.rect, m12BoxAsRect(box)),
+            `${locale} ${pill.key}∩${box.id}`
+          ).toBe(false);
+        });
+      });
+      for (let i = 0; i < pills.length; i++) {
+        for (let j = i + 1; j < pills.length; j++) {
+          expect(
+            m12PillsOverlap(pills[i].rect, pills[j].rect),
+            `${locale} ${pills[i].key}∩${pills[j].key}`
+          ).toBe(false);
+        }
       }
     }
+  });
+
+  it('routes feedback under specialist B with a label below the trough', () => {
+    const labels = getM12MultiAgentSchemaLabels('lt');
+    const boxes = getM12BoxMap(getM12MultiAgentDesktopBoxes(labels));
+    const fb = getM12FeedbackLabelPos(boxes, false);
+    const troughY = getM12FeedbackTroughYDesktop(boxes);
+    expect(troughY).toBeGreaterThanOrEqual(
+      boxes.specialistB.y + boxes.specialistB.h + 8
+    );
+    expect(fb.y).toBeGreaterThan(troughY);
+  });
+
+  it('fits compact boxes in the compact viewBox', () => {
+    const labels = getM12MultiAgentSchemaLabels('lt');
+    const list = getM12MultiAgentCompactBoxes(labels);
+    expect(m12CompactBoxesFitViewBox(list)).toBe(true);
+    expect(M12_MULTI_AGENT_VIEWBOX.compact.width).toBe(420);
   });
 
   it('full-map: orphan dim + live edge emphasis helpers', () => {

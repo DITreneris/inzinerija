@@ -1,6 +1,7 @@
 /**
  * M10 – Trigger → Condition → Action; internetinis pranešimas = Trigger tipas
  * (ne 4-asis Shell žingsnis). Section H1 owns the title (no SVG caption).
+ * Vertical shaft + T-shelf = belongs-to / config (no arrowhead). Horizontal = process.
  */
 import { useId } from 'react';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
@@ -9,10 +10,20 @@ import {
   getDiagramActiveStroke,
   getDiagramToneColors,
 } from './diagramTokens';
-import { getM10TriggerFlowLabels, type M10Locale } from './m10DiagramContent';
+import {
+  getM10TriggerFlowLabels,
+  M10_DEFAULT_TRIGGER_TYPE,
+  M10_TRIGGER_TYPE_IDS,
+  type M10Locale,
+  type TriggerTypeId,
+} from './m10DiagramContent';
 import {
   M10_TRIGGER_FLOW_LAYOUT,
-  m10TriggerShaftX,
+  M10_TRIGGER_TYPES_ORPHAN_OPACITY,
+  getM10TriggerHierarchyShelf,
+  getM10TriggerHierarchyStroke,
+  getM10TriggerTypesLabelRect,
+  m10TriggerTypeChipsX,
 } from './m10TriggerFlowLayout';
 import { DiagramStepHitArea } from './diagramKit';
 import { getProcessArrowMarkerGeom } from './processArrowMarker';
@@ -29,9 +40,6 @@ const {
   typeChipH: CHIP_H,
   typeChipGap: CHIP_GAP,
   typeRowY: TYPE_ROW_Y,
-  typesLabelY: TYPES_LABEL_Y,
-  typesLabelGap: TYPES_LABEL_GAP,
-  typesChipOffsetX: CHIP_OFF_X,
 } = M10_TRIGGER_FLOW_LAYOUT;
 const PROCESS_ARROW = getProcessArrowMarkerGeom();
 const MARKER = PROCESS_ARROW.tipLen;
@@ -41,47 +49,52 @@ export default function M10TriggerFlowDiagram({
   className = '',
   currentStep = -1,
   onStepClick,
+  selectedType = M10_DEFAULT_TRIGGER_TYPE,
+  onTypeSelect,
 }: {
   locale?: M10Locale;
   className?: string;
   currentStep?: number;
   onStepClick?: (index: number) => void;
+  selectedType?: TriggerTypeId;
+  onTypeSelect?: (type: TriggerTypeId) => void;
 }) {
   const uid = useId().replace(/:/g, '');
   const palette = useDiagramPalette();
   const isDarkPalette = palette.bgStart === DIAGRAM_TOKENS.palette.dark.bgStart;
   const tones = getDiagramToneColors(isDarkPalette);
   const L = getM10TriggerFlowLabels(locale);
-  const webhookFill = tones.amber.soft;
-  const webhookStroke = tones.amber.stroke;
-  const webhookText = tones.amber.stroke;
+  const selectedFill = tones.amber.soft;
+  const selectedStroke = tones.amber.stroke;
+  const selectedText = tones.amber.stroke;
   const chipFill = tones.brand.soft;
   const flowGrey = palette.flow;
   const interactive = typeof onStepClick === 'function';
+  const typeInteractive =
+    typeof onTypeSelect === 'function' && currentStep === 0;
   const x1 = X0;
   const x2 = x1 + BOX_W + GAP;
   const x3 = x2 + BOX_W + GAP;
   const cx = (x: number) => x + BOX_W / 2;
-  const yB = Y_MAIN + BOX_H;
-  const shaftX = m10TriggerShaftX();
-  const chipsX = shaftX + CHIP_OFF_X;
+  const hierarchy = getM10TriggerHierarchyStroke();
+  const shelf = getM10TriggerHierarchyShelf();
+  const typesLabel = getM10TriggerTypesLabelRect();
+  const chipsX = m10TriggerTypeChipsX();
+  const configLive = currentStep < 0 || currentStep === 0;
 
   const typeChips = [
-    { key: 'form', label: L.typeForm, sub: L.typeFormSub, emphasize: false },
+    { key: M10_TRIGGER_TYPE_IDS[0], label: L.typeForm, sub: L.typeFormSub },
     {
-      key: 'sched',
+      key: M10_TRIGGER_TYPE_IDS[1],
       label: L.typeSchedule,
       sub: L.typeScheduleSub,
-      emphasize: false,
     },
     {
-      key: 'webhook',
+      key: M10_TRIGGER_TYPE_IDS[2],
       label: L.typeWebhook,
       sub: L.typeWebhookSub,
-      emphasize: true,
     },
   ] as const;
-  const typesDim = currentStep >= 0 && currentStep !== 0;
 
   return (
     <svg
@@ -101,17 +114,6 @@ export default function M10TriggerFlowDiagram({
           orient="auto"
         >
           <path d={PROCESS_ARROW.pathD} fill={flowGrey} />
-        </marker>
-        <marker
-          id={`m10tf-up-${uid}`}
-          markerUnits={PROCESS_ARROW.markerUnits}
-          markerWidth={PROCESS_ARROW.markerWidth}
-          markerHeight={PROCESS_ARROW.markerHeight}
-          refX={PROCESS_ARROW.refX}
-          refY={PROCESS_ARROW.refY}
-          orient="auto"
-        >
-          <path d={PROCESS_ARROW.pathD} fill={webhookStroke} />
         </marker>
       </defs>
 
@@ -211,34 +213,45 @@ export default function M10TriggerFlowDiagram({
 
       <g
         opacity={
-          typesDim
-            ? DIAGRAM_TOKENS.opacity.inactive
-            : DIAGRAM_TOKENS.opacity.active
+          configLive
+            ? DIAGRAM_TOKENS.opacity.active
+            : M10_TRIGGER_TYPES_ORPHAN_OPACITY
         }
       >
-        <line
-          x1={shaftX}
-          y1={TYPE_ROW_Y}
-          x2={shaftX}
-          y2={yB + MARKER}
-          stroke={webhookStroke}
-          strokeWidth={DIAGRAM_TOKENS.stroke.flow}
-          strokeDasharray="5 4"
-          markerEnd={`url(#m10tf-up-${uid})`}
-        />
+        {configLive ? (
+          <>
+            <line
+              x1={hierarchy.x1}
+              y1={hierarchy.y1}
+              x2={hierarchy.x2}
+              y2={hierarchy.y2}
+              stroke={flowGrey}
+              strokeWidth={hierarchy.strokeWidth}
+            />
+            <line
+              x1={shelf.x1}
+              y1={shelf.y1}
+              x2={shelf.x2}
+              y2={shelf.y2}
+              stroke={flowGrey}
+              strokeWidth={shelf.strokeWidth}
+            />
+          </>
+        ) : null}
         <text
-          x={shaftX - TYPES_LABEL_GAP}
-          y={TYPES_LABEL_Y}
+          x={typesLabel.x + typesLabel.w}
+          y={typesLabel.y + typesLabel.h * 0.75}
           textAnchor="end"
-          fill={palette.muted}
-          fontSize={DIAGRAM_TOKENS.typography.stepSub.desktop}
-          fontWeight="600"
+          fill={palette.brandDark}
+          fontSize={DIAGRAM_TOKENS.typography.edgeLabel.size}
+          fontWeight={DIAGRAM_TOKENS.typography.edgeLabel.weight}
           fontFamily={DIAGRAM_TOKENS.font}
         >
           {L.typesLabel}
         </text>
         {typeChips.map((chip, i) => {
           const chipX = chipsX + i * (CHIP_W + CHIP_GAP);
+          const selected = chip.key === selectedType && configLive;
           return (
             <g key={chip.key}>
               <rect
@@ -247,10 +260,10 @@ export default function M10TriggerFlowDiagram({
                 width={CHIP_W}
                 height={CHIP_H}
                 rx={6}
-                fill={chip.emphasize ? webhookFill : chipFill}
-                stroke={chip.emphasize ? webhookStroke : palette.brandDark}
+                fill={selected ? selectedFill : chipFill}
+                stroke={selected ? selectedStroke : palette.brandDark}
                 strokeWidth={
-                  chip.emphasize
+                  selected
                     ? DIAGRAM_TOKENS.stroke.inactive
                     : DIAGRAM_TOKENS.stroke.border
                 }
@@ -259,9 +272,9 @@ export default function M10TriggerFlowDiagram({
                 x={chipX + CHIP_W / 2}
                 y={TYPE_ROW_Y + 16}
                 textAnchor="middle"
-                fill={chip.emphasize ? webhookText : palette.brandDark}
+                fill={selected ? selectedText : palette.brandDark}
                 fontSize={DIAGRAM_TOKENS.typography.stepSub.desktop}
-                fontWeight={chip.emphasize ? '700' : '600'}
+                fontWeight={selected ? '700' : '600'}
                 fontFamily={DIAGRAM_TOKENS.font}
               >
                 {chip.label}
@@ -270,12 +283,22 @@ export default function M10TriggerFlowDiagram({
                 x={chipX + CHIP_W / 2}
                 y={TYPE_ROW_Y + 32}
                 textAnchor="middle"
-                fill={chip.emphasize ? webhookText : palette.muted}
+                fill={selected ? selectedText : palette.muted}
                 fontSize={DIAGRAM_TOKENS.typography.stepSub.desktop}
                 fontFamily={DIAGRAM_TOKENS.font}
               >
                 {chip.sub}
               </text>
+              {typeInteractive ? (
+                <DiagramStepHitArea
+                  x={chipX}
+                  y={TYPE_ROW_Y}
+                  width={CHIP_W}
+                  height={CHIP_H}
+                  radius={6}
+                  onActivate={() => onTypeSelect(chip.key)}
+                />
+              ) : null}
             </g>
           );
         })}

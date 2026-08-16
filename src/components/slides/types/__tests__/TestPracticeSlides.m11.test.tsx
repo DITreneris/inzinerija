@@ -52,14 +52,38 @@ describe('TestPracticeSlides M11 data contract', () => {
     expect(questionsById.get('m11-q9')?.relatedSlideId).toBe(10.49);
   });
 
-  it('checks human control mode selection in the Asistuoti scenario', () => {
+  it('keys q8 to human approval before send, with exception review as the temptation', () => {
     const q8 = getM11Questions().find((question) => question.id === 'm11-q8');
 
     expect(q8?.type).toBe('scenario');
     expect(q8?.question).toMatch(/žmogaus kontrolės režimas/i);
+    expect(q8?.correct).toBe(3);
     expect(q8?.options?.[0]).toMatch(/Išimčių peržiūra/i);
-    expect(q8?.explanation).toMatch(/Asistuoti/i);
+    expect(q8?.options?.[3]).toMatch(/prieš siuntimą/i);
+    expect(q8?.explanation).toMatch(/prieš siuntimą/i);
+    expect(q8?.explanation).not.toMatch(/Asistuoti/i);
     expect(q8?.relatedSlideId).toBe(10.26);
+  });
+
+  it('keys q6 to a sequential chain without RFP jargon', () => {
+    const q6 = getM11Questions().find((question) => question.id === 'm11-q6');
+
+    expect(q6?.correct).toBe(1);
+    expect(q6?.scenarioContext).not.toMatch(/RFP/i);
+    expect(q6?.options?.[1]).toMatch(/grandinė/i);
+  });
+
+  it('keeps q1 distractors free of a length cue', () => {
+    const q1 = getM11Questions().find((question) => question.id === 'm11-q1');
+
+    expect(q1?.options?.join(' ')).not.toMatch(/2000/);
+  });
+
+  it('makes the q3 first distractor a coordinator/evaluator role swap', () => {
+    const q3 = getM11Questions().find((question) => question.id === 'm11-q3');
+
+    expect(q3?.options?.[1]).toMatch(/specialistui perduoti/i);
+    expect(q3?.options?.[1]).toMatch(/specialistas patikrina/i);
   });
 
   it('keeps at least 30 percent of M11 questions as rendered scenarios', () => {

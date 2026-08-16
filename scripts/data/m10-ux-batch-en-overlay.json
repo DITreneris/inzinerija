@@ -44,7 +44,7 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "**MUST path:** agent cycle → 3A strategy → depth and roles → 5 workflow patterns → role and system prompt → tools → when to choose an agent → errors and limits → workflow concepts → automation platforms → launch.\n\n**Optional:** GitHub, deeper spec and incident playbook, glossary, summary. Term definitions – on the **Key concepts** slide.",
+                "body": "**MUST path:** agent cycle → 3A strategy → depth and roles → 5 workflow patterns → role and system prompt → tools → when to choose an agent → errors and limits → workflow concepts → automation platforms → launch.\n\n**Optional:** GitHub, deeper spec and incident playbook, glossary. Term definitions – on the **Key concepts** slide.",
                 "blockVariant": "accent"
               },
               {

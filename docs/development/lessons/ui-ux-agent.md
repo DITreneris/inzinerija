@@ -4,6 +4,7 @@
 
 ## Pamokos
 
+2026-08-16 | Home hero CTA ašis | `text-center` + du palaidi `inline-flex` = geltonas centre, recall kyšo dešinėn (ne „po CTA“) | Viena `flex flex-wrap justify-center gap-4` grupė; Home raktas `recallCta`; ne `RetrievalDueCard` / ne antras gold | HomePage.tsx, GOLDEN §8.4, UI_UX_AGENT §3.8
 2026-08-13 | AppNav wrap vs oras | 5× `min-w-[8.5rem]` + `w-24` pill vs `max-w-7xl` = nuolatinis wrap; dest susitraukia kairėje, tuščia dešinė | Mini takelis+%; `xl:flex-nowrap`; žemiau `xl` dest `basis-full` (tab bar); ne hairline, ne `flex-1` pill’ai | AppNav.tsx, GOLDEN §5.5 / §8.4.2
 2026-08-13 | Katalogo ready-check footer | brand-50 centruotas grey `secondary` po rose coming-soon = ghost + aklavietė | M3→M4 hinge prieš `base-cycle-2`; next-step lukštas + brand `primary`; slėpti kai M4/quiz done | ModulesReadyCheckStrip.tsx, GOLDEN §8.4, UI_UX §3.3a
 2026-08-13 | M10 10.25 testeris plakatas vs dokumentas | 7 lygiaverčiai tekstų sluoksniai; legenda 10 px; 5 % dingsta; nori A–E skalės | Kirpti viršų 40–60 %; vienas pickeris; `%` = insight; Shell = body; 5 % matoma be vardo viduje; ne „viską padidink“ | GOLDEN §3.2, UI_UX §4.2, intake R.M10-T08 v02

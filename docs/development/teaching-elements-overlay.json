@@ -401,11 +401,11 @@
       "pattern": "linear-process",
       "shell": "Taip",
       "render": "M10TriggerFlowBlock",
-      "layoutSot": "m10TriggerFlowLayout.ts",
+      "layoutSot": "m10TriggerFlowLayout.ts, hierarchyDropGeometry.ts",
       "contentSot": "m10DiagramContent.ts",
       "maturity": 3,
       "owner": "SCHEME",
-      "notes": "10.15; Shell 3 T/C/A; Webhook = Trigger tipas (chip strip), ne 4-asis žingsnis",
+      "notes": "10.15 process-config-hierarchy etalon; Shell 3 T/C/A; hierarchy drop be antgalio; webhook = tipas, ne 4-asis žingsnis",
       "moduleId": 10,
       "slideId": 10.15
     },

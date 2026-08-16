@@ -1,7 +1,7 @@
 # Promptų anatomija – Interaktyvus DI mokymas
 
 **6 promptų struktūros blokai – interaktyvus mokymas nuo pamatų iki pažangių kelių.**  
-**Versija:** 1.6.2 (2026-08-13). **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) (Vercel; šis repo – **git submodulis** marketingo projekte). Learning pin lieka `v1.4.9` iki Horizon B cutover; corporate12 pin target – `v1.6.2`. Pakeitimai – [CHANGELOG.md](CHANGELOG.md).
+**Versija:** 1.6.3 (2026-08-16). **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) (Vercel; šis repo – **git submodulis** marketingo projekte). Training cut **v1.6.3**; live pin kol neperpinsi = **v1.6.2**. **12 live per Supabase**. Viešas Stripe = M1–6; M7–18 = corporate grant iki 2027-01. `v1.4.9` = istorinis learning freeze, ne current pin. Pakeitimai – [CHANGELOG.md](CHANGELOG.md).
 
 Interaktyvus mokymas apie DI (dirbtinio intelekto) promptų struktūrą ir konteksto inžineriją: **pilnai įgyvendinti moduliai 1–6** (MVP), **production bundle M1–9** (Duomenų analizės kelias, tier 9), **corporate12 M1–12**, **corporate15 M1–15** ir **full authoring katalogas M1–18** (dev; Kodo inžinerijos kelias). Kursas orientuotas į verslo problemų sprendimą ir **praktinius rezultatus**.  
 UI ir turinys palaiko **LT / EN** (M1–M18 authoring; M10–12 EN kai `maxModuleId >= 10`, M13–15 kai `>= 13`, M16–18 kai `>= 16`). Magic-link tiers lieka 3|6|9|12|15 (corporate18 Deferred).
@@ -10,13 +10,13 @@ UI ir turinys palaiko **LT / EN** (M1–M18 authoring; M10–12 EN kai `maxModul
 
 | Sluoksnis               | Build komanda                   | Moduliai         | Paskirtis                                                     |
 | ----------------------- | ------------------------------- | ---------------- | ------------------------------------------------------------- |
-| **Demo / GitHub Pages** | `VITE_MVP_MODE=1 npm run build` | M1–6 only        | Preview `/inzinerija/` (ne M7–15; žr. DEPLOYMENT gate policy) |
-| **Production (Vercel)** | `npm run build:production`      | M1–9             | Tier 3 / 6 / 9 magic link                                     |
-| **Corporate12**         | `npm run build:corporate12`     | M1–12            | Tier 12 magic link; repo-ready, marketing cutover atskirai    |
-| **Corporate15**         | `npm run build:corporate15`     | M1–15            | Tier 15 magic link; Vaizdo/I2V live                           |
+| **Demo / GitHub Pages** | `VITE_MVP_MODE=1 npm run build` | M1–6 only        | Preview `/inzinerija/` (ne M7–18; žr. DEPLOYMENT gate policy) |
+| **M1–9 profilis**       | `npm run build:production`      | M1–9             | Fallback; ne gyvas kanonas                                    |
+| **Production (Vercel)** | `npm run build:corporate12`     | M1–12            | Canonical SPA; tier 12 live per Supabase                      |
+| **Corporate15**         | `npm run build:corporate15`     | M1–15            | Repo-ready; Vaizdo/I2V live; grant / later                    |
 | **Dev / authoring**     | `npm run build`                 | M1–18 (full SOT) | Turinio redagavimas; DEV unlock 18; magic-link ≤15            |
 
-Žr. [docs/deployment/DEPLOYMENT.md](docs/deployment/DEPLOYMENT.md), [05_marketingo_memo_tier9_vienas_build.md](05_marketingo_memo_tier9_vienas_build.md), [06_marketingo_memo_corporate12_supabase.md](06_marketingo_memo_corporate12_supabase.md) (Horizon B cutover, be Stripe).
+Žr. [docs/deployment/DEPLOYMENT.md](docs/deployment/DEPLOYMENT.md), [05_marketingo_memo_tier9_vienas_build.md](05_marketingo_memo_tier9_vienas_build.md), [06_marketingo_memo_corporate12_supabase.md](06_marketingo_memo_corporate12_supabase.md) (Horizon B, 12 live, be Stripe SKU).
 
 ## 🎯 Apie projektą
 
@@ -113,16 +113,17 @@ npm run test:coverage # Su coverage report
 
 ## 📚 Modulių struktūra
 
-| Modulis | Pavadinimas             | Turinys                                                                      |
-| ------- | ----------------------- | ---------------------------------------------------------------------------- |
-| 1–6     | Pamatinis kelias        | 6 blokų sistema, testai, praktika, RAG, projektas (žr. ankstesnę lentelę)    |
-| 7–9     | Duomenų analizės kelias | Pipeline, vizualizacija, M8 testas, M9 capstone (production tier 9)          |
-| 10–12   | Agentų inžinerija       | Taksonomija, workflow, testas, capstone (corporate12; default prod dar M1–9) |
-| 13–15   | Turinio inžinerija      | Planavimas, medijos generavimas, testas, finalinis projektas (corporate15)   |
+| Modulis | Pavadinimas             | Turinys                                                                         |
+| ------- | ----------------------- | ------------------------------------------------------------------------------- |
+| 1–6     | Pamatinis kelias        | 6 blokų sistema, testai, praktika, RAG, projektas (žr. ankstesnę lentelę)       |
+| 7–9     | Duomenų analizės kelias | Pipeline, vizualizacija, M8 testas, M9 capstone (production tier 9)             |
+| 10–12   | Agentų inžinerija       | Taksonomija, workflow, testas, capstone (prod bundle **M1–12** / `corporate12`) |
+| 13–15   | Turinio inžinerija      | Planavimas, medijos generavimas, testas, finalinis projektas (corporate15)      |
+| 16–18   | Kodo inžinerija         | Brief / Path Test / PACKET (full SOT; Wave D3 Deferred)                         |
 
 **Navigacija:** Pagrindinis → Moduliai → Žodynėlis → Įrankiai → Pasitikrink.
 
-**Duomenų architektūra:** `src/data/modules.json` – full `1–15` SOT. Build profiliai: `modules-m1-m6.json` (MVP), `modules-m1-m9.json` (production), `modules-m1-m12.json` (corporate12), `modules-m1-m15.json` (corporate15). EN: `modules-en.json`, `modules-en-m4-m6.json`, `modules-en-m7-m9.json`, `modules-en-m10-m12.json`, `modules-en-m13-m15.json`.
+**Duomenų architektūra:** `src/data/modules.json` – full `1–18` SOT. Build profiliai: `modules-m1-m6.json` (MVP), `modules-m1-m9.json` (M1–9 profilis), `modules-m1-m12.json` (corporate12 / prod), `modules-m1-m15.json` (corporate15). EN: `modules-en.json`, `modules-en-m4-m6.json`, `modules-en-m7-m9.json`, `modules-en-m10-m12.json`, `modules-en-m13-m15.json`, `modules-en-m16-m18.json`.
 
 ## ⚙️ Konfigūracija
 
@@ -146,7 +147,7 @@ Push į `main` → GitHub Actions deploy. Prieiga: `https://ditreneris.github.io
 ### Production (Vercel)
 
 - [www.promptanatomy.app](https://www.promptanatomy.app) – git submodulis marketingo monorepo
-- Build: `npm run build:production` (M1–9) arba `npm run build:corporate12` (Horizon B); env – [MARKETING_HANDOFF_CHECKLIST.md](docs/deployment/MARKETING_HANDOFF_CHECKLIST.md); corporate12 memo – [06_marketingo_memo_corporate12_supabase.md](06_marketingo_memo_corporate12_supabase.md)
+- Build: `npm run build:corporate12` (M1–12, gyvas kanonas); `build:production` = M1–9 fallback. Env – [MARKETING_HANDOFF_CHECKLIST.md](docs/deployment/MARKETING_HANDOFF_CHECKLIST.md); corporate12 memo – [06_marketingo_memo_corporate12_supabase.md](06_marketingo_memo_corporate12_supabase.md)
 
 Pilnas aprašas: [INTEGRATION_OVERVIEW.md](docs/deployment/INTEGRATION_OVERVIEW.md), [DEPLOYMENT.md](docs/deployment/DEPLOYMENT.md).
 

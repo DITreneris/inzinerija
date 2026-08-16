@@ -41,7 +41,7 @@ export function scenarioIdToTone(
   );
 }
 
-/** Control strictness: stronger human gate → warmer / more urgent tone. */
+/** Control strictness: stronger human control → warmer / more urgent tone. */
 export function modeIdToTone(modeId: HumanControlModeId): LabOptionTone {
   switch (modeId) {
     case 'every_case':

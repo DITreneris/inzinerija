@@ -12,42 +12,42 @@
     {
       "tier": 1,
       "introLine": "Šiuo dokumentu patvirtinama, kad",
-      "completionLine": "sėkmingai baigė mokymų programos „Promptų anatomija“ dalį",
-      "programName": "6 blokų sistema – 6 blokai, testas, praktika",
+      "completionLine": "sėkmingai baigė 6 blokų sistemą",
+      "programName": "Išmoko struktūruoti DI užduotį pagal 6 blokus.",
       "label": "6 blokų sistema",
-      "footerText": "Promptų anatomija – promptų struktūros mokymas. © Kurso medžiaga."
+      "footerText": "Promptų anatomija. © Kurso medžiaga."
     },
     {
       "tier": 2,
       "introLine": "Šiuo dokumentu patvirtinama, kad",
-      "completionLine": "sėkmingai baigė mokymų programą",
-      "programName": "Promptų anatomija – Konteksto inžinerija (teorija, testas ir projektas)",
+      "completionLine": "sėkmingai baigė Konteksto inžineriją",
+      "programName": "Išmoko parinkti ir valdyti DI kontekstą.",
       "label": "Konteksto inžinerija",
-      "footerText": "Promptų anatomija – promptų struktūros mokymas. © Kurso medžiaga."
+      "footerText": "Promptų anatomija. © Kurso medžiaga."
     },
     {
       "tier": 3,
       "introLine": "Šiuo dokumentu patvirtinama, kad",
-      "completionLine": "sėkmingai baigė Duomenų analizės kelią (moduliai 7–9)",
-      "programName": "Promptų anatomija – Duomenų analizės kelias (moduliai 7–9, baigiamasis projektas; Modulio 8 testas ≥ 70 %)",
+      "completionLine": "sėkmingai baigė Duomenų analizės kelią",
+      "programName": "Išmoko analizuoti duomenis su DI ir tikrinti išvadas.",
       "label": "Duomenų analizės kelias",
-      "footerText": "Promptų anatomija – promptų struktūros mokymas. © Kurso medžiaga."
+      "footerText": "Promptų anatomija. © Kurso medžiaga."
     },
     {
       "tier": 4,
       "introLine": "Šiuo dokumentu patvirtinama, kad",
-      "completionLine": "sėkmingai baigė Agentų inžinerijos kelią (moduliai 10–12)",
-      "programName": "Promptų anatomija – Agentų inžinerijos kelias (moduliai 10–12, finalinis projektas; Modulio 11 testas ≥ 70 %)",
+      "completionLine": "sėkmingai baigė Agentų inžinerijos kelią",
+      "programName": "Išmoko projektuoti agento eigą, įrankius ir kontrolę.",
       "label": "Agentų inžinerijos kelias",
-      "footerText": "Promptų anatomija – promptų struktūros mokymas. © Kurso medžiaga."
+      "footerText": "Promptų anatomija. © Kurso medžiaga."
     },
     {
       "tier": 5,
       "introLine": "Šiuo dokumentu patvirtinama, kad",
-      "completionLine": "sėkmingai baigė Turinio inžinerijos kelią (moduliai 13–15)",
-      "programName": "Promptų anatomija – Turinio inžinerijos kelias (moduliai 13–15, finalinis projektas; Modulio 14 testas ≥ 70 %)",
+      "completionLine": "sėkmingai baigė Turinio inžinerijos kelią",
+      "programName": "Išmoko kurti tekstą, vaizdą, video ir garsą.",
       "label": "Turinio inžinerijos kelias",
-      "footerText": "Promptų anatomija – promptų struktūros mokymas. © Kurso medžiaga."
+      "footerText": "Promptų anatomija. © Kurso medžiaga."
     }
   ]
 }

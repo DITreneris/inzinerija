@@ -2,12 +2,12 @@
 
 > **Tikslas:** Copy-paste užduotys marketingo monorepo komandai (Vercel, Stripe, Supabase). Mokymo turinys ir UI — **šis repo** (`inzinerija`); auth, mokėjimai, production env — **marketingo repo** (promptanatomy.app).  
 > **Susiję TODO ID:** MON-1, MON-2, MON-3, MON-4, MON-8 (žr. `TODO.md` §1.4).  
-> **Atnaujinta:** 2026-08-13 (corporate12 v1.6.2 cutover pin)  
+> **Atnaujinta:** 2026-08-16 (Horizon B įvykdytas: pin v1.6.2 + 12 live per Supabase)  
 > **Tier 9 memo:** [05_marketingo_memo_tier9_vienas_build.md](../../05_marketingo_memo_tier9_vienas_build.md)  
 > **Corporate12 / Supabase Phase 1 (be Stripe):** [06_marketingo_memo_corporate12_supabase.md](../../06_marketingo_memo_corporate12_supabase.md) + pin runbook [MARKETING_SUBMODULE_PIN_CORPORATE12.md](MARKETING_SUBMODULE_PIN_CORPORATE12.md).  
-> **Horizon B (M1–12):** training repo ready (`build:corporate12`, magic-link tier **12**). Cutover = pin **v1.6.2** + `build:corporate12` + Supabase `highest_plan=12` → `access_tier=12` (Stripe €199 = Phase 2) — žr. §7a + memo 06.  
-> **Horizon C (M1–15):** training repo ready (`build:corporate15`, magic-link tier **15**, provisional **€249**). Cutover = marketing env/pin + Stripe/`access_tier=15`.  
-> **Pin decision (CAV-B1):** learning freeze tag **v1.4.9** (M1–9) vs app **v1.6.2** corporate12. Parent GitHub pin **done** (PR #92, `c35a1f5`); production build script = `build:corporate12`. Live `/anatomy/` 1.6.2 verify ⏳. Do not pin corporate18 (Wave D3 / CAV-C2 parked).  
+> **Horizon B (M1–12):** **įvykdytas** — pin **v1.6.2** + `build:corporate12` + Supabase `highest_plan=12` → `access_tier=12`. **12 live.** Stripe €199 = Phase 2 — žr. §7a + memo 06.  
+> **Horizon C (M1–15):** training repo ready (`build:corporate15`, magic-link tier **15**). Corporate grant / later; ne 2026 viešas SKU.  
+> **Pin decision (CAV-B1):** **v1.6.2** = current corporate12 pin (`c35a1f5`, PR #92). **v1.4.9** = istorinis learning freeze tagas, ne safe-default „until cutover“. Optional SPA chrome fingerprint ≠ cutover blokas. Do not pin corporate18 (Wave D3 / CAV-C2 parked).  
 > **Analytics (CAV-B2 / MON-4):** training already emits events via `src/utils/analytics.ts` when `window.posthog` + `VITE_POSTHOG_KEY` exist — marketing must set env + snippet + dashboard.
 
 ---
@@ -71,14 +71,14 @@ Kontraktas: [INTEGRATION_OVERVIEW.md](INTEGRATION_OVERVIEW.md) § Verify-access 
 ## 4. Submodule pin (inzinerija)
 
 1. Po kiekvieno mokymo repo release — atnaujinti git submodule commit marketing monorepo.
-2. **Pasirink pin target prieš deploy:**
-   - **v1.4.9** — learning QA freeze (safe default M1–9 until Horizon B cutover).
-   - **v1.6.2** — **corporate12 cutover** (M1–12 + magic-link tier 12; M16–18 authoring in full SOT; magic-link prod ≤15; toolchain advisories closed).
+2. **Pin target:**
+   - **v1.6.2** — **current** corporate12 pin (M1–12 + magic-link tier 12; 12 live per Supabase).
+   - **v1.4.9** — istorinis learning freeze tagas (M1–9). Nebenaudoti kaip dabartinio prod.
 3. Patikrinti, kad submodule commit turi:
    - `AccessGateScreen` kai `maxAccessible === 0`
    - Tier 9 / **12** / **15** magic link (`api/verify-access.ts`, `App.tsx`)
    - Nėra MVP fallback, kuris suteiktų tier 6 visiems
-4. Vercel build log — submodule SHA atitinka tikėtiną release; build naudoja `build:production` (M1–9) arba **`build:corporate12`** (Horizon B).
+4. Vercel build log — submodule SHA atitinka **v1.6.2** / `c35a1f5`; build naudoja **`build:corporate12`**.
 
 Žr. [05_marketingo_memo_tier9_vienas_build.md](../../05_marketingo_memo_tier9_vienas_build.md) §11; corporate12: [MARKETING_SUBMODULE_PIN_CORPORATE12.md](MARKETING_SUBMODULE_PIN_CORPORATE12.md).
 

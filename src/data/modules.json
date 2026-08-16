@@ -12297,7 +12297,7 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "**Būtinas kelias:** agentų ciklas → 3A strategija → gylis ir rolės → 5 darbo eigos šablonai → rolė ir sisteminis promptas → įrankiai → kada rinktis agentą → klaidos ir ribos → darbo eigos sąvokos → automatizavimo platformos → paleidimas.\n\n**Neprivaloma:** GitHub, gilesnė specifikacija ir incidentų planas, žodynėlis, santrauka. Sąvokų apibrėžimai – skaidrėje **Pagrindinės sąvokos**.",
+                "body": "**Būtinas kelias:** agentų ciklas → 3A strategija → gylis ir rolės → 5 darbo eigos šablonai → rolė ir sisteminis promptas → įrankiai → kada rinktis agentą → klaidos ir ribos → darbo eigos sąvokos → automatizavimo platformos → paleidimas.\n\n**Neprivaloma:** GitHub, gilesnė specifikacija ir incidentų planas, žodynėlis. Sąvokų apibrėžimai – skaidrėje **Pagrindinės sąvokos**.",
                 "blockVariant": "accent"
               },
               {
@@ -13177,7 +13177,7 @@
               },
               {
                 "heading": "Kur pritaikyti",
-                "body": "**Pardavimai:** forma → CRM įrašas ir priminimo laiškas.\n**Klientų aptarnavimas:** laiškas → jei prioritetas aukštas → užduotis ir pranešimas komandai.\n**Operacijos:** kasdienis failas → patikra ir ataskaita komandai.\n\nPradėk nuo paleidiklio ir veiksmo; sąlygą bei internetinį pranešimą pridėk tik tada, kai jų tikrai reikia.",
+                "body": "Atpažink vieną savo procesą. Kiekviename: paleidiklis → veiksmas → rizika → rodiklis.\n\n**Pardavimai.** Užklausos forma → CRM ir laiškas. Rizika: dublikatai. Rodiklis: konversija.\n**Personalas.** CV gautas → filtras, tada žmogus tvirtina. Rizika: šališkumas. Rodiklis: atrankos laikas.\n**Finansai.** Sąskaita → nuskaitymas ir tikrinimas. Rizika: klaidingi skaičiai. Rodiklis: apdorojimo laikas.\n**Klientų aptarnavimas.** Skundas → rūšiavimas ir juodraštis. Rizika: netinkamas tonas. Rodiklis: pirmo atsakymo laikas.\n\nPradėk nuo paleidiklio ir veiksmo; sąlygą pridėk tik tada, kai jos tikrai reikia.",
                 "blockVariant": "brand"
               },
               {
@@ -13192,7 +13192,7 @@
               },
               {
                 "heading": "Patikra",
-                "body": "Ar paleidiklis yra **įvykis**, o veiksmas – tai, ką padaro sistema? Ar aišku, ką daryti klaidos atveju? Jei ne – pataisyk šabloną pagal pavyzdį.",
+                "body": "Ar paleidiklis yra **įvykis**, o veiksmas – tai, ką padaro sistema? Ar aišku, ką daryti klaidos atveju? Ar gali įvardyti **riziką** ir **rodiklį** savo procesui? Jei ne – pataisyk šabloną pagal pavyzdį.",
                 "blockVariant": "accent"
               },
               {
@@ -13850,8 +13850,8 @@
                 "value": "5"
               },
               {
-                "label": "Pritaikymo pavyzdžiai",
-                "value": "12"
+                "label": "Eigos aprašymas",
+                "value": "1"
               }
             ],
             "sections": [
@@ -13886,22 +13886,14 @@
                 ]
               },
               {
-                "heading": "12 pritaikymo pavyzdžių",
+                "heading": "Kur pritaikyti",
                 "icon": "Workflow",
                 "color": "violet",
                 "items": [
-                  "Pardavimai: užklausos forma → CRM → laiškas → dublikatų rizika → konversija",
-                  "Pardavimai: savaitės eiga → DI suvestinė → pasenę duomenys → vadovo laikas",
-                  "Pardavimai: RFP gavimas → tyrimas + santrauka → praleisti kriterijai → atsakymo laikas",
-                  "HR: CV gavimas → filtras → atrankos specialisto patvirtinimas → šališkumo rizika → atrankos laikas",
-                  "HR: naujas darbuotojas → įvedimo (onboarding) sąrašas → praleistas žingsnis → užbaigimo dalis",
-                  "HR: kandidato profilis → atitikties įvertis → asmens duomenų rizika → atrinktųjų sąrašo tikslumas",
-                  "Finansai: sąskaita → OCR → tikrinimas → klaidingi skaičiai → apdorojimo laikas",
-                  "Finansai: mėnesio uždarymas → DI santrauka → nepatvirtinti skaičiai → uždarymo dienos",
-                  "Finansai: biudžeto nuokrypis → įspėjimas → per daug triukšmo → tikslūs įspėjimai",
-                  "Klientų aptarnavimas: skundas → pirminis rūšiavimas → juodraštis → netinkamas tonas → pirmo atsakymo laikas",
-                  "Support: atsiliepimas → nuotaikos analizė → perdavimas aukštesniam lygiui → per ankstyva autonomija → užklausų SLA",
-                  "Support: FAQ užklausa → juodraštis → vertintojas → klaidingas faktas → savitarnos dalis"
+                  "Pardavimai: užklausos forma → CRM ir laiškas. Rizika: dublikatai. Rodiklis: konversija",
+                  "Personalas: CV gautas → filtras, tada žmogus tvirtina. Rizika: šališkumas. Rodiklis: atrankos laikas",
+                  "Finansai: sąskaita → nuskaitymas ir tikrinimas. Rizika: klaidingi skaičiai. Rodiklis: apdorojimo laikas",
+                  "Klientų aptarnavimas: skundas → rūšiavimas ir juodraštis. Rizika: netinkamas tonas. Rodiklis: pirmo atsakymo laikas"
                 ]
               }
             ],
@@ -14019,12 +14011,12 @@
               "question": "Ką pirmiausia verta pataisyti?",
               "options": [
                 "Aiškiai nurodyti įrankį ir taisyklę: naudok paiešką, pateik šaltinius; jei nerandi – parašyk „Nerasta“",
-                "Padidinti atsakymo ilgį iki 2000 žodžių",
-                "Ištrinti klaidos tvarkymo sakinį",
+                "Paprašyti modelio prieš atsakant įvertinti, ar informacija gali būti pasenusi",
+                "Pridėti taisyklę: atsakyk tik tuo, kuo esi visiškai tikras",
                 "Palikti tą patį promptą ir tiesiog paklausti dar kartą"
               ],
               "correct": 0,
-              "explanation": "Agentui reikia aiškaus konteksto: kokį įrankį naudoti, kada pateikti šaltinius ir ką grąžinti, kai šaltinių nėra. Tai mažina išgalvotų faktų riziką.",
+              "explanation": "Agentui reikia aiškaus konteksto: kokį įrankį naudoti, kada pateikti šaltinius ir ką grąžinti, kai šaltinių nėra. Užtikrintumas ≠ šaltiniai – tai mažina išgalvotų faktų riziką.",
               "relatedSlideId": 10.3
             },
             {
@@ -14048,13 +14040,13 @@
               "type": "mcq",
               "question": "Kuo vertintojas skiriasi nuo specialisto kelių agentų sistemoje?",
               "options": [
-                "Vertintojas tikrina kokybę; specialistas vykdo darbą",
-                "Vertintojas visada siunčia laiškus; specialistas tik skaito",
-                "Jie daro tą patį, tik skirtingais įrankiais",
-                "Vertintojas nustato paleidiklį"
+                "Vertintojas tikrina kito agento rezultatą pagal kriterijus; specialistas atlieka jam paskirtą dalykinę užduotį",
+                "Vertintojas sprendžia, kuriam specialistui perduoti užduotį; specialistas patikrina galutinę kokybę",
+                "Vertintojas keičia darbo eigą vykdymo metu; specialistas tik renka faktus",
+                "Skirtumas daugiausia yra naudojamas modelis, o ne atsakomybė"
               ],
               "correct": 0,
-              "explanation": "Specialistas vykdo siaurą darbą (paieška, juodraštis). Vertintojas tikrina taisykles, kokybę ir gali grąžinti pataisymui – atskiras kokybės kontrolės (QC) vaidmuo.",
+              "explanation": "Specialistas daro siaurą dalį (paieška, juodraštis). Vertintojas tikrina kriterijus ir gali grąžinti taisyti – ne skirsto darbą.",
               "relatedSlideId": 10.45
             },
             {
@@ -14091,16 +14083,16 @@
               "id": "m11-q6",
               "type": "scenario",
               "bloomLevel": 3,
-              "scenarioContext": "Gauni RFP dokumentą ir nori, kad tyrėjas surinktų faktus, rašytojas paruoštų santrauką, vertintojas patikrintų kriterijus.",
+              "scenarioContext": "Gauni ilgą pirkimo užklausą ir nori, kad tyrėjas surinktų faktus, rašytojas paruoštų santrauką, o vertintojas patikrintų kriterijus.",
               "question": "Kuris darbo eigos šablonas geriausiai tinka?",
               "options": [
-                "Koordinatorius + specialistai (arba grandinė su rolėmis)",
-                "Tik vienas promptas be rolės",
-                "Maršrutizavimas pagal el. pašto dydį",
-                "Lygiagretus darbas be sujungimo"
+                "Koordinatorius, kuris dinamiškai skirsto užduotis specialistams",
+                "Nuosekli grandinė: tyrėjas → rašytojas → vertintojas",
+                "Maršrutizavimas pagal užklausos tipą",
+                "Lygiagretus darbas: trys rolės vienu metu, be sujungimo"
               ],
-              "correct": 0,
-              "explanation": "RFP su keliais vaidmenimis – tipinis L2 (DI komanda) … Grandinė su vaidmenimis irgi tinka: koordinatorius planuoja, specialistai vykdo, vertintojas tikrina. Grandinė su rolėmis irgi tinka.",
+              "correct": 1,
+              "explanation": "Žingsniai eina vienas po kito, todėl tinka grandinė. Koordinatorius reikalingas, kai užduotis skaidoma dinamiškai, o ne fiksuota seka.",
               "relatedSlideId": 10.48
             },
             {
@@ -14110,28 +14102,28 @@
               "question": "Situacija: klientas užpildo formą svetainėje. Tu nori, kad naujas įrašas pats patektų į Google Sheets ir klientas gautų patvirtinimą el. paštu. Ką verta padaryti pirmiausia projektuojant srautą (Zapier, Make ar pan.)?",
               "options": [
                 "Apibrėžti paleidiklį – kas paleidžia srautą (pvz. naujas formos pateikimas), paskui veiksmus (Sheets, laiškas)",
-                "Pirma parašyti tik ilgą DI pokalbio tekstą be jokių ryšių su forma ar paštu",
-                "Pasirinkti tik Slack kanalo pavadinimą ir spalvą pranešimui",
-                "Paleisti srautą į produkciją ir tik tada pagalvoti apie klaidas"
+                "Pirma pasirinkti platformą (Zapier, Make ar n8n), o paleidiklį apibrėžti vėliau",
+                "Pirma parašyti patvirtinimo laiško tekstą pokalbyje su DI, o formą prijungti vėliau",
+                "Pirma suvesti visus Sheets stulpelius, o tik tada spręsti, kas paleidžia srautą"
               ],
               "correct": 0,
-              "explanation": "Pirmiausia – įvykis, kuris paleidžia srautą (trigger), ir įvesties schema; tada veiksmai (įrašas, laiškas). Taip aišku, kas paleidžia grandinę ir kokie duomenys juda.",
+              "explanation": "Pirmiausia – įvykis, kuris paleidžia srautą (paleidiklis), ir įvesties schema; tada veiksmai (įrašas, laiškas). Taip aišku, kas paleidžia grandinę ir kokie duomenys juda.",
               "relatedSlideId": 10.15
             },
             {
               "id": "m11-q8",
               "type": "scenario",
               "bloomLevel": 3,
-              "scenarioContext": "Darbo eiga paruošia atsakymą klientui ir kartais mato asmens duomenis. Standartiniai atsakymai kartojasi, bet klaidingas atsakymas klientui būtų sunkiai atšaukiamas.",
+              "scenarioContext": "Darbo eiga ruošia atsakymą klientui ir kartais mato asmens duomenis. Klaidingas atsakymas būtų sunkiai atšaukiamas. Srautas dar nepatikrintas su tikrais atvejais.",
               "question": "Kuris žmogaus kontrolės režimas geriausiai tinka?",
               "options": [
-                "Išimčių peržiūra: standartiniai atvejai automatiški, rizikingi arba neaiškūs keliauja žmogui",
+                "Išimčių peržiūra: standartiniai atvejai automatiški, rizikingi keliauja žmogui",
                 "Tik rezultatų stebėsena: žmogus mato tik savaitinę suvestinę",
-                "Po faktų patikros: klientui išsiųsti iškart, vėliau atrinkti kelis atvejus",
-                "Visus atvejus tvirtina žmogus, nors rizikinga tik dalis srauto"
+                "Patikra po veiksmo: išsiųsti iškart, vėliau peržiūrėti atranką",
+                "Žmogaus patvirtinimas prieš siuntimą, kol srautas nėra pakankamai patikrintas"
               ],
-              "correct": 0,
-              "explanation": "Išimčių peržiūra atitinka Asistuoti logiką: DI pagreitina standartinius atvejus, bet rizikingi, su asmens duomenimis ar neaiškūs atvejai perduodami žmogui prieš siuntimą.",
+              "correct": 3,
+              "explanation": "Kol srautas nepatikrintas, o klaida sunkiai atšaukiama ir kartais liečia asmens duomenis, žmogus tvirtina prieš siuntimą. Išimčių peržiūra tinka tik tada, kai sistema patikimai atskiria standartą nuo rizikos.",
               "relatedSlideId": 10.26
             },
             {
@@ -14368,12 +14360,12 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Verslo kelių agentų schema be programavimo: įvestis → maršrutizatorius (pasirenkamas) → koordinatorius → specialistai → vertintojas → išvestis (+ žmogaus patvirtinimas).",
+                "body": "Kada neužtenka vieno DI — padalink darbą rolėms ir uždaryk kokybės vartais.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Verslo kelių agentų schema",
-                "body": "Diagrama rodo roles ir perdavimus.",
+                "body": "Koordinatorius pats darbo neatlieka — paskirsto specialistams, sujungia ir atiduoda vertinimui.",
                 "image": "m12_multi_agent_schema",
                 "blockVariant": "brand"
               },
@@ -14417,7 +14409,7 @@
             "sections": [
               {
                 "heading": "Ką patikrinti",
-                "body": "Ar gali įvardyti grandinę: **Įvestis → Koordinatorius → 2 specialistai → Vertintojas → Išvestis**? Ar žinai, kuriame taške įsijungia **žmogaus patvirtinimo vartas**?"
+                "body": "Ar gali įvardyti grandinę: **Įvestis → Koordinatorius → 2 specialistai → Vertintojas → Išvestis**? Ar žinai, kuriame taške įsijungia **žmogaus kontrolė**?"
               },
               {
                 "heading": "Mini bandymas (1 min)",

@@ -2,12 +2,22 @@
 
 > Tikslas: viena vieta po release ar didesnio Unreleased sprinto patikrinti, ar agentų įėjimo dokumentai, release/ops dokumentai ir techniniai registry atitinka faktinę kodo bazę.
 
-**Baseline:** 1.6.2 corporate12 cutover pin + training HEAD T01–T08 + T09 · hygiene **41** · katalogo hinge · AppNav freeze · Unreleased visual QA PASS  
+**Baseline:** 1.6.2 corporate12 pin + **12 live per Supabase** + training HEAD T01–T08 + T09 · hygiene **41** · Unreleased visual QA PASS  
 **Testai:** training HEAD **168/1033** (2026-08-14); tag **1.6.2** = **165/1005**; tag 1.6.1 freeze = 161/982  
-**Data:** 2026-08-14 (Unreleased visual QA + metric sync)  
+**Data:** 2026-08-16 (owner status: 12 live · M7–18 corporate iki 2027-01)  
 **Šaltiniai:** `package.json`, `CHANGELOG.md`, `docs/development/RELEASE_QA_RUN.md`, `docs/development/RELEASE_QA_CHECKLIST.md`, `docs/development/DOCS_MAINTENANCE.md`.
 
 ## Sync lentelė
+
+### Owner status – 2026-08-16
+
+| #   | Failas                                                  | Laukas   | Buvo                        | Turi būti                                              | Done |
+| --- | ------------------------------------------------------- | -------- | --------------------------- | ------------------------------------------------------ | ---- |
+| 1   | `TODO.md` §1.4 / §1.5 / §1.6                            | MON/CAV  | live verify ⏳ · MON-2/3 ⏳ | 12 live; MON-2/3 `[x]`; MON-8 superseded; CAV-B1 `[x]` | [x]  |
+| 2   | `DEPLOYMENT` + `INTEGRATION_OVERVIEW` + `ROADMAP` §4    | kanonas  | Vercel now = M1–9           | prod = `corporate12` / M1–12                           | [x]  |
+| 3   | `MON_P0_EXECUTION_PLAN`                                 | vykdymas | pin 1.4.2 / HEAD 1.5.0      | superseded banner                                      | [x]  |
+| 4   | memo 06 + HANDOFF + PIN runbook + README + VERSION      | pin/live | v1.4.9 until cutover        | v1.6.2 current; 12 live; v1.4.9 istorinis              | [x]  |
+| 5   | `CHANGELOG` / `TEST_REPORT` / `CODEBASE` / `LEAN_INDEX` | status   | cutover open                | owner status 2026-08-16                                | [x]  |
 
 ### Unreleased visual QA + metric sync – 2026-08-14
 

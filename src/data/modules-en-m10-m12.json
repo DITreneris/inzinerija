@@ -53,7 +53,7 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "**MUST path:** agent cycle → 3A strategy → depth and roles → 5 workflow patterns → role and system prompt → tools → when to choose an agent → errors and limits → workflow concepts → automation platforms → launch.\n\n**Optional:** GitHub, deeper spec and incident playbook, glossary, summary. Term definitions – on the **Key concepts** slide.",
+                "body": "**MUST path:** agent cycle → 3A strategy → depth and roles → 5 workflow patterns → role and system prompt → tools → when to choose an agent → errors and limits → workflow concepts → automation platforms → launch.\n\n**Optional:** GitHub, deeper spec and incident playbook, glossary. Term definitions – on the **Key concepts** slide.",
                 "blockVariant": "accent"
               },
               {
@@ -924,7 +924,7 @@
               },
               {
                 "heading": "Where to apply",
-                "body": "**Sales:** Trigger – form → Action – CRM entry + reminder email.\n**Support:** T: email → C: if high priority → A: ticket + Slack.\n**Ops:** T: daily file → A: check + team report.\n\nOne rule: start with Trigger + Action; add Condition and Webhook once the process already works.",
+                "body": "Pick one process that matches your work. Each row: trigger → action → risk → metric.\n\n**Sales.** Inquiry form → CRM and email. Risk: duplicates. Metric: conversion.\n**People ops.** CV received → filter, then a person approves. Risk: uneven screening. Metric: time to hire.\n**Finance.** Invoice → scan and check. Risk: wrong numbers. Metric: processing time.\n**Customer service.** Complaint → sort and draft. Risk: the wrong tone. Metric: first response time.\n\nStart with the trigger and the action; add a condition only when you truly need it.",
                 "blockVariant": "brand"
               },
               {
@@ -939,7 +939,7 @@
               },
               {
                 "heading": "Check",
-                "body": "Is the trigger an **event** (not a task), and the action a **system step**? Did you name an error step? If not – go back to the example and template.",
+                "body": "Is the trigger an **event** (not a task), and the action a **system step**? Did you name an error step? Can you name the **risk** and the **metric** for your process? If not – go back to the example and template.",
                 "blockVariant": "accent"
               },
               {
@@ -1591,8 +1591,8 @@
                 "value": "5"
               },
               {
-                "label": "Use case examples",
-                "value": "12"
+                "label": "Workflow brief",
+                "value": "1"
               }
             ],
             "sections": [
@@ -1627,22 +1627,14 @@
                 ]
               },
               {
-                "heading": "12 applied examples",
+                "heading": "Where to apply",
                 "icon": "Workflow",
                 "color": "violet",
                 "items": [
-                  "Sales: lead form → CRM → email → duplicate risk → conversion",
-                  "Sales: weekly pipeline → AI summary → stale data → manager time",
-                  "Sales: RFP received → research + summary → missed criteria → response time",
-                  "HR: CV received → filter → recruiter approval → bias risk → hiring time",
-                  "HR: new employee → onboarding checklist → missed step → completion rate",
-                  "HR: candidate profile → fit score → personal data risk → shortlist accuracy",
-                  "Finance: invoice → OCR → checking → wrong numbers → processing time",
-                  "Finance: month close → AI summary → unapproved numbers → days to close",
-                  "Finance: budget variance → alert → too much noise → accurate alerts",
-                  "Support: complaint → sorting → draft → wrong tone → first response time",
-                  "Support: feedback → sentiment → escalation → premature autonomy → ticket SLA",
-                  "Support: FAQ request → draft → evaluator → wrong fact → self-service rate"
+                  "Sales: inquiry form → CRM and email. Risk: duplicates. Metric: conversion",
+                  "People ops: CV received → filter, then a person approves. Risk: uneven screening. Metric: time to hire",
+                  "Finance: invoice → scan and check. Risk: wrong numbers. Metric: processing time",
+                  "Customer service: complaint → sort and draft. Risk: the wrong tone. Metric: first response time"
                 ]
               }
             ],
@@ -1760,12 +1752,12 @@
               "question": "What should you fix first?",
               "options": [
                 "Clearly specify the tool and the rule: use search and provide sources; if you cannot find any, write “Not found”",
-                "Increase the answer length to 2000 words",
-                "Delete the error-handling sentence",
+                "Ask the model to judge, before answering, whether the information might be outdated",
+                "Add a rule: answer only with what you are completely sure about",
                 "Keep the same prompt and just ask again"
               ],
               "correct": 0,
-              "explanation": "The agent needs clear context: which tool to use, when to provide sources, and what to return when sources are missing. That lowers the risk of invented facts.",
+              "explanation": "The agent needs clear context: which tool to use, when to provide sources, and what to return when sources are missing. Confidence is not the same as sources – that lowers the risk of invented facts.",
               "relatedSlideId": 10.3
             },
             {
@@ -1789,13 +1781,13 @@
               "type": "mcq",
               "question": "How does an evaluator differ from a specialist in a multi-agent system?",
               "options": [
-                "The evaluator checks quality; the specialist does the work",
-                "Evaluator always sends emails; specialist only reads",
-                "They do the same work, just with different tools",
-                "Evaluator sets the trigger"
+                "The evaluator checks another agent’s result against criteria; the specialist does the assigned domain task",
+                "The evaluator decides which specialist gets the task; the specialist checks final quality",
+                "The evaluator changes the workflow at runtime; the specialist only gathers facts",
+                "The difference is mostly the model used, not the responsibility"
               ],
               "correct": 0,
-              "explanation": "Specialist does narrow work (search, draft). The evaluator checks rules and quality, and can return the work for revision – a separate QC role.",
+              "explanation": "The specialist does a narrow part (search, draft). The evaluator checks the criteria and can send the work back for revision – it does not assign the work.",
               "relatedSlideId": 10.45
             },
             {
@@ -1832,16 +1824,16 @@
               "id": "m11-q6",
               "type": "scenario",
               "bloomLevel": 3,
-              "scenarioContext": "You receive an RFP document and want a researcher to gather the facts, a writer to prepare a summary, and an evaluator to check the criteria, an evaluator to check the criteria.",
+              "scenarioContext": "You receive a long purchase request and want a researcher to gather the facts, a writer to prepare a summary, and an evaluator to check the criteria.",
               "question": "Which workflow pattern fits best?",
               "options": [
-                "Coordinator + specialists (or a chain with roles)",
-                "Only one prompt without a role",
-                "Routing by email size",
-                "Parallel work without merging"
+                "A coordinator that dynamically assigns tasks to specialists",
+                "A sequential chain: researcher → writer → evaluator",
+                "Routing by request type",
+                "Parallel work: three roles at once, without merging"
               ],
-              "correct": 0,
-              "explanation": "An RFP with several roles is a typical L2 case (an AI team): the coordinator plans, the specialists execute, and the evaluator checks. A chain with roles also works.",
+              "correct": 1,
+              "explanation": "The steps run one after another, so a chain fits. A coordinator is needed when the task is split dynamically, not when the sequence is fixed.",
               "relatedSlideId": 10.48
             },
             {
@@ -1851,28 +1843,28 @@
               "question": "Scenario: a client fills in a form on your website; you want the new entry to go into Google Sheets and the client to get an email confirmation. What should you do first when designing the flow (Zapier, Make, etc.)?",
               "options": [
                 "Define the trigger – what starts the flow (e.g. a new form submission) – then the actions (Sheets, email)",
-                "First write only a long AI chat text with no link to the form or the email",
-                "Only pick the Slack channel name and color for the notification",
-                "Launch the flow to production and only then think about errors"
+                "First pick a platform (Zapier, Make, or n8n) and define the trigger later",
+                "First write the confirmation email in an AI chat, and connect the form later",
+                "First map every Sheets column, and only then decide what starts the flow"
               ],
               "correct": 0,
-              "explanation": "First – the event that starts the flow (trigger) and the input schema; then the actions (entry, email). This makes it clear what starts the chain and what data moves.",
+              "explanation": "First – the event that starts the flow (the trigger) and the input schema; then the actions (entry, email). This makes it clear what starts the chain and what data moves.",
               "relatedSlideId": 10.15
             },
             {
               "id": "m11-q8",
               "type": "scenario",
               "bloomLevel": 3,
-              "scenarioContext": "A workflow prepares a reply to a client and sometimes handles personal data. Standard replies recur, but a wrong reply to the client would be hard to undo.",
+              "scenarioContext": "A workflow prepares a reply to a client and sometimes handles personal data. A wrong reply would be hard to undo. The flow is not yet validated on real cases.",
               "question": "Which human-control mode fits best?",
               "options": [
-                "Exception review: standard cases are automatic; risky or unclear ones go to a human",
+                "Exception review: standard cases are automatic; risky ones go to a human",
                 "Results monitoring only: the human sees just a weekly summary",
-                "After-the-fact check: send the reply to the client immediately and sample a few cases later",
-                "A human approves every case, even though only part of the flow is risky"
+                "After-the-fact check: send immediately, then review a sample later",
+                "Human approval before sending, until the flow is validated enough"
               ],
-              "correct": 0,
-              "explanation": "Exception review matches Augment logic: AI speeds up standard cases, but cases with risk, personal data, or ambiguity go to a human before sending.",
+              "correct": 3,
+              "explanation": "Until the flow is validated, and a mistake is hard to undo and sometimes involves personal data, a human approves before sending. Exception review fits only when the system can reliably separate routine cases from risk.",
               "relatedSlideId": 10.26
             },
             {
@@ -2110,12 +2102,12 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "Business multi-agent diagram without coding: input → router (optional) → coordinator → specialists → evaluator → output (+ human approval).",
+                "body": "When one model is not enough, split work across roles and close it with a quality gate.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Business multi-agent schema",
-                "body": "The diagram shows roles and handoffs.",
+                "body": "The coordinator does not do the work — it assigns specialists, merges their output, and hands it to the evaluator.",
                 "image": "m12_multi_agent_schema",
                 "blockVariant": "brand"
               },
@@ -2159,7 +2151,7 @@
             "sections": [
               {
                 "heading": "What to check",
-                "body": "Can you name the chain: **Input → Coordinator → 2 specialists → Evaluator → Output**? Do you know where the **human-approval gate** sits?"
+                "body": "Can you name the chain: **Input → Coordinator → 2 specialists → Evaluator → Output**? Do you know where **human control** sits?"
               },
               {
                 "heading": "Mini trial (1 min)",

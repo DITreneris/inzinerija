@@ -465,14 +465,14 @@
 
 **Kiekvienam tier (vienas objektas masyve):**
 
-| Laukas           | Privalomas | Turinio taisyklė                                                                                                         |
-| ---------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `tier`           | Taip       | Skaičius 1, 2, 3, … – atitinka lygį (1 = pirmas sertifikatas, 2 = antras, …).                                            |
-| `introLine`      | Taip       | Pirmoji eilutė, pvz. „Šiuo dokumentu patvirtinama, kad“. Vienodas tonas – paprasta kalba.                                |
-| `completionLine` | Taip       | Po vardo, pvz. „sėkmingai baigė mokymų programos dalį“ arba „sėkmingai baigė mokymų programą“.                           |
-| `programName`    | Taip       | Pilnas aprašymas (gali būti kelios eilutės), pvz. „6 blokų sistema – 6 blokai, testas, praktika“.                        |
-| `label`          | Taip       | Trumpa etiketė sertifikatui (pvz. „6 blokų sistema“, „Konteksto inžinerija“, „Duomenų analitika“). Fiksuota vienam tier. |
-| `footerText`     | Taip       | Footer tekstas, pvz. „Promptų anatomija – promptų struktūros mokymas. © Kurso medžiaga.“                                 |
+| Laukas           | Privalomas | Turinio taisyklė                                                                                                                            |
+| ---------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `tier`           | Taip       | Skaičius 1, 2, 3, … – atitinka lygį (1 = pirmas sertifikatas, 2 = antras, …).                                                               |
+| `introLine`      | Taip       | Pirmoji eilutė, pvz. „Šiuo dokumentu patvirtinama, kad“. Vienodas tonas – paprasta kalba. Bendras visiems tier.                             |
+| `completionLine` | Taip       | Po vardo: „sėkmingai baigė“ + oficialus kelio vardas (LT galininkas). Be modulių numerių, ≥ 70 %, projekto. ≤ 70 simb.                      |
+| `programName`    | Taip       | Viena kompetencijos eilutė (ką išmoko), ne kelio dumpas ir ne eligibility. Pvz. „Išmoko struktūruoti DI užduotį pagal 6 blokus.“ ≤ 55 simb. |
+| `label`          | Taip       | Trumpa etiketė nominatyvu (pvz. „6 blokų sistema“, „Konteksto inžinerija“). Katalogui; PDF veidas piešia `completionLine`.                  |
+| `footerText`     | Taip       | Bendras issuer, pvz. „Promptų anatomija. © Kurso medžiaga.“ Be „promptų struktūros mokymas“ (netinka T3–T5 temai).                          |
 
 **Naujam moduliui:** Pridėti naują tier į `tiers` (arba išplėsti tier sąvoką, jei reikia daugiau lygių). Schema: `scripts/schemas/certificateContent.schema.json` – `tiers` masyvas; jei tier skaičius auga, schema gali leisti `minItems` / `maxItems` atnaujintus.
 
@@ -820,7 +820,7 @@ Modulis N atrakintas, kai `progress.completedModules` turi (N-1).
 10. Testai: `ModulesPage.materials.test.tsx` (pozicija tier=6; download/sertifikatai), `ModulesPage.catalogUx.test.tsx` (next-step / kartojimas / vertintojas / progreso nedubliavimas / M3→M4 ready-check).
 11. M3→M4 branduolio pasitikrinimas kataloge = hinge juosta grid’e **prieš** `base-cycle-2` (next-step lukštas, brand `primary` CTA). Ne po coming-soon, ne antras hero virš katalogo, ne hard gate. Slėpti kai M4 baigtas arba `quizCompleted`.
 
-**Home vs katalogas:** katalogas valdo next-step (vienas primary „Kitas tavo žingsnis“). Home hero CTA lieka vienas primary (`Tęsti` / `Pradėti`); kartojimas Home = antrinis tekstinis linkas po hero CTA (tas pats balsas kaip `nextStepRecallCta`), **ne** atskira `RetrievalDueCard` hero kortelė. Nedėti antros next-step juostos Home.
+**Home vs katalogas:** katalogas valdo next-step (vienas primary „Kitas tavo žingsnis“). Home hero CTA lieka vienas primary (`Tęsti` / `Pradėti`); kartojimas Home = antrinis tekstinis linkas centruotoje hero CTA grupėje (text-link, Home raktas `home:recallCta`; katalogas lieka `nextStepRecallCta`), **ne** atskira `RetrievalDueCard` hero kortelė. Nedėti antros next-step juostos Home.
 
 ### 8.5 Skaidrių navigacijos taškai (ModuleView)
 

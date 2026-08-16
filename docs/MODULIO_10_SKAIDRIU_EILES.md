@@ -31,7 +31,7 @@
 | 7a   | **10.51**  | **Kontrolinis taškas: agentinis promptas**               | **NAUJA** – path-step; 5 dalių promptas + workflow spec juodraštis prieš M12.                                                            |
 | 8    | 10.6       | Klaidos tvarkymas ir ribos                               | CopyButton – „Jei nepavyksta – parašyk kodėl“.                                                                                           |
 | 8a   | **10.61**  | **Savitikra: prieš workflow sąvokas**                    | Warm-up po 10.6; 3 klausimai prieš 10.15.                                                                                                |
-| 9    | 10.15      | Pagrindinės sąvokos: trigger, action, condition, webhook | **Perkelta** po agentų mąstymo – workflow terminai.                                                                                      |
+| 9    | 10.15      | Pagrindinės sąvokos: trigger, action, condition, webhook | **Perkelta** po agentų mąstymo – workflow terminai. **Kur pritaikyti = 4 procesai (pirmas mokymas).**                                    |
 | 9b   | **10.151** | **Darbo eiga → automatizavimas** (section-break)         | Recap po 10.15; spinoffCta → blog `choosing-workflow-automation-ai-pipelines`. (JSON id `10.151`; kurikulo alias 10.15b)                 |
 | 10   | 10.35      | Verslo automatizavimo įrankiai                           | `m10_tool_decision_tree` + toolChoiceBar (Zapier/Make/n8n/PA); linked copy.                                                              |
 | 10b  | **10.36**  | **Kur paleisti** (programą ar agentą)                    | Sluoksniai lentele; režimų `toolChoiceBar` + linked copy; `preCopyCheck` n8n vs Railway; be naujos diagramos.                            |
@@ -41,7 +41,7 @@
 | 11b  | **10.655** | **Kai eiga lūžta**                                       | Optional: 5 žingsnių incidentų planas + saugumas; tiltas iš 10.65 paslaugos lygis / Klaidos / Auditas.                                   |
 | 11a  | **10.66**  | **Agentų QC vertintojas**                                | Vertina **10.64 aprašymą** (arba 10.51 juodraštį).                                                                                       |
 | 12   | 10.7       | Žodynėlis (optional)                                     | + Koordinatorius, Vertintojas, Maršrutizatorius, ReAct.                                                                                  |
-| 13   | 10.8       | Modulio 10 santrauka                                     | 5 blokų modelis + use case katalogas (4 sritys).                                                                                         |
+| 13   | 10.8       | Modulio 10 santrauka                                     | 5 blokų modelis + 4 procesų recap („Kur pritaikyti“); be stat 12.                                                                        |
 
 ---
 

@@ -2,6 +2,133 @@
 
 > **Tikslas:** QA_AGENT priima vartotojo testų klaidas, fiksuoja čia ir įrašo sprendimus į `TODO.md`.
 
+## 2026-08-16 – Release 1.6.3 cut
+
+**Statusas:** PASS · training cut **v1.6.3** · live pin kol neperpinsi = **v1.6.2**  
+**Apimtis:** docs close (M11/M12 walked, no RAW) + version cut + `audit:release-preflight` + `build:corporate12`. Ne parent pin.
+
+| Gate                      | Rezultatas                          |
+| ------------------------- | ----------------------------------- |
+| `audit:release-preflight` | ✅ **171** failai / **1056** testai |
+| `build:corporate12`       | ✅                                  |
+| Tag 1.6.2 freeze          | nepaliečiama **165/1005**           |
+
+**Verdict:** cut žalias. Pin = savininkas parent `promptanatomy`.
+
+---
+
+## 2026-08-16 – M11 Path Test item quality (q8 + distractoriai + q6)
+
+**Statusas:** PASS (gates + m11 contract) · **M11 walked, no RAW**  
+**Apimtis:** savininko pedagogikos RAW — q8 raktas vs 10.26; q1/q3/q7 absurdiški distractoriai; q6 grandinė vs koordinatorius + RFP. Ne q4/10.6 · ne chrome A3–A6 · ne 47×7.
+
+### I0
+
+| Klausimas | Buvo                                                | Po                                                  |
+| --------- | --------------------------------------------------- | --------------------------------------------------- |
+| q8        | `correct: 0` Išimtys; D redagavo verdiktą („nors…“) | `correct: 3` HITL prieš siuntimą; [0] = temptation  |
+| q6        | Koordinatorius OR grandinė; RFP + L2                | `correct: 1` grandinė; be RFP                       |
+| q1        | „2000 žodžių“ length cue                            | grounding ≠ užtikrintumas                           |
+| q3        | komiški blogi + QC                                  | rolės sukeitimas                                    |
+| q7        | Slack spalva / produkcija                           | platform-first / copy-first / schema-before-trigger |
+
+### Vartai
+
+| Gate                       | Rezultatas                     |
+| -------------------------- | ------------------------------ |
+| `TestPracticeSlides.m11`   | ✅ 7                           |
+| `lint`                     | ✅                             |
+| `audit:lt-address`         | ✅                             |
+| `audit:en-spelling`        | ✅                             |
+| `audit:m1012`              | ✅                             |
+| `build:modules-en-m10-m12` | ✅                             |
+| `generate:core-data`       | ✅ corporate12 q8 `correct: 3` |
+
+**Verdict:** item quality Must+Should žalias. **M11 walked, no RAW**. Cut **v1.6.3**.
+
+---
+
+## 2026-08-16 – M11 Path Test chrome (I0–I2)
+
+**Statusas:** PASS (gates + RTL) · owner pedagogikos walk (I3) dar atviras  
+**Apimtis:** missing `common.finish` + savitikros copy + EN `m11-q6` dublikatas. Ne 47×7 reopen / ne hygiene / ne Should A3–A6.
+
+### I0 inventory
+
+| Paviršius                | Raktas / eilutė                              | NS              | Rodo raktą?             |
+| ------------------------ | -------------------------------------------- | --------------- | ----------------------- |
+| Warm-up last CTA         | `finish`                                     | `common`        | **taip** — rakto nebuvo |
+| Warm-up mid CTA          | `next`                                       | `common`        | ne (`Pirmyn` / `Next`)  |
+| Warm-up hint             | `warmUpQuestionInfo`                         | `contentSlides` | ne — klaidinga copy     |
+| Warm-up done title/body  | hardcoded `isEn`                             | —               | I1 → i18n               |
+| Warm-up empty            | hardcoded `isEn`                             | —               | I1 → `warmUpEmpty`      |
+| Kiti Path Test `tCommon` | `copy` / `copiedExclaim` / `handoutPdfError` | `common`        | ne                      |
+| `112` fail CTA           | hardcoded ternary                            | —               | Should A5 (gated)       |
+| `112` pass CTA           | `startModule12Aria` kaip label               | `testPractice`  | Should A4 (gated)       |
+
+Antras missing `common.*` nerastas.
+
+### I1–I2
+
+| Gate                       | Rezultatas         |
+| -------------------------- | ------------------ |
+| `WarmUpQuizSlide.test.tsx` | ✅ 3               |
+| `lint`                     | ✅                 |
+| `audit:lt-address`         | ✅                 |
+| `audit:en-spelling`        | ✅                 |
+| `audit:m1012`              | ✅                 |
+| `build:modules-en-m10-m12` | ✅ q6 be dublikato |
+
+**I3:** **M11 walked, no RAW** (2026-08-16).
+
+**Verdict:** chrome Must žalias. Cut **v1.6.3**. Should A3–A6 gated.
+
+---
+
+## 2026-08-16 – Owner status: 12 live / corporate iki 2027-01
+
+**Statusas:** docs sync (be kodo)  
+**Apimtis:** savininko korekcija — 12 veikia per Supabase; M7–18 corporate iki 2027-01 nėra produkto skola; `v1.4.9` nebe current pin.
+
+| Gate / artefaktas | Rezultatas                                                                                                                    |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| MON-2 / CAV-B1    | `[x]` pin **v1.6.2** + 12 live per Supabase. Optional SPA chrome (`home-recall-link` vs `RetrievalDueCard`) ≠ cutover blokas. |
+| MON-3             | `[x]` tier 12 kelias veikia.                                                                                                  |
+| MON-8             | superseded — prod = `corporate12`, ne `build:production` M1–9.                                                                |
+| Landing vs M7–18  | Ne skola. Viešas Stripe = M1–6; corporate grant iki 2027-01.                                                                  |
+
+**Optional fingerprint (ne vartas):** incognito `/anatomy/` su tier 12 → DevTools: `home-recall-link` (1.6.2 Home) vs `RetrievalDueCard` (1.6.1 Home). Jei M10–12 atsidaro — fail nėra.
+
+**Verdict:** cutover prieiga uždaryta. Training HEAD Unreleased ≠ re-pin / 1.6.3.
+
+---
+
+## 2026-08-16 – T07 `10.35` tree readability v02
+
+**Statusas:** PASS (layout AABB + localization) · savininko tvarkom ant locked Must schemos  
+**Apimtis:** kriterijų hierarchija / clearance / kontrastas. Be `modules.json`. I4 pills **skip** (I3 AABB žali).
+
+| Gate                                 | Rezultatas                                                                 |
+| ------------------------------------ | -------------------------------------------------------------------------- |
+| `m10m12LayoutGeometry` tree describe | kriterijai ∩ trunk/bus/drop = false · kaimynai be overlap · `edgeLabel` 12 |
+| `DiagramLocalization` tree           | LT/EN · dark `brandDark` · criterion ne `g[opacity]`                       |
+| Wave 4b caption tokens               | be raw 14 / 800                                                            |
+
+---
+
+## 2026-08-16 – T06 `10.15` hierarchy stem
+
+**Statusas:** PASS (layout AABB + Block RTL) · belongs-to kotas, ne process antgalis  
+**Apimtis:** siūlas (amber × 0.72 × 1.5) → `flow` 2.5 + T-lentyna; label kairėje nuo ašies. Be `modules.json`.
+
+| Gate                    | Rezultatas                                                 |
+| ----------------------- | ---------------------------------------------------------- |
+| `hierarchyDropGeometry` | kotas + lentyna be `tipLen` / `markerEnd`                  |
+| `m10TriggerFlowLayout`  | label ∩ stem/shelf = false · stroke ∈ (1.5, 3.5) · Shell 3 |
+| `M10TriggerFlowBlock`   | radiogroup · tipas tik takte 0                             |
+
+---
+
 ## 2026-08-14 – Unreleased visual QA (Option 2)
 
 **Statusas:** PASS (gates + Must-contract + RTL) · no Must FAIL · no code fix  
@@ -31,8 +158,8 @@
 | T03 | `10.26`                | PASS    | Parent wells · `selectedUsesBrand` (selected ≠ severity) · RiskStrip = mapa                                                                                                                    |
 | T04 | `10.48`                | PASS    | `toolChoiceBar.variant: choice` · Tinka/Netinka                                                                                                                                                |
 | T05 | `10.482`               | PASS    | Lane header po bus · AABB clearance · `title.desktop` (geometry suite)                                                                                                                         |
-| T06 | `10.15`                | PASS    | Hero + tipai off-shaft · **internetinis pranešimas** · Shell 3 taktai                                                                                                                          |
-| T07 | `10.35`                | PASS    | 5 lapai · Workato = `orientyras` · Cursor **nėra** šaka                                                                                                                                        |
+| T06 | `10.15`                | PASS    | process-config-hierarchy · kotas+T-lentyna `flow` 2.5 (ne amber siūlas) · label kairėje nuo ašies · tipas tik takte 0 · Shell 3                                                                |
+| T07 | `10.35`                | PASS    | 5 lapai · Workato = `orientyras` (solid, ne dashed) · Cursor **nėra** šaka · readability v02: kriterijai 12 px virš juostos, dim tik drop’ams                                                  |
 | T08 | `10.25`                | PASS    | Echo kirptas · 5 % punch šalia (plotis lieka)                                                                                                                                                  |
 | C4  | T09 `10.65` → `10.655` | PASS    | Vienas `image` per skaidrę (`m10_workflow_spec` / `m10_incident_playbook`) · M12 `123` pointeris → **Kai eiga lūžta** · LT **Paslaugos lygis**                                                 |
 | C5  | Prompt Micro           | PASS    | `after-eval-one-action` šalia Flagship · vienas placeholderis · vienas 24–48 val. klausimas · tas pats kortelės lukštas · LT `tu` / EN American                                                |

@@ -14,6 +14,7 @@ import {
   getM12EdgePoints,
   getM12FaninGeometry,
   getM12FanoutGeometry,
+  estimateM12PillSize,
   getM12FeedbackLabelPos,
   getM12FeedbackPathCompact,
   getM12FeedbackPathDesktop,
@@ -21,6 +22,8 @@ import {
   getM12MultiAgentCompactBoxes,
   getM12MultiAgentDesktopBoxes,
   getM12NodeOpacity,
+  getM12SpineGapCenter,
+  getM12SpineVerbY,
   isM12NodeFocused,
   M12_EDGE_PILL_OPACITY,
   M12_MULTI_AGENT_EDGES_COMPACT,
@@ -73,26 +76,38 @@ function EdgePill({
   y,
   label,
   color,
+  fill,
 }: {
   x: number;
   y: number;
   label: string;
   color: string;
+  fill: string;
 }) {
+  const { w, h } = estimateM12PillSize(label);
   return (
-    <text
-      x={x}
-      y={y}
-      textAnchor="middle"
-      dominantBaseline="middle"
-      fill={color}
-      fontSize={DIAGRAM_TOKENS.typography.edgeLabel.size}
-      fontWeight={DIAGRAM_TOKENS.typography.edgeLabel.weight}
-      fontFamily={DIAGRAM_TOKENS.font}
-      opacity={M12_EDGE_PILL_OPACITY}
-    >
-      {label}
-    </text>
+    <g aria-hidden opacity={M12_EDGE_PILL_OPACITY}>
+      <rect
+        x={x - w / 2}
+        y={y - h / 2}
+        width={w}
+        height={h}
+        rx={4}
+        fill={fill}
+      />
+      <text
+        x={x}
+        y={y}
+        textAnchor="middle"
+        dominantBaseline="middle"
+        fill={color}
+        fontSize={DIAGRAM_TOKENS.typography.edgeLabel.size}
+        fontWeight={DIAGRAM_TOKENS.typography.edgeLabel.weight}
+        fontFamily={DIAGRAM_TOKENS.font}
+      >
+        {label}
+      </text>
+    </g>
   );
 }
 
@@ -114,6 +129,8 @@ function NodeBox({
   const subColor = softInk ? DIAGRAM_AMBER_INK_SOFT : 'rgba(255,255,255,0.9)';
   const titleSize = DIAGRAM_TOKENS.typography.stepLabel.desktop;
   const subSize = DIAGRAM_TOKENS.typography.stepSub.desktop;
+  const hasSub = Boolean(box.label[1]);
+  const titleY = hasSub ? box.y + 28 : box.y + box.h / 2;
 
   return (
     <g opacity={opacity}>
@@ -131,8 +148,9 @@ function NodeBox({
       />
       <text
         x={box.x + box.w / 2}
-        y={box.y + 24}
+        y={titleY}
         textAnchor="middle"
+        dominantBaseline={hasSub ? 'auto' : 'middle'}
         fill={textColor}
         fontSize={titleSize}
         fontWeight="700"
@@ -140,17 +158,19 @@ function NodeBox({
       >
         {box.label[0]}
       </text>
-      <text
-        x={box.x + box.w / 2}
-        y={box.y + 42}
-        textAnchor="middle"
-        fill={subColor}
-        fontSize={subSize}
-        fontWeight={softInk ? '700' : '500'}
-        fontFamily={DIAGRAM_TOKENS.font}
-      >
-        {box.label[1]}
-      </text>
+      {hasSub ? (
+        <text
+          x={box.x + box.w / 2}
+          y={box.y + 50}
+          textAnchor="middle"
+          fill={subColor}
+          fontSize={subSize}
+          fontWeight={softInk ? '700' : '500'}
+          fontFamily={DIAGRAM_TOKENS.font}
+        >
+          {box.label[1]}
+        </text>
+      ) : null}
       {onActivate ? (
         <DiagramStepHitArea
           x={box.x}
@@ -214,13 +234,18 @@ export default function M12MultiAgentSchemaDiagram({
     ? getM12FeedbackPathCompact(boxes)
     : getM12FeedbackPathDesktop(boxes);
   const feedbackLabel = getM12FeedbackLabelPos(boxes, compact);
-  const pillYOffset = compact ? 10 : 12;
+  const spineVerbY = getM12SpineVerbY(boxes, compact);
+  const pillFill = palette.bgStart;
   const frame = compact
-    ? { x: 10, y: 14, w: vb.width - 20, h: vb.height - 28, rx: 20 }
-    : { x: 14, y: 44, w: vb.width - 28, h: vb.height - 58, rx: 22 };
+    ? { x: 10, y: 10, w: vb.width - 20, h: vb.height - 20, rx: 20 }
+    : { x: 10, y: 6, w: vb.width - 20, h: vb.height - 14, rx: 20 };
   const compactFan = compact ? getM12CompactFanGeometry(boxes) : null;
-  const fanout = compact ? null : getM12FanoutGeometry(boxes);
-  const fanin = compact ? null : getM12FaninGeometry(boxes);
+  const fanout = compact
+    ? null
+    : getM12FanoutGeometry(boxes, undefined, L.edgeVerbs.assigns);
+  const fanin = compact
+    ? null
+    : getM12FaninGeometry(boxes, undefined, L.edgeVerbs.handsOff);
 
   return (
     <svg
@@ -318,22 +343,6 @@ export default function M12MultiAgentSchemaDiagram({
             markerEnd={`url(#${arrowId})`}
             opacity={getM12EdgeOpacity('specialistB-evaluator', step)}
           />
-          {shouldShowM12EdgeLabel('coord-assign', step) ? (
-            <EdgePill
-              x={compactFan.assignPill.x}
-              y={compactFan.assignPill.y}
-              label={L.edgeVerbs.assigns}
-              color={palette.muted}
-            />
-          ) : null}
-          {shouldShowM12EdgeLabel('spec-handoff', step) ? (
-            <EdgePill
-              x={compactFan.handoffPill.x}
-              y={compactFan.handoffPill.y}
-              label={L.edgeVerbs.handsOff}
-              color={palette.muted}
-            />
-          ) : null}
         </g>
       ) : null}
 
@@ -365,14 +374,6 @@ export default function M12MultiAgentSchemaDiagram({
             strokeWidth={DIAGRAM_TOKENS.stroke.flow}
             markerEnd={`url(#${arrowId})`}
           />
-          {shouldShowM12EdgeLabel('coord-assign', step) ? (
-            <EdgePill
-              x={fanout.assignPill.x}
-              y={fanout.assignPill.y}
-              label={L.edgeVerbs.assigns}
-              color={palette.muted}
-            />
-          ) : null}
         </g>
       ) : null}
       {fanin ? (
@@ -402,14 +403,6 @@ export default function M12MultiAgentSchemaDiagram({
             strokeWidth={DIAGRAM_TOKENS.stroke.flow}
             markerEnd={`url(#${arrowId})`}
           />
-          {shouldShowM12EdgeLabel('spec-handoff', step) ? (
-            <EdgePill
-              x={fanin.handoffPill.x}
-              y={fanin.handoffPill.y}
-              label={L.edgeVerbs.handsOff}
-              color={palette.muted}
-            />
-          ) : null}
         </g>
       ) : null}
 
@@ -422,40 +415,7 @@ export default function M12MultiAgentSchemaDiagram({
           strokeDasharray="5 4"
           markerEnd={`url(#${feedbackArrowId})`}
         />
-        {shouldShowM12EdgeLabel('evaluator-coordinator', step) ? (
-          <EdgePill
-            x={feedbackLabel.x}
-            y={feedbackLabel.y}
-            label={L.edgeVerbs.returns}
-            color={DIAGRAM_ROLE_COLORS.violet}
-          />
-        ) : null}
       </g>
-
-      {shouldShowM12EdgeLabel('input-router', step) ? (
-        <EdgePill
-          x={(boxes.input.x + boxes.input.w + boxes.router.x) / 2}
-          y={boxes.input.y - pillYOffset}
-          label={L.edgeVerbs.routes}
-          color={palette.muted}
-        />
-      ) : null}
-      {shouldShowM12EdgeLabel('router-coordinator', step) ? (
-        <EdgePill
-          x={(boxes.router.x + boxes.router.w + boxes.coordinator.x) / 2}
-          y={boxes.router.y - pillYOffset}
-          label={L.edgeVerbs.selects}
-          color={palette.muted}
-        />
-      ) : null}
-      {shouldShowM12EdgeLabel('evaluator-output', step) ? (
-        <EdgePill
-          x={(boxes.evaluator.x + boxes.evaluator.w + boxes.output.x) / 2}
-          y={boxes.evaluator.y - pillYOffset}
-          label={L.edgeVerbs.approves}
-          color={palette.muted}
-        />
-      ) : null}
 
       {boxList.map((box) => {
         const idx = stepForNode(box.id);
@@ -472,6 +432,62 @@ export default function M12MultiAgentSchemaDiagram({
           />
         );
       })}
+
+      {shouldShowM12EdgeLabel('input-router', step) ? (
+        <EdgePill
+          x={getM12SpineGapCenter(boxes.input, boxes.router)}
+          y={spineVerbY}
+          label={L.edgeVerbs.routes}
+          color={palette.muted}
+          fill={pillFill}
+        />
+      ) : null}
+      {shouldShowM12EdgeLabel('router-coordinator', step) ? (
+        <EdgePill
+          x={getM12SpineGapCenter(boxes.router, boxes.coordinator)}
+          y={spineVerbY}
+          label={L.edgeVerbs.selects}
+          color={palette.muted}
+          fill={pillFill}
+        />
+      ) : null}
+      {shouldShowM12EdgeLabel('coord-assign', step) &&
+      (fanout || compactFan) ? (
+        <EdgePill
+          x={(fanout ?? compactFan)!.assignPill.x}
+          y={(fanout ?? compactFan)!.assignPill.y}
+          label={L.edgeVerbs.assigns}
+          color={palette.muted}
+          fill={pillFill}
+        />
+      ) : null}
+      {shouldShowM12EdgeLabel('spec-handoff', step) && (fanin || compactFan) ? (
+        <EdgePill
+          x={(fanin ?? compactFan)!.handoffPill.x}
+          y={(fanin ?? compactFan)!.handoffPill.y}
+          label={L.edgeVerbs.handsOff}
+          color={palette.muted}
+          fill={pillFill}
+        />
+      ) : null}
+      {shouldShowM12EdgeLabel('evaluator-output', step) ? (
+        <EdgePill
+          x={getM12SpineGapCenter(boxes.evaluator, boxes.output)}
+          y={spineVerbY}
+          label={L.edgeVerbs.approves}
+          color={palette.muted}
+          fill={pillFill}
+        />
+      ) : null}
+      {shouldShowM12EdgeLabel('evaluator-coordinator', step) ? (
+        <EdgePill
+          x={feedbackLabel.x}
+          y={feedbackLabel.y}
+          label={L.edgeVerbs.returns}
+          color={DIAGRAM_ROLE_COLORS.violet}
+          fill={pillFill}
+        />
+      ) : null}
     </svg>
   );
 }

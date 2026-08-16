@@ -14,11 +14,11 @@
     "Autonomizuoti – ribotos autonomijos agentas veikia pats, bet turi aiškias ribas ir eskalaciją."
   ],
   "workflowSteps": [
-    "Trigger – kas pradeda procesą: forma, laiškas, lentelė, failas arba rankinis veiksmas.",
-    "Action – ką sistema padaro: surenka informaciją, paruošia santrauką, sukuria užduotį.",
-    "Tool – kokį įrankį naudoja: paiešką, API, skaičiuoklę, CRM, Teams ar Slack.",
-    "Human gate – kur žmogus patvirtina, atmeta arba paprašo pataisyti.",
-    "Log – kur saugomas rezultatas, klaida ir pamoka kitam kartui."
+    "Paleidiklis (trigger) – kas pradeda procesą: forma, laiškas, lentelė, failas arba rankinis veiksmas.",
+    "Veiksmas (action) – ką sistema padaro: surenka informaciją, paruošia santrauką, sukuria užduotį.",
+    "Įrankis (tool) – kokį įrankį naudoja: paiešką, API, skaičiuoklę, CRM, Teams ar Slack.",
+    "Žmogaus kontrolė (HITL) – kur žmogus patvirtina, atmeta arba paprašo pataisyti.",
+    "Audito žurnalas (log) – kur saugomas rezultatas, klaida ir pamoka kitam kartui."
   ],
   "promptPatterns": [
     "Koordinatorius: suskaidyk užduotį į roles, žingsnius ir perdavimo taisykles.",
@@ -26,11 +26,11 @@
     "Vertintojas: patikrink faktus, rizikas, toną ir ar atsakyta į kriterijus.",
     "Nepavyko taisyklė: jei trūksta duomenų arba įrankis neveikia, parašyk „Nepavyko“ ir nurodyk priežastį."
   ],
-  "starterPrompt": "META: Tu esi agentų procesoės koordinatorius. Tikslas – vienas pakartojamas procesas su žmogaus patvirtinimo tašku.\nINPUT: Procesas: [pvz. klientų užklausų santrauka]. Trigger: [kas paleidžia]. Šaltiniai ir ribos: [ką galima / ko negalima].\nOUTPUT: (1) 5 žingsnių eiga (trigger → action → tool → human gate → log), (2) 3 rolių promptai (koordinatorius, specialistas, vertintojas), (3) vienas „Nepavyko“ atvejis.\nQUALITY: Jei trūksta duomenų ar įrankis neveikia – sustok ir paprašyk žmogaus. Nespėliok.",
+  "starterPrompt": "META: Tu esi agentų proceso koordinatorius. Tikslas – vienas pakartojamas procesas su žmogaus kontrole.\nINPUT: Procesas: [pvz. klientų užklausų santrauka]. Paleidiklis (trigger): [kas paleidžia]. Šaltiniai ir ribos: [ką galima / ko negalima].\nOUTPUT: (1) 5 žingsnių eiga (paleidiklis → veiksmas → įrankis → žmogaus kontrolė → audito žurnalas), (2) 3 rolių promptai (koordinatorius, specialistas, vertintojas), (3) vienas „Nepavyko“ atvejis.\nQUALITY: Jei trūksta duomenų ar įrankis neveikia – sustok ir paprašyk žmogaus. Nespėliok.",
   "reflectionSummary": "Per 24–48 val. pasirink vieną procesą ir paleisk mažą agentų grandinę: koordinatorius → specialistas → vertintojas. Užrašyk vieną pamoką ir atnaujink promptą.",
   "nextPageHeading": "Ką daryti per 48 val.",
-  "nextPageIntro": "Agentų kelias baigtas tada, kai turi vieną procesą, kurį gali pakartoti: schema, promptai, bandymo atvejis ir aiški žmogaus patvirtinimo vieta.",
-  "primaryCtaLabel": "Agentų orchestratoriaus modelis (blog)",
+  "nextPageIntro": "Agentų kelias baigtas tada, kai turi vieną procesą, kurį gali pakartoti: schema, promptai, bandymo atvejis ir aiški žmogaus kontrolė.",
+  "primaryCtaLabel": "Agentų orkestratoriaus modelis (blog)",
   "secondaryCtaLabels": {
     "decide": "Nuspręsk kitą žingsnį (Decide)",
     "map": "Peržiūrėk ekosistemos žemėlapį (Map)"

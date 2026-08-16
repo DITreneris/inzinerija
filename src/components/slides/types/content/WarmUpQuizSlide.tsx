@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getT } from '../../../../i18n';
 import { CheckCircle } from 'lucide-react';
-import { useLocale } from '../../../../contexts/LocaleContext';
 import type { WarmUpQuizContent } from '../../../../types/modules';
 
 export function WarmUpQuizSlide({ content }: { content: WarmUpQuizContent }) {
@@ -10,8 +9,6 @@ export function WarmUpQuizSlide({ content }: { content: WarmUpQuizContent }) {
   const t = getT('contentSlides');
   const tCommon = getT('common');
   const tQuiz = getT('quiz');
-  const { locale } = useLocale();
-  const isEn = locale === 'en';
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
@@ -38,7 +35,7 @@ export function WarmUpQuizSlide({ content }: { content: WarmUpQuizContent }) {
   if (questions.length === 0) {
     return (
       <div className="p-6 text-center text-gray-600 dark:text-gray-400">
-        {isEn ? 'No warm-up questions available.' : 'Bandomųjų klausimų nėra.'}
+        {t('warmUpEmpty')}
       </div>
     );
   }
@@ -52,14 +49,10 @@ export function WarmUpQuizSlide({ content }: { content: WarmUpQuizContent }) {
             aria-hidden
           />
           <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2">
-            {isEn
-              ? 'Warm-up self-check complete'
-              : 'Pasiruošimo savitikra baigta'}
+            {t('warmUpCompleteTitle')}
           </h3>
           <p className="text-gray-700 dark:text-gray-300 text-sm">
-            {isEn
-              ? 'You can start the test \u2013 it\u2019s not graded, just preparation.'
-              : 'Gali pradėti testą – įskaita neįskaitoma, tai tik pasiruošimas.'}
+            {t('warmUpCompleteBody')}
           </p>
         </div>
       </div>

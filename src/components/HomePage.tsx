@@ -20,7 +20,7 @@ import { useLocale } from '../contexts/LocaleContext';
 import PromptLibrary from './PromptLibrary';
 import CircularProgress from './CircularProgress';
 import { Badge, BrandMark, Card, CTAButton } from './ui';
-import { moduleWord, modulesCompletedWord } from '../utils/ltPlural';
+import { moduleWord } from '../utils/ltPlural';
 import { focusRingClasses, touchTargetClasses } from '../design-tokens';
 import { getDueRetrieval } from '../utils/retrievalSchedule';
 
@@ -90,7 +90,7 @@ export default function HomePage({
   progress,
   onStartRetrieval,
 }: HomePageProps) {
-  const { t } = useTranslation(['home', 'common', 'modulesPage']);
+  const { t } = useTranslation(['home', 'common']);
   const { locale } = useLocale();
   const quickPrompts = locale === 'en' ? QUICK_PROMPTS_EN : QUICK_PROMPTS_LT;
   const [copiedQuickId, setCopiedQuickId] = useState<number | null>(null);
@@ -108,6 +108,11 @@ export default function HomePage({
     onStartRetrieval != null
       ? (getDueRetrieval(progress).find((item) => item.kind !== 'eval') ?? null)
       : null;
+  const recallModuleId = primaryRecall?.moduleId ?? 1;
+  const recallModuleTitle =
+    getModulesSync(locale)?.find(
+      (module) => module.id === primaryRecall?.moduleId
+    )?.title ?? '';
 
   return (
     <div className="space-y-12">
@@ -179,68 +184,76 @@ export default function HomePage({
           </div>
 
           {modulesCompleted > 0 && (
-            <p className="mb-4 text-sm text-gray-500 dark:text-gray-400">
+            <p className="mb-4 text-sm font-medium text-gray-700 dark:text-gray-300">
               {t('home:progressLabel', {
                 done: modulesCompleted,
                 total: totalModules,
-                modulesWord: moduleWord(locale, modulesCompleted),
-                completedWord: modulesCompletedWord(locale, modulesCompleted),
+                modulesWord: moduleWord(locale, totalModules, 'genitive'),
               })}
             </p>
           )}
 
-          <CTAButton
-            variant="hero"
-            onClick={
-              modulesCompleted === totalModules &&
-              totalModules > 0 &&
-              progress.quizCompleted
-                ? onStart
-                : modulesCompleted === totalModules &&
-                    totalModules > 0 &&
-                    onGoToQuiz
-                  ? onGoToQuiz
-                  : onStart
-            }
-            className="text-xl px-10 group"
-            aria-label={
-              modulesCompleted === totalModules &&
-              totalModules > 0 &&
-              progress.quizCompleted
-                ? t('home:ctaViewModulesAria')
-                : modulesCompleted === totalModules &&
-                    totalModules > 0 &&
-                    onGoToQuiz
-                  ? t('home:ctaToQuizAria')
-                  : t('home:ctaStartAria')
-            }
+          <div
+            className="flex flex-wrap items-center justify-center gap-4"
+            data-testid="home-hero-cta-group"
           >
-            {modulesCompleted === totalModules &&
-            totalModules > 0 &&
-            progress.quizCompleted
-              ? t('home:ctaViewModules')
-              : modulesCompleted === totalModules &&
-                  totalModules > 0 &&
-                  onGoToQuiz
-                ? t('home:ctaToQuiz')
-                : modulesCompleted > 0
-                  ? t('home:ctaContinue')
-                  : t('home:ctaStartNow')}
-            <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-          </CTAButton>
-          {primaryRecall && onStartRetrieval ? (
-            <button
-              type="button"
-              onClick={() => onStartRetrieval(primaryRecall)}
-              className={`mt-4 inline-flex items-center justify-center gap-2 rounded text-sm font-medium text-brand-800 hover:underline dark:text-brand-200 ${touchTargetClasses.minimumHeight} ${focusRingClasses.brandOnWhite}`}
-              data-testid="home-recall-link"
+            <CTAButton
+              variant="hero"
+              onClick={
+                modulesCompleted === totalModules &&
+                totalModules > 0 &&
+                progress.quizCompleted
+                  ? onStart
+                  : modulesCompleted === totalModules &&
+                      totalModules > 0 &&
+                      onGoToQuiz
+                    ? onGoToQuiz
+                    : onStart
+              }
+              className="text-xl px-10 group"
+              aria-label={
+                modulesCompleted === totalModules &&
+                totalModules > 0 &&
+                progress.quizCompleted
+                  ? t('home:ctaViewModulesAria')
+                  : modulesCompleted === totalModules &&
+                      totalModules > 0 &&
+                      onGoToQuiz
+                    ? t('home:ctaToQuizAria')
+                    : t('home:ctaStartAria')
+              }
             >
-              <RotateCcw className="w-4 h-4" aria-hidden />
-              {t('modulesPage:nextStepRecallCta', {
-                n: primaryRecall.moduleId ?? 1,
-              })}
-            </button>
-          ) : null}
+              {modulesCompleted === totalModules &&
+              totalModules > 0 &&
+              progress.quizCompleted
+                ? t('home:ctaViewModules')
+                : modulesCompleted === totalModules &&
+                    totalModules > 0 &&
+                    onGoToQuiz
+                  ? t('home:ctaToQuiz')
+                  : modulesCompleted > 0
+                    ? t('home:ctaContinue')
+                    : t('home:ctaStartNow')}
+              <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+            </CTAButton>
+            {primaryRecall && onStartRetrieval ? (
+              <button
+                type="button"
+                onClick={() => onStartRetrieval(primaryRecall)}
+                className={`inline-flex items-center justify-center gap-2 rounded px-3 text-sm font-medium text-brand-800 hover:underline hover:text-brand-900 dark:text-brand-200 dark:hover:text-brand-100 ${touchTargetClasses.minimumHeight} ${focusRingClasses.brandOnWhite}`}
+                aria-label={t('home:recallCtaAria', {
+                  n: recallModuleId,
+                  title: recallModuleTitle,
+                })}
+                data-testid="home-recall-link"
+              >
+                <RotateCcw className="w-4 h-4" aria-hidden />
+                {t('home:recallCta', {
+                  n: recallModuleId,
+                })}
+              </button>
+            ) : null}
+          </div>
         </div>
       </div>
 

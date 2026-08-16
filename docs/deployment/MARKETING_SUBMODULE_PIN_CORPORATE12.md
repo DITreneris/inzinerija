@@ -2,18 +2,18 @@
 
 > **Repo:** [DITreneris/promptanatomy](https://github.com/DITreneris/promptanatomy)  
 > **Training šaltinis:** [DITreneris/inzinerija](https://github.com/DITreneris/inzinerija) → submodule `apps/prompt-anatomy/`  
-> **Atnaujinta:** 2026-08-13  
+> **Atnaujinta:** 2026-08-16  
 > **Susiję:** [06_marketingo_memo_corporate12_supabase.md](../../06_marketingo_memo_corporate12_supabase.md), [MARKETING_HANDOFF_CHECKLIST.md](MARKETING_HANDOFF_CHECKLIST.md) §4 / §7a–corporate12, `TODO.md` §1.4 CAV-B1
 
 ---
 
 ## Tikslas
 
-Po inzinerija app tag **v1.6.2** (corporate12 repo-ready + toolchain advisories closed) atnaujinti marketing monorepo submodule ir deploy'inti **M1–12** bundle (`build:corporate12`) į `https://www.promptanatomy.app/anatomy/`, su Supabase Phase 1 `access_tier=12` (be Stripe).
+Po inzinerija app tag **v1.6.3** atnaujinti marketing monorepo submodule ir deploy'inti **M1–12** bundle (`build:corporate12`) į `https://www.promptanatomy.app/anatomy/`, su Supabase Phase 1 `access_tier=12` (be Stripe).
 
-**Statusas 2026-08-13:** GitHub pin **done** — `promptanatomy` `main` submodule = `c35a1f5` / **v1.6.2** ([PR #92](https://github.com/DITreneris/promptanatomy/pull/92); CI Golden Legacy ✅). Parent build jau `scripts/vercel-build.sh` → `VITE_MAX_BUILD_MODULE=12` + `build:corporate12`; `generate-access-link` `ACCESS_TIER_VALUES = [3, 6, 9, 12]`. Live `https://www.promptanatomy.app/anatomy/` **dar ne 1.6.2**: `HomePage-*.js` vis dar `import` `RetrievalDueCard` (1.6.2 Home = antrinis `home-recall-link`). Vercel prod deploy / cache — marketing.
+**Statusas 2026-08-16:** Live GitHub pin vis dar `c35a1f5` / **v1.6.2** ([PR #92](https://github.com/DITreneris/promptanatomy/pull/92)). Training cut **v1.6.3** = kitas pin target. Parent build = `scripts/vercel-build.sh` → `VITE_MAX_BUILD_MODULE=12` + `build:corporate12`. **12 live per Supabase.**
 
-**Ne šis runbook:** learning freeze pin `v1.4.9` (lieka M1–9); corporate15 / tier 15; Stripe €199.
+**Ne šis runbook:** istorinis learning freeze pin `v1.4.9`; corporate15 / tier 15; Stripe €199.
 
 ---
 
@@ -22,7 +22,7 @@ Po inzinerija app tag **v1.6.2** (corporate12 repo-ready + toolchain advisories 
 ```bash
 cd inzinerija
 git fetch --tags
-git checkout v1.6.2   # arba sutartas SHA; package.json version 1.6.2
+git checkout v1.6.3   # arba sutartas SHA; package.json version 1.6.3
 npm run audit:m1012
 npm run build:corporate12
 ```
@@ -38,14 +38,14 @@ cd promptanatomy
 git submodule update --init --recursive
 cd apps/prompt-anatomy
 git fetch --tags origin
-git checkout v1.6.2
+git checkout v1.6.3
 cd ../..
 git add apps/prompt-anatomy
-git commit -m "chore: pin prompt-anatomy submodule to v1.6.2 for corporate12"
+git commit -m "chore: pin prompt-anatomy submodule to v1.6.3 for corporate12"
 git push origin main
 ```
 
-**Patikra:** submodule SHA = `git rev-parse v1.6.2` (arba sutartas commit) inzinerija repo.
+**Patikra:** submodule SHA = `git rev-parse v1.6.3` (arba sutartas commit) inzinerija repo.
 
 ---
 
@@ -80,7 +80,7 @@ Pagal [06 memo](../../06_marketingo_memo_corporate12_supabase.md) §8:
 1. Tier 0: `/anatomy/` be query → AccessGateScreen
 2. Tier 9 magic link → M1–9 open; M10+ locked
 3. Supabase email (`highest_plan=12`) → `generate-access-link` → tier 12 → M10 opens; `localStorage.verified_access_tier` = `"12"`
-4. Build log: submodule SHA = `v1.6.2`; `VITE_MAX_BUILD_MODULE=12`
+4. Build log: submodule SHA = `v1.6.3`; `VITE_MAX_BUILD_MODULE=12`
 
 ---
 

@@ -84,7 +84,7 @@ export function getScenarioMeta(
 
 /**
  * Recommended control mode from consequence + reversibility.
- * High stakes or hard-to-reverse actions require stronger human gates.
+ * High stakes or hard-to-reverse actions require stronger human control.
  */
 export function recommendMode(
   scenarioId: HumanControlScenarioId

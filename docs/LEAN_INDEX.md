@@ -1,8 +1,8 @@
 # Lean dokumentacijos branduolys (agentams)
 
-> **Atnaujinta:** 2026-08-04 (TE Could closed; learning P1 nėra)  
+> **Atnaujinta:** 2026-08-16 (12 live per Supabase; M7–18 corporate iki 2027-01)  
 > **Tikslas:** ≤25 keliai ~90% užduočių. Analizės / PLAN snapshot / backlog – ne čia. Žr. `DOCUMENTATION_QUICK_REF.md` (startas) · `DOCUMENTATION_INDEX.md` (katalogas) · `DOCS_MAINTENANCE.md` §1c.  
-> **Open P1 (learning):** nėra. TE Could closed (won’t-now / C2 done). Open = MON §1.4 + D3 Deferred §1.5.
+> **Open P1 (learning):** nėra. TE Could closed (won’t-now / C2 done). Open = MON §1.4 (1/4/5/7/CRO) + D3 Deferred §1.5. Horizon B / 12 live — uždaryta.
 
 ---
 
@@ -34,7 +34,7 @@
 | `docs/development/TEST_REPORT.md`                         | Klaidos / QA žurnalas                                        |
 | `docs/development/RELEASE_QA_CHECKLIST.md`                | Prieš release                                                |
 | `src/data/modules.json` (+ `glossary.json`, `tools.json`) | Full authoring SOT                                           |
-| `src/data/modules-m1-m9.json` (+ glossary/tools m1-m9)    | Production M1–9 profilis                                     |
+| `src/data/modules-m1-m9.json` (+ glossary/tools m1-m9)    | M1–9 fallback profilis (ne gyvas kanonas)                    |
 | `src/data/modules-m1-m6.json` (+ glossary/tools m1-m6)    | MVP/demo profilis                                            |
 | `src/data/modules-m1-m12.json`, `modules-m1-m15.json`     | Corporate12 / corporate15 profiliai                          |
 

@@ -1,9 +1,11 @@
 /**
  * M12 120.5 – Verslo multi-agent geometrijos SOT (W7 layout brother).
+ * Metaphor: fork-in-pipe (A above / B below, same x between Coord and Eval).
  * View: M12MultiAgentSchemaDiagram.tsx
  */
 import { DIAGRAM_TOKENS } from './diagramTokens';
 import { shortenToTip } from './diagramPathGeom';
+import type { LayoutRect } from './diagramLayoutMath';
 import type { M12MultiAgentSchemaLabels } from './m12MultiAgentSchemaContent';
 
 export type M12MultiAgentNodeId =
@@ -51,17 +53,27 @@ export const M12_MAP_EDGE_OPACITY = 0.42;
 export const M12_EDGE_PILL_OPACITY = 0.9;
 
 export const M12_MULTI_AGENT_VIEWBOX = {
-  desktop: { width: 960, height: 392 },
+  desktop: { width: 1024, height: 400 },
   compact: { width: 420, height: 640 },
 } as const;
 
 export const M12_MULTI_AGENT_TITLE_Y = {
-  desktop: 28,
+  desktop: 22,
   compact: 40,
 } as const;
 
-export const M12_MULTI_AGENT_BOX_H = 60;
+export const M12_MULTI_AGENT_BOX_H = 72;
+export const M12_MIN_BOX_W = 124;
+export const M12_LINEAR_GAP_MIN = 32;
 export const M12_MULTI_AGENT_STEP_COUNT = 6;
+
+export const M12_SPINE_NODE_IDS: M12MultiAgentNodeId[] = [
+  'input',
+  'router',
+  'coordinator',
+  'evaluator',
+  'output',
+];
 
 export const M12_MULTI_AGENT_STEP_NODE_IDS: M12MultiAgentNodeId[][] = [
   ['input'],
@@ -78,9 +90,9 @@ export const M12_MULTI_AGENT_MARKER_LEN = DIAGRAM_TOKENS.arrow.processTipLen;
 export const M12_EDGE_LABEL_BY_STEP: string[][] = [
   ['input-router'],
   ['input-router', 'router-coordinator'],
-  ['router-coordinator', 'coord-assign'],
-  ['coord-assign', 'spec-handoff'],
-  ['spec-handoff', 'evaluator-coordinator'],
+  ['coord-assign'],
+  ['spec-handoff'],
+  ['evaluator-coordinator'],
   ['evaluator-output', 'evaluator-coordinator'],
 ];
 
@@ -218,9 +230,9 @@ export const M12_MULTI_AGENT_EDGES_COMPACT: M12MultiAgentEdge[] = [
   },
 ];
 
-/** Desktop: spine centerY shared by Input/Router/Coord/Eval/Output. */
-const DESKTOP_SPINE_CY = 168;
-const DESKTOP_BOX_Y = DESKTOP_SPINE_CY - M12_MULTI_AGENT_BOX_H / 2;
+const DESKTOP_SPEC_Y_A = 48;
+const DESKTOP_SPINE_Y = 138;
+const DESKTOP_SPEC_Y_B = 228;
 
 export function getM12MultiAgentDesktopBoxes(
   labels: M12MultiAgentSchemaLabels
@@ -229,17 +241,17 @@ export function getM12MultiAgentDesktopBoxes(
   return [
     {
       id: 'input',
-      x: 28,
-      y: DESKTOP_BOX_Y,
-      w: 118,
+      x: 24,
+      y: DESKTOP_SPINE_Y,
+      w: 128,
       h,
       tone: 'slate',
       label: labels.input,
     },
     {
       id: 'router',
-      x: 168,
-      y: DESKTOP_BOX_Y,
+      x: 188,
+      y: DESKTOP_SPINE_Y,
       w: 128,
       h,
       tone: 'slate',
@@ -247,8 +259,8 @@ export function getM12MultiAgentDesktopBoxes(
     },
     {
       id: 'coordinator',
-      x: 318,
-      y: DESKTOP_BOX_Y,
+      x: 352,
+      y: DESKTOP_SPINE_Y,
       w: 128,
       h,
       tone: 'violet',
@@ -256,8 +268,8 @@ export function getM12MultiAgentDesktopBoxes(
     },
     {
       id: 'specialistA',
-      x: 490,
-      y: 72,
+      x: 528,
+      y: DESKTOP_SPEC_Y_A,
       w: 128,
       h,
       tone: 'teal',
@@ -265,8 +277,8 @@ export function getM12MultiAgentDesktopBoxes(
     },
     {
       id: 'specialistB',
-      x: 490,
-      y: 204,
+      x: 528,
+      y: DESKTOP_SPEC_Y_B,
       w: 128,
       h,
       tone: 'teal',
@@ -274,17 +286,17 @@ export function getM12MultiAgentDesktopBoxes(
     },
     {
       id: 'evaluator',
-      x: 662,
-      y: DESKTOP_BOX_Y,
-      w: 122,
+      x: 704,
+      y: DESKTOP_SPINE_Y,
+      w: 128,
       h,
       tone: 'amber',
       label: labels.evaluator,
     },
     {
       id: 'output',
-      x: 812,
-      y: DESKTOP_BOX_Y,
+      x: 868,
+      y: DESKTOP_SPINE_Y,
       w: 128,
       h,
       tone: 'amberSoft',
@@ -296,7 +308,7 @@ export function getM12MultiAgentDesktopBoxes(
 export function getM12MultiAgentCompactBoxes(
   labels: M12MultiAgentSchemaLabels
 ): M12MultiAgentBox[] {
-  const h = M12_MULTI_AGENT_BOX_H;
+  const h = 60;
   return [
     {
       id: 'input',
@@ -471,6 +483,7 @@ export function estimateM12PillSize(label: string): { w: number; h: number } {
 }
 
 export interface M12FanoutGeometry {
+  busX: number;
   trunkPath: string;
   busPath: string;
   dropA: string;
@@ -478,10 +491,11 @@ export interface M12FanoutGeometry {
   assignPill: { x: number; y: number };
 }
 
-/** Orthogonal fan-out: Coord → bus → Spec A/B (desktop). */
+/** Orthogonal fan-out: Coord right → vertical bus → Spec A/B left. */
 export function getM12FanoutGeometry(
   boxes: Record<M12MultiAgentNodeId, M12MultiAgentBox>,
-  tipLen = M12_MULTI_AGENT_MARKER_LEN
+  tipLen = M12_MULTI_AGENT_MARKER_LEN,
+  assignLabel = 'paskiria'
 ): M12FanoutGeometry | null {
   const coord = boxes.coordinator;
   const a = boxes.specialistA;
@@ -490,25 +504,27 @@ export function getM12FanoutGeometry(
 
   const startX = coord.x + coord.w;
   const spineY = coord.y + coord.h / 2;
-  /** Bus left of tip inset so horizontal drops have shaft length. */
   const tipX = a.x - tipLen;
   const busX = Math.min(tipX - 10, (startX + a.x) / 2);
   const aCy = a.y + a.h / 2;
   const bCy = b.y + b.h / 2;
+  const { w: pillW } = estimateM12PillSize(assignLabel);
 
   return {
+    busX,
     trunkPath: `M ${startX} ${spineY} L ${busX} ${spineY}`,
     busPath: `M ${busX} ${aCy} L ${busX} ${bCy}`,
     dropA: `M ${busX} ${aCy} L ${tipX} ${aCy}`,
     dropB: `M ${busX} ${bCy} L ${b.x - tipLen} ${bCy}`,
     assignPill: {
-      x: (startX + busX) / 2,
-      y: spineY - 16,
+      x: busX - (pillW / 2 + 12),
+      y: aCy,
     },
   };
 }
 
 export interface M12FaninGeometry {
+  collectX: number;
   riseA: string;
   riseB: string;
   busPath: string;
@@ -516,10 +532,11 @@ export interface M12FaninGeometry {
   handoffPill: { x: number; y: number };
 }
 
-/** Orthogonal fan-in: Spec A/B → collect → Evaluator (desktop). */
+/** Orthogonal fan-in: Spec A/B right → collect → Evaluator left @ spine Y. */
 export function getM12FaninGeometry(
   boxes: Record<M12MultiAgentNodeId, M12MultiAgentBox>,
-  tipLen = M12_MULTI_AGENT_MARKER_LEN
+  tipLen = M12_MULTI_AGENT_MARKER_LEN,
+  handoffLabel = 'perduoda'
 ): M12FaninGeometry | null {
   const a = boxes.specialistA;
   const b = boxes.specialistB;
@@ -531,15 +548,17 @@ export function getM12FaninGeometry(
   const bCy = b.y + b.h / 2;
   const evalCy = evalBox.y + evalBox.h / 2;
   const evalLeft = evalBox.x - tipLen;
+  const { w: pillW } = estimateM12PillSize(handoffLabel);
 
   return {
+    collectX,
     riseA: `M ${a.x + a.w} ${aCy} L ${collectX} ${aCy}`,
     riseB: `M ${b.x + b.w} ${bCy} L ${collectX} ${bCy}`,
     busPath: `M ${collectX} ${aCy} L ${collectX} ${bCy}`,
     trunkPath: `M ${collectX} ${evalCy} L ${evalLeft} ${evalCy}`,
     handoffPill: {
-      x: (collectX + evalLeft) / 2,
-      y: evalCy - 16,
+      x: collectX + pillW / 2 + 12,
+      y: aCy,
     },
   };
 }
@@ -584,6 +603,12 @@ export function getM12CompactFanGeometry(
   };
 }
 
+export function getM12FeedbackTroughYDesktop(
+  boxes: Record<M12MultiAgentNodeId, M12MultiAgentBox>
+): number {
+  return boxes.specialistB.y + boxes.specialistB.h + 32;
+}
+
 export function getM12FeedbackPathDesktop(
   boxes: Record<M12MultiAgentNodeId, M12MultiAgentBox>
 ): string {
@@ -593,11 +618,16 @@ export function getM12FeedbackPathDesktop(
   const startY = evalBox.y + evalBox.h;
   const endX = coord.x + coord.w / 2;
   const endY = coord.y + coord.h;
-  const troughY = Math.max(
-    boxes.specialistB.y + boxes.specialistB.h + 36,
-    startY + 48
-  );
-  return `M ${startX} ${startY} L ${startX} ${troughY} L ${endX} ${troughY} L ${endX} ${endY + M12_MULTI_AGENT_MARKER_LEN}`;
+  const troughY = getM12FeedbackTroughYDesktop(boxes);
+  const r = 16;
+  return [
+    `M ${startX} ${startY}`,
+    `L ${startX} ${troughY - r}`,
+    `Q ${startX} ${troughY} ${startX - r} ${troughY}`,
+    `L ${endX + r} ${troughY}`,
+    `Q ${endX} ${troughY} ${endX} ${troughY - r}`,
+    `L ${endX} ${endY + M12_MULTI_AGENT_MARKER_LEN}`,
+  ].join(' ');
 }
 
 export function getM12FeedbackPathCompact(
@@ -618,11 +648,27 @@ export function getM12FeedbackLabelPos(
   if (compact) {
     return { x: 48, y: (boxes.coordinator.y + boxes.evaluator.y) / 2 + 20 };
   }
-  const troughY = boxes.specialistB.y + boxes.specialistB.h + 36;
+  const troughY = getM12FeedbackTroughYDesktop(boxes);
+  const startX = boxes.evaluator.x + boxes.evaluator.w / 2;
+  const endX = boxes.coordinator.x + boxes.coordinator.w / 2;
   return {
-    x: (boxes.coordinator.x + boxes.evaluator.x + boxes.evaluator.w) / 2,
+    x: (startX + endX) / 2,
     y: troughY + 14,
   };
+}
+
+export function getM12SpineVerbY(
+  boxes: Record<M12MultiAgentNodeId, M12MultiAgentBox>,
+  compact: boolean
+): number {
+  return compact ? boxes.input.y - 14 : boxes.input.y - 18;
+}
+
+export function getM12SpineGapCenter(
+  from: M12MultiAgentBox,
+  to: M12MultiAgentBox
+): number {
+  return (from.x + from.w + to.x) / 2;
 }
 
 export interface M12PillRect {
@@ -657,15 +703,192 @@ export function m12DesktopBoxesFitViewBox(boxes: M12MultiAgentBox[]): boolean {
   );
 }
 
+export function m12CompactBoxesFitViewBox(boxes: M12MultiAgentBox[]): boolean {
+  const { width, height } = M12_MULTI_AGENT_VIEWBOX.compact;
+  return boxes.every(
+    (b) => b.x >= 0 && b.y >= 0 && b.x + b.w <= width && b.y + b.h <= height
+  );
+}
+
 export function m12SpineCenterYAligned(
   boxes: Record<M12MultiAgentNodeId, M12MultiAgentBox>
 ): boolean {
   const cy = (id: M12MultiAgentNodeId) => boxes[id].y + boxes[id].h / 2;
   const spine = cy('input');
+  return M12_SPINE_NODE_IDS.every((id) => Math.abs(cy(id) - spine) < 0.5);
+}
+
+export function m12ForkInPipe(
+  boxes: Record<M12MultiAgentNodeId, M12MultiAgentBox>
+): boolean {
   return (
-    Math.abs(cy('router') - spine) < 0.5 &&
-    Math.abs(cy('coordinator') - spine) < 0.5 &&
-    Math.abs(cy('evaluator') - spine) < 0.5 &&
-    Math.abs(cy('output') - spine) < 0.5
+    boxes.specialistA.x === boxes.specialistB.x &&
+    boxes.specialistA.y + boxes.specialistA.h + 12 <= boxes.input.y &&
+    boxes.specialistB.y >= boxes.input.y + boxes.input.h + 12
   );
+}
+
+export function m12LinearSpineMinGap(
+  boxes: Record<M12MultiAgentNodeId, M12MultiAgentBox>,
+  min = M12_LINEAR_GAP_MIN
+): boolean {
+  const pairs: [M12MultiAgentNodeId, M12MultiAgentNodeId][] = [
+    ['input', 'router'],
+    ['router', 'coordinator'],
+    ['evaluator', 'output'],
+  ];
+  return pairs.every(([from, to]) => {
+    const a = boxes[from];
+    const b = boxes[to];
+    return b.x - (a.x + a.w) >= min;
+  });
+}
+
+export function m12FaninCollectBetweenForkAndEval(
+  fanin: M12FaninGeometry,
+  boxes: Record<M12MultiAgentNodeId, M12MultiAgentBox>
+): boolean {
+  return (
+    fanin.collectX > boxes.specialistA.x + boxes.specialistA.w &&
+    fanin.collectX < boxes.evaluator.x
+  );
+}
+
+export function getM12DesktopSpineStrokes(
+  boxes: Record<M12MultiAgentNodeId, M12MultiAgentBox>
+): { id: string; x1: number; y1: number; x2: number; y2: number }[] {
+  const pair = (id: string, from: M12MultiAgentBox, to: M12MultiAgentBox) => {
+    const cy = from.y + from.h / 2;
+    return {
+      id,
+      x1: from.x + from.w,
+      y1: cy,
+      x2: to.x,
+      y2: cy,
+    };
+  };
+  return [
+    pair('input-router', boxes.input, boxes.router),
+    pair('router-coordinator', boxes.router, boxes.coordinator),
+    pair('evaluator-output', boxes.evaluator, boxes.output),
+  ];
+}
+
+export function getM12DesktopFanStrokes(
+  boxes: Record<M12MultiAgentNodeId, M12MultiAgentBox>,
+  labels: M12MultiAgentSchemaLabels
+): { id: string; x1: number; y1: number; x2: number; y2: number }[] {
+  const fanout = getM12FanoutGeometry(
+    boxes,
+    undefined,
+    labels.edgeVerbs.assigns
+  );
+  const fanin = getM12FaninGeometry(
+    boxes,
+    undefined,
+    labels.edgeVerbs.handsOff
+  );
+  if (!fanout || !fanin) return [];
+  const aCy = boxes.specialistA.y + boxes.specialistA.h / 2;
+  const bCy = boxes.specialistB.y + boxes.specialistB.h / 2;
+  const spineY = boxes.coordinator.y + boxes.coordinator.h / 2;
+  return [
+    {
+      id: 'fanout-trunk',
+      x1: boxes.coordinator.x + boxes.coordinator.w,
+      y1: spineY,
+      x2: fanout.busX,
+      y2: spineY,
+    },
+    {
+      id: 'fanout-bus',
+      x1: fanout.busX,
+      y1: aCy,
+      x2: fanout.busX,
+      y2: bCy,
+    },
+    {
+      id: 'fanin-bus',
+      x1: fanin.collectX,
+      y1: aCy,
+      x2: fanin.collectX,
+      y2: bCy,
+    },
+    {
+      id: 'fanin-trunk',
+      x1: fanin.collectX,
+      y1: spineY,
+      x2: boxes.evaluator.x,
+      y2: spineY,
+    },
+  ];
+}
+
+export function getM12DesktopVerbPills(
+  boxes: Record<M12MultiAgentNodeId, M12MultiAgentBox>,
+  labels: M12MultiAgentSchemaLabels
+): { key: string; rect: M12PillRect }[] {
+  const bandY = getM12SpineVerbY(boxes, false);
+  const fanout = getM12FanoutGeometry(
+    boxes,
+    undefined,
+    labels.edgeVerbs.assigns
+  );
+  const fanin = getM12FaninGeometry(
+    boxes,
+    undefined,
+    labels.edgeVerbs.handsOff
+  );
+  const fb = getM12FeedbackLabelPos(boxes, false);
+  if (!fanout || !fanin) return [];
+  return [
+    {
+      key: 'routes',
+      rect: m12PillAabb(
+        getM12SpineGapCenter(boxes.input, boxes.router),
+        bandY,
+        labels.edgeVerbs.routes
+      ),
+    },
+    {
+      key: 'selects',
+      rect: m12PillAabb(
+        getM12SpineGapCenter(boxes.router, boxes.coordinator),
+        bandY,
+        labels.edgeVerbs.selects
+      ),
+    },
+    {
+      key: 'assigns',
+      rect: m12PillAabb(
+        fanout.assignPill.x,
+        fanout.assignPill.y,
+        labels.edgeVerbs.assigns
+      ),
+    },
+    {
+      key: 'handsOff',
+      rect: m12PillAabb(
+        fanin.handoffPill.x,
+        fanin.handoffPill.y,
+        labels.edgeVerbs.handsOff
+      ),
+    },
+    {
+      key: 'approves',
+      rect: m12PillAabb(
+        getM12SpineGapCenter(boxes.evaluator, boxes.output),
+        bandY,
+        labels.edgeVerbs.approves
+      ),
+    },
+    {
+      key: 'returns',
+      rect: m12PillAabb(fb.x, fb.y, labels.edgeVerbs.returns),
+    },
+  ];
+}
+
+export function m12BoxAsRect(box: M12MultiAgentBox): LayoutRect {
+  return { x: box.x, y: box.y, w: box.w, h: box.h };
 }

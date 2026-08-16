@@ -128,6 +128,15 @@ Verslo automatizavimas (workflow tarp sistemų) glaudžiai susijęs su agentų i
 
 **Schema (GOLDEN §3.2):** Trumpai (accent) → diagrama (brand) → Veikiantis pavyzdys (brand) → Sąvokos / kontrastas (brand) → Kur pritaikyti (brand) → Daryk dabar (brand) → CopyButton → Patikra (accent) → Papildomos sąvokos (terms, collapsible).
 
+**Kur pritaikyti (4 procesai – pirmas gyvas mokymas):** atpažink vieną savo procesą. Kiekviename: paleidiklis → veiksmas → **rizika** → **rodiklis**. Santrauka `10.8` šiuos keturis tik pakartoja – ne pirmas pasirodymas ir ne „Ką išmokai“ statistika.
+
+| Sritis                   | Paleidiklis → veiksmas                    | Rizika             | Rodiklis              |
+| ------------------------ | ----------------------------------------- | ------------------ | --------------------- |
+| **Pardavimai**           | Užklausos forma → CRM ir laiškas          | dublikatai         | konversija            |
+| **Personalas**           | CV gautas → filtras, tada žmogus tvirtina | šališkumas         | atrankos laikas       |
+| **Finansai**             | Sąskaita → nuskaitymas ir tikrinimas      | klaidingi skaičiai | apdorojimo laikas     |
+| **Klientų aptarnavimas** | Skundas → rūšiavimas ir juodraštis        | netinkamas tonas   | pirmo atsakymo laikas |
+
 **CopyButton:**
 
 ```
@@ -138,7 +147,7 @@ Internetinis pranešimas (webhook): [NEREIKIA / IŠ KUR].
 Jei nepavyksta: [KĄ DARYTI].
 ```
 
-**Patikra:** Ar Paleidiklis yra **įvykis** (ne užduotis), o Veiksmas – tai, ką padaro sistema? Ar nurodytas klaidos žingsnis?
+**Patikra:** Ar Paleidiklis yra **įvykis** (ne užduotis), o Veiksmas – tai, ką padaro sistema? Ar nurodytas klaidos žingsnis? Ar gali įvardyti **riziką** ir **rodiklį** savo procesui?
 
 **Pagrindinės sąvokos (lentelė / sąrašas – skaidrė 10.15):**
 
@@ -765,32 +774,19 @@ Viena skaidrė arba collapsible „Nori suprasti detaliau?“ – 8–10 termin�
 
 Pagal [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md):
 
-| #   | Blokas               | Turinys                                                                                                                                                                                                   |
-| --- | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | Pasveikinimo blokas  | „Ką išmokai“ – agentų ciklas, taksonomija (L0–L3, rolės), 5 darbo eigos šablonai, 3A, mokymosi ciklas, promptai, ribos. 3 statistikos: pvz. „4 gylio lygiai“, „5 darbo eigos šablonai“, „4 agentų rolės“. |
-| 2   | Žinių kortelės       | Max 3: (1) Taksonomija ir kelių agentų rolės, (2) 5 darbo eigos šablonai + 3A + mokymosi ciklas, (3) Promptai, įrankiai, klaidos tvarkymas.                                                               |
-| 3   | Refleksijos promptas | Copyable; 3 klausimai (Apply, Analyze, Create) – kur pritaikysi agentą, kas buvo naujausia, ką išbandysi pirmiausia.                                                                                      |
-| 4   | Kitas žingsnis CTA   | „Pereik prie Modulio 11: Žinių patikrinimas (Agentų kelias)“ – testas prieš projektą.                                                                                                                     |
-| 5   | Motyvacinis footer   | Tagline: „Agentas = žingsniai + įrankiai + ribos – tavo pagrindas automatizacijai.“                                                                                                                       |
+| #   | Blokas               | Turinys                                                                                                                                                                                                                                                 |
+| --- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | Pasveikinimo blokas  | „Ką išmokai“ – agentų ciklas, taksonomija (L0–L3, rolės), 5 darbo eigos šablonai, 3A, mokymosi ciklas, promptai, ribos. 3 statistikos: „Gylio lygiai + rolės“ (8), „Darbo eigos šablonai“ (5), „Eigos aprašymas“ (1) – ne pritaikymo katalogo skaičius. |
+| 2   | Žinių kortelės       | Max 3 žinių: (1) Gylis ir kelių agentų rolės, (2) 3A + mokymosi ciklas, (3) Promptai ir eigos bilietas. 4-a kortelė = **transfer recap** „Kur pritaikyti“ (4 eilutės iš 10.15), ne naujas katalogas.                                                    |
+| 3   | Refleksijos promptas | Copyable; 3 klausimai (Apply, Analyze, Create) – kur pritaikysi agentą, kas buvo naujausia, ką išbandysi pirmiausia.                                                                                                                                    |
+| 4   | Kitas žingsnis CTA   | „Pereik prie Modulio 11: Žinių patikrinimas (Agentų kelias)“ – testas prieš projektą.                                                                                                                                                                   |
+| 5   | Motyvacinis footer   | Tagline: „Agentas = žingsniai + įrankiai + ribos – tavo pagrindas automatizacijai.“                                                                                                                                                                     |
 
 **Pirmas veiksmas po modulio:** Šiandien atidaryk vieną DI įrankį su įjungtais įrankiais (paieška arba Tools) ir užduok vieną agentinę užklausą su „Naudok paiešką ir pateik šaltinius“.
 
-**Pritaikymo katalogas (12 eilučių – santraukoje matomas grid):**
+**Pritaikymo recap (4 eilutės – santraukos 4-a kortelė „Kur pritaikyti“, ne hero statistika):** tie patys 4 procesai kaip §3a / 10.15. Kiekvienoje eilutėje etiketės **Rizika:** ir **Rodiklis:**.
 
-| Sritis         | Trigger → veiksmai → rizika → KPI                                                            |
-| -------------- | -------------------------------------------------------------------------------------------- |
-| **Pardavimai** | Lead forma → CRM → laiškas → rizika: dublikatai → KPI: konversija                            |
-| **Pardavimai** | Savaitės pardavimų eiga → DI suvestinė → rizika: pasenę duomenys → KPI: laikas vadovui       |
-| **Pardavimai** | RFP gavimas → tyrimas + santrauka → rizika: praleisti kriterijus → KPI: atsakymo laikas      |
-| **HR**         | CV gavimas → filtras → recruiter HITL → rizika: bias → KPI: atrankos laikas                  |
-| **HR**         | Naujas darbuotojas → onboarding checklist → rizika: praleisti žingsnį → KPI: completion rate |
-| **HR**         | Kandidato profilis → atitikimo score → rizika: PII → KPI: shortlist tikslumas                |
-| **Finansai**   | Sąskaita → OCR → tikrinimas → rizika: klaidingi skaičiai → KPI: apdorojimo laikas            |
-| **Finansai**   | Mėnesio closinimas → DI santrauka → rizika: nepatvirtinti skaičiai → KPI: uždarymo dienos    |
-| **Finansai**   | Biudžeto variance → alert → rizika: per daug triukšmo → KPI: tikslūs įspėjimai               |
-| **Support**    | Skundas → triažas → juodraštis → rizika: netinkamas tonas → KPI: first response time         |
-| **Support**    | Atsiliepimas → sentiment → eskalacija → rizika: per anksti autonomiškai → KPI: ticket SLA    |
-| **Support**    | FAQ užklausa → juodraštis → vertintojas → rizika: klaidingas faktas → KPI: self-service rate |
+**Ref. priedas (ne gyvas UI):** 8 eilutės, kurios išėjo iš kelio – savaitės suvestinė, RFP, įvedimo sąrašas, atitikties įvertis, mėnesio uždarymas, biudžeto triukšmas, nuotaikos eskalacija, FAQ + vertintojas. Jei kada nors plėsti – ref. doc, ne santraukos siena.
 
 ---
 
@@ -816,9 +812,9 @@ Pagal [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md
   - **m11-q1 (naujas):** DI atsako užtikrintai, bet be šaltinių; ką pirmiausia pataisyti? → `relatedSlideId: 10.3`
   - **m11-q3 (naujas):** Kuo vertintojas skiriasi nuo specialisto? → `relatedSlideId: 10.45`
   - **m11-q9 (naujas):** Ką daryti po netikslaus agento rezultato, kad mokymosi ciklas užsidarytų? → `relatedSlideId: 10.49`
-  - **m11-q5 (naujas):** Kas yra maršrutizatorius multi-agent sistemoje? → `relatedSlideId: 10.45`
-  - **m11-q6 (naujas):** Situacinis RFP tyrimas – koordinatorius + tyrėjas + rašytojas; kuris workflow šablonas? → `relatedSlideId: 10.48`
-  - **m11-q8:** Kliento atsakymo srautas su asmens duomenimis – kuris žmogaus kontrolės režimas? → `relatedSlideId: 10.26` (ne 10.64)
+  - **m11-q5:** Prieš M12 praktiką – kuris artefaktas pirmiausia sumažins riziką? Minimalus darbo eigos aprašymas → `relatedSlideId: 10.64`
+  - **m11-q6:** Ilga pirkimo užklausa (tyrėjas → rašytojas → vertintojas) – nuosekli grandinė, ne koordinatorius → `relatedSlideId: 10.48`
+  - **m11-q8:** Kliento atsakymas + asmens duomenys + sunku atšaukti + srautas nepatikrintas – žmogaus patvirtinimas prieš siuntimą → `relatedSlideId: 10.26` (ne 10.64)
 - **test-results:** failedMessage vartotojui rodo **žmogiškas temas** (agento ciklas, 3A, kelių agentų rolės, darbo eigos šablonai, įrankiai, klaidų tvarkymas, Zapier / Make), ne techninius skaidrių ID. Remediation chips gali likti deep-link į M10 skaidres.
 
 ### 7.3 Bonus mini-praktika po testo (113)
@@ -896,11 +892,11 @@ Pagal [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md
 
 **Pavadinimas:** Verslo kelių agentų schema (ne meta AGENTS.md).
 
-**Sibling:** praktikos žemėlapis po M10 orkestravimo simuliacijos (`m10_agent_orchestrator` / skaidrė **Agentų orkestravimo simuliacija**). Bendros rolės: Įvestis, Maršrutizatorius, Koordinatorius, Specialistai, Vertintojas, Išvestis + žmogaus patvirtinimas. Fokusas – **perdavimas** ir žmogaus vartas prieš **124.5**, ne antra orch simuliacija. Diagrama: `m12_multi_agent_schema`.
+**Sibling:** praktikos žemėlapis po M10 orkestravimo simuliacijos (`m10_agent_orchestrator` / skaidrė **Agentų orkestravimo simuliacija**). Bendros rolės: Įvestis, Maršrutizatorius, Koordinatorius, Specialistai, Vertintojas, Išvestis + žmogaus patvirtinimas. Fokusas – **perdavimas** ir žmogaus kontrolė prieš **124.5**, ne antra orch simuliacija. Diagrama: `m12_multi_agent_schema`.
 
 **Schema (GOLDEN §3.2):** Trumpai (accent) → Schema + diagrama (brand) → Perdavimas (brand) → Daryk dabar (accent) → CopyButton → Patikra (accent).
 
-**Turinys:** Įvestis → Maršrutizatorius (pasirenkama) → Koordinatorius → 2–3 specialistai → Vertintojas → Išvestis (+ žmogaus patvirtinimo vartas prieš siuntimą).
+**Turinys:** Įvestis → Maršrutizatorius (pasirenkama) → Koordinatorius → 2–3 specialistai → Vertintojas → Išvestis (+ žmogaus kontrolė prieš siuntimą).
 
 **CopyButton – perdavimo taisyklė:**
 
@@ -994,13 +990,13 @@ Pamoka po bandymo: ką atnaujinti kitam kartui
 
 ### SHOULD (stipriai pakelia vertę, mažina fail'ų skaičių)
 
-| Elementas                                | Vieta                                                              | Pastaba                                                                                                                                 |
-| ---------------------------------------- | ------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
-| **Grąžos iš investicijų (ROI) šablonas** | **M12** practice-intro (skaidrė 120) + ref. doc                    | (Užduotys per savaitę) × (laikas) × (valandos kaina) – (įrankio kaina + priežiūra). 3 scenarijai: dabar / +3 mėn. / +12 mėn. Ref.: §22. |
-| **Use case katalogas (20 pvz.)**         | Ref. doc; M10.1 arba santraukoje – nuoroda                         | Pardavimai, HR, finansai, klientų aptarnavimas, gamyba, e-komercija. Kiekvienam: trigger → actions → rizika → KPI. Ref.: §23.           |
-| **Duomenų modeliavimas non-tech**        | **M10** – optional skaidrė arba collapsible; ref. doc              | Kas yra laukas, rekordas, ID, ryšiai; kodėl be ID atsiranda dublikatai (lab'o klaida #1). Ref.: §24.                                    |
-| **Observability**                        | Ref. doc; M12 arba M10 – nuoroda                                   | Dashboard: kiek run'ų, kiek klaidų, top 5 fail step'ų; SLA matavimas į praktiką. Ref.: §25.                                             |
-| **Promptų standartas automatizacijai**   | **M10** – skaidrė su CopyButton (pvz. 10.3 arba atskira); ref. doc | Vienas „master prompt“ + 3 variantai (Zapier/Make/n8n): ką sugeneruoti (žingsniai, laukai, klaidos, testai). Ref.: §26.                 |
+| Elementas                                | Vieta                                                              | Pastaba                                                                                                                                          |
+| ---------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Grąžos iš investicijų (ROI) šablonas** | **M12** practice-intro (skaidrė 120) + ref. doc                    | (Užduotys per savaitę) × (laikas) × (valandos kaina) – (įrankio kaina + priežiūra). 3 scenarijai: dabar / +3 mėn. / +12 mėn. Ref.: §22.          |
+| **Use case katalogas**                   | **4 gyvi 10.15**; 10.8 tik recap                                   | Po vieną sritį (pardavimai, personalas, finansai, aptarnavimas). Likę 8 + platesnis 20 pvz. rinkinys – ref. doc, ne santraukos siena. Ref.: §23. |
+| **Duomenų modeliavimas non-tech**        | **M10** – optional skaidrė arba collapsible; ref. doc              | Kas yra laukas, rekordas, ID, ryšiai; kodėl be ID atsiranda dublikatai (lab'o klaida #1). Ref.: §24.                                             |
+| **Observability**                        | Ref. doc; M12 arba M10 – nuoroda                                   | Dashboard: kiek run'ų, kiek klaidų, top 5 fail step'ų; SLA matavimas į praktiką. Ref.: §25.                                                      |
+| **Promptų standartas automatizacijai**   | **M10** – skaidrė su CopyButton (pvz. 10.3 arba atskira); ref. doc | Vienas „master prompt“ + 3 variantai (Zapier/Make/n8n): ką sugeneruoti (žingsniai, laukai, klaidos, testai). Ref.: §26.                          |
 
 ### 2026-08 M10–M12 deep audit remediation anchors
 

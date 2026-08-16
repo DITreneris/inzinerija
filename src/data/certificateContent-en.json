@@ -12,42 +12,42 @@
     {
       "tier": 1,
       "introLine": "This document certifies that",
-      "completionLine": "has successfully completed part of the training program \"Prompt Anatomy\"",
-      "programName": "6-block system – 6 blocks, test, practice",
+      "completionLine": "has successfully completed the 6-block system",
+      "programName": "Learned to structure an AI task in 6 blocks.",
       "label": "6-block system",
-      "footerText": "Prompt Anatomy – prompt structure training. © Course material."
+      "footerText": "Prompt Anatomy. © Course material."
     },
     {
       "tier": 2,
       "introLine": "This document certifies that",
-      "completionLine": "has successfully completed the training program",
-      "programName": "Prompt Anatomy – Context engineering (theory, test and project)",
+      "completionLine": "has successfully completed Context engineering",
+      "programName": "Learned to select and manage AI context.",
       "label": "Context engineering",
-      "footerText": "Prompt Anatomy – prompt structure training. © Course material."
+      "footerText": "Prompt Anatomy. © Course material."
     },
     {
       "tier": 3,
       "introLine": "This document certifies that",
-      "completionLine": "has successfully completed the Data analytics path (modules 7–9)",
-      "programName": "Prompt Anatomy – Data analytics path (modules 7–9, capstone project; Module 8 test ≥ 70%)",
+      "completionLine": "has successfully completed the Data analytics path",
+      "programName": "Learned to analyze data with AI and check claims.",
       "label": "Data analytics path",
-      "footerText": "Prompt Anatomy – prompt structure training. © Course material."
+      "footerText": "Prompt Anatomy. © Course material."
     },
     {
       "tier": 4,
       "introLine": "This document certifies that",
-      "completionLine": "has successfully completed the Agent engineering path (modules 10–12)",
-      "programName": "Prompt Anatomy – Agent engineering path (modules 10–12, capstone project; Module 11 test ≥ 70%)",
+      "completionLine": "has successfully completed the Agent engineering path",
+      "programName": "Learned to design an agent flow, tools, and control.",
       "label": "Agent engineering path",
-      "footerText": "Prompt Anatomy – prompt structure training. © Course material."
+      "footerText": "Prompt Anatomy. © Course material."
     },
     {
       "tier": 5,
       "introLine": "This document certifies that",
-      "completionLine": "has successfully completed the Content engineering path (modules 13–15)",
-      "programName": "Prompt Anatomy – Content engineering path (modules 13–15, capstone project; Module 14 test ≥ 70%)",
+      "completionLine": "has successfully completed the Content engineering path",
+      "programName": "Learned to create text, images, video, and audio.",
       "label": "Content engineering path",
-      "footerText": "Prompt Anatomy – prompt structure training. © Course material."
+      "footerText": "Prompt Anatomy. © Course material."
     }
   ]
 }

@@ -39,13 +39,13 @@ export function getM12MultiAgentSchemaLabels(
   if (locale === 'en') {
     return {
       title: 'Business multi-agent flow',
-      input: pair('Input', 'task + data'),
-      router: pair('Router', 'optional'),
-      coordinator: pair('Coordinator', 'splits work'),
-      specialistA: pair('Specialist A', 'research / draft'),
-      specialistB: pair('Specialist B', 'calculation / check'),
-      evaluator: pair('Evaluator', 'QC + returns'),
-      output: pair('Output', 'human approval'),
+      input: pair('Input', ''),
+      router: pair('Router', ''),
+      coordinator: pair('Coordinator', ''),
+      specialistA: pair('Specialist A', ''),
+      specialistB: pair('Specialist B', ''),
+      evaluator: pair('Evaluator', ''),
+      output: pair('Output', ''),
       edgeVerbs: {
         routes: 'routes',
         selects: 'selects',
@@ -60,13 +60,13 @@ export function getM12MultiAgentSchemaLabels(
 
   return {
     title: 'Verslo kelių agentų srautas',
-    input: pair('Įvestis', 'užduotis + duomenys'),
-    router: pair('Maršrutizatorius', 'pasirenkama'),
-    coordinator: pair('Koordinatorius', 'padalina darbą'),
-    specialistA: pair('Specialistas A', 'tyrimas / juodraštis'),
-    specialistB: pair('Specialistas B', 'skaičiavimas / patikra'),
-    evaluator: pair('Vertintojas', 'kokybė + grąžinimas'),
-    output: pair('Išvestis', 'žmogaus patvirtinimas'),
+    input: pair('Įvestis', ''),
+    router: pair('Maršrutizatorius', ''),
+    coordinator: pair('Koordinatorius', ''),
+    specialistA: pair('Specialistas A', ''),
+    specialistB: pair('Specialistas B', ''),
+    evaluator: pair('Vertintojas', ''),
+    output: pair('Išvestis', ''),
     edgeVerbs: {
       routes: 'nukreipia',
       selects: 'parenka',
@@ -106,7 +106,7 @@ export function getM12MultiAgentStepExplanations(
       },
       {
         title: 'Output + human approval',
-        body: 'The final output passes through a human approval gate before it reaches a customer or manager.',
+        body: 'The final output passes through human control before it reaches a customer or manager.',
       },
     ];
   }
@@ -134,7 +134,7 @@ export function getM12MultiAgentStepExplanations(
     },
     {
       title: 'Išvestis + žmogaus patvirtinimas',
-      body: 'Galutinis rezultatas pereina žmogaus patvirtinimo vartą prieš siunčiant klientui ar vadovui.',
+      body: 'Galutinis rezultatas pereina žmogaus kontrolę prieš siunčiant klientui ar vadovui.',
     },
   ];
 }

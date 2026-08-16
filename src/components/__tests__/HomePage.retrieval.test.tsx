@@ -44,7 +44,7 @@ describe('HomePage retrieval (secondary)', () => {
     localStorage.setItem('prompt-anatomy-locale', 'lt');
   });
 
-  it('does not render RetrievalDueCard; shows secondary recall link after hero CTA', () => {
+  it('does not render RetrievalDueCard; shows secondary recall link in hero CTA group', () => {
     const onStartRetrieval = vi.fn();
     const due = item();
     renderWithProviders(
@@ -57,7 +57,17 @@ describe('HomePage retrieval (secondary)', () => {
 
     expect(screen.queryByTestId('retrieval-due-card')).not.toBeInTheDocument();
     const recall = screen.getByTestId('home-recall-link');
-    expect(recall).toHaveTextContent(/Turi 5 min\.\? Pakartok M1/i);
+    expect(recall).toHaveTextContent(/Pakartoti M1 · 5 min/i);
+    expect(recall).toHaveAttribute(
+      'aria-label',
+      'Pakartoti Modulį 1: Modulis 1'
+    );
+    const group = screen.getByTestId('home-hero-cta-group');
+    expect(group).toContainElement(recall);
+    expect(group).toContainElement(
+      screen.getByRole('button', { name: 'Pradėti mokymą' })
+    );
+    expect(screen.getByText('1 iš 6 modulių baigta')).toBeInTheDocument();
     fireEvent.click(recall);
     expect(onStartRetrieval).toHaveBeenCalledWith(due);
   });
@@ -73,5 +83,26 @@ describe('HomePage retrieval (secondary)', () => {
 
     expect(screen.queryByTestId('home-recall-link')).not.toBeInTheDocument();
     expect(screen.queryByTestId('retrieval-due-card')).not.toBeInTheDocument();
+    expect(screen.getByTestId('home-hero-cta-group')).toBeInTheDocument();
+    expect(screen.getByText('1 iš 6 modulių baigta')).toBeInTheDocument();
+  });
+
+  it('hides progress and recall on first visit with nothing due', () => {
+    renderWithProviders(
+      <HomePage
+        onStart={() => {}}
+        progress={{
+          completedModules: [],
+          completedTasks: {},
+          quizCompleted: false,
+          quizScore: null,
+        }}
+        onStartRetrieval={() => {}}
+      />
+    );
+
+    expect(screen.queryByText(/modulių baigta/i)).not.toBeInTheDocument();
+    expect(screen.queryByTestId('home-recall-link')).not.toBeInTheDocument();
+    expect(screen.getByTestId('home-hero-cta-group')).toBeInTheDocument();
   });
 });

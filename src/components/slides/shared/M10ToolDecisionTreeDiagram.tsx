@@ -1,11 +1,27 @@
 /**
  * M10 – įrankių pasirinkimo medis (view). Keyboard via DiagramStepNav in Block.
- * Section H1 owns the title. Workato = landmark (not an equal grey card).
+ * Section H1 owns the title. Workato = landmark caption, solid border (not dashed).
+ * Geometry SOT: m10ToolDecisionTreeLayout.ts
  */
 import { useId } from 'react';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
 import { DiagramStepHitArea } from './diagramKit';
 import { DIAGRAM_TOKENS } from './diagramTokens';
+import {
+  M10_TOOL_TREE_CRITERION_SIZE,
+  M10_TOOL_TREE_CRITERION_WEIGHT,
+  M10_TOOL_TREE_LEAF,
+  M10_TOOL_TREE_ROOT,
+  M10_TOOL_TREE_VIEW,
+  TREE_DIM_OPACITY,
+  buildM10ToolTreeLeaves,
+  getM10ToolTreeBusStroke,
+  getM10ToolTreeBusY,
+  getM10ToolTreeCriterionY,
+  getM10ToolTreeDropStroke,
+  getM10ToolTreeTrunkStroke,
+  m10ToolTreeRootCx,
+} from './m10ToolDecisionTreeLayout';
 import { getProcessArrowMarkerGeom } from './processArrowMarker';
 import {
   getM10ToolTreeLeaves,
@@ -13,16 +29,7 @@ import {
   type M10Locale,
 } from './m10DiagramContent';
 
-const W = 800;
-const H = 340;
-const LEAF_W = 128;
-const LEAF_H = 48;
-const ROOT_W = 220;
-const ROOT_H = 48;
 const PROCESS_ARROW = getProcessArrowMarkerGeom();
-const ARROW_TIP = PROCESS_ARROW.tipLen;
-/** Stronger than LMS opacity.inactive floor (0.88) – local to this tree. */
-const TREE_DIM_OPACITY = 0.4;
 
 export default function M10ToolDecisionTreeDiagram({
   locale = 'lt',
@@ -39,22 +46,30 @@ export default function M10ToolDecisionTreeDiagram({
   const palette = useDiagramPalette();
   const typography = DIAGRAM_TOKENS.typography;
   const L = getM10ToolTreeLabels(locale);
-  const leaves = getM10ToolTreeLeaves(locale);
+  const leafCopy = getM10ToolTreeLeaves(locale);
   const interactive = typeof onSelect === 'function';
-  const rootCx = W / 2;
-  const rootY = 20;
-  const rowY = 250;
-  const gap = 16;
-  const totalW = leaves.length * LEAF_W + (leaves.length - 1) * gap;
-  const startX = (W - totalW) / 2;
-  const leafFill =
-    palette.bgStart === DIAGRAM_TOKENS.palette.dark.bgStart
-      ? palette.bgStart
-      : '#ffffff';
+  const rootCx = m10ToolTreeRootCx();
+  const boxes = buildM10ToolTreeLeaves(leafCopy.length);
+  const trunk = getM10ToolTreeTrunkStroke();
+  const bus = getM10ToolTreeBusStroke(leafCopy.length);
+  const busY = getM10ToolTreeBusY();
+  const criterionY = getM10ToolTreeCriterionY();
+  const leafFill = palette.bgEnd;
+  const selectedSafe = Math.min(
+    Math.max(selectedIndex, 0),
+    Math.max(leafCopy.length - 1, 0)
+  );
+
+  const dropIndexes = boxes.map((_, i) => i);
+  const unselectedDrops = dropIndexes.filter((i) => i !== selectedSafe);
+  const dimDrop =
+    interactive && selectedIndex >= 0
+      ? TREE_DIM_OPACITY
+      : DIAGRAM_TOKENS.opacity.active;
 
   return (
     <svg
-      viewBox={`0 0 ${W} ${H}`}
+      viewBox={`0 0 ${M10_TOOL_TREE_VIEW.w} ${M10_TOOL_TREE_VIEW.h}`}
       className={`w-full max-w-5xl mx-auto block ${className}`}
       role="img"
       aria-label={L.aria}
@@ -71,12 +86,23 @@ export default function M10ToolDecisionTreeDiagram({
         >
           <path d={PROCESS_ARROW.pathD} fill={palette.flow} />
         </marker>
+        <marker
+          id={`m10tree-arr-sel-${uid}`}
+          markerUnits={PROCESS_ARROW.markerUnits}
+          markerWidth={PROCESS_ARROW.markerWidth}
+          markerHeight={PROCESS_ARROW.markerHeight}
+          refX={PROCESS_ARROW.refX}
+          refY={PROCESS_ARROW.refY}
+          orient="auto"
+        >
+          <path d={PROCESS_ARROW.pathD} fill={palette.brandDark} />
+        </marker>
       </defs>
       <rect
-        x={rootCx - ROOT_W / 2}
-        y={rootY}
-        width={ROOT_W}
-        height={ROOT_H}
+        x={rootCx - M10_TOOL_TREE_ROOT.w / 2}
+        y={M10_TOOL_TREE_ROOT.y}
+        width={M10_TOOL_TREE_ROOT.w}
+        height={M10_TOOL_TREE_ROOT.h}
         rx={DIAGRAM_TOKENS.radius.box}
         fill={palette.brand}
         stroke={palette.brandDark}
@@ -84,9 +110,9 @@ export default function M10ToolDecisionTreeDiagram({
       />
       <text
         x={rootCx}
-        y={rootY + 30}
+        y={M10_TOOL_TREE_ROOT.y + 30}
         textAnchor="middle"
-        fill="white"
+        fill={palette.whiteText}
         fontSize={typography.stepLabel.desktop}
         fontWeight={typography.titleWeight}
         fontFamily={DIAGRAM_TOKENS.font}
@@ -94,91 +120,179 @@ export default function M10ToolDecisionTreeDiagram({
         {L.root}
       </text>
 
-      {leaves.map((leaf, i) => {
-        const x = startX + i * (LEAF_W + gap);
-        const cx = x + LEAF_W / 2;
-        const leafTop = rowY;
-        const midY = rootY + ROOT_H + (leafTop - (rootY + ROOT_H)) / 2;
-        const isSel = selectedIndex === i;
-        const isLandmark = leaf.id === 'ent';
-        const dim =
-          interactive && selectedIndex >= 0 && !isSel
-            ? TREE_DIM_OPACITY
-            : DIAGRAM_TOKENS.opacity.active;
+      <line
+        x1={trunk.x1}
+        y1={trunk.y1}
+        x2={trunk.x2}
+        y2={trunk.y2}
+        stroke={palette.flow}
+        strokeWidth={trunk.strokeWidth}
+      />
+      <line
+        x1={bus.x1}
+        y1={bus.y1}
+        x2={bus.x2}
+        y2={bus.y2}
+        stroke={palette.flow}
+        strokeWidth={bus.strokeWidth}
+      />
 
+      {unselectedDrops.map((i) => {
+        const drop = getM10ToolTreeDropStroke(i, leafCopy.length);
         return (
-          <g key={leaf.id} opacity={dim}>
-            <path
-              d={`M ${rootCx} ${rootY + ROOT_H} L ${rootCx} ${midY} L ${cx} ${midY} L ${cx} ${leafTop - ARROW_TIP}`}
-              fill="none"
-              stroke={palette.flow}
-              strokeWidth={DIAGRAM_TOKENS.stroke.flow}
-              markerEnd={`url(#m10tree-arr-${uid})`}
-            />
-            <text
-              x={cx}
-              y={midY - 8}
-              textAnchor="middle"
-              fill={palette.brandDark}
-              fontSize={typography.stepSub.desktop}
-              fontWeight={typography.edgeLabel.weight}
-              fontFamily={DIAGRAM_TOKENS.font}
-            >
-              {leaf.condition}
-            </text>
-            <rect
-              x={x}
-              y={leafTop}
-              width={LEAF_W}
-              height={LEAF_H}
-              rx="8"
-              fill={isSel ? palette.brand : leafFill}
-              stroke={
-                isSel
-                  ? palette.brandDark
-                  : isLandmark
-                    ? palette.flow
-                    : palette.border
-              }
-              strokeWidth={isSel ? DIAGRAM_TOKENS.stroke.active : 1.25}
-              strokeDasharray={isLandmark && !isSel ? '5 4' : undefined}
-            />
-            <text
-              x={cx}
-              y={leafTop + (isLandmark ? 20 : 28)}
-              textAnchor="middle"
-              fill={isSel ? 'white' : palette.brandDark}
-              fontSize={typography.stepLabel.compact}
-              fontWeight={typography.titleWeight}
-              fontFamily={DIAGRAM_TOKENS.font}
-            >
-              {leaf.tool}
-            </text>
-            {isLandmark ? (
-              <text
-                x={cx}
-                y={leafTop + 36}
-                textAnchor="middle"
-                fill={isSel ? 'rgba(255,255,255,0.9)' : palette.muted}
-                fontSize={typography.stepSub.desktop}
-                fontFamily={DIAGRAM_TOKENS.font}
-              >
-                {L.landmark}
-              </text>
-            ) : null}
-            {interactive ? (
-              <DiagramStepHitArea
-                x={x}
-                y={leafTop}
-                width={LEAF_W}
-                height={LEAF_H}
-                radius={8}
-                onActivate={() => onSelect?.(i)}
-              />
-            ) : null}
-          </g>
+          <line
+            key={`drop-${leafCopy[i]?.id ?? i}`}
+            x1={drop.x1}
+            y1={drop.y1}
+            x2={drop.x2}
+            y2={drop.y2}
+            stroke={palette.flow}
+            strokeWidth={drop.strokeWidth}
+            opacity={dimDrop}
+            markerEnd={`url(#m10tree-arr-${uid})`}
+          />
         );
       })}
+      {boxes[selectedSafe] ? (
+        <line
+          x1={boxes[selectedSafe].cx}
+          y1={busY}
+          x2={boxes[selectedSafe].cx}
+          y2={boxes[selectedSafe].y - PROCESS_ARROW.tipLen}
+          stroke={palette.brandDark}
+          strokeWidth={DIAGRAM_TOKENS.stroke.flowStrong}
+          markerEnd={`url(#m10tree-arr-sel-${uid})`}
+        />
+      ) : null}
+
+      {leafCopy.map((leaf, i) => {
+        const box = boxes[i];
+        if (!box) return null;
+        return (
+          <text
+            key={`crit-${leaf.id}`}
+            x={box.cx}
+            y={criterionY}
+            textAnchor="middle"
+            fill={palette.brandDark}
+            fontSize={M10_TOOL_TREE_CRITERION_SIZE}
+            fontWeight={M10_TOOL_TREE_CRITERION_WEIGHT}
+            fontFamily={DIAGRAM_TOKENS.font}
+          >
+            {leaf.condition}
+          </text>
+        );
+      })}
+
+      {leafCopy.map((leaf, i) => {
+        if (i === selectedSafe) return null;
+        return (
+          <LeafCard
+            key={leaf.id}
+            leaf={leaf}
+            box={boxes[i]}
+            isSel={false}
+            isLandmark={leaf.id === 'ent'}
+            leafFill={leafFill}
+            palette={palette}
+            typography={typography}
+            landmarkLabel={L.landmark}
+            interactive={interactive}
+            onActivate={() => onSelect?.(i)}
+          />
+        );
+      })}
+      {leafCopy[selectedSafe] && boxes[selectedSafe] ? (
+        <LeafCard
+          leaf={leafCopy[selectedSafe]}
+          box={boxes[selectedSafe]}
+          isSel
+          isLandmark={leafCopy[selectedSafe].id === 'ent'}
+          leafFill={leafFill}
+          palette={palette}
+          typography={typography}
+          landmarkLabel={L.landmark}
+          interactive={interactive}
+          onActivate={() => onSelect?.(selectedSafe)}
+        />
+      ) : null}
     </svg>
+  );
+}
+
+function LeafCard({
+  leaf,
+  box,
+  isSel,
+  isLandmark,
+  leafFill,
+  palette,
+  typography,
+  landmarkLabel,
+  interactive,
+  onActivate,
+}: {
+  leaf: { id: string; tool: string };
+  box: { x: number; cx: number; y: number } | undefined;
+  isSel: boolean;
+  isLandmark: boolean;
+  leafFill: string;
+  palette: ReturnType<typeof useDiagramPalette>;
+  typography: typeof DIAGRAM_TOKENS.typography;
+  landmarkLabel: string;
+  interactive: boolean;
+  onActivate: () => void;
+}) {
+  if (!box) return null;
+  return (
+    <g>
+      <rect
+        x={box.x}
+        y={box.y}
+        width={M10_TOOL_TREE_LEAF.w}
+        height={M10_TOOL_TREE_LEAF.h}
+        rx={DIAGRAM_TOKENS.radius.box}
+        fill={isSel ? palette.brand : leafFill}
+        stroke={
+          isSel ? palette.brandDark : isLandmark ? palette.flow : palette.border
+        }
+        strokeWidth={
+          isSel ? DIAGRAM_TOKENS.stroke.active : DIAGRAM_TOKENS.stroke.inactive
+        }
+      />
+      <text
+        x={box.cx}
+        y={box.y + (isLandmark ? 20 : 28)}
+        textAnchor="middle"
+        fill={isSel ? palette.whiteText : palette.brandDark}
+        fontSize={typography.stepLabel.desktop}
+        fontWeight={typography.titleWeight}
+        fontFamily={DIAGRAM_TOKENS.font}
+      >
+        {leaf.tool}
+      </text>
+      {isLandmark ? (
+        <text
+          x={box.cx}
+          y={box.y + 36}
+          textAnchor="middle"
+          fill={isSel ? palette.whiteText : palette.muted}
+          fontSize={typography.stepSub.desktop}
+          fontFamily={DIAGRAM_TOKENS.font}
+        >
+          {landmarkLabel}
+        </text>
+      ) : null}
+      {interactive ? (
+        <DiagramStepHitArea
+          x={box.x}
+          y={box.y}
+          width={M10_TOOL_TREE_LEAF.w}
+          height={M10_TOOL_TREE_LEAF.h}
+          radius={DIAGRAM_TOKENS.radius.box}
+          onActivate={onActivate}
+        />
+      ) : null}
+    </g>
   );
 }

@@ -557,7 +557,8 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
     it('renders M10 trigger flow in both locales', () => {
       setLocale('en');
       const { container: en } = renderWithProviders(<M10TriggerFlowBlock />);
-      expect(en.textContent).toContain('Trigger types');
+      expect(en.textContent).toContain('Trigger type');
+      expect(en.textContent).toContain('Selected type:');
       expect(en.textContent).toContain('the event that starts the flow');
       expect(en.textContent).toContain('incoming web notification');
       expect(en.textContent).toMatch(/1\s*\/\s*3/);
@@ -566,7 +567,8 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
 
       setLocale('lt');
       const { container: lt } = renderWithProviders(<M10TriggerFlowBlock />);
-      expect(lt.textContent).toContain('Paleidiklio tipai');
+      expect(lt.textContent).toContain('Paleidiklio tipas');
+      expect(lt.textContent).toContain('Pasirinktas tipas:');
       expect(lt.textContent).toContain('įvykis, kuris pradeda eigą');
       expect(lt.textContent).toContain('internetinis pranešimas');
       expect(lt.textContent).toMatch(/1\s*\/\s*3/);
@@ -754,6 +756,7 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
         (node) => node.textContent?.includes('Office 365')
       );
       expect(criterion).toHaveAttribute('fill', '#e2e8f0');
+      expect(criterion?.closest('g[opacity]')).toBeNull();
     });
   });
 

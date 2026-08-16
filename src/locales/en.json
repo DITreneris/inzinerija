@@ -29,7 +29,8 @@
     "diagramFullSizeAria": "Diagram at full size: {{label}}",
     "imageFullSize": "Image at full size",
     "imageFullSizeAria": "Image at full size: {{label}}",
-    "swipeToExplore": "Swipe horizontally"
+    "swipeToExplore": "Swipe horizontally",
+    "finish": "Finish"
   },
   "footer": {
     "brandName": "Prompt Anatomy",
@@ -97,7 +98,9 @@
     "trustModules": "Hands-on practice",
     "trustExamples": "Business examples",
     "trustQuiz": "Core readiness check",
-    "progressLabel": "Your progress: {{done}}/{{total}} {{modulesWord}} {{completedWord}}",
+    "progressLabel": "{{done}} of {{total}} {{modulesWord}} completed",
+    "recallCta": "Review M{{n}} · 5 min",
+    "recallCtaAria": "Review Module {{n}}: {{title}}",
     "ctaStart": "Start learning",
     "ctaStartNow": "Start now",
     "ctaContinue": "Continue learning",
@@ -978,7 +981,10 @@
     "engineeringCardTitle": "Prompt engineering",
     "clickToFindOut": "Click to find out",
     "comparePrompts": "Compare prompts",
-    "warmUpQuestionInfo": "Question {{n}} of {{total}}. Not graded – preparation only.",
+    "warmUpQuestionInfo": "Question {{n}} of {{total}}. This is a warm-up – not graded.",
+    "warmUpCompleteTitle": "Warm-up complete",
+    "warmUpCompleteBody": "Next – the graded questions.",
+    "warmUpEmpty": "No warm-up questions available.",
     "promptPlaceholder": "Enter your corrected prompt here...",
     "correctPromptTextareaAria": "Enter the corrected prompt",
     "correctPromptPrinciplesHeading": "Which principles are broken?",

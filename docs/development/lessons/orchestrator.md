@@ -6,6 +6,7 @@
 
 ## Lessons
 
+2026-08-16 | Horizon B vs landing SKU | 12 live per Supabase ≠ laukti landing SKU; temptation = „produkto skola“ nes LP parduoda M1–6 | M7–18 corporate iki 2027-01 nėra skola; v1.4.9 nebe current pin; MON-2/CAV-B1 = prieiga, ne SPA chrome | TODO.md §1.4–§1.5, DEPLOYMENT.md, MON_P0_EXECUTION_PLAN.md
 2026-08-13 | M10 freeze vs testerio chrome | Freeze = gyvas turinys; temptation = P3 / hygiene→0 / Feature Doc / paralelinti du rašytojus ant `ChoiceControl.tsx` | Išimtis tik savininko „tvarkom batch“ + locked Must (T01–T08 ✅); I5 parked; antras picker = `navMode` / mapa, ne antras ChoiceControl | AGENTS.md, TODO.md §1.3, ChoiceControl.tsx
 2026-08-04 | M13 plain exit | TE/corporate ✅ maskuoja intro keyword/EN stub FAIL; temptation = M16 esė planas ar TRIM su plain | Etalonai M7P/M4P/M79; seka B1→B2→EN→QA (B3 gloss OK); `M13P-TRIM` atskirai; durable EN overrides prieš „done“ | M13*MATURITY_PLAN.md, TODO.md §1.2j, m13-en-plain-overrides.mjs
 2026-08-04 | Caveats multi-owner plan | „Complete all todos“ ant MON/pricing/B2B sync → agentas bando implementuoti marketing repo arba corporate18 be call | Split ownership: A/C1 = this repo; B = handoff docs + TODO §1.4; C2/D = parked intake (ne fake ship); track §1.6 CAV-* | TODO.md §1.6, MARKETING*HANDOFF_CHECKLIST.md, M16_M18_CORPORATE18_INTAKE.md

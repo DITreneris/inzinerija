@@ -21,6 +21,7 @@
 - **introHeading** – pvz. „Ką išmokai“.
 - **stats** – 3 statistikos (Celebration Hero).
 - **sections** – žinių kortelės (max 3).
+- **M10 išimtis:** 4-a kortelė leidžiama tik kaip **transfer recap** („Kur pritaikyti“ / „Where to apply“) – 4 jau mokyti procesai iš 10.15, ne naujas „Ką išmokai“ katalogas ir ne hero statistika.
 - **reflectionPrompt** – refleksijos tekste 3 klausimai + CopyButton.
 - **tagline** – motyvacinis footer.
 - **CTA** – konkretus kitas žingsnis.

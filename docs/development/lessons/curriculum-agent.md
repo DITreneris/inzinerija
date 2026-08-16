@@ -6,6 +6,7 @@
 
 ## Lessons
 
+2026-08-16 | M10 10.8 katalogas | 12 pritaikymo eilučių pirmą kartą po „Ką išmokai“ + hero stat 12 = netikras transferas (X2-18) | 4 procesai pirma **10.15** „Kur pritaikyti“; 10.8 tik recap; stat = 1 eigos aprašymas | turinio_pletra §3a/§6, MODULIO_10_SKAIDRIU_EILES.md, modules.json 10.15/10.8
 2026-08-12 | M10–12 Path Test leak | `10.61` q2 ir `110.5` q3 klonavo `111` option list / artefaktą – warm-up matavo recall, ne transfer | Keisti **warm-up**, ne graded stuburą; palikti temą, perrašyti stem+options; SOT §4.4a / §7.1a | modules.json 10.61/110.5, build-en-m10-m12.mjs, turinio*pletra_moduliai_10_11_12.md
 2026-08-01 | M16 D2 compress | SOT 16.9–16.21 = 13 intentų vs ~10–12 biudžetas; JSON `16.10`≡`16.1` | Merge atramos+Prieš/Po ir ribos+NNL; VSR/rizikos id **16.101**/**16.201**; M17 nest `MODULIO_16*\*`kaip M13 | MODULIO_16_SKAIDRIU_EILES.md, seed-m16-m18.mjs
 2026-07-28 | M13 I2V 13.47 | Įrankių matrica (13.5) prieš practice builderį = silpnas practice→tools tiltas | Eilė **13.4 → 13.47 → 13.5**; registruoti eilėje 7a + SOT §4.0a | MODULIO_13_SKAIDRIU_EILES.md, turinio_pletra_moduliai_13_14_15.md

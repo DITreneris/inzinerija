@@ -60,11 +60,10 @@ beforeEach(() => {
 const tier1Content: CertificateTierContent = {
   tier: 1,
   introLine: 'Šiuo dokumentu patvirtinama, kad',
-  completionLine: 'sėkmingai baigė mokymų programos „Promptų anatomija“ dalį',
-  programName: '6 blokų sistema – 6 blokai, testas, praktika',
+  completionLine: 'sėkmingai baigė 6 blokų sistemą',
+  programName: 'Išmoko struktūruoti DI užduotį pagal 6 blokus.',
   label: '6 blokų sistema',
-  footerText:
-    'Promptų anatomija – promptų struktūros mokymas. © Kurso medžiaga.',
+  footerText: 'Promptų anatomija. © Kurso medžiaga.',
 };
 
 describe('certificatePdf', () => {

@@ -2,9 +2,9 @@
 
 **Nuosavybė:** šis repo = **turinys, pedagogika, UI/UX mokymosi patirtyje**, duomenų/authoring kokybė. Marketingas / monetizacija / PostHog / CRO → kitas repo ([`docs/deployment/`](docs/deployment/) handoff).  
 **Tikslas:** Open P0/P1 prioritetai (Docs Lean). Done istorija → [`TODO_DONE_SPRINTS_2026-08.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-08.md) · [`2026-07-31`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-31.md) · [`2026-07-28`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-28.md). SOT indeksas: `docs/DOCUMENTATION_QUICK_REF.md`.  
-**Legenda:** **P0 = mokymosi kokybės blokoriai**, P1 = turinio/authoring kokybė + corporate cut, P2 = polish. MON ≠ P0. **Atnaujinta:** 2026-08-14 (Unreleased visual QA PASS · M10 testerio Must T01–T08 + T09 + hygiene liekana **41** ✅ · parent pin **v1.6.2** · live `/anatomy/` verify ⏳).
+**Legenda:** **P0 = mokymosi kokybės blokoriai**, P1 = turinio/authoring kokybė + corporate cut, P2 = polish. MON ≠ P0. **Atnaujinta:** 2026-08-16 (12 live per Supabase · M7–18 corporate iki 2027-01 · training **v1.6.3** · live pin kol neperpinsi = **v1.6.2** · hygiene liekana **41**).
 
-**Dabartinis fokusas (šiame repo):** M10 testerio **Must** T01–T08 + T09 + hygiene closeout ✅. Unreleased visual QA PASS 2026-08-14 (Must-contract). Learning P0/P1 **uždaryti**. Open residual (ne P0/P1): T01 I5 parked · Should 2-as pass tik po savininko · M11–M12 laukiama. Infra: TOOL-5 (§1.7) · MON **out of scope** (§1.4) · D3 Deferred (§1.5). Ladder: [`ROADMAP.md`](ROADMAP.md). Pin: GitHub `promptanatomy` = **v1.6.2** / `c35a1f5` (PR #92). Live `/anatomy/` ⏳. Automated: **168/1033** (tag 1.6.2 = 165/1005).
+**Dabartinis fokusas (šiame repo):** M10 testerio **Must** T01–T08 + T09 + hygiene closeout ✅. M11 chrome + item quality ✅. **M11 walked, no RAW** · **M12 walked, no RAW**. Learning P0/P1 **uždaryti**. Open residual (ne P0/P1): T01 I5 parked · Should 2-as pass tik po savininko. Infra: TOOL-5 (§1.7) · MON **out of scope** (§1.4) · D3 Deferred (§1.5). Ladder: [`ROADMAP.md`](ROADMAP.md). Training cut **v1.6.3**. Live pin kol neperpinsi = **v1.6.2** / `c35a1f5` (PR #92). **12 live per Supabase.** Automated: žr. CHANGELOG [1.6.3] (**171/1056**; tag 1.6.2 = 165/1005).
 
 **Produktiniai sprendimai (santrauka):** gylis > Density CI; M79/M1315 ROI ✅; UJ-MUST ✅; M16–18 authoring+TE+plain ✅; M13 plain+TRIM ✅; M10–12 UI deep + turinio deep ✅ (**freeze gyvam turiniui**, hygiene liekana **41**; nevaryti į 0); katalogas owns next-step; Home retrieval = antrinis.
 
@@ -12,9 +12,9 @@
 
 - **Open P0:** nėra.
 - **Open P1:** nėra (learning). `CATALOG-HOME` ✅ 2026-08-12 → archive. D3 corporate18 Deferred §1.5.
-- **Open intake (ne P0/P1):** T01 I5 (10.45 dual-picker demote) tik jei savininko re-walk vis dar painus; T01–T08 Should 2-as pass tik po „tvarkom“; M11–M12 testerio eilutės — atskirai.
+- **Open intake (ne P0/P1):** T01 I5 (10.45 dual-picker demote) tik jei savininko re-walk vis dar painus; T01–T08 Should 2-as pass tik po „tvarkom“. M11/M12 walked, no RAW.
 - **Open P2:** `TOOL-5` §1.7 — React Hooks v7 React Compiler taisyklių sprendimas.
-- **Caveats:** §1.6 — A/C1 ✅ · B1/B2 marketing · C2/D parked.
+- **Caveats:** §1.6 — A/C1 ✅ · B1 ✅ · B2 marketing · C2/D parked.
 
 ---
 
@@ -34,35 +34,35 @@ M10–12 turinio ROI: **FREEZE** gyvam turiniui (priimta liekana **41**; nevaryt
 
 ### §1.3 M10–12 testerio intake (Must shipped; liekana)
 
-> Phase B **Must** T01–T08 + **T09** (`10.65`/`10.655`) + hygiene closeout ✅. Gyvas turinys **FREEZE** (liekana **41**; nevaryti į 0). Pin **v1.6.2**. Intake žurnalas vis dar priima **naujas** pastabas (M11–M12).
+> Phase B **Must** T01–T08 + **T09** + hygiene **41** ✅. M11 chrome + item quality ✅. **M11 walked, no RAW** · **M12 walked, no RAW**. Gyvas turinys **FREEZE**. Training **v1.6.3**. Intake priima naujas pastabas.
 
-| ID          | Užduotis                                       | Status   | Pastaba                                                                                      |
-| ----------- | ---------------------------------------------- | -------- | -------------------------------------------------------------------------------------------- |
-| **T01 I5**  | 10.45 dual-picker demote (pill’ai → legenda)   | parked   | Tik jei savininko re-walk vis dar painus. Dual picker **lieka** kol tada.                    |
-| **Should**  | T01–T08 2-as pass (legenda, oras, `max-w-5xl`) | [ ]      | Ne P0. Tik po savininko „tvarkom“. Won’t = rainbow / enlarge / Cursor šaka / naujas Pattern. |
-| **M11–M12** | Testerio eilutės                               | laukiama | RAW dar nėra. Neliečiam JSON, kol nėra pastabų + triažo.                                     |
+| ID         | Užduotis                                       | Status | Pastaba                                                                                      |
+| ---------- | ---------------------------------------------- | ------ | -------------------------------------------------------------------------------------------- |
+| **T01 I5** | 10.45 dual-picker demote (pill’ai → legenda)   | parked | Tik jei savininko re-walk vis dar painus. Dual picker **lieka** kol tada.                    |
+| **Should** | T01–T08 2-as pass (legenda, oras, `max-w-5xl`) | [ ]    | Ne P0. Tik po savininko „tvarkom“. Won’t = rainbow / enlarge / Cursor šaka / naujas Pattern. |
 
 ### §1.4 Out of scope – marketing handoff
 
-> Ne default agentų P0. Vykdymas / env / KPI → marketing repo. Runbook: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md).  
-> **Horizon B:** GitHub pin **v1.6.2** (`c35a1f5`, [PR #92](https://github.com/DITreneris/promptanatomy/pull/92)) + parent `build:corporate12`. Live `https://www.promptanatomy.app/anatomy/` dar nepatvirtinta kaip 1.6.2 (Home vis dar importuoja `RetrievalDueCard`). Training HEAD may advance; **pin stays v1.6.2** unless marketing re-pins.
+> Ne default agentų P0. Vykdymas / env / KPI → marketing repo. Runbook: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md) (**superseded** — nevykdyti pin 1.4.2 eilučių).  
+> **Horizon B įvykdytas:** GitHub pin **v1.6.2** (`c35a1f5`, [PR #92](https://github.com/DITreneris/promptanatomy/pull/92)) + parent `build:corporate12` + **12 live per Supabase** (`highest_plan=12` → `access_tier=12`). Viešas Stripe = M1–6. M7–18 = corporate grant iki **2027-01** (ne LP checkout; ne produkto skola). Training cut **v1.6.3**; **live pin stays v1.6.2** until marketing re-pins. Optional SPA chrome fingerprint (`home-recall-link` vs `RetrievalDueCard`) — ne cutover blokas.
 
-| ID        | Užduotis                                                                | Status | Pastaba                                                                                               |
-| --------- | ----------------------------------------------------------------------- | ------ | ----------------------------------------------------------------------------------------------------- |
-| **MON-1** | Prod env: nėra `VITE_MAX_ACCESSIBLE_MODULE=6`; `VITE_VERIFY_ACCESS_URL` | [ ]    | Marketing Vercel · CAV-B1                                                                             |
-| **MON-2** | Submodule pin **v1.6.2** + corporate12 deploy                           | ⏳     | GitHub pin ✅ PR #92 `c35a1f5`. Live `/anatomy/` ⏳ (Home vis dar `RetrievalDueCard` = 1.6.1). CAV-B1 |
-| **MON-3** | Verify-access smoke (magic link → tier)                                 | ⏳     | Browser ⏳; po cutover — tier **12** / **15** (tier **18** = CAV-C2)                                  |
-| **MON-4** | PostHog/GA4 production + funnel dashboard                               | [ ]    | [`MON-4_POSTHOG_DEPLOY.md`](docs/deployment/MON-4_POSTHOG_DEPLOY.md) · CAV-B2                         |
-| **MON-5** | Gate regression browser (tier 0 → AccessGate)                           | ⏳     | Auto ✅; browser ⏳                                                                                   |
-| **MON-7** | Baseline KPI po MON-4 (2–4 sav.)                                        | [ ]    | Marketing                                                                                             |
-| **MON-8** | Marketing prod: `build:production` M1–9 env                             | ⏳     | Vercel env; optional cutover → `build:corporate12` / `corporate15`                                    |
-| CRO       | Landing positioning / Hero CTA / trust / Pricing eilė                   | [ ]    | Marketing                                                                                             |
+| ID        | Užduotis                                                                | Status     | Pastaba                                                                                          |
+| --------- | ----------------------------------------------------------------------- | ---------- | ------------------------------------------------------------------------------------------------ |
+| **MON-1** | Prod env: nėra `VITE_MAX_ACCESSIBLE_MODULE=6`; `VITE_VERIFY_ACCESS_URL` | [ ]        | Marketing Vercel                                                                                 |
+| **MON-2** | Submodule pin **v1.6.2** + corporate12 + 12 per Supabase                | [x]        | Live pin ✅ PR #92 `c35a1f5`. Next target **v1.6.3** (marketing). Optional chrome ≠ fail. CAV-B1 |
+| **MON-3** | Verify-access smoke (magic link → tier 12)                              | [x]        | Tier 12 kelias veikia. Kitų pakopų browser ritualas — marketingas, ne open P0                    |
+| **MON-4** | PostHog/GA4 production + funnel dashboard                               | [ ]        | [`MON-4_POSTHOG_DEPLOY.md`](docs/deployment/MON-4_POSTHOG_DEPLOY.md) · CAV-B2                    |
+| **MON-5** | Gate regression browser (tier 0 → AccessGate)                           | ⏳         | Auto ✅; browser ⏳                                                                              |
+| **MON-7** | Baseline KPI po MON-4 (2–4 sav.)                                        | [ ]        | Marketing                                                                                        |
+| **MON-8** | Marketing prod: `build:production` M1–9 env                             | superseded | Prod build = `corporate12` / M1–12. M1–9 = fallback profilis                                     |
+| CRO       | Landing positioning / Hero CTA / trust / Pricing eilė                   | [ ]        | Marketing. Viešas SKU M1–6 — kanonas iki 2027-01                                                 |
 
 MON-6 ✅ – žr. archive / CHANGELOG.
 
 ### §1.5 Deferred
 
-- M10–15 marketing monetizacija – marketing repo (tier 12/15 cutover = §1.4).
+- Viešas checkout = M1–6. **M7–18 = corporate / Supabase grant iki 2027-01** — planas, ne skola. Monetizacijos SKU (Agentų / Turinio / 18) ≠ learning P0.
+- M10–15 vieša monetizacija – marketing repo (Phase 2 SKU); prieiga 12 jau live (§1.4).
 - **Horizon D Wave D3 / CAV-C2:** corporate18 — po pricing call. Intake [`docs/development/intake/M16_M18_CORPORATE18_INTAKE.md`](docs/development/intake/M16_M18_CORPORATE18_INTAKE.md).
 - M19–21 **DI politikos inžinerija** – Deferred (nėra SOT).
 - M7 optional viz sk. 100–106 lieka M7 (≠ M16–18).
@@ -72,16 +72,16 @@ MON-6 ✅ – žr. archive / CHANGELOG.
 
 ### §1.6 Caveats Closure Program
 
-| ID         | Item                                     | Owner               | Status                                                     |
-| ---------- | ---------------------------------------- | ------------------- | ---------------------------------------------------------- |
-| **CAV-A1** | EN automated audits + RELEASE_QA §5c log | QA                  | [x]                                                        |
-| **CAV-A2** | Mobile @375 owner residual               | QA / owner          | [x]                                                        |
-| **CAV-A3** | PDF LT glyphs / links pre-release        | QA                  | [x] automated; owner open-PDF visual still recommended §5d |
-| **CAV-B1** | Magic link cutover                       | Marketing           | GitHub pin ✅ **v1.6.2**; live `/anatomy/` verify ⏳       |
-| **CAV-B2** | PostHog MON-4                            | Marketing           | [ ]                                                        |
-| **CAV-C1** | M1618 path handout                       | CONTENT→DATA→CODING | [x]                                                        |
-| **CAV-C2** | corporate18 + tier 18                    | Product + stack     | won’t-now until pricing call                               |
-| **CAV-D1** | Progress lite / org memory               | Product             | deferred after B                                           |
+| ID         | Item                                     | Owner               | Status                                                                  |
+| ---------- | ---------------------------------------- | ------------------- | ----------------------------------------------------------------------- |
+| **CAV-A1** | EN automated audits + RELEASE_QA §5c log | QA                  | [x]                                                                     |
+| **CAV-A2** | Mobile @375 owner residual               | QA / owner          | [x]                                                                     |
+| **CAV-A3** | PDF LT glyphs / links pre-release        | QA                  | [x] automated; owner open-PDF visual still recommended §5d              |
+| **CAV-B1** | Magic link cutover                       | Marketing           | [x] pin **v1.6.2** + 12 live per Supabase; optional SPA chrome ≠ blokas |
+| **CAV-B2** | PostHog MON-4                            | Marketing           | [ ]                                                                     |
+| **CAV-C1** | M1618 path handout                       | CONTENT→DATA→CODING | [x]                                                                     |
+| **CAV-C2** | corporate18 + tier 18                    | Product + stack     | won’t-now until pricing call                                            |
+| **CAV-D1** | Progress lite / org memory               | Product             | deferred after B                                                        |
 
 ### §1.7 P2 – Toolchain (open only)
 
@@ -97,8 +97,8 @@ Pilnos lentelės: [`TODO_DONE_SPRINTS_2026-08.md`](docs/archive/development/TODO
 
 - M1–9 production · M10–15 corporate cuts · M16–18 authoring+TE+plain · UJ-MUST · M79/M1315 ROI ✅
 - M1012-DEEP + M1012 content audit (freeze, hygiene **41**) · LANG-SOT · katalogas UX · CATALOG-HOME · SCHEME-CENTRAL W1 ✅
-- M10 testerio Must T01–T08 + T09 split + hygiene closeout ✅ 2026-08-13 (I5 / Should / M11–M12 — §1.3)
-- Release **1.6.2** = corporate12 pin (GitHub `promptanatomy` PR #92). Do not retag 1.6.1. Live prod verify ⏳. Training HEAD Unreleased ≠ automatinis re-pin.
+- M10 testerio Must T01–T08 + T09 split + hygiene closeout ✅ 2026-08-13; M11 chrome + item quality ✅; **M11 walked, no RAW** · **M12 walked, no RAW** (I5 / Should — §1.3)
+- Release **1.6.3** = training cut. Live pin kol neperpinsi = **v1.6.2** (PR #92). **12 live per Supabase.**
 
 ---
 

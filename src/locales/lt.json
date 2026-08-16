@@ -29,7 +29,8 @@
     "diagramFullSizeAria": "Viso dydžio diagrama: {{label}}",
     "imageFullSize": "Vaizdas visame dydyje",
     "imageFullSizeAria": "Vaizdas visame dydyje: {{label}}",
-    "swipeToExplore": "Slink horizontaliai"
+    "swipeToExplore": "Slink horizontaliai",
+    "finish": "Baigti"
   },
   "footer": {
     "brandName": "Promptų anatomija",
@@ -97,7 +98,9 @@
     "trustModules": "Praktinės užduotys",
     "trustExamples": "Verslo pavyzdžiai",
     "trustQuiz": "Branduolio pasitikrinimas",
-    "progressLabel": "Tavo progresas: {{done}}/{{total}} {{modulesWord}} {{completedWord}}",
+    "progressLabel": "{{done}} iš {{total}} {{modulesWord}} baigta",
+    "recallCta": "Pakartoti M{{n}} · 5 min.",
+    "recallCtaAria": "Pakartoti Modulį {{n}}: {{title}}",
     "ctaStart": "Pradėti mokymą",
     "ctaStartNow": "Pradėti dabar",
     "ctaContinue": "Tęsti mokymą",
@@ -978,7 +981,10 @@
     "engineeringCardTitle": "Promptų Inžinerija",
     "clickToFindOut": "Paspausk ir sužinok",
     "comparePrompts": "Palygink promptus",
-    "warmUpQuestionInfo": "Klausimas {{n}} iš {{total}}. Įskaita neįskaitoma – tik pasiruošimas.",
+    "warmUpQuestionInfo": "Klausimas {{n}} iš {{total}}. Tai savitikra – neįskaita.",
+    "warmUpCompleteTitle": "Savitikra baigta",
+    "warmUpCompleteBody": "Toliau – įskaitiniai klausimai.",
+    "warmUpEmpty": "Bandomųjų klausimų nėra.",
     "promptPlaceholder": "Įrašyk čia pataisytą promptą...",
     "correctPromptTextareaAria": "Įvesk pataisytą promptą",
     "correctPromptPrinciplesHeading": "Kokie principai pažeidžiami?",

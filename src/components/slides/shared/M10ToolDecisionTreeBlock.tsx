@@ -5,6 +5,7 @@ import EnlargeableDiagram from './EnlargeableDiagram';
 import { InteractiveDiagramShell } from './diagramKit';
 import M10ToolDecisionTreeDiagram from './M10ToolDecisionTreeDiagram';
 import { getM10ToolTreeExplanations } from './m10DiagramContent';
+import { M10_TOOL_TREE_VIEW } from './m10ToolDecisionTreeLayout';
 
 const ENLARGE = {
   lt: 'Įrankių pasirinkimo medis',
@@ -36,7 +37,8 @@ export default function M10ToolDecisionTreeBlock() {
 
   return (
     <EnlargeableDiagram
-      mobileBehavior="reflow"
+      mobileBehavior="scroll"
+      mobileMinWidth={M10_TOOL_TREE_VIEW.w}
       renderContent={() => (
         <InteractiveDiagramShell
           density="hero"

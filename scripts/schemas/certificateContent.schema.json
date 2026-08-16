@@ -59,8 +59,16 @@
         "properties": {
           "tier": { "type": "integer", "minimum": 1, "maximum": 5 },
           "introLine": { "type": "string" },
-          "completionLine": { "type": "string" },
-          "programName": { "type": "string" },
+          "completionLine": {
+            "type": "string",
+            "maxLength": 70,
+            "description": "Po vardo: sėkmingai baigė + oficialus kelio vardas (LT galininkas). Be modulių / ≥70 % / projekto."
+          },
+          "programName": {
+            "type": "string",
+            "maxLength": 55,
+            "description": "Viena kompetencijos eilutė (ne kelio dumpas, ne eligibility)."
+          },
           "label": {
             "type": "string",
             "description": "Etiketė: 6 blokų sistema | Konteksto inžinerija | Duomenų analitika | Agentų inžinerija | Turinio inžinerija"

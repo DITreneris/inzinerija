@@ -26,8 +26,8 @@ export function getM12ThreeLabsLabels(locale: M10Locale): {
   if (locale === 'en') {
     return {
       title: 'Three mandatory labs (3A)',
-      aria: 'Three labs: Automate, Augment, Autonomize — human gate highlighted on the chip flow',
-      hint: 'Tap a lab row – where the human gate sits',
+      aria: 'Three labs: Automate, Augment, Autonomize — human control highlighted on the chip flow',
+      hint: 'Tap a lab row – where human control sits',
       regionAria: 'Three mandatory labs – comparison rows',
       youAreHere: 'You are here:',
       stepOf: (n: number, total: number) => `Step ${n} of ${total}`,
@@ -61,8 +61,8 @@ export function getM12ThreeLabsLabels(locale: M10Locale): {
   }
   return {
     title: 'Trys privalomos praktikos (3A)',
-    aria: 'Trys praktikos: Automatizuoti, Asistuoti, Autonomizuoti — žmogaus vartai paryškinti chip eigoje',
-    hint: 'Paspausk praktikos eilutę – kur yra žmogaus vartai',
+    aria: 'Trys praktikos: Automatizuoti, Asistuoti, Autonomizuoti — žmogaus kontrolė paryškinta chip eigoje',
+    hint: 'Paspausk praktikos eilutę – kur yra žmogaus kontrolė',
     regionAria: 'Trys privalomos praktikos – palyginimo eilutės',
     youAreHere: 'Tu esi čia:',
     stepOf: (n: number, total: number) => `Žingsnis ${n} iš ${total}`,
@@ -103,7 +103,7 @@ export function getM12ThreeLabsExplanations(
     return [
       {
         title: 'Automate',
-        body: '**Rules path** – form → CRM → email → Slack. Best when the decision is already clear and the human gate can stay outside the flow.',
+        body: '**Rules path** – form → CRM → email → Slack. Best when the decision is already clear and human control can stay outside the flow.',
       },
       {
         title: 'Augment',
@@ -119,7 +119,7 @@ export function getM12ThreeLabsExplanations(
   return [
     {
       title: 'Automatizuoti',
-      body: '**Taisyklių kelias** – forma → CRM → laiškas → Slack. Tinka, kai sprendimas jau aiškus, o žmogaus vartai gali likti už srauto.',
+      body: '**Taisyklių kelias** – forma → CRM → laiškas → Slack. Tinka, kai sprendimas jau aiškus, o žmogaus kontrolė gali likti už srauto.',
     },
     {
       title: 'Asistuoti',

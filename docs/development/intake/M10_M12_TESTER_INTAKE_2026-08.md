@@ -4,17 +4,17 @@
 > Live SOT: `docs/turinio_pletra_moduliai_10_11_12.md` + `src/data/modules.json` (M10–12).  
 > **Content freeze (gyvas turinys):** [`M10_M12_CONTENT_DEEP_AUDIT_2026-08.md`](../M10_M12_CONTENT_DEEP_AUDIT_2026-08.md) — P0–P2 ✅; hygiene liekana **41**; **nevaryti į 0**.  
 > Uždaryti ciklai (ne perrašyti čia): [`M10_M12_PLAIN_PEDAGOGY_INTAKE_2026-08.md`](M10_M12_PLAIN_PEDAGOGY_INTAKE_2026-08.md) · [`M10_M12_TOBULINIMO_INTAKE_2026-07.md`](M10_M12_TOBULINIMO_INTAKE_2026-07.md).  
-> **Statusas:** **Phase B Must shipped** 2026-08-13 — T01–T08 + T09 + hygiene **41**. T01 I5 parked. Should 2-as pass — tik po savininko. Pin **v1.6.2** lieka, kol marketingas neperpins.
+> **Statusas:** **Phase B Must shipped** 2026-08-13 — T01–T08 + T09 + hygiene **41**. M11 Path Test chrome + item quality ✅. **M11 walked, no RAW** · **M12 walked, no RAW** (2026-08-16). T01 I5 parked. Should 2-as pass — tik po savininko. Training cut **v1.6.3**; live pin kol marketingas neperpins = **v1.6.2**.
 
 ---
 
 ## 0. Freeze vs intake
 
-| Sluoksnis                          | Būsena                                    | Ką tai reiškia                                                        |
-| ---------------------------------- | ----------------------------------------- | --------------------------------------------------------------------- |
-| **Gyvas turinys** (JSON / EN / UI) | **FREEZE** + T01–T08 + T09 Must **įdėta** | Jokio P3 polish, hygiene **ne** į 0 (liekana **41**). Pin **v1.6.2**. |
-| **Šis intake**                     | **OPEN** (naujos pastabos)                | T01–T08 + T09 **apdorota**. M11–M12 vis dar laukiama.                 |
-| **Batch (fazė B)**                 | **Must shipped** 2026-08-13               | T01–T08 + T09 + hygiene **41**. T01 I5 parked. Should = 2-as pass.    |
+| Sluoksnis                          | Būsena                                    | Ką tai reiškia                                                                                    |
+| ---------------------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| **Gyvas turinys** (JSON / EN / UI) | **FREEZE** + T01–T08 + T09 Must **įdėta** | Jokio P3 polish, hygiene **ne** į 0 (liekana **41**). Training **v1.6.3**.                        |
+| **Šis intake**                     | **OPEN** (naujos pastabos)                | T01–T08 + T09 + M11 chrome + items **apdorota**. **M11 walked, no RAW** · **M12 walked, no RAW**. |
+| **Batch (fazė B)**                 | **Must shipped** 2026-08-13               | T01–T08 + T09 + hygiene **41**. T01 I5 parked. Should = 2-as pass.                                |
 
 **Kodėl abu vienu metu:** freeze saugo corporate12 pin ir ROI stop. Intake saugo, kad testerio signalas nedingtų ir nebūtų „tyliai taisoma“ prieš triažą.
 
@@ -39,17 +39,21 @@
 
 ### 1.1 Intake žurnalas
 
-| #   | Data       | Modulis / skaidrė                     | Tema                                                           | Kur        | Statusas                                     |
-| --- | ---------- | ------------------------------------- | -------------------------------------------------------------- | ---------- | -------------------------------------------- |
-| 1   | 2026-08-13 | M10 / `10.45` Gylis ir komandos rolės | Semantinis ryšys L0↔Pokalbis; v02 4 pakeitimai                 | §R.M10-T01 | **apdorota** · dual picker lieka (I5 parked) |
-| 2   | 2026-08-13 | M10 / `10.255` Komandos pasirengimas  | Hierarchija / būsenos / rezultato kulminacija; v2 3 sluoksniai | §R.M10-T02 | **apdorota**                                 |
-| 3   | 2026-08-13 | M10 / `10.26` Kada tvirtina žmogus?   | Parent konteineriai + selected ≠ severity; v2 locked           | §R.M10-T03 | **apdorota**                                 |
-| 4   | 2026-08-13 | M10 / `10.48` 5 darbo eigos šablonai  | Hierarchija; testerio paste vs GOLDEN; v03 locked              | §R.M10-T04 | **apdorota**                                 |
-| 5   | 2026-08-13 | M10 / `10.482` orkestravimo schema    | Label ∩ linija; W7 disciplina vs žvaigždė; v03 locked          | §R.M10-T05 | **apdorota**                                 |
-| 6   | 2026-08-13 | M10 / `10.15` Darbo eigos grandinė    | Hero + mokymo scena; testerio v2 vs Shell; v03 locked          | §R.M10-T06 | **apdorota**                                 |
-| 7   | 2026-08-13 | M10 / `10.35` Įrankių medis           | Sprendimo variklis; Cursor tik su perrašymu; v03 locked        | §R.M10-T07 | **apdorota**                                 |
-| 8   | 2026-08-13 | M10 / `10.25` 3A strategija           | Pedagogika 9 / vizualas 5; echo + hierarchija; v02 locked      | §R.M10-T08 | **apdorota**                                 |
-| 9   | 2026-08-13 | M10 / `10.65` → `10.655`              | Dvi schemos vienoje optional; split spec vs incident           | T09        | **apdorota**                                 |
+| #   | Data       | Modulis / skaidrė                     | Tema                                                           | Kur           | Statusas                                     |
+| --- | ---------- | ------------------------------------- | -------------------------------------------------------------- | ------------- | -------------------------------------------- |
+| 1   | 2026-08-13 | M10 / `10.45` Gylis ir komandos rolės | Semantinis ryšys L0↔Pokalbis; v02 4 pakeitimai                 | §R.M10-T01    | **apdorota** · dual picker lieka (I5 parked) |
+| 2   | 2026-08-13 | M10 / `10.255` Komandos pasirengimas  | Hierarchija / būsenos / rezultato kulminacija; v2 3 sluoksniai | §R.M10-T02    | **apdorota**                                 |
+| 3   | 2026-08-13 | M10 / `10.26` Kada tvirtina žmogus?   | Parent konteineriai + selected ≠ severity; v2 locked           | §R.M10-T03    | **apdorota**                                 |
+| 4   | 2026-08-13 | M10 / `10.48` 5 darbo eigos šablonai  | Hierarchija; testerio paste vs GOLDEN; v03 locked              | §R.M10-T04    | **apdorota**                                 |
+| 5   | 2026-08-13 | M10 / `10.482` orkestravimo schema    | Label ∩ linija; W7 disciplina vs žvaigždė; v03 locked          | §R.M10-T05    | **apdorota**                                 |
+| 6   | 2026-08-13 | M10 / `10.15` Darbo eigos grandinė    | Hero + mokymo scena; testerio v2 vs Shell; v03 locked          | §R.M10-T06    | **apdorota**                                 |
+| 7   | 2026-08-13 | M10 / `10.35` Įrankių medis           | Sprendimo variklis; Cursor tik su perrašymu; v03 locked        | §R.M10-T07    | **apdorota**                                 |
+| 8   | 2026-08-13 | M10 / `10.25` 3A strategija           | Pedagogika 9 / vizualas 5; echo + hierarchija; v02 locked      | §R.M10-T08    | **apdorota**                                 |
+| 9   | 2026-08-13 | M10 / `10.65` → `10.655`              | Dvi schemos vienoje optional; split spec vs incident           | T09           | **apdorota**                                 |
+| 10  | 2026-08-16 | M10 / `10.8` + `10.15`                | 12 pritaikymo eilučių per vėlai / per mažas svoris             | §R.M10-T10    | **apdorota** · savininko batch 12→4          |
+| 11  | 2026-08-16 | M11 / `110.5` + `111` q6 EN           | CTA raktas `finish`; savitikros copy; EN q6 dublikatas         | §R.M11-CHROME | **apdorota** · **M11 walked, no RAW**        |
+| 12  | 2026-08-16 | M11 / `111` q1 q3 q6 q7 q8            | q8 raktas vs 10.26; distractoriai; q6 grandinė / RFP           | §R.M11-ITEMS  | **apdorota** · **M11 walked, no RAW**        |
+| 13  | 2026-08-16 | M12                                   | Owner walk                                                     | —             | **M12 walked, no RAW**                       |
 
 ### 1.2 Triažas (Phase B, 2026-08-13)
 
@@ -1080,6 +1084,48 @@ Teserio v2: 1 eil. santrauka → didelė juosta → vienas pasirinkimas → expl
 **Siūlomas batch:** CONTENT (echo) → SCHEME (punch + dim + optional plotis) → DATA → QA.
 
 **DoD:** first viewport smogia 80/15/5; klikas duoda naują sluoksnį; 5 % maža bet matoma; teseris neskaito „dokumento su įdėta diagrama“.
+
+---
+
+### R.M10-T10 – Skaidrės `10.15` / `10.8` pritaikymo katalogas (12→4)
+
+**Testerio signalas:** 12 pritaikymo pavyzdžių modulio pabaigoje – per vėlai ir per mažas svoris. Auditas `X2-18`: katalogas pirmą kartą po „Ką išmokai“ ir skaičiuojamas kaip išmokta statistika.
+
+**JSON anchor:** `10.15` `content.sections` „Kur pritaikyti“ + Patikra; `10.8` `stats[2]` + 4-a sekcija; `10.1` Neprivaloma be santraukos.
+
+**Savininko sprendimas (Must):** 4 procesai (pardavimai / personalas / finansai / aptarnavimas) pirma `10.15`; `10.8` tik recap su etiketėmis Rizika / Rodiklis; hero stat = 1 eigos aprašymas. Naujos skaidrės / Pattern / `10.48` pickerio / diagramos nėra.
+
+**Won’t:** 8 išmestų eilučių live collapsible; `firstAction24h` (A5-10); M12 121–123; hygiene → 0.
+
+**Statusas:** **apdorota** · savininko batch 2026-08-16.
+
+---
+
+### R.M11-CHROME – Skaidrė `110.5` / EN `111` q6 (Path Test lukštas)
+
+**Testerio / ownerio signalas:** LT savitikroje paskutinis mygtukas = `finish`, ne `Baigti`.
+
+**Priežastis:** `WarmUpQuizSlide` `tCommon('finish')`, `common` ns rakto nebuvo — i18next grąžino raktą. Done-state hardcoded sakė, kad testas neįskaitomas. EN `m11-q6` scenarioContext turėjo „an evaluator to check the criteria“ × 2 (`build-en-m10-m12.mjs`).
+
+**Must (shipped 2026-08-16):** `common.finish` · `contentSlides` savitikros copy · builder + overlay rebuild. Shared visiems `warm-up-quiz`.
+
+**I3:** **M11 walked, no RAW** (2026-08-16). Should A3–A6 gated.
+
+**Statusas:** **apdorota** (chrome) · walk uždarytas.
+
+---
+
+### R.M11-ITEMS – Skaidrė `111` (Path Test stuburas)
+
+**Testerio / ownerio signalas:** testas 8/10; q8 raktas nesaugus pagal stiebo riziką; q4 primityvus; ~50 % distractorių absurdiški; q6 suplakta grandinė ir koordinatorius + RFP.
+
+**Must+Should (shipped 2026-08-16):** q8 `correct: 3` = žmogaus patvirtinimas prieš siuntimą (10.26 `every_case`); išimtys lieka [0] temptation. q6 = nuosekli grandinė, be RFP. q1/q3/q7 plausible-but-wrong iš M10.
+
+**Won’t šiame batch:** q4 / 10.6; q2/q5/q9 copy; temperature distractoriai; confidence scoringas; chrome A3–A6.
+
+**I3:** **M11 walked, no RAW** (2026-08-16).
+
+**Statusas:** **apdorota** (item quality) · walk uždarytas.
 
 ---
 

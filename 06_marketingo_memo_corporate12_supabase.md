@@ -2,8 +2,8 @@
 
 **Kam:** Pagrindinės platformos (promptanatomy monorepo, Supabase + Vercel) komanda  
 **Nuo:** Mokymų app (Prompt Anatomy / inzinerija) kūrėjai  
-**Data:** 2026-08-13  
-**Tema:** Horizon B cutover – vienas production build su moduliais 1–12 (`build:corporate12`), magic link `access_tier=12`, Phase 1 per Supabase (be Stripe).
+**Data:** 2026-08-16 (statusas; kontraktas 2026-08-13)  
+**Tema:** Horizon B – vienas production build su moduliais 1–12 (`build:corporate12`), magic link `access_tier=12`, Phase 1 per Supabase (be Stripe). **12 live.**
 
 **Susiję dokumentai:**
 
@@ -17,17 +17,17 @@
 ## 1. Trumpa santrauka
 
 - **Training repo jau ready:** `npm run build:corporate12`, `*-m1-m12.json`, magic-link tier **12** (`MAGIC_LINK_TIERS` + `api/verify-access`).
-- **Cutover GitHub (2026-08-13):** submodule pin **v1.6.2** / `c35a1f5` ([PR #92](https://github.com/DITreneris/promptanatomy/pull/92)); parent `vercel-build.sh` jau `build:corporate12`; `generate-access-link` mapina `12→12`. **Live `/anatomy/` 1.6.2** — dar nepatvirtinta (Vercel).
+- **Cutover GitHub (2026-08-13) + live (2026-08-16):** submodule pin **v1.6.2** / `c35a1f5` ([PR #92](https://github.com/DITreneris/promptanatomy/pull/92)); parent `vercel-build.sh` = `build:corporate12`; `generate-access-link` mapina `12→12`. **12 live per Supabase.** Training cut **v1.6.3** — pin target po šio tag. Optional SPA chrome fingerprint (`home-recall-link` vs `RetrievalDueCard`) — ne cutover blokas.
 - **Prieiga** = HMAC magic link (kaip M7–9). Supabase saugo entitlement (`user_access`); **ne** login į mokymų SPA.
 - **Phase 1 (dabar):** upsert el. paštui `highest_plan=12` → `generate-access-link` → redirect į `/anatomy/` su token.
 - **Phase 2 (ne dabar):** Stripe Agentų SKU €199 → tas pats `access_tier=12`.
-- **Pin:** submodule `apps/prompt-anatomy` → tag **v1.6.2** / SHA `c35a1f5` (GitHub `main`; ne learning freeze `v1.4.9`).
+- **Pin:** live submodule `apps/prompt-anatomy` → tag **v1.6.2** / SHA `c35a1f5`. **Kitas pin target:** **v1.6.3** (po training tag; SHA — release notes). Ne learning freeze `v1.4.9`.
 
 ---
 
 ## 2. Kodėl du žingsniai (abu privalomi)
 
-| Sluoksnis        | Kas valdo                           | Be cutover (šiandien)                             | Po cutover                         |
+| Sluoksnis        | Kas valdo                           | Iki cutover (istorija)                            | Po cutover (dabar, 12 live)        |
 | ---------------- | ----------------------------------- | ------------------------------------------------- | ---------------------------------- |
 | **Build**        | Vercel / `vercel-build.sh`          | `MAX_BUILD_MODULE=9`                              | `build:corporate12` → M1–12 bundle |
 | **Runtime tier** | Magic link / `generate-access-link` | tipiniai 3/6/9; plan 12 gali būti mapintas **→9** | `access_tier=12` → M1–12 atrakinti |

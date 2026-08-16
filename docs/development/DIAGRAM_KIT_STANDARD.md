@@ -55,6 +55,7 @@ Canonical [`diagramTokens.ts`](../../src/components/slides/shared/diagramTokens.
 - Vertical spines: `verticalFlowGeometry.ts` + linear etalon `M7DaPipelineDiagram`.
 - Cycle-feedback: `cycleFeedbackGeometry.ts` – `horizontalRowBoxes`, `feedbackUPath` (Type Etalon W1).
 - Funnel/stack: `funnelStackGeometry.ts` – `funnelStageWidths` / `funnelStageRects` / `funnelStageTrapezoids` / `funnelHairlineYs` / `funnelOuterOutlinePath` / `stackColumnRects` (Type Etalon W3). Stack GAP etalon **18** (no connectors). AEC wow: continuous silhouette + depth ladder + motifs + active ring.
+- Process + config hierarchy: `hierarchyDropGeometry.ts` – `getHierarchyDropStroke` (down, no marker; etalon `m10_trigger_flow`).
 
 ## Type etalons (uniqueness)
 
@@ -67,8 +68,17 @@ Canonical [`diagramTokens.ts`](../../src/components/slides/shared/diagramTokens.
 | funnel / stack                              | `m13_aec_funnel` / `m13_prompt_stack` + `funnelStackGeometry` | Funnel narrowing / stack depth                                                                                                             | ✅ W3            |
 | dual-taxonomy (superseded)                  | ~~`m10_agent_taxonomy` Shell~~ → lab hybrid                   | **Superseded 2026-07-24:** Pattern `interactive-control-lab` (Shell=Ne) – `M10DepthRolesLabBlock` + static mini SVG; ne 8-step Shell spine | ⛔ W5 archived   |
 | multi-agent-flow                            | `m10_agent_orchestrator` + `orchestratorRetryPath.ts`         | Hub + specialists + state/tools dashed + left retry U; Shell walkthrough; own BOX; M12 = W7 **layout** brother (own topology)              | ✅ W7            |
+| linear-process (process-config-hierarchy)   | `m10_trigger_flow` + `hierarchyDropGeometry`                  | Horizontal T/C/A + belongs-to drop (no tip); config strip is not a 4th Shell step; Pattern stays `linear-process`                          | sibling (ne W8)  |
 
 Sibling (same HTML card family, more steps): M9 `m9_data_workflow` / `M9DataWorkflowDiagram` — desktop **2×4** cards (`→` in-row, `↓` 4→5), mobile vertical stack; short box labels in `m9DataWorkflowContent.ts` (full titles in Shell explanation). Not SVG spine / not `verticalFlowGeometry`.
+
+### Process-config-hierarchy checklist (10.15 etalon)
+
+1. Horizontal process arrows keep `getProcessArrowMarkerGeom` + tip. Vertical drop via `getHierarchyDropStroke` — **no** `markerEnd`.
+2. Drop starts at parent box bottom, ends before the config header (`pillIntersectsStroke` = false). Stroke = `DIAGRAM_TOKENS.stroke.inactive`.
+3. Config strip + drop are live only on the parent Shell step. Other steps: local orphan (~0.4), not a global `opacity.inactive` rewrite. Geometry does not jump.
+4. Amber = selected child (plus parent active stroke). Config chips are not a 4th Shell beat and not `ChoiceControl`.
+5. Geometry test: `hierarchyDropGeometry.test.ts` + `m10TriggerFlowLayout` fit. Keyboard for types = HTML radiogroup in the explanation; SVG chips = pointer-only `DiagramStepHitArea`.
 
 ### Cycle-feedback checklist (new / polish)
 

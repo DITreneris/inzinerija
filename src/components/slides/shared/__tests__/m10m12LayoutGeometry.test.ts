@@ -3,11 +3,13 @@ import {
   getM12EdgePoints,
   getM12FeedbackPathDesktop,
   getM12LineEnd,
+  getM12MultiAgentCompactBoxes,
   getM12MultiAgentDesktopBoxes,
   M12_MULTI_AGENT_EDGES_DESKTOP,
   M12_MULTI_AGENT_MARKER_LEN,
   M12_MULTI_AGENT_TITLE_Y,
   getM12BoxMap,
+  m12CompactBoxesFitViewBox,
   m12DesktopBoxesFitViewBox,
   m12SpineCenterYAligned,
 } from '../m12MultiAgentSchemaLayout';
@@ -23,7 +25,7 @@ import {
 import { getM12MultiAgentSchemaLabels } from '../m12MultiAgentSchemaContent';
 import { getM10LearningLoopLabels } from '../m10LearningLoopContent';
 import { DIAGRAM_TOKENS } from '../diagramTokens';
-import { pillIntersectsStroke } from '../diagramLayoutMath';
+import { pillIntersectsStroke, rectsAabbIntersect } from '../diagramLayoutMath';
 import {
   AGENT_WORKFLOW_ARROW,
   AGENT_WORKFLOW_BOX,
@@ -42,15 +44,36 @@ import {
   buildAgentWorkflowDesktopBoxes,
 } from '../agentWorkflowLayout';
 import {
+  getM10TriggerHierarchyShelf,
+  getM10TriggerHierarchyStroke,
   getM10TriggerTypesLabelRect,
-  getM10TriggerUpStroke,
   M10_TRIGGER_FLOW_LAYOUT,
   M10_TRIGGER_FLOW_STEP_COUNT,
+  M10_TRIGGER_TYPES_ORPHAN_OPACITY,
+  m10TriggerShaftX,
+  m10TriggerTypeChipsX,
+  m10TriggerTypeRowWidth,
 } from '../m10TriggerFlowLayout';
 import {
   getM10TriggerFlowStepExplanations,
+  getM10ToolTreeLeaves,
   getM10WorkflowSpecStepExplanations,
 } from '../m10DiagramContent';
+import {
+  M10_TOOL_TREE_CRITERION_SIZE,
+  M10_TOOL_TREE_LEAF_COUNT,
+  M10_TOOL_TREE_ROOT,
+  TREE_DIM_OPACITY,
+  buildM10ToolTreeLeaves,
+  getM10ToolTreeBusStroke,
+  getM10ToolTreeBusY,
+  getM10ToolTreeCriterionRect,
+  getM10ToolTreeCriterionY,
+  getM10ToolTreeDropStroke,
+  getM10ToolTreeTrunkStroke,
+  m10ToolTreeRootBottom,
+  m10ToolTreeRootCx,
+} from '../m10ToolDecisionTreeLayout';
 
 describe('m12MultiAgentSchemaLayout', () => {
   it('derives edge endpoints short of target by markerLen', () => {
@@ -104,6 +127,12 @@ describe('m12MultiAgentSchemaLayout', () => {
     expect(list[0].y - M12_MULTI_AGENT_TITLE_Y.desktop).toBeGreaterThanOrEqual(
       18
     );
+  });
+
+  it('fits compact two-row boxes in the compact viewBox', () => {
+    const labels = getM12MultiAgentSchemaLabels('lt');
+    const list = getM12MultiAgentCompactBoxes(labels);
+    expect(m12CompactBoxesFitViewBox(list)).toBe(true);
   });
 });
 
@@ -235,19 +264,110 @@ describe('m10TriggerFlowLayout', () => {
     expect(getM10TriggerFlowStepExplanations('en')).toHaveLength(3);
   });
 
-  it('fits trigger-type chips as a sub-block off the ↑ shaft', () => {
+  it('drops a belongs-to stroke (no process arrow) onto a raised type strip', () => {
     const L = M10_TRIGGER_FLOW_LAYOUT;
+    const stroke = getM10TriggerHierarchyStroke();
+    const shelf = getM10TriggerHierarchyShelf();
+    const label = getM10TriggerTypesLabelRect();
+    const chipsX = m10TriggerTypeChipsX();
+    const chipsW = m10TriggerTypeRowWidth();
+    const shaftX = m10TriggerShaftX();
     expect(L.boxH).toBeGreaterThanOrEqual(58);
+    expect(L.height).toBeLessThan(250);
+    expect(L.typeRowY).toBeLessThanOrEqual(150);
     expect(L.typeRowY + L.typeChipH).toBeLessThan(L.height);
-    expect(L.yMain + L.boxH).toBeLessThan(L.typeRowY);
+    expect(L.yMain + L.boxH).toBeLessThan(L.typesLabelY);
+    expect(L.typesLabelY).toBeLessThan(L.typeRowY);
+    expect(stroke.y1).toBeLessThan(stroke.y2);
+    expect(stroke.x1).toBe(shaftX);
+    expect(stroke.x2).toBe(shaftX);
+    expect(L.hierarchyStroke).toBeGreaterThan(DIAGRAM_TOKENS.stroke.inactive);
+    expect(L.hierarchyStroke).toBeLessThan(DIAGRAM_TOKENS.stroke.flow);
+    expect(stroke.strokeWidth).toBe(L.hierarchyStroke);
+    expect(label.x + label.w).toBeLessThanOrEqual(shaftX - L.labelShaftGap);
+    expect(label.x).toBeGreaterThanOrEqual(8);
+    expect(shelf.y1).toBe(shelf.y2);
+    expect(shelf.y1).toBeLessThan(L.typeRowY);
+    expect(shelf.x1).toBe(chipsX);
+    expect(shelf.x2).toBe(chipsX + chipsW);
+    expect(stroke.y2).toBe(shelf.y1);
+    expect(chipsX + chipsW / 2).toBeCloseTo(shaftX);
+    expect(chipsX).toBeGreaterThanOrEqual(8);
+    expect(chipsX + chipsW).toBeLessThanOrEqual(L.width - 8);
     const rowW = 3 * L.boxW + 2 * L.gap;
     expect(L.x0 + rowW).toBeLessThanOrEqual(L.width);
-    expect(
-      pillIntersectsStroke(
-        getM10TriggerTypesLabelRect(),
-        getM10TriggerUpStroke()
-      )
-    ).toBe(false);
+    expect(pillIntersectsStroke(label, stroke)).toBe(false);
+    expect(pillIntersectsStroke(label, shelf)).toBe(false);
+    expect(M10_TRIGGER_TYPES_ORPHAN_OPACITY).toBeLessThan(
+      DIAGRAM_TOKENS.opacity.inactive
+    );
+    expect(M10_TRIGGER_TYPES_ORPHAN_OPACITY).toBeCloseTo(0.4);
+  });
+});
+
+describe('m10ToolDecisionTreeLayout', () => {
+  it('keeps criterion type at the edge-label floor and dim below LMS inactive', () => {
+    expect(M10_TOOL_TREE_CRITERION_SIZE).toBeGreaterThanOrEqual(12);
+    expect(M10_TOOL_TREE_CRITERION_SIZE).toBe(
+      DIAGRAM_TOKENS.typography.edgeLabel.size
+    );
+    expect(TREE_DIM_OPACITY).toBeLessThan(DIAGRAM_TOKENS.opacity.inactive);
+    expect(TREE_DIM_OPACITY).toBeGreaterThan(0.5);
+  });
+
+  it('raises the criterion row above the bus with air under the root', () => {
+    const criterionY = getM10ToolTreeCriterionY();
+    const busY = getM10ToolTreeBusY();
+    expect(M10_TOOL_TREE_ROOT.y + M10_TOOL_TREE_ROOT.h).toBeLessThan(
+      criterionY
+    );
+    expect(m10ToolTreeRootBottom()).toBeLessThan(criterionY);
+    expect(criterionY + 8 + 12).toBeLessThanOrEqual(busY);
+    expect(getM10ToolTreeTrunkStroke().y2).toBeLessThan(criterionY);
+  });
+
+  it('keeps every LT and EN criterion off the trunk, bus, and own drop', () => {
+    for (const locale of ['lt', 'en'] as const) {
+      const leaves = getM10ToolTreeLeaves(locale);
+      expect(leaves).toHaveLength(M10_TOOL_TREE_LEAF_COUNT);
+      const trunk = getM10ToolTreeTrunkStroke();
+      const bus = getM10ToolTreeBusStroke(leaves.length);
+      leaves.forEach((leaf, i) => {
+        const rect = getM10ToolTreeCriterionRect(
+          i,
+          leaf.condition,
+          leaves.length
+        );
+        const drop = getM10ToolTreeDropStroke(i, leaves.length);
+        expect(pillIntersectsStroke(rect, trunk)).toBe(false);
+        expect(pillIntersectsStroke(rect, bus)).toBe(false);
+        expect(pillIntersectsStroke(rect, drop)).toBe(false);
+      });
+    }
+  });
+
+  it('keeps neighbouring criterion AABBs from overlapping', () => {
+    const leaves = getM10ToolTreeLeaves('lt');
+    const rects = leaves.map((leaf, i) =>
+      getM10ToolTreeCriterionRect(i, leaf.condition, leaves.length)
+    );
+    for (let i = 0; i < rects.length - 1; i += 1) {
+      expect(
+        rectsAabbIntersect(rects[i], rects[i + 1]),
+        `${leaves[i].id}∩${leaves[i + 1].id}`
+      ).toBe(false);
+    }
+  });
+
+  it('centers five equal leaves and ends drops short of the leaf by the process tip', () => {
+    const boxes = buildM10ToolTreeLeaves();
+    expect(boxes).toHaveLength(5);
+    expect(boxes[2]?.cx).toBe(m10ToolTreeRootCx());
+    const drop = getM10ToolTreeDropStroke(2);
+    expect(drop.y2).toBe(
+      (boxes[2]?.y ?? 0) - DIAGRAM_TOKENS.arrow.processTipLen
+    );
+    expect(drop.y2).toBeGreaterThan(drop.y1);
   });
 });
 

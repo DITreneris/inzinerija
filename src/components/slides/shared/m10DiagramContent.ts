@@ -4,6 +4,16 @@ import type { StepExplanation } from './stepExplanations';
 
 export type M10Locale = 'lt' | 'en';
 
+export type TriggerTypeId = 'form' | 'schedule' | 'webhook';
+
+export const M10_DEFAULT_TRIGGER_TYPE: TriggerTypeId = 'webhook';
+
+export const M10_TRIGGER_TYPE_IDS: readonly TriggerTypeId[] = [
+  'form',
+  'schedule',
+  'webhook',
+] as const;
+
 export function getM10TriggerFlowLabels(locale: M10Locale) {
   if (locale === 'en') {
     return {
@@ -14,13 +24,15 @@ export function getM10TriggerFlowLabels(locale: M10Locale) {
       conditionSub: 'if needed',
       action: 'Action',
       actionSub: 'system step',
-      typesLabel: 'Trigger types',
+      typesLabel: 'Trigger type',
       typeForm: 'Form',
       typeFormSub: 'a person submits',
       typeSchedule: 'Schedule',
       typeScheduleSub: 'a schedule',
       typeWebhook: 'Notice',
       typeWebhookSub: 'another system',
+      selectedTypeLabel: 'Selected type:',
+      typePickerAria: 'Trigger type selection',
       aria: 'Workflow: Trigger, Condition, Action; an incoming web notification is a trigger type',
     };
   }
@@ -32,14 +44,45 @@ export function getM10TriggerFlowLabels(locale: M10Locale) {
     conditionSub: 'jei reikia',
     action: 'Veiksmas',
     actionSub: 'ką padaro sistema',
-    typesLabel: 'Paleidiklio tipai',
+    typesLabel: 'Paleidiklio tipas',
     typeForm: 'Forma',
     typeFormSub: 'pateikia žmogus',
     typeSchedule: 'Laikas',
     typeScheduleSub: 'tvarkaraštis',
     typeWebhook: 'Pranešimas',
     typeWebhookSub: 'kita sistema',
+    selectedTypeLabel: 'Pasirinktas tipas:',
+    typePickerAria: 'Paleidiklio tipo pasirinkimas',
     aria: 'Darbo eiga: Paleidiklis, Sąlyga, Veiksmas; internetinis pranešimas yra paleidiklio tipas',
+  };
+}
+
+export function getM10TriggerTypeChipLabel(
+  locale: M10Locale,
+  type: TriggerTypeId
+): string {
+  const L = getM10TriggerFlowLabels(locale);
+  if (type === 'form') return L.typeForm;
+  if (type === 'schedule') return L.typeSchedule;
+  return L.typeWebhook;
+}
+
+export function getM10TriggerTypeExplanations(
+  locale: M10Locale
+): Record<TriggerTypeId, string> {
+  if (locale === 'en') {
+    return {
+      form: 'The flow starts when a person submits a form.',
+      schedule: 'The flow starts at a set time.',
+      webhook:
+        'The flow starts when another system sends an incoming web notification. Common mistake: treating that notice as a separate action.',
+    };
+  }
+  return {
+    form: 'Eiga prasideda, kai žmogus pateikia formą.',
+    schedule: 'Eiga prasideda nustatytu laiku.',
+    webhook:
+      'Eiga prasideda gavus signalą iš kitos sistemos. Dažna klaida: laikyti internetinį pranešimą atskiru veiksmu.',
   };
 }
 
