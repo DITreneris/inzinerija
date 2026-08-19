@@ -261,7 +261,9 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       const { container } = renderWithProviders(<TurinioWorkflowBlock />);
       expect(container.textContent).toContain('From brief to publication');
       expect(container.textContent).toContain('Variants');
-      expect(container.textContent).not.toContain('Nuo užduoties iki publikacijos');
+      expect(container.textContent).not.toContain(
+        'Nuo užduoties iki publikacijos'
+      );
       expect(container.textContent).not.toContain('Variantai');
     });
 
@@ -377,9 +379,7 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       const { container } = renderWithProviders(<M13MediaPipelineBlock />);
       expect(container.textContent).toContain('Media chain');
       expect(container.textContent).toContain('Reference lock');
-      expect(container.textContent).not.toContain(
-        'Medijos grandinė'
-      );
+      expect(container.textContent).not.toContain('Medijos grandinė');
     });
 
     it('renders Lithuanian chain copy and shell nav when locale is lt', () => {

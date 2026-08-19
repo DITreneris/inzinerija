@@ -21,12 +21,10 @@ describe('M13ConsistencyLockLabBlock', () => {
     ).toBeInTheDocument();
     expect(screen.getAllByRole('radio')).toHaveLength(5);
     expect(screen.getAllByRole('checkbox')).toHaveLength(4);
-    expect(
-      screen.getByTestId('m13-consistency-sample')
-    ).toHaveTextContent(/Ąžuolo puodelis/i);
-    expect(
-      screen.getByText(/Po režimo – tavo taisyklė/i)
-    ).toBeInTheDocument();
+    expect(screen.getByTestId('m13-consistency-sample')).toHaveTextContent(
+      /Ąžuolo puodelis/i
+    );
+    expect(screen.getByText(/Po režimo – tavo taisyklė/i)).toBeInTheDocument();
     expect(
       screen.queryByRole('button', { name: /Kopijuoti taisyklę/i })
     ).not.toBeInTheDocument();
@@ -46,9 +44,9 @@ describe('M13ConsistencyLockLabBlock', () => {
     );
     expect(screen.getByText('Prieš (slinktis)')).toBeInTheDocument();
     expect(screen.getByText('Po (užraktas)')).toBeInTheDocument();
-    expect(screen.getByText('Po (užraktas)').closest('figure')?.className).toMatch(
-      /emerald/
-    );
+    expect(
+      screen.getByText('Po (užraktas)').closest('figure')?.className
+    ).toMatch(/emerald/);
     expect(
       screen.getByAltText(/Ąžuolo puodelis su slinktimi/i)
     ).toBeInTheDocument();
@@ -74,11 +72,15 @@ describe('M13ConsistencyLockLabBlock', () => {
     expect(
       screen.getByRole('button', { name: /Kopijuoti taisyklę/i })
     ).toBeInTheDocument();
-    expect(screen.getByText(/Užraktas: naudok tas pačias/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Užraktas: naudok tas pačias/i)
+    ).toBeInTheDocument();
     expect(screen.getByText('Simptomas')).toBeInTheDocument();
     expect(screen.getByText('Taisymas')).toBeInTheDocument();
     expect(screen.getByText(/Trūksta:/i)).toBeInTheDocument();
-    expect(screen.queryByTestId('m13-consistency-sample')).not.toBeInTheDocument();
+    expect(
+      screen.queryByTestId('m13-consistency-sample')
+    ).not.toBeInTheDocument();
   });
 
   it('omits missing-refs line when at least 3 refs are ticked', () => {
@@ -89,7 +91,9 @@ describe('M13ConsistencyLockLabBlock', () => {
     fireEvent.click(boxes[2]);
     fireEvent.click(screen.getByRole('radio', { name: /Spalva pasikeitė/i }));
     expect(screen.queryByText(/Trūksta:/i)).not.toBeInTheDocument();
-    expect(screen.getByText(/Užraktas: naudok tas pačias/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Užraktas: naudok tas pačias/i)
+    ).toBeInTheDocument();
   });
 
   it('reveals fresh artifact without lock rule', () => {
@@ -100,7 +104,9 @@ describe('M13ConsistencyLockLabBlock', () => {
     expect(
       screen.getByText(/Naujas generavimas \(be užrakto\)/i)
     ).toBeInTheDocument();
-    expect(screen.queryByText(/Užraktas: naudok tas pačias/i)).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/Užraktas: naudok tas pačias/i)
+    ).not.toBeInTheDocument();
   });
 
   it('renders EN labels', () => {
@@ -112,8 +118,6 @@ describe('M13ConsistencyLockLabBlock', () => {
     ).toBeInTheDocument();
     expect(screen.getByText(/You have 0\/4/i)).toBeInTheDocument();
     expect(screen.getByText(/Series: Oak Mug/i)).toBeInTheDocument();
-    expect(
-      screen.getByAltText(/Oak Mug drifted/i)
-    ).toBeInTheDocument();
+    expect(screen.getByAltText(/Oak Mug drifted/i)).toBeInTheDocument();
   });
 });

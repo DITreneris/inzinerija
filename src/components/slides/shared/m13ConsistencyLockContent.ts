@@ -78,7 +78,8 @@ export function getM13ConsistencyLockChrome(locale: M10Locale) {
   }
   return {
     title: 'Pavyzdžių nuotraukų užraktas',
-    metaphorCaption: 'Užrakintos pavyzdžių nuotraukos lieka greta generavimo kelio',
+    metaphorCaption:
+      'Užrakintos pavyzdžių nuotraukos lieka greta generavimo kelio',
     hint: 'Paspausk žingsnį – paaiškinimas apačioje',
     aria: 'Keturi žingsniai: pavyzdžių nuotraukos, užraktas, nauja scena, patikra',
     regionAria: 'Tas pats produktas – keturi žingsniai',

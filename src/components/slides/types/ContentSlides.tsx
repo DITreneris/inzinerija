@@ -645,11 +645,15 @@ export function SectionBreakSlide({
           className="pl-4 pr-3 py-3 text-left bg-slate-100 dark:bg-slate-800/60 border-emerald-500"
           ariaLabel={content.recap?.heading ?? ''}
         >
-          <h3 className={`${typographyClasses.h3} mb-1.5 text-gray-900 dark:text-white`}>
+          <h3
+            className={`${typographyClasses.h3} mb-1.5 text-gray-900 dark:text-white`}
+          >
             {content.recap?.heading}
           </h3>
           {content.recap?.lead && (
-            <p className={`${typographyClasses.body} text-gray-600 dark:text-gray-300 italic mb-2`}>
+            <p
+              className={`${typographyClasses.body} text-gray-600 dark:text-gray-300 italic mb-2`}
+            >
               {content.recap.lead}
             </p>
           )}
@@ -697,7 +701,9 @@ export function SectionBreakSlide({
                       aria-hidden
                     />
                   )}
-                  <span className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}>
+                  <span
+                    className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}
+                  >
                     {hasTermInItem && term ? (
                       <>
                         {before}
@@ -733,17 +739,23 @@ export function SectionBreakSlide({
             className={`py-2 pl-3 border-l-4 ${colors.kasToliau}`}
             ariaLabel={isEn ? 'What\u2019s next' : 'Kas toliau'}
           >
-            <h3 className={`${typographyClasses.h3} mb-1 text-gray-900 dark:text-white`}>
+            <h3
+              className={`${typographyClasses.h3} mb-1 text-gray-900 dark:text-white`}
+            >
               {isEn ? 'What\u2019s next' : 'Kas toliau'}
             </h3>
             {hasNextSteps ? (
-              <ul className={`space-y-0.5 ${typographyClasses.body} text-gray-700 dark:text-gray-300 list-disc list-inside`}>
+              <ul
+                className={`space-y-0.5 ${typographyClasses.body} text-gray-700 dark:text-gray-300 list-disc list-inside`}
+              >
                 {(content.nextSteps ?? []).map((step, idx) => (
                   <li key={idx}>{step}</li>
                 ))}
               </ul>
             ) : (
-              <p className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}>
+              <p
+                className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}
+              >
                 {content.subtitle}
               </p>
             )}

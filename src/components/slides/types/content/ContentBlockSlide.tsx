@@ -462,9 +462,7 @@ export function ContentBlockSlide({
               )}
             </div>
             {tool.description && (
-              <p
-                className={`${typographyClasses.bodyMuted} leading-snug mb-3`}
-              >
+              <p className={`${typographyClasses.bodyMuted} leading-snug mb-3`}>
                 {tool.description}
               </p>
             )}

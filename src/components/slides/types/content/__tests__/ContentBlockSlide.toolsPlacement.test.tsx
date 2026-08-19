@@ -3,7 +3,9 @@ import { renderWithProviders } from '../../../../../test/test-utils';
 import { ContentBlockSlide } from '../../ContentSlides';
 import type { ContentBlockContent } from '../../../../../types/modules';
 
-const toolsContent = (placement: ContentBlockContent['toolsPlacement']): ContentBlockContent => ({
+const toolsContent = (
+  placement: ContentBlockContent['toolsPlacement']
+): ContentBlockContent => ({
   sections: [
     {
       heading: 'Daryk dabar',
@@ -33,7 +35,9 @@ describe('ContentBlockSlide toolsPlacement', () => {
     const { container } = renderWithProviders(
       <ContentBlockSlide content={toolsContent('beforePatikra')} />
     );
-    const tools = container.querySelector('[data-testid="content-tools-block"]');
+    const tools = container.querySelector(
+      '[data-testid="content-tools-block"]'
+    );
     const check = Array.from(container.querySelectorAll('h3, h2')).find((el) =>
       el.textContent?.includes('Patikra')
     );
@@ -47,7 +51,9 @@ describe('ContentBlockSlide toolsPlacement', () => {
     const { container } = renderWithProviders(
       <ContentBlockSlide content={toolsContent('afterSections')} />
     );
-    const tools = container.querySelector('[data-testid="content-tools-block"]');
+    const tools = container.querySelector(
+      '[data-testid="content-tools-block"]'
+    );
     const check = Array.from(container.querySelectorAll('h3, h2')).find((el) =>
       el.textContent?.includes('Patikra')
     );

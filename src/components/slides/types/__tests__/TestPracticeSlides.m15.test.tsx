@@ -98,7 +98,9 @@ describe('TestPracticeSlides M15 compact practice body', () => {
       />
     );
 
-    expect(screen.getByText(/Parašyk trumpą užduoties aprašą/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Parašyk trumpą užduoties aprašą/i)
+    ).toBeInTheDocument();
     expect(screen.getByText(/Sukurk hero vaizdą/i)).toBeInTheDocument();
     expect(
       screen.getByRole('button', {

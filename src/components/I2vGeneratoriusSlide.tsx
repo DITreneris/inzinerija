@@ -10,16 +10,8 @@ import { typographyClasses } from '../design-tokens';
 
 const DURATIONS = ['3', '4', '5'] as const;
 
-const MOTIONS_LT = [
-  'Lėtai į priekį',
-  'Šonu',
-  'Stabiliai',
-] as const;
-const MOTIONS_EN = [
-  'Slow push-in',
-  'Pan sideways',
-  'Locked / static',
-] as const;
+const MOTIONS_LT = ['Lėtai į priekį', 'Šonu', 'Stabiliai'] as const;
+const MOTIONS_EN = ['Slow push-in', 'Pan sideways', 'Locked / static'] as const;
 
 const READY_BADGE: Record<string, string> = {
   weak: 'bg-slate-600 text-slate-100',
@@ -87,7 +79,8 @@ export default function I2vGeneratoriusSlide({
 
   const generatedPrompt = useMemo(() => {
     const scene =
-      keyframe.trim() || (isEn ? '[Frame / scene]' : '[Raktinis kadras / scena]');
+      keyframe.trim() ||
+      (isEn ? '[Frame / scene]' : '[Raktinis kadras / scena]');
     const locks: string[] = [];
     if (sameProduct) locks.push(isEn ? 'same product' : 'tas pats produktas');
     if (sameStyle) {
@@ -378,9 +371,7 @@ export default function I2vGeneratoriusSlide({
               >
                 {copied ? t('copiedButton') : t('copyButton')}
               </button>
-              <p
-                className={`${typographyClasses.body} mt-3 text-slate-300`}
-              >
+              <p className={`${typographyClasses.body} mt-3 text-slate-300`}>
                 {t('cycleHint')}
               </p>
             </div>

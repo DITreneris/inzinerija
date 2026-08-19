@@ -191,17 +191,10 @@ export default function M13StillWorkflowDiagram({
                 height={h}
                 rx={8}
                 fill={`url(#m13-sw-tone-${uid}-${tone})`}
-                stroke={
-                  isActive ? palette.brandDark : palette.border
-                }
+                stroke={isActive ? palette.brandDark : palette.border}
                 strokeWidth={isActive ? 2 : 1}
               />
-              <circle
-                cx={boxCx}
-                cy={y + 16}
-                r={9}
-                fill={palette.brandDark}
-              />
+              <circle cx={boxCx} cy={y + 16} r={9} fill={palette.brandDark} />
               <text
                 x={boxCx}
                 y={y + 20}

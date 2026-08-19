@@ -278,8 +278,7 @@ export function getConsistencyModeOptions(
       label: 'Užduoties aprašas keičiasi',
       description: 'Sąmoningai nauja išvaizda – be užrakto.',
       driftSignal: 'Užduoties aprašas ar vaizdas keičiasi sąmoningai.',
-      fixCue:
-        'Naujas generavimas be ankstesnio produkto tapatybės prievartos.',
+      fixCue: 'Naujas generavimas be ankstesnio produkto tapatybės prievartos.',
       pill: 'Naujas',
     },
   ];

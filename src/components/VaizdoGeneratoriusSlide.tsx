@@ -277,7 +277,7 @@ function buildPresets(isEn: boolean): Record<PresetId, Partial<FormData>> {
       textPosition: 'Apatinis trečdalis',
       typography: 'Modernus Sans-serif',
       aspectRatio: '1:1',
-        campaignGoal: 'Konversija',
+      campaignGoal: 'Konversija',
     },
     events: {
       goal: 'Renginio registracijų auginimas',
