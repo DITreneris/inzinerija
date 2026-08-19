@@ -2,6 +2,47 @@
 
 > **Tikslas:** QA_AGENT priima vartotojo testų klaidas, fiksuoja čia ir įrašo sprendimus į `TODO.md`.
 
+## 2026-08-19 – Live pin truth sync (v4.38)
+
+**Statusas:** PASS (docs-only) · GitHub verified · ne 1.6.4  
+**Evidence:** inzinerija latest release **v1.6.3**; `promptanatomy` submodule SHA `7e4c3bf` = tag object of **v1.6.3**; merge [PR #96](https://github.com/DITreneris/promptanatomy/pull/96) 2026-08-16.
+
+| Laukas           | Buvo (stale)    | Turi būti                     |
+| ---------------- | --------------- | ----------------------------- |
+| Live pin         | v1.6.2 / PR #92 | **v1.6.3** / PR #96 `7e4c3bf` |
+| Training release | v1.6.3          | **v1.6.3** (sutampa su live)  |
+| Unreleased HEAD  | ≠ pin           | lieka ≠ pin (ne 1.6.4)        |
+
+## 2026-08-19 – Pre-launch deep audit (v4.37)
+
+**Statusas:** **GO Unreleased** (training / corporate15 repo-ready) · live pin **v1.6.3** (verified 2026-08-19) · **ne** 1.6.4  
+**Apimtis:** docs closeout + core sync + RTL copy sync + full `audit:release-preflight`.
+
+### Verdict
+
+| Klausimas            | Atsakymas                                                 |
+| -------------------- | --------------------------------------------------------- |
+| Learning P0/P1 open? | **Nėra** (M13-WALK + Wave F/G/H + reflections closed)     |
+| Automatai            | **PASS** · **177** failai / **1081** testai               |
+| Live pin             | **v1.6.3** (12 live; PR #96)                              |
+| Corporate15          | Repo-ready; ne default Vercel cutover                     |
+| Rankinė liekana      | PDF owner visual · MON-4/5 · mobile spot (ne learning P0) |
+
+### Vartai (ši sesija)
+
+| Vartai                                             | Rezultatas                                        |
+| -------------------------------------------------- | ------------------------------------------------- |
+| `validate:schema` + `generate:core-data:check`     | OK (po regen m1-m15 / glossary-m1-m15)            |
+| `lint` + design/typography gates                   | OK                                                |
+| `audit:m49` / `m1012` / `m1315` / `m1618`          | OK                                                |
+| `audit:m1012-content-hygiene:gate`                 | OK · **39** findings (docs freeze was 40→39)      |
+| `audit:lt-address` + `audit:en-spelling` + TE docs | OK                                                |
+| `typecheck`                                        | OK                                                |
+| `audit:release-preflight`                          | OK · **177/1081**                                 |
+| RTL sync                                           | M15 `150.5` + TurinioWorkflow LT title assertions |
+
+**Liekama (ne P0/P1):** T01 I5 parked · Should 2-as pass · TOOL-5 · MON §1.4 · D3 · LANG §7 TERM? · C-C\* parked.
+
 ## 2026-08-19 – Unreleased gate-green (v4.36)
 
 **Statusas:** PASS · preflight **176/1078** · ne 1.6.4 / ne re-pin  
@@ -19,9 +60,9 @@
 
 **Liekama:** T01 I5 · Should · complete-screen #16 · C-C\* · TOOL-5 · MON / D3.
 
-## 2026-08-19 – Pre-launch deep audit
+## 2026-08-19 – Pre-launch deep audit (ankstesnis; superseded)
 
-**Statusas:** NO-GO Unreleased · CONDITIONAL GO tagged **v1.6.3** re-pin (marketing) · live HOLD **v1.6.2**  
+**Statusas:** NO-GO Unreleased · CONDITIONAL GO tagged **v1.6.3** re-pin (marketing) · live HOLD **v1.6.2** — **superseded** by v4.37 pre-launch PASS above.  
 **Apimtis:** dirty tree vs tag vs live. Ne 1.6.4. Corporate15 iš dirty — ne.
 
 ### Vartai (ši sesija)

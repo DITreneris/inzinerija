@@ -1,6 +1,6 @@
 # M13–M15 LT korektūros fixlist (prieš → po)
 
-> **Apimtis:** M13–15 learner copy. **Statusas:** I1A P1 **pritaikyta** 2026-08-17 (L1-01…16). P2 **netaikyta**. W3 chrome **pritaikyta**. **I2 first-screen + ciklas pritaikyta** 2026-08-18 (L2-01…19).  
+> **Apimtis:** M13–15 learner copy. **Statusas:** I1A P1 **pritaikyta** 2026-08-17 (L1-01…16). P2 **Wave G + Wave H applied** 2026-08-19 (L1-17 Skyrius; L1-22 @375 verify; Soft Binding / TOFU / 158). W3 chrome **pritaikyta**. **I2 first-screen + ciklas pritaikyta** 2026-08-18 (L2-01…19). **Wave F P0+P1 applied** 2026-08-19 (LF-01… + I5).  
 > **Šaltinis:** `src/data/modules.json` (LT) + `m13MediaPipelineContent.ts` / `m13DiagramContent.ts`. Stulpelis „prieš“ – tekstas prieš apply.  
 > **Taikymo tvarka:** DATA_AGENT → `modules.json` + `.ts` content; **ne** `generate:core-data`. Vartai: `audit:lt-address`, `audit:slide-titles`, `validate:schema`.  
 > **Sunkumas:** P0 – keičia prasmę / first-screen FAIL; P1 – tikra kalbos klaida; P2 – poliravimas (skip).  
@@ -37,11 +37,11 @@
 | L1-19 | 13.3     | `content.tools[5].useCases[1]`                                   | C2PA / provenance                                                                                                                          | C2PA / kilmė                                                                                                                                | C2PA KEEP; provenance = PIRMAS                                               | P2    |
 | L1-20 | 13.12 TS | `getM13MediaPipelineChrome` LT `aria`                            | Šeši žingsniai: brief, kadrai, …                                                                                                           | Šeši žingsniai: užduotis, kadrai, …                                                                                                         | sr-only, bet mokinys girdi; kaip L1-14                                       | P2    |
 | L1-21 | 13.12 TS | `getM13MediaPipelineExplanations` LT [5].body                    | disclosure (C2PA / žmogui matoma DI žyma)                                                                                                  | DI žyma (disclosure / C2PA)                                                                                                                 | PIRMAS: LT pirma                                                             | P2    |
-| L1-22 | 130      | `content.firstActionCTA` (ilgis)                                 | _(tas pats sakinys kaip L1-01, ~155 simb.)_                                                                                                | Palikti vieną sakinį; @375 lūš į 3–4 eilutes – OK action-intro. Netrumpinti I4 be walk.                                                     | UI_UX @375: wrap, ne kalbos klaida                                           | P2    |
+| L1-22 | 130      | `content.firstActionCTA` (ilgis)                                 | _(tas pats sakinys kaip L1-01, ~155 simb.)_                                                                                                | Palikti vieną sakinį; @375 wrap OK. **Wave H 2026-08-19 verify:** copy nekeistas.                                                           | UI_UX @375: wrap, ne kalbos klaida                                           | P2    |
 
 **I1A palikta (ne klaida):** 130 `užduoties aprašo (brief)` — PIRMAS OK · 13.1 `atpažįstamumas (Awareness)` — PIRMAS OK · 13.12 Trumpai jau LT · I2V / A/E/C / C2PA KEEP · 13.2 `promptas` KEEP · footeriai „Toliau – skaidrė N“ = GOLDEN §3.6.
 
-**I1A apply:** L1-01…16 ✅ · L1-17…22 P2 skip.
+**I1A apply:** L1-01…16 ✅ · L1-17 Wave G ✅ · L1-22 Wave H verify ✅.
 
 ---
 
@@ -89,3 +89,50 @@
 | L2-19 | 13.51    | subtitle                               | post-prod                                             | montažą                                                       | chrome        | P1    |
 
 **I2 apply:** L2-01…19 ✅ 2026-08-18. P2 skip: `Skyrius:` 13.15/13.56 · 13.101 collapsible siena (išskyrus `vaize`) · vaizdoGen optional.
+
+---
+
+## Wave F — I1 LT P0 chrome (2026-08-19)
+
+> prieš = LIVE prieš šį apply. FINAL F0-01…03 + F1-01/02.
+
+| #     | skaidrė | kelias                 | prieš                                                    | po                                                                  | taisyklė      | sunk. |
+| ----- | ------- | ---------------------- | -------------------------------------------------------- | ------------------------------------------------------------------- | ------------- | ----- |
+| LF-01 | 13.6    | `title`                | Audio-first: VO ir muzikos aprašymas                     | Pirma garsas: balsas ir muzikos aprašymas                           | KEISTI chrome | P0    |
+| LF-02 | 143     | `title` / `shortTitle` | …checklist… / Grandinės checklist                        | …patikros sąrašas… / Grandinės patikros sąrašas                     | KEISTI        | P0    |
+| LF-03 | 143     | `subtitle`             | Brief → stills → video/garsas → disclosure               | Užduotis → kadrai → video/garsas → DI žyma                          | KEISTI        | P0    |
+| LF-04 | 143     | Trumpai                | mini pipeline: brief, stills… audio-first… disclosure    | mini grandinę: užduoties aprašas, kadrai… pirma garsas… DI žyma     | KEISTI ciklas | P0    |
+| LF-05 | 13.1    | `subtitle`             | …muzika…                                                 | …garsas…                                                            | logika vs 130 | P0    |
+| LF-06 | 13.1    | `sections` kampanijos  | social postas · landingo                                 | įrašas socialiniame tinkle · tinklalapio pagrindinis vaizdas (hero) | kalkė         | P0    |
+| LF-07 | 13.7    | `title`                | …loudness                                                | …garsumas                                                           | Q5            | P1    |
+| LF-08 | 13.3    | tools chips + desc     | Character ref · Brand mood · multi-reference consistency | Personažo pavyzdys · Ženklo nuotaika · kelių pavyzdžių nuoseklumas  | KEISTI        | P1    |
+| LF-09 | 13.15   | recap item             | Grandinės checklist                                      | Grandinės patikros sąrašas                                          | chrome        | P1    |
+
+**I1 apply:** LF-01…09 ✅ 2026-08-19.
+
+## Wave F — I2 LT TS + glossary + Ready (2026-08-19)
+
+| #     | skaidrė         | kelias                      | prieš                                | po                                                                  | taisyklė      | sunk. |
+| ----- | --------------- | --------------------------- | ------------------------------------ | ------------------------------------------------------------------- | ------------- | ----- |
+| LF-10 | 13.11 TS        | LABELS_LT / explanations    | Brief · Brand consistency · workflow | Užduotis · Ženklo nuoseklumas · darbo eiga                          | KEISTI chrome | P0    |
+| LF-11 | glossary + 13.8 | Awareness / Conversion defs | social postas · landingo hero        | įrašas socialiniame tinkle · tinklalapio pagrindinis vaizdas (hero) | Q7            | P0    |
+| LF-12 | 13.351          | subtitle / heading / cycle  | Ready promptas                       | Paruoštas promptas                                                  | Q1            | P1    |
+
+**I2 apply:** LF-10…12 ✅ 2026-08-19.
+
+## Wave F — I5 LT P1 (2026-08-19)
+
+150 / 150.5 chrome `hero`/`Brief` → pagrindinis vaizdas / užduoties aprašas. 13.52 `Export` → `Eksportuok`. Soft Binding PIRMAS. 143 `eventas`/`checklist`/`disclosure`. M14 Q `pirma garsas`. 153 `Slinktis (driftas)`. `pvz.,` 13.2/13.3/13.31.
+
+**I5 apply:** ✅ 2026-08-19.
+
+## Wave H — §5.3 P2 (2026-08-19)
+
+| #     | skaidrė | kelias            | prieš                                                    | po                                                                                 | taisyklė     | sunk. |
+| ----- | ------- | ----------------- | -------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------ | ----- |
+| LH-01 | 13.101  | Soft Binding body | `minkštasis susiejimas (Soft Binding / vandens ženklas)` | `minkštasis susiejimas (Soft Binding)`                                             | Q2 PIRMAS    | P2    |
+| LH-02 | 13.11   | heading + body    | `funnel` / TOFU MOFU BOFU / Awareness                    | `piltuvėlis`; `atpažįstamumas, svarstymas ar veiksmas (viršus / vidurys / apačia)` | Q3 chrome LT | P2    |
+| LH-03 | 130     | `firstActionCTA`  | —                                                        | **verify only** — wrap OK @375                                                     | L1-22        | P2    |
+| LH-04 | 158     | `tagline`         | `… + muzika = …`                                         | `… + garsas = …`                                                                   | bankas       | P2    |
+
+**Wave H apply:** ✅ 2026-08-19.

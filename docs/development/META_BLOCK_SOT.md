@@ -6,12 +6,12 @@
 
 **Meta blokas** nustato DI tapatybę ir kontekstą. Jis apima:
 
-| Komponentas | Aprašymas (LT) | Aprašymas (EN) |
-|-------------|----------------|----------------|
-| **Rolė** | specializacija, patirties lygis | role, experience level |
-| **Domeno kontekstas** | pramonė, specifika | industry, domain specifics |
-| **Tikslinė auditorija** | kam skirtas rezultatas | who the result is for |
-| **Verslo kontekstas** | kodėl tai svarbu | why it matters (business context) |
+| Komponentas             | Aprašymas (LT)                  | Aprašymas (EN)                    |
+| ----------------------- | ------------------------------- | --------------------------------- |
+| **Rolė**                | specializacija, patirties lygis | role, experience level            |
+| **Domeno kontekstas**   | pramonė, specifika              | industry, domain specifics        |
+| **Tikslinė auditorija** | kam skirtas rezultatas          | who the result is for             |
+| **Verslo kontekstas**   | kodėl tai svarbu                | why it matters (business context) |
 
 Pagrindinis klausimas: **Kas esi ir ką darai?** / **Who are you and what do you do?**
 
@@ -23,7 +23,7 @@ Pagrindinis klausimas: **Kas esi ir ką darai?** / **Who are you and what do you
 ## Hero pavyzdys (suvienodintas)
 
 - **Blogas:** „Sukurk man pardavimų ataskaitą.“ / “Write me a sales report.” (neaiški perspektyva)
-- **Geras:** Vyresnysis verslo analitikas, 10 m. patirtis e-commerce, tikslas – pardavimų ataskaita valdybos nariams, Q4 strateginiai sprendimai.  
+- **Geras:** Vyresnysis verslo analitikas, 10 m. patirtis e-commerce, tikslas – pardavimų ataskaita valdybos nariams, Q4 strateginiai sprendimai.
   - **EN:** “You are a senior business analyst with 10 years of experience in e-commerce. Your goal is to prepare a sales report for the board, who will make strategic decisions for Q4.”
 
 ## Kur laikomas SOT

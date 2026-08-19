@@ -30,6 +30,7 @@ import M13AecFunnelBlock from '../M13AecFunnelBlock';
 import M13ConsistencyLockBlock from '../M13ConsistencyLockBlock';
 import M13MediaPipelineBlock from '../M13MediaPipelineBlock';
 import M13PostprodBlock from '../M13PostprodBlock';
+import M13StillWorkflowBlock from '../M13StillWorkflowBlock';
 import M13PromptStackBlock from '../M13PromptStackBlock';
 import M13RuleOfThirdsBlock from '../M13RuleOfThirdsBlock';
 import M15PracticeLoopBlock from '../M15PracticeLoopBlock';
@@ -260,14 +261,14 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       const { container } = renderWithProviders(<TurinioWorkflowBlock />);
       expect(container.textContent).toContain('From brief to publication');
       expect(container.textContent).toContain('Variants');
-      expect(container.textContent).not.toContain('Nuo brief iki publikacijos');
+      expect(container.textContent).not.toContain('Nuo užduoties iki publikacijos');
       expect(container.textContent).not.toContain('Variantai');
     });
 
     it('renders Lithuanian diagram copy when locale is lt', () => {
       setLocale('lt');
       const { container } = renderWithProviders(<TurinioWorkflowBlock />);
-      expect(container.textContent).toContain('Nuo brief iki publikacijos');
+      expect(container.textContent).toContain('Nuo užduoties iki publikacijos');
       expect(container.textContent).toContain('Variantai');
     });
   });
@@ -325,7 +326,7 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
     it('renders consistency lock with four nav buttons', () => {
       setLocale('lt');
       const { container } = renderWithProviders(<M13ConsistencyLockBlock />);
-      expect(container.textContent).toContain('Reference lock');
+      expect(container.textContent).toContain('Pavyzdžių nuotraukų užraktas');
       expect(container.querySelectorAll('nav button')).toHaveLength(4);
       expect(
         container.querySelectorAll('svg [role="button"], svg [tabindex="0"]')
@@ -336,9 +337,22 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       setLocale('lt');
       setDarkTheme();
       const { container } = renderWithProviders(<M13PostprodBlock />);
-      expect(container.textContent).toContain('Post-production');
+      expect(container.textContent).toContain('Montažo grandinė');
       expect(container.querySelectorAll('nav button')).toHaveLength(4);
       expectDarkDiagramBackground(container);
+    });
+  });
+
+  describe('M13 still-image workflow (13.35)', () => {
+    it('renders desk-station metaphor and five nav buttons', () => {
+      setLocale('lt');
+      const { container } = renderWithProviders(<M13StillWorkflowBlock />);
+      expect(container.textContent).toContain('Vaizdų darbo eiga');
+      expect(container.querySelectorAll('nav button')).toHaveLength(5);
+      expect(
+        container.querySelector('[data-metaphor="desk-stations"]')
+      ).toBeTruthy();
+      expect(container.querySelectorAll('[data-desk-station]').length).toBe(5);
     });
   });
 
@@ -361,17 +375,17 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
     it('renders English chain copy when locale is en', () => {
       setLocale('en');
       const { container } = renderWithProviders(<M13MediaPipelineBlock />);
-      expect(container.textContent).toContain('Generative media chain');
+      expect(container.textContent).toContain('Media chain');
       expect(container.textContent).toContain('Reference lock');
       expect(container.textContent).not.toContain(
-        'Generatyvinės medijos grandinė'
+        'Medijos grandinė'
       );
     });
 
     it('renders Lithuanian chain copy and shell nav when locale is lt', () => {
       setLocale('lt');
       const { container } = renderWithProviders(<M13MediaPipelineBlock />);
-      expect(container.textContent).toContain('Generatyvinės medijos grandinė');
+      expect(container.textContent).toContain('Medijos grandinė');
       expect(container.textContent).toContain('Tu esi čia:');
       expect(container.querySelectorAll('nav button')).toHaveLength(6);
       expect(

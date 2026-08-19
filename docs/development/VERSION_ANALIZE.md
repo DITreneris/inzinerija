@@ -41,8 +41,8 @@ Kitas žingsnis pagal Semver: **1.6.4** (patch) arba **1.7.0** (minor) **tik pap
 
 ## 4. Santrauka
 
-| Klausimas                              | Atsakymas                                                                    |
-| -------------------------------------- | ---------------------------------------------------------------------------- |
-| Ar galima **identifikuoti** versiją?   | Taip – **package.json `version`** (dabar **1.6.3**).                         |
-| Ar **dar anksti** corporate12 cutover? | Ne – **12 live per Supabase**; live pin = **v1.6.2**; training = **v1.6.3**. |
-| **Kitas release**                      | 1.6.4 (patch) arba 1.7.0 (minor) tik paprašius.                              |
+| Klausimas                              | Atsakymas                                                       |
+| -------------------------------------- | --------------------------------------------------------------- |
+| Ar galima **identifikuoti** versiją?   | Taip – **package.json `version`** (dabar **1.6.3**).            |
+| Ar **dar anksti** corporate12 cutover? | Ne – **12 live per Supabase**; release + live pin = **v1.6.3**. |
+| **Kitas release**                      | 1.6.4 (patch) arba 1.7.0 (minor) tik paprašius.                 |

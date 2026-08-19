@@ -73,7 +73,7 @@ export default function M13AecFunnelDiagram({
   return (
     <svg
       viewBox={`0 0 ${W} ${H}`}
-      className={`w-full max-w-sm mx-auto block ${className}`}
+      className={`w-full max-w-lg mx-auto block ${className}`}
       role="img"
       aria-label={`${L.aria}${isInteractive ? ` ${L.hint}` : ''}`}
     >

@@ -12,7 +12,7 @@ import { useStepDiagram } from '../../../utils/useStepDiagram';
 
 const TURINIO_BLOCK_LABELS = {
   lt: {
-    regionAria: 'Turinio workflow nuo brief iki publikacijos',
+    regionAria: 'Turinio workflow nuo užduoties iki publikacijos',
     youAreHere: 'Tu esi čia:',
     navAria: 'Žingsnių pasirinkimas',
     stepAria: (i: number, title: string) => `Žingsnis ${i + 1}: ${title}`,

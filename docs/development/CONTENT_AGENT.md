@@ -192,14 +192,15 @@ SOT: **`GOLDEN_STANDARD.md` §3.4a1**. Lukštas vienodas; **stuburas** (domeno k
 
 ## 6. Anti-patternai (ko vengti)
 
-| Anti-pattern                           | Ką daryti vietoj                                               |
-| -------------------------------------- | -------------------------------------------------------------- |
-| Abstraktus CTA „tęskite“               | Konkretus: „Pereikite prie Modulio 2: Žinių Patikrinimas“      |
-| Per ilgas refleksijos promptas         | Max 6–8 eilutės su aiškia struktūra                            |
-| Bullet points be vizualų (santraukoje) | Kortelės su ikonėlėmis ir spalvomis                            |
-| „Modulio santrauka“ antraštė           | „Ką išmokote“ – veiksmas, ne etiketė                           |
-| Painiavos 4.1–4.7                      | 4.1–4.7 = tik Modulio 4 skaidrės; Modulio 6 skyriai be numerių |
-| Keisti JSON tiesiogiai                 | Pateikti tekstus; DATA_AGENT sinchronizuoja                    |
+| Anti-pattern                           | Ką daryti vietoj                                                                                |
+| -------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Abstraktus CTA „tęskite“               | Konkretus: „Pereikite prie Modulio 2: Žinių Patikrinimas“                                       |
+| Per ilgas refleksijos promptas         | Max 6–8 eilutės su aiškia struktūra                                                             |
+| Refleksijos Q2 „Kas buvo naujausia?“   | Q2 = trintis / klaida / riba; Q3 = apribojimas, ne antras Apply. Žr. `SUMMARY_SLIDE_SPEC.md` §3 |
+| Bullet points be vizualų (santraukoje) | Kortelės su ikonėlėmis ir spalvomis                                                             |
+| „Modulio santrauka“ antraštė           | „Ką išmokote“ – veiksmas, ne etiketė                                                            |
+| Painiavos 4.1–4.7                      | 4.1–4.7 = tik Modulio 4 skaidrės; Modulio 6 skyriai be numerių                                  |
+| Keisti JSON tiesiogiai                 | Pateikti tekstus; DATA_AGENT sinchronizuoja                                                     |
 
 ---
 

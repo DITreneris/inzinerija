@@ -70,7 +70,7 @@
     },
     {
       "term": "Awareness (atpažįstamumas)",
-      "definition": "Kampanijos tikslas – vaizdas pritraukia dėmesį emocija ir kontrastu; tipiniai formatai: viršelis, baneris, social postas.",
+      "definition": "Kampanijos tikslas – vaizdas pritraukia dėmesį emocija ir kontrastu; tipiniai formatai: viršelis, baneris, įrašas socialiniame tinkle.",
       "moduleId": 13,
       "unlockedBy": {
         "moduleId": 13,
@@ -128,7 +128,7 @@
     },
     {
       "term": "Conversion (konversija)",
-      "definition": "Kampanijos tikslas – vaizdas skatina veiksmą: produktas, pasiūlymas, kvietimas veikti (CTA); tipiniai formatai: reklamos maketas, landingo hero, „pirk dabar“ blokas.",
+      "definition": "Kampanijos tikslas – vaizdas skatina veiksmą: produktas, pasiūlymas, kvietimas veikti (CTA); tipiniai formatai: reklamos maketas, tinklalapio pagrindinis vaizdas (hero), „pirk dabar“ blokas.",
       "moduleId": 13,
       "unlockedBy": {
         "moduleId": 13,

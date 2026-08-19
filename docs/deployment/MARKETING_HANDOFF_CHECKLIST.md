@@ -2,12 +2,12 @@
 
 > **Tikslas:** Copy-paste užduotys marketingo monorepo komandai (Vercel, Stripe, Supabase). Mokymo turinys ir UI — **šis repo** (`inzinerija`); auth, mokėjimai, production env — **marketingo repo** (promptanatomy.app).  
 > **Susiję TODO ID:** MON-1, MON-2, MON-3, MON-4, MON-8 (žr. `TODO.md` §1.4).  
-> **Atnaujinta:** 2026-08-16 (Horizon B įvykdytas: pin v1.6.2 + 12 live per Supabase)  
+> **Atnaujinta:** 2026-08-19 (Horizon B: pin **v1.6.3** + 12 live per Supabase; GitHub verified)  
 > **Tier 9 memo:** [05_marketingo_memo_tier9_vienas_build.md](../../05_marketingo_memo_tier9_vienas_build.md)  
 > **Corporate12 / Supabase Phase 1 (be Stripe):** [06_marketingo_memo_corporate12_supabase.md](../../06_marketingo_memo_corporate12_supabase.md) + pin runbook [MARKETING_SUBMODULE_PIN_CORPORATE12.md](MARKETING_SUBMODULE_PIN_CORPORATE12.md).  
-> **Horizon B (M1–12):** **įvykdytas** — pin **v1.6.2** + `build:corporate12` + Supabase `highest_plan=12` → `access_tier=12`. **12 live.** Stripe €199 = Phase 2 — žr. §7a + memo 06.  
+> **Horizon B (M1–12):** **įvykdytas** — pin **v1.6.3** + `build:corporate12` + Supabase `highest_plan=12` → `access_tier=12`. **12 live.** Stripe €199 = Phase 2 — žr. §7a + memo 06.  
 > **Horizon C (M1–15):** training repo ready (`build:corporate15`, magic-link tier **15**). Corporate grant / later; ne 2026 viešas SKU.  
-> **Pin decision (CAV-B1):** **v1.6.2** = current corporate12 pin (`c35a1f5`, PR #92). **v1.4.9** = istorinis learning freeze tagas, ne safe-default „until cutover“. Optional SPA chrome fingerprint ≠ cutover blokas. Do not pin corporate18 (Wave D3 / CAV-C2 parked).  
+> **Pin decision (CAV-B1):** **v1.6.3** = current corporate12 pin (`7e4c3bf`, [PR #96](https://github.com/DITreneris/promptanatomy/pull/96); ankstesnis v1.6.2 = PR #92). **v1.4.9** = istorinis learning freeze. Unreleased HEAD ≠ automatinis re-pin. Do not pin corporate18 (Wave D3 / CAV-C2 parked).  
 > **Analytics (CAV-B2 / MON-4):** training already emits events via `src/utils/analytics.ts` when `window.posthog` + `VITE_POSTHOG_KEY` exist — marketing must set env + snippet + dashboard.
 
 ---
@@ -72,13 +72,14 @@ Kontraktas: [INTEGRATION_OVERVIEW.md](INTEGRATION_OVERVIEW.md) § Verify-access 
 
 1. Po kiekvieno mokymo repo release — atnaujinti git submodule commit marketing monorepo.
 2. **Pin target:**
-   - **v1.6.2** — **current** corporate12 pin (M1–12 + magic-link tier 12; 12 live per Supabase).
+   - **v1.6.3** — **current** corporate12 pin (M1–12 + magic-link tier 12; 12 live per Supabase; `7e4c3bf`, PR #96).
+   - **v1.6.2** — ankstesnis pin (PR #92); istorija.
    - **v1.4.9** — istorinis learning freeze tagas (M1–9). Nebenaudoti kaip dabartinio prod.
 3. Patikrinti, kad submodule commit turi:
    - `AccessGateScreen` kai `maxAccessible === 0`
    - Tier 9 / **12** / **15** magic link (`api/verify-access.ts`, `App.tsx`)
    - Nėra MVP fallback, kuris suteiktų tier 6 visiems
-4. Vercel build log — submodule SHA atitinka **v1.6.2** / `c35a1f5`; build naudoja **`build:corporate12`**.
+4. Vercel build log — submodule SHA atitinka **v1.6.3** / `7e4c3bf`; build naudoja **`build:corporate12`**.
 
 Žr. [05_marketingo_memo_tier9_vienas_build.md](../../05_marketingo_memo_tier9_vienas_build.md) §11; corporate12: [MARKETING_SUBMODULE_PIN_CORPORATE12.md](MARKETING_SUBMODULE_PIN_CORPORATE12.md).
 
@@ -132,7 +133,7 @@ curl -s "https://www.promptanatomy.app/api/verify-access?access_tier=12&expires=
 
 ### 7.3 Browser – corporate12 (po cutover)
 
-1. Build log: `VITE_MAX_BUILD_MODULE=12` / `build:corporate12`; submodule = **v1.6.2**.
+1. Build log: `VITE_MAX_BUILD_MODULE=12` / `build:corporate12`; submodule = **v1.6.3**.
 2. Tier 9 link — M1–9 open; M10+ locked (regresija).
 3. Supabase email `highest_plan=12` → `generate-access-link` → `access_tier=12` → M10 opens; `localStorage.verified_access_tier` = `"12"`.
 4. Pilnas checklist: [06_marketingo_memo_corporate12_supabase.md](../../06_marketingo_memo_corporate12_supabase.md) §8.
@@ -163,7 +164,7 @@ Vienas Vercel production deploy su M1–12 bundle – **be** atskiro projekto; S
 
 | Reikalavimas        | Detalė                                                                                                  |
 | ------------------- | ------------------------------------------------------------------------------------------------------- |
-| **Pin**             | Submodule **v1.6.2** — [MARKETING_SUBMODULE_PIN_CORPORATE12.md](MARKETING_SUBMODULE_PIN_CORPORATE12.md) |
+| **Pin**             | Submodule **v1.6.3** — [MARKETING_SUBMODULE_PIN_CORPORATE12.md](MARKETING_SUBMODULE_PIN_CORPORATE12.md) |
 | **Build env**       | `VITE_MAX_BUILD_MODULE=12`, **be** `VITE_MVP_MODE`. Komanda: `npm run build:corporate12`.               |
 | **Bundle profilis** | `@modules-data` → `modules-m1-m12.json`; M13–15 nėra client-side.                                       |
 | **Supabase**        | `highest_plan=12` → `generate-access-link` → **`access_tier=12`** (pašalinti cap 12→9).                 |

@@ -21,7 +21,7 @@ import {
 } from './verticalFlowGeometry';
 
 const STEP_COUNT = 4;
-const BOX_H = 46;
+const BOX_H = 52;
 const PROCESS_ARROW = getProcessArrowMarkerGeom();
 const ARROW_MARKER_LEN = PROCESS_ARROW.tipLen;
 
@@ -108,7 +108,7 @@ export default function M13ConsistencyLockDiagram({
   return (
     <svg
       viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
-      className={`w-full max-w-2xl mx-auto block ${className}`}
+      className={`w-full max-w-4xl mx-auto block ${className}`}
       role="img"
       aria-label={`${chrome.aria}${isInteractive ? ` ${chrome.hint}` : ''}`}
       data-metaphor={M13_CONSISTENCY_LOCK_GEOMETRY.metaphor}

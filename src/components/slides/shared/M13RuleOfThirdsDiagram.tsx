@@ -40,7 +40,7 @@ export default function M13RuleOfThirdsDiagram({
   return (
     <svg
       viewBox={`0 0 ${W} ${H}`}
-      className={`w-full max-w-md mx-auto block ${className}`}
+      className={`w-full max-w-lg mx-auto block ${className}`}
       role="img"
       aria-label={L.aria}
       data-metaphor={M13_THIRDS_METAPHOR}

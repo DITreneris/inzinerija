@@ -1,13 +1,13 @@
 # Promptų anatomija – Plėtros roadmap
 
-> **Atnaujinta:** 2026-08-19 | Roadmap **v4.36** (kiss + Unreleased gate-green · corp15 slice · hygiene **40** · training **v1.6.3** · live pin **v1.6.2**)  
-> **App live:** 1.6.2 (pin) · **Training cut:** **1.6.3**. **Ne** retag 1.6.1. **Ne** 1.6.4 / re-pin šiuo sync.  
+> **Atnaujinta:** 2026-08-19 | Roadmap **v4.38** (live pin **v1.6.3** verified GitHub · M13-WALK · Wave F/G/H · reflections · hygiene **39**)  
+> **App live:** **1.6.3** (pin) · **Training release:** **1.6.3**. Unreleased HEAD ≠ re-pin. **Ne** 1.6.4.  
 > **Done santrauka:** [`CODEBASE_WHAT_IS_DONE.md`](docs/development/CODEBASE_WHAT_IS_DONE.md) · [`CHANGELOG.md`](CHANGELOG.md) · archive [`TODO_DONE_SPRINTS_2026-08.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-08.md)  
-> **Open darbai:** [`TODO.md`](TODO.md) T01 I5 parked · Should 2-as pass · §1.4 MON (1/4/5/7/CRO) · §1.5 Deferred (D3) · §1.7 TOOL-5 · §1.6 Caveats B2. Learning P0/P1 lentelė tuščia. Craft Should C-S1–S4 ✅.
+> **Open darbai:** [`TODO.md`](TODO.md) T01 I5 parked · Should 2-as pass · §1.4 MON · §1.5 D3 · §1.7 TOOL-5 · §1.6 B2. Open P0/P1 learning = nėra.
 
 **Nuosavybė:** šis repo = turinio / pedagogikos / UI kokybės OS. Marketingas (env, PostHog, CRO) → kitas repo.  
 **Principas:** M1–9 production; **M10–12 corporate + content freeze**; **M13–15 corporate + learner plain**; M16–18 authoring + TE + plain ✅ · TE Could closed.  
-**Production:** Training cut **1.6.3**; live pin kol neperpinsi = **v1.6.2**. **12 live per Supabase**. Viešas Stripe = M1–6. M7–18 = corporate grant iki **2027-01**. `build:corporate12` = gyvas kanonas (M1–12); `build:production` = M1–9 **profilis**, ne live. `v1.4.9` = istorinis learning freeze, ne current pin.
+**Production:** Release + live pin **1.6.3** (`7e4c3bf`, [PR #96](https://github.com/DITreneris/promptanatomy/pull/96)). Unreleased HEAD ≠ automatinis re-pin. **12 live per Supabase**. Viešas Stripe = M1–6. M7–18 = corporate grant iki **2027-01**. `build:corporate12` = gyvas kanonas (M1–12); `build:production` = M1–9 **profilis**, ne live. `v1.4.9` = istorinis learning freeze, ne current pin.
 
 ---
 
@@ -17,16 +17,16 @@ M1–6 pilnai · M7–9 production tier 9 · M10–15 corporate cuts ✅ · M10�
 
 ### Open gaps (production ladder)
 
-| Horizon | Scope                          | Status                                                                                                                                                                                                                                                        | Prioritetas        |
-| ------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
-| **A**   | M1–9 corporate micro polish    | **done**                                                                                                                                                                                                                                                      | —                  |
-| **B**   | M10–12 corporate production    | **done** + testerio Must T01–T08 + T09 ✅ (I5 parked; hygiene **40**)                                                                                                                                                                                         | TODO §1.3          |
-| **C**   | M13–15 corporate production    | **done** · learner plain ✅ · M13P-TRIM ✅ · **M14 W1 + ITEMS ✅** · LANG W1–W3 ✅ · M15 walk FAIL + I2-M14 ✅ · **I2-M13 ✅** · craft Banga 1–3 C-M* + C-S1–S4 ✅ · Walk RAW `151–158` ✅ · corp15 sync ✅ · **kiss + slice honesty ✅** · Could C-C* parked | TODO §1.3a / §1.3b |
-| **M79** | M7–9 scheme / skaitomumo ROI   | **done**                                                                                                                                                                                                                                                      | archive            |
-| **E**   | Transfer & Retention (UJ-MUST) | **done**                                                                                                                                                                                                                                                      | archive            |
-| **D**   | M16–18 Kodo inžinerija         | authoring+TE+ritmas+plain ✅ · **M17 analog ✅** · D3 future                                                                                                                                                                                                  | Deferred §1.5      |
-| **UX**  | Katalogas / Home kelionė       | **done** (CATALOG-HOME 2026-08-12)                                                                                                                                                                                                                            | —                  |
-| **MON** | marketing (env, PostHog, CRO)  | out of scope                                                                                                                                                                                                                                                  | TODO §1.4          |
+| Horizon | Scope                          | Status                                                                                                                          | Prioritetas             |
+| ------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| **A**   | M1–9 corporate micro polish    | **done**                                                                                                                        | —                       |
+| **B**   | M10–12 corporate production    | **done** + testerio Must T01–T08 + T09 ✅ (I5 parked; hygiene **39**)                                                           | TODO §1.3               |
+| **C**   | M13–15 corporate production    | **done** · learner plain ✅ · M14/M15 walk ✅ · craft ✅ · **M13-WALK SYS-A…H done** · Wave F/G/H kalba ✅ · Could C-C\* parked | archive / §1.3b / §1.3c |
+| **M79** | M7–9 scheme / skaitomumo ROI   | **done**                                                                                                                        | archive                 |
+| **E**   | Transfer & Retention (UJ-MUST) | **done**                                                                                                                        | archive                 |
+| **D**   | M16–18 Kodo inžinerija         | authoring+TE+ritmas+plain ✅ · **M17 analog ✅** · D3 future                                                                    | Deferred §1.5           |
+| **UX**  | Katalogas / Home kelionė       | **done** (CATALOG-HOME 2026-08-12)                                                                                              | —                       |
+| **MON** | marketing (env, PostHog, CRO)  | out of scope                                                                                                                    | TODO §1.4               |
 
 ---
 
@@ -76,7 +76,7 @@ PDF M5/M6 rankinė · broken links · mobile 375px · docs index nuorodos.
 | **Vercel production (now)**  | `VITE_MAX_BUILD_MODULE=12` (`build:corporate12`) | M1–12 `/anatomy/`   |
 | **Corporate15 (repo-ready)** | `VITE_MAX_BUILD_MODULE=15` (`build:corporate15`) | M1–15               |
 | Authoring / local full       | default `modules.json`                           | M1–18               |
-| Magic link (**tier 12**)     | **live** per Supabase; pin **v1.6.2**            |                     |
+| Magic link (**tier 12**)     | **live** per Supabase; pin **v1.6.3**            |                     |
 | Magic link (**tier 15**)     | repo ✅; corporate grant / later cutover         |                     |
 
 CI: schema, lint, test, **governance**, MVP + M1–9 + corporate12 + corporate15 build.
@@ -93,7 +93,7 @@ CI: schema, lint, test, **governance**, MVP + M1–9 + corporate12 + corporate15
 | Tier 12/15 cutover checklist | [`MARKETING_HANDOFF_CHECKLIST.md`](docs/deployment/MARKETING_HANDOFF_CHECKLIST.md) |
 | Ticketų statusai             | [`TODO.md`](TODO.md) §1.4                                                          |
 
-**Pin:** GitHub `promptanatomy` = **v1.6.2** / `c35a1f5` (PR #92). **12 live per Supabase.** Later Unreleased ≠ automatinis re-pin.
+**Pin:** GitHub `promptanatomy` submodule = **v1.6.3** / `7e4c3bf` ([PR #96](https://github.com/DITreneris/promptanatomy/pull/96)). **12 live per Supabase.** Unreleased ≠ automatinis re-pin.
 
 ---
 
@@ -108,10 +108,11 @@ CI: schema, lint, test, **governance**, MVP + M1–9 + corporate12 + corporate15
 | Release QA            | `RELEASE_QA_CHECKLIST.md`, `RELEASE_QA_RUN.md`                                                                                                             |
 | M10–12 SOT            | `turinio_pletra_moduliai_10_11_12.md`                                                                                                                      |
 | M10–12 content freeze | [`M10_M12_CONTENT_DEEP_AUDIT_2026-08.md`](docs/development/M10_M12_CONTENT_DEEP_AUDIT_2026-08.md)                                                          |
+| M13 owner walk        | [`M13_OWNER_WALK_INTAKE_2026-08.md`](docs/development/intake/M13_OWNER_WALK_INTAKE_2026-08.md) · SYS-A…H **done** · [`TODO.md`](TODO.md) **§1.3c**         |
 | M13–15 learner walk   | [`M13_M15_LEARNER_WALK_INTAKE.md`](docs/development/intake/M13_M15_LEARNER_WALK_INTAKE.md)                                                                 |
 | M13–15 craft MoSCoW   | [`M13_M15_CRAFT_MOSCOW_2026-08.md`](docs/development/intake/M13_M15_CRAFT_MOSCOW_2026-08.md) · C-M1–M3 + C-S1–S4 ✅ · Could [`TODO.md`](TODO.md) **§1.3b** |
 | M16–18 SOT (D)        | `turinio_pletra_moduliai_16_17_18.md`                                                                                                                      |
 | Marketing handoff     | `DEPLOYMENT.md`, `MON_P0_EXECUTION_PLAN.md`                                                                                                                |
 | Done TODO snapshot    | [`TODO_DONE_SPRINTS_2026-08.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-08.md)                                                                    |
 
-**Sinchronas:** open gaps ↔ TODO §1 · **2026-08-19** docs meta sync · kiss + Unreleased gate-green ✅ · 12 live per Supabase · M7–18 corporate iki 2027-01 · T09 + hygiene liekana **40** (ROADMAP **v4.36**).
+**Sinchronas:** open gaps ↔ TODO §1 · **2026-08-19** GitHub verified live pin **v1.6.3** (PR #96) · M13-WALK + Wave F/G/H + reflections · kiss + gate-green + corp15 sync ✅ · 12 live per Supabase · M7–18 corporate iki 2027-01 · hygiene liekana **39** (ROADMAP **v4.38**).

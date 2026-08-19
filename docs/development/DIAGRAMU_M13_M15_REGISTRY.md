@@ -6,14 +6,15 @@
 
 ## Semantinis skirtumas (be dublio)
 
-| Skaidrė    | Image key              | Mokymo fokusas                                                                                            | Visual metaphor (I6 target)                        |
-| ---------- | ---------------------- | --------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| **13.12**  | `m13_media_pipeline`   | **Techninė** medijos grandinė: brief → kadrai → referencai → I2V → garsas/montažas → patikra (+ DI žyma). | **Linear pipeline** (etalon; forma = darbas)       |
-| **13.11**  | `turinio_workflow`     | **Verslo** ciklas: brief → prompt → variantai → A/B → optimizacija.                                       | **Cycle / loop-back** į brief (ne aukštesnis twin) |
-| **13.32**  | `m13_consistency_lock` | **Reference lock:** refs → taisyklė → generate → QA.                                                      | **Lock / frozen-ref artifact** ant spine           |
-| **13.325** | `m13_consistency_lab`  | **Lab:** Drift + Ref checklist (ChoiceControl ×5; Shell=Ne).                                              | Lab surface (ne process twin)                      |
-| **13.52**  | `m13_postprod_steps`   | **Post-prod:** Cut → Grade → Mix → Export.                                                                | **Timeline / strip** (laiko metafora)              |
-| **150.25** | `m15_practice_loop`    | **Projekto kelias:** greitas vs optional pilnas.                                                          | Dual-path (jau atskira)                            |
+| Skaidrė    | Image key              | Mokymo fokusas                                                                                            | Visual metaphor (I6 target)                         |
+| ---------- | ---------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| **13.12**  | `m13_media_pipeline`   | **Techninė** medijos grandinė: brief → kadrai → referencai → I2V → garsas/montažas → patikra (+ DI žyma). | **Linear pipeline** (etalon; forma = darbas)        |
+| **13.11**  | `turinio_workflow`     | **Verslo** ciklas: brief → prompt → variantai → A/B → optimizacija.                                       | **Cycle / loop-back** į brief (ne aukštesnis twin)  |
+| **13.32**  | `m13_consistency_lock` | **Reference lock:** refs → taisyklė → generate → QA.                                                      | **Lock / frozen-ref artifact** ant spine            |
+| **13.325** | `m13_consistency_lab`  | **Lab:** Drift + Ref checklist (ChoiceControl ×5; Shell=Ne).                                              | Lab surface (ne process twin)                       |
+| **13.52**  | `m13_postprod_steps`   | **Post-prod:** Cut → Grade → Mix → Export.                                                                | **Timeline / strip** (laiko metafora)               |
+| **13.35**  | `m13_still_workflow`   | **Vaizdų eiga:** idėja → promptas → bandymas → generuok → pataisyk.                                       | **Desk stations** (kortelės ant stalo; ne grandinė) |
+| **150.25** | `m15_practice_loop`    | **Projekto kelias:** greitas vs optional pilnas.                                                          | Dual-path (jau atskira)                             |
 
 > **S4-INDIV (2026-07-30):** sibling keys su skirtingais labeliais, bet ta pačia vertical-stack forma = clone debt. DoD = mokinys atskiria schemas be step text. `VerticalFlowDiagram` pixel-parity extract **nėra** epic DoD. Auditas: [M13_M15_SCHEME_AUDIT.md](M13_M15_SCHEME_AUDIT.md).
 
@@ -31,6 +32,7 @@ M14 – schemų nėra.
 | `turinio_workflow`     | Taip                                                              | brand, amber, amber, slate, slate, emerald, emerald |
 | `m13_consistency_lock` | Taip                                                              | amber, brand, amber, emerald                        |
 | `m13_postprod_steps`   | Taip                                                              | brand, amber, slate, emerald                        |
+| `m13_still_workflow`   | Taip                                                              | brand, amber, slate, amber, emerald                 |
 | `m13_rule_of_thirds`   | Taip                                                              | — (amber focal dots lieka)                          |
 | `m15_practice_loop`    | Taip                                                              | path emerald/amber **neliečiami**                   |
 | `m13_consistency_lab`  | Lab soft shell + Drift Before/After (Before muted; After emerald) | Choice = brand-only                                 |
@@ -46,6 +48,7 @@ M14 – schemų nėra.
 | M13 / 13.32       | `m13_consistency_lock` | linear-process          | Taip  | `m13ConsistencyLockContent.ts`; metaphor **lock-artifact**                | nav ×4; S4 done            | lock-artifact + tones    |
 | M13 / 13.325      | `m13_consistency_lab`  | interactive-control-lab | Ne    | `m13ConsistencyLabContent.ts`; Feature Doc `M13_CONSISTENCY_LOCK_LAB.md`  | Ref + Drift + Before/After | OK + track soft          |
 | M13 / 13.52       | `m13_postprod_steps`   | linear-process          | Taip  | `m13PostprodContent.ts`; metaphor **timeline** (horizontal)               | nav ×4; S4 done            | timeline + tones         |
+| M13 / 13.35       | `m13_still_workflow`   | linear-process          | Taip  | `m13StillWorkflowContent.ts`; metaphor **desk-stations**                  | nav ×5; T09 P1             | desk-stations + tones    |
 | M13 / 13.11       | `turinio_workflow`     | linear-process          | Taip  | `m13BusinessWorkflowContent.ts`; metaphor **cycle** + return path         | nav ×7; S4 done            | cycle + tones            |
 | M13 / 13.37       | _(slide-type)_         | special                 | Ne    | `VaizdoGeneratoriusSlide` (+ palette swatches)                            | quality N/9 + swatches     | OK                       |
 | M13 / 13.47       | _(slide-type)_         | special                 | Ne    | `I2vGeneratoriusSlide` (+ palette swatches); `M13_I2V_CLIP_BUILDER.md`    | readiness N/4              | OK                       |

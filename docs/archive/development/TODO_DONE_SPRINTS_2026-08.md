@@ -1,7 +1,7 @@
 # TODO Done snapshot (2026-08) – archyvas, ne SOT
 
 > **Statusas:** Docs Lean closeout po **M1012-DEEP** · **LANG-SOT** · **UJ-MUST** · **M16–18 authoring/TE/plain** · **M13 plain + TRIM** · **toolchain 1.6.1** · **M10–12 content audit + katalogas + SCHEME-CENTRAL W1** · **CATALOG-HOME**.  
-> **Gyvas working failas:** repo šaknies [`TODO.md`](../../../TODO.md) (open: §1.3 I5/Should · §1.3a Walk RAW `152–158` · §1.3b C-S* · §1.4 MON · §1.5 Deferred · §1.7 TOOL-5).  
+> **Gyvas working failas:** repo šaknies [`TODO.md`](../../../TODO.md) (open: §1.3 I5/Should · §1.4 MON · §1.5 Deferred · §1.7 TOOL-5; learning P0/P1 nėra).  
 > **Ankstesnis snapshot:** [`TODO_DONE_SPRINTS_2026-07-31.md`](TODO_DONE_SPRINTS_2026-07-31.md).  
 > **Ne naudoti** kaip prioritetų šaltinį agentams.
 
@@ -123,7 +123,19 @@ Open residual (live TODO §1.3): **T01 I5** parked · **Should** 2-as pass.
 | **M5 polish** | 47 trukmė · stem’ai · body/atmintinė · katalogas chrome | [x] 2026-08-18 |
 | **Path Test leftovers** | Pasitikėjimas po atsakymo; ordering lock; I0 | [x] 2026-08-18 |
 
-Open residual (live TODO): **Walk RAW** liekana `152–158` · **C-S1–S4** · **T01 I5** parked · **Should** 2-as pass.
+Open residual (live TODO): **T01 I5** parked · **Should** 2-as pass · TOOL-5 · MON / D3.
+
+---
+
+## Unreleased 2026-08-19 (po 1.6.3; ne 1.6.4 / ne re-pin)
+
+| ID / tema | Užduotis | Status |
+| --- | --- | --- |
+| **M13-WALK SYS-A…H** | Owner walk Phase B Must + Should G/H (T16/T17 locked) | [x] 2026-08-19 |
+| **Wave F/G/H** | M13–15 LT║EN kalbos P0/P1 + P2 chrome/emotion | [x] 2026-08-19 |
+| **Reflections** | Copyable Q1–Q3 loop (ne „Kas buvo naujausia?“) | [x] 2026-08-19 |
+| **Corp15 sync** | `generate:core-data` m1-m15 = SOT (max id 15) | [x] 2026-08-19 |
+| **Docs v4.37** | Meta sync + README/DEPLOYMENT Vercel = corporate12 | [x] 2026-08-19 |
 
 ---
 

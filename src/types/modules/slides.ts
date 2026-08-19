@@ -561,6 +561,10 @@ export interface ContentBlockContent {
   }[];
   /** Jei true – įrankiai rodomi išskleidžiamame bloke (details/summary), pvz. M7 skaidrė 71 */
   toolsCollapsible?: boolean;
+  /**
+   * Default: after all sections (footer). `beforePatikra` – 13.3 catalog above Check.
+   */
+  toolsPlacement?: 'afterSections' | 'beforePatikra';
   /** Praktika „pataisyk promptą“ su textarea ir paslėptu sprendimu (mygtukas „Parodyti sprendimą“) – skaidrė 49 */
   correctPromptPractice?: {
     intro: string;

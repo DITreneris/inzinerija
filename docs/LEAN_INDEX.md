@@ -1,8 +1,8 @@
 # Lean dokumentacijos branduolys (agentams)
 
-> **Atnaujinta:** 2026-08-19 (kiss + Unreleased gate-green · ROADMAP **v4.36** · hygiene **40**)  
+> **Atnaujinta:** 2026-08-19 (live pin **v1.6.3** · ROADMAP **v4.38** · hygiene **39**)  
 > **Tikslas:** ≤25 keliai ~90% užduočių. Analizės / PLAN snapshot / backlog – ne čia. Žr. `DOCUMENTATION_QUICK_REF.md` (startas) · `DOCUMENTATION_INDEX.md` (katalogas) · `DOCS_MAINTENANCE.md` §1c.  
-> **Open P1 (learning):** nėra. Late stack (ne P1) = T01 I5 parked · Should 2-as pass. Infra = TOOL-5. Out of scope = MON §1.4 + D3 Deferred §1.5. Horizon B / 12 live — uždaryta.
+> **Open P1 (learning):** nėra. Late stack (ne P1) = T01 I5 parked · Should 2-as pass. Infra = TOOL-5. Out of scope = MON §1.4 + D3 Deferred §1.5. Horizon B / 12 live — uždaryta (pin **v1.6.3**).
 
 ---
 

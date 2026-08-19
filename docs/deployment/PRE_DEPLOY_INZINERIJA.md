@@ -72,7 +72,7 @@ Prieš push į `main` (arba prieš manual deploy):
 - [ ] **Lint:** `npm run lint` – be klaidų.
 - [ ] **Testai:** `npm run test:run` – visi žali.
 - [ ] **Lokalus production build:**  
-      `VITE_BASE_PATH=/inzinerija/ npm run build` (arba tik `npm run build`, jei default jau `/inzinerija/`), tada `npm run preview` – atidaryti `http://localhost:4173/inzinerija/` ir patikrinti, kad UI ir vaizdai rodomi.
+       `VITE_BASE_PATH=/inzinerija/ npm run build` (arba tik `npm run build`, jei default jau `/inzinerija/`), tada `npm run preview` – atidaryti `http://localhost:4173/inzinerija/` ir patikrinti, kad UI ir vaizdai rodomi.
 - [ ] **GitHub repo:** Pages šaltinis = GitHub Actions; jei reikia – environment `github-pages` sukurtas.
 
 ---

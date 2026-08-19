@@ -2,10 +2,10 @@ import type { StepExplanation } from './stepExplanations';
 import type { M10Locale } from './m10DiagramContent';
 
 const STEPS_LT = [
-  { label: '3–5 refs', desc: 'Kampai' },
-  { label: 'Lock', desc: 'Same product' },
-  { label: 'Generate', desc: 'Nauja scena' },
-  { label: 'QA', desc: 'Etiketė, spalva' },
+  { label: '3–5 nuotraukos', desc: 'Kampai' },
+  { label: 'Užraktas', desc: 'Tas pats produktas' },
+  { label: 'Nauja scena', desc: 'Keisk tik aplinką' },
+  { label: 'Patikra', desc: 'Etiketė, spalva' },
 ] as const;
 
 const STEPS_EN = [
@@ -38,26 +38,26 @@ export function getM13ConsistencyLockExplanations(
       },
       {
         title: '4. QA',
-        body: 'Did the product inflate, recolour or lose the label? Simplify scene, strengthen ref or inpaint.',
+        body: 'Did the product inflate, recolor or lose the label? Simplify scene, strengthen ref or inpaint.',
       },
     ];
   }
   return [
     {
-      title: '1. Surink 3–5 refs',
-      body: 'Priekis, ¾ arba šonas, detalė/etiketė, optional stiliaus/šviesos ref. Tas pats produktas ar personažas.',
+      title: '1. Surink 3–5 nuotraukas',
+      body: 'Priekis, ¾ arba šonas, detalė/etiketė, jei nori – stiliaus/šviesos pavyzdys. Tas pats produktas ar personažas.',
     },
     {
-      title: '2. Lock taisyklė',
-      body: 'Prompte: same product, same proportions, same label placement, same color palette, same style.',
+      title: '2. Užrakto taisyklė',
+      body: 'Prompte: tas pats produktas, tos pačios proporcijos, ta pati etiketės vieta, ta pati spalvų paletė, tas pats stilius.',
     },
     {
-      title: '3. Generuok naują sceną',
-      body: 'Keisk tik aplinką ar veiksmą. Refs laikyk prisegtus; venk atsitiktinio naujo look.',
+      title: '3. Nauja scena',
+      body: 'Keisk tik aplinką ar veiksmą. Pavyzdžių nuotraukas laikyk prisegtas; venk atsitiktinio naujo vaizdo.',
     },
     {
-      title: '4. QA',
-      body: 'Ar produktas „išsipūtė“, pakeitė spalvą ar prarado etiketę? Supaprastink sceną, stiprink ref arba inpaint.',
+      title: '4. Patikra',
+      body: 'Ar produktas „išsipūtė“, pakeitė spalvą ar prarado etiketę? Supaprastink sceną arba stiprink pavyzdžius.',
     },
   ];
 }
@@ -77,14 +77,14 @@ export function getM13ConsistencyLockChrome(locale: M10Locale) {
     };
   }
   return {
-    title: 'Reference lock',
-    metaphorCaption: 'Užrakinti refs lieka greta generavimo kelio',
+    title: 'Pavyzdžių nuotraukų užraktas',
+    metaphorCaption: 'Užrakintos pavyzdžių nuotraukos lieka greta generavimo kelio',
     hint: 'Paspausk žingsnį – paaiškinimas apačioje',
-    aria: 'Keturi žingsniai su užrakintų refs kortele: refs, lock, generavimas, QA',
-    regionAria: 'Character / product consistency – keturi žingsniai',
+    aria: 'Keturi žingsniai: pavyzdžių nuotraukos, užraktas, nauja scena, patikra',
+    regionAria: 'Tas pats produktas – keturi žingsniai',
     youAreHere: 'Tu esi čia:',
-    navAria: 'Consistency žingsnių pasirinkimas',
+    navAria: 'Užrakto žingsnių pasirinkimas',
     stepAria: (i: number, title: string) => `Žingsnis ${i + 1}: ${title}`,
-    enlargeLabel: 'Reference lock',
+    enlargeLabel: 'Pavyzdžių nuotraukų užraktas',
   };
 }

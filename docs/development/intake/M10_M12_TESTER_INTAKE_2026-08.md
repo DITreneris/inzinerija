@@ -4,7 +4,7 @@
 > Live SOT: `docs/turinio_pletra_moduliai_10_11_12.md` + `src/data/modules.json` (M10–12).  
 > **Content freeze (gyvas turinys):** [`M10_M12_CONTENT_DEEP_AUDIT_2026-08.md`](../M10_M12_CONTENT_DEEP_AUDIT_2026-08.md) — P0–P2 ✅; hygiene liekana **41**; **nevaryti į 0**.  
 > Uždaryti ciklai (ne perrašyti čia): [`M10_M12_PLAIN_PEDAGOGY_INTAKE_2026-08.md`](M10_M12_PLAIN_PEDAGOGY_INTAKE_2026-08.md) · [`M10_M12_TOBULINIMO_INTAKE_2026-07.md`](M10_M12_TOBULINIMO_INTAKE_2026-07.md).  
-> **Statusas:** **Phase B Must shipped** 2026-08-13 — T01–T08 + T09 + hygiene **41**. M11 Path Test chrome + item quality ✅. **M11 walked, no RAW** · **M12 walked, no RAW** (2026-08-16). T01 I5 parked. Should 2-as pass — tik po savininko. Training cut **v1.6.3**; live pin kol marketingas neperpins = **v1.6.2**.
+> **Statusas:** **Phase B Must shipped** 2026-08-13 — T01–T08 + T09 + hygiene **41**. M11 Path Test chrome + item quality ✅. **M11 walked, no RAW** · **M12 walked, no RAW** (2026-08-16). T01 I5 parked. Should 2-as pass — tik po savininko. Release + live pin **v1.6.3**.
 
 ---
 

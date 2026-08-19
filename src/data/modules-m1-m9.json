@@ -1009,7 +1009,7 @@
             ],
             "tagline": "Struktūruoti promptai = nuspėjami rezultatai = didesnis efektyvumas",
             "reflectionTitle": "Refleksijos promptas",
-            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – padėti įtvirtinti žinias po Modulio 1.\nINPUT: Ką tik baigiau mokymą apie promptų inžineriją – 6 blokų sistema (Meta, Input, Output, Reasoning, Quality, Advanced) ir workflow principai.\nOUTPUT: Užduok 3 klausimus: (1) Kurį bloką galėčiau pritaikyti darbe šiandien? (2) Kas buvo naujausia? (3) Ką noriu išbandyti pirmiausia? Po mano atsakymų – 1 konkretus patarimas, kaip pradėti.",
+            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – padėti įtvirtinti žinias po Modulio 1.\nINPUT: Ką tik baigiau mokymą apie promptų inžineriją – 6 blokų sistema (Meta, Input, Output, Reasoning, Quality, Advanced) ir workflow principai.\nOUTPUT: Užduok 3 klausimus: (1) Kokiai vienai darbo užduočiai paleisiu Meta + Input + Output per 24 val.? (2) Kur be struktūros rezultatas greičiausiai išplaukia? (3) Ko sąmoningai nedėsiu į pirmą promptą, kad jis liktų trumpas? Po mano atsakymų duok vieną konkretų patarimą (iki 15 min, konkretus įrankis arba failas).",
             "abilityBefore": "Promptus rašei laisvai – rezultatai buvo nenuoseklūs.",
             "abilityAfter": "Moki struktūruoti promptą 6 blokais ir pasirinkti Basic vs Workflow.",
             "firstAction24h": "Šiandien parašyk vieną darbo promptą su Meta + Input + Output ir paleisk jį DI įrankyje.",
@@ -2095,7 +2095,7 @@
               }
             ],
             "reflectionTitle": "Refleksijos promptas",
-            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – padėti įtvirtinti praktines žinias po Modulio 3.\nINPUT: Ką tik baigiau praktinį modulį – pritaikiau 6 blokų sistemą 6 verslo scenarijuose (valdybos ataskaita, pardavimų analizė, marketingo planas, vidaus komunikacija, personalo analizė, kliento skundo valdymas).\nOUTPUT: Užduok 3 klausimus: (1) Kurį scenarijų galėčiau pritaikyti darbe šiandien? (2) Kas buvo naujausia praktikoje? (3) Ką noriu išbandyti su tikrais duomenimis? Po mano atsakymų – 1 konkretus patarimas, kaip pradėti.",
+            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – padėti įtvirtinti praktines žinias po Modulio 3.\nINPUT: Ką tik baigiau praktinį modulį – pritaikiau 6 blokų sistemą 6 verslo scenarijuose (valdybos ataskaita, pardavimų analizė, marketingo planas, vidaus komunikacija, personalo analizė, kliento skundo valdymas).\nOUTPUT: Užduok 3 klausimus: (1) Kurį scenarijų galėčiau pritaikyti darbe šiandien? (2) Kurioje vietoje 6 blokai dar jautėsi per ilgi arba per trumpi? (3) Ką noriu išbandyti su tikrais duomenimis? Po mano atsakymų duok vieną konkretų patarimą (iki 15 min, konkretus įrankis arba failas).",
             "tagline": "6 blokai + 6 scenarijai = tavo šablonų biblioteka darbo dienai",
             "footer": "Toliau – skaidrė 10: 1 dalies santrauka",
             "abilityBefore": "Žinojai teoriją, bet neturėjai savo praktinio promptų rinkinio.",
@@ -2179,7 +2179,7 @@
               }
             ],
             "reflectionTitle": "Refleksijos promptas",
-            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – padėti įtvirtinti žinias po 1 dalies.\nINPUT: Ką tik baigiau 3 modulius: 6 blokų sistema (Meta, Input, Output, Reasoning, Quality, Advanced), žinių testas ir 6 praktiniai scenarijai.\nOUTPUT: Užduok 3 klausimus: (1) Ką galiu pritaikyti darbe šiandien? (2) Kas buvo naujausia? (3) Ką noriu išbandyti pirmiausia? Po mano atsakymų – 1 konkretus patarimas, kaip pradėti.",
+            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – padėti įtvirtinti žinias po 1 dalies.\nINPUT: Ką tik baigiau 3 modulius: 6 blokų sistema (Meta, Input, Output, Reasoning, Quality, Advanced), žinių testas ir 6 praktiniai scenarijai.\nOUTPUT: Užduok 3 klausimus: (1) Kokią vieną darbo užduotį padarysiu su 6 blokais be mokymų skaidrių? (2) Kur vis dar rašyčiau promptą iš galvos? (3) Ką išsaugosiu kaip pirmą savo šabloną (trumpas pavadinimas)? Po mano atsakymų duok vieną konkretų patarimą (iki 15 min, konkretus įrankis arba failas).",
             "tagline": "3 moduliai = 6 blokai + testas + 6 scenarijai – tavo pagrindas toliau.",
             "abilityBefore": "DI naudojai be aiškios 6 blokų sistemos.",
             "abilityAfter": "Baigei 1 dalį: struktūra, patikra ir praktika – gali eiti į pažangų kelią.",
@@ -5730,9 +5730,9 @@
               },
               {
                 "heading": "Kopijuojamas promptas",
-                "body": "Esi mokymų refleksijos asistentas.\n\nKą tik baigiau Modulio 4 (konteksto inžinerija) – RAG, Deep research, tokenai, žinių patikrinimas.\n\nUžduok man 3 klausimus:\n1. Ką iš to galiu pritaikyti savo darbe jau šiandien?\n2. Kas buvo naujausia ar netikėčiausia?\n3. Ką noriu išbandyti pirmiausia – testą (M5) ar projektą (M6)?\n\nPo mano atsakymų duok vieną konkretų patarimą, kaip pradėti.",
+                "body": "Esi mokymų refleksijos asistentas.\n\nKą tik baigiau Modulį 4 (konteksto inžinerija) – RAG, Deep research, tokenai, žinių patikrinimas.\n\nUžduok man 3 klausimus:\n1. Kokiam vienam darbo dokumentui duosiu DI šaltinį per 24 val.?\n2. Kur dar pasitikėčiau atsakymu be citatos arba nuorodos?\n3. Kokį vieną patikros žingsnį įrašysiu šalia prompto?\n\nPo mano atsakymų duok vieną konkretų patarimą (iki 15 min, konkretus įrankis arba failas).",
                 "blockVariant": "terms",
-                "copyable": "Esi mokymų refleksijos asistentas.\n\nKą tik baigiau Modulio 4 (konteksto inžinerija) – RAG, Deep research, tokenai, žinių patikrinimas.\n\nUžduok man 3 klausimus:\n1. Ką iš to galiu pritaikyti savo darbe jau šiandien?\n2. Kas buvo naujausia ar netikėčiausia?\n3. Ką noriu išbandyti pirmiausia – testą (M5) ar projektą (M6)?\n\nPo mano atsakymų duok vieną konkretų patarimą, kaip pradėti."
+                "copyable": "Esi mokymų refleksijos asistentas.\n\nKą tik baigiau Modulį 4 (konteksto inžinerija) – RAG, Deep research, tokenai, žinių patikrinimas.\n\nUžduok man 3 klausimus:\n1. Kokiam vienam darbo dokumentui duosiu DI šaltinį per 24 val.?\n2. Kur dar pasitikėčiau atsakymu be citatos arba nuorodos?\n3. Kokį vieną patikros žingsnį įrašysiu šalia prompto?\n\nPo mano atsakymų duok vieną konkretų patarimą (iki 15 min, konkretus įrankis arba failas)."
               },
               {
                 "heading": "Patikra",
@@ -6797,7 +6797,7 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Trys žingsniai: atsakyk sau (sunkiausia, pirmas naudojimas, tolesnis mokymasis); nukopijuok refleksijos promptą; pirmas veiksmas per 24–48 val.",
+                "body": "Trys žingsniai: atsakyk sau (sunkiausia, artefaktas, biblioteka); nukopijuok refleksijos promptą; pirmas veiksmas per 24–48 val.",
                 "blockVariant": "accent"
               },
               {
@@ -6807,12 +6807,12 @@
               },
               {
                 "heading": "Refleksijos klausimai",
-                "body": "Atsakyk sau (gali užrašyti arba tik pagalvoti):\n\n1. Kas buvo sunkiausia projekte?\n2. Kurį įgūdį naudosi pirmiausia darbe?\n3. Ką dar norėtum išmokti apie DI?"
+                "body": "Atsakyk sau (gali užrašyti arba tik pagalvoti):\n\n1. Kas buvo sunkiausia projekte?\n2. Kurį artefaktą naudosiu darbe pirmiausia?\n3. Ką įtrauksiu į savo promptų biblioteką per 24 val.?"
               },
               {
                 "heading": "Refleksijos promptas",
                 "body": "Nukopijuok žemiau esantį promptą ir naudok su bet kuriuo DI įrankiu – gausi 3 refleksijos klausimus ir vieną konkretų patarimą.",
-                "copyable": "Esi mokymų refleksijos asistentas.\n\nKą tik baigiau Modulio 6 projektą – tyrimo ataskaitą su 6 blokais (META, INPUT, OUTPUT, REASONING, QUALITY, ADVANCED) ir RAG elementu.\n\nUžduok man 3 klausimus:\n1. Kas buvo sunkiausia projekte?\n2. Kurį įgūdį naudosi pirmiausia darbe?\n3. Ką dar norėtum išmokti apie DI?\n\nPo mano atsakymų duok vieną konkretų patarimą, kaip pradėti."
+                "copyable": "Esi mokymų refleksijos asistentas.\n\nKą tik baigiau Modulio 6 projektą – tyrimo ataskaitą su 6 blokais (META, INPUT, OUTPUT, REASONING, QUALITY, ADVANCED) ir RAG elementu.\n\nUžduok man 3 klausimus:\n1. Kas buvo sunkiausia projekte?\n2. Kurį artefaktą naudosiu darbe pirmiausia?\n3. Ką įtrauksiu į savo promptų biblioteką per 24 val.?\n\nPo mano atsakymų duok vieną konkretų patarimą (iki 15 min, konkretus įrankis arba failas)."
               },
               {
                 "heading": "Modulio rezultatas",
@@ -7102,7 +7102,7 @@
               }
             ],
             "reflectionTitle": "Refleksijos promptas",
-            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – įtvirtinti Modulio 6 projekto rezultatus.\nINPUT: Ką tik baigiau vieną projektą – tyrimo ataskaitą su DI arba Custom GPT (6 blokai, RAG, technikų buffet).\nOUTPUT: Užduok 3 klausimus: (1) Kurį artefaktą naudosiu darbe pirmiausia? (2) Kurioje vietoje projekte buvo sunkiausia? (3) Ką įtrauksiu į savo promptų biblioteką per 24 val.? Po atsakymų – 1 konkretus patarimas.",
+            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – įtvirtinti Modulio 6 projekto rezultatus.\nINPUT: Ką tik baigiau vieną projektą – tyrimo ataskaitą su DI arba Custom GPT (6 blokai, RAG, technikų buffet).\nOUTPUT: Užduok 3 klausimus: (1) Kurį artefaktą naudosiu darbe pirmiausia? (2) Kurioje vietoje projekte buvo sunkiausia? (3) Ką įtrauksiu į savo promptų biblioteką per 24 val.? Po mano atsakymų duok vieną konkretų patarimą (iki 15 min, konkretus įrankis arba failas).",
             "tagline": "Vienas projektas + atmintinė = kartojamas DI darbo ritmas",
             "abilityBefore": "Neturėjai baigto projekto su promptų rinkiniu ir patikra.",
             "abilityAfter": "Turi projekto artefaktą ir žinai, kaip kartoti tą patį procesą kitai temai.",
@@ -10887,7 +10887,7 @@
                 ]
               }
             ],
-            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – padėti įtvirtinti žinias po Modulio 7.\nINPUT: Ką tik baigiau Modulio 7 teoriją (pipeline, MASTER PROMPTAS).\nOUTPUT: Užduok 3 klausimus: (1) Kurį promptą ar techniką galėčiau pritaikyti darbe šiandien? (2) Kas buvo naujausia ar netikėčiausia? (3) Ką noriu išbandyti pirmiausia? Po mano atsakymų duok 1 konkretų patarimą, kaip pradėti.",
+            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – padėti įtvirtinti žinias po Modulio 7.\nINPUT: Ką tik baigiau Modulio 7 teoriją (pipeline, MASTER PROMPTAS).\nOUTPUT: Užduok 3 klausimus: (1) Kurį pardavimų promptą galėčiau pritaikyti darbe šiandien? (2) Kur dar pasitikėčiau KPI arba prognoze be patikros? (3) Kokį šabloną išsaugosiu (trumpas pavadinimas)? Po mano atsakymų duok vieną konkretų patarimą (iki 15 min, konkretus įrankis arba failas).",
             "reflectionTitle": "Refleksija",
             "tagline": "Duomenys → Įžvalgos → Sprendimai",
             "nextStepCTA": "Pereik prie Modulio 8: žinių testas, tada Modulio 9: finalinis projektas (pradėk nuo sk. 93.1).",
@@ -11149,7 +11149,7 @@
           "subtitle": "Toliau – projektas (Modulis 9)",
           "type": "test-results",
           "content": {
-            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – įtvirtinti žinias po Duomenų analizės kelio testo.\nINPUT: Ką tik baigiau Modulio 8 testą.\nOUTPUT: Užduok 3 klausimus: (1) Kurį M7 promptą pritaikysiu darbe? (2) Kas buvo sudėtingiausia? (3) Ką pakartoti Modulyje 9? Po mano atsakymų duok vieną konkretų patarimą.",
+            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – įtvirtinti žinias po Duomenų analizės kelio testo.\nINPUT: Ką tik baigiau Modulio 8 testą.\nOUTPUT: Užduok 3 klausimus: (1) Kurį M7 promptą pritaikysiu darbe? (2) Kas buvo sudėtingiausia? (3) Kokį duomenų žingsnį projekte patikrinsiu pats, ne paliksiu DI? Po mano atsakymų duok vieną konkretų patarimą (iki 15 min, konkretus įrankis arba failas).",
             "reflectionTitle": "Refleksijos promptas"
           }
         },
@@ -11539,7 +11539,7 @@
                 "body": "Ką padarei? (What) — Ką tai reiškia tau ar komandai? (So What) — Ką darysi toliau? (Now What). Atsakyk trumpai savyje arba naudok žemiau esantį promptą DI."
               }
             ],
-            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – įtvirtinti Duomenų analizės kelio projekto rezultatus.\nINPUT: Ką tik baigiau Modulio 9 projektą – verslo analizę su DI (8 žingsnių ciklas; papildomas scenarijus – jei dariau).\nOUTPUT: Užduok 3 klausimus: (1) Ką padariau šiame projekte ir kur tai pritaikysiu? (2) Ką tai reiškia man ar komandai? (3) Ką darysiu per artimiausias 24–48 val.? Po mano atsakymų duok vieną konkretų patarimą.",
+            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – įtvirtinti Duomenų analizės kelio projekto rezultatus.\nINPUT: Ką tik baigiau Modulio 9 projektą – verslo analizę su DI (8 žingsnių ciklas; papildomas scenarijus – jei dariau).\nOUTPUT: Užduok 3 klausimus: (1) Ką padariau šiame projekte ir kur tai pritaikysiu? (2) Ką tai reiškia man ar komandai? (3) Ką darysiu per artimiausias 24–48 val.? Po mano atsakymų duok vieną konkretų patarimą (iki 15 min, konkretus įrankis arba failas).",
             "tagline": "Vienas rinkinys = katalogas + švarūs duomenys + 8 promptai + suvestinė.",
             "handoutDownloadLabel": "Parsisiųsti DA kelio atmintinę (PDF)",
             "kitChecklist": [

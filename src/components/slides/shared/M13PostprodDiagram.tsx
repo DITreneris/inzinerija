@@ -74,7 +74,7 @@ export default function M13PostprodDiagram({
   return (
     <svg
       viewBox={`0 0 ${viewBoxW} ${viewBoxH}`}
-      className={`w-full max-w-2xl mx-auto block ${className}`}
+      className={`w-full max-w-4xl mx-auto block ${className}`}
       role="img"
       aria-label={`${chrome.aria}${isInteractive ? ` ${chrome.hint}` : ''}`}
       data-metaphor={M13_POSTPROD_GEOMETRY.metaphor}

@@ -1,8 +1,9 @@
 # M13–M15 term bankas (I0)
 
 > **SOT terminams** LT chrome + EN kanonas. Keičia tik I0 savininkas arba peržiūros metu.  
-> **Statusas:** I0 užpildytas 2026-08-17. I1A P0+P1 + W2 filler + W3 chrome **pritaikyta** 2026-08-17. I2 first-screen + ciklas **pritaikyta** 2026-08-18. I3 handout ✅. P2 / I5 walk — atidėta.  
-> **Taisyklės:** [`PAPRASTOS_KALBOS_GAIRES.md`](PAPRASTOS_KALBOS_GAIRES.md) · GOLDEN §6c.  
+> **FINAL auditas (principai + Wave F liekanos):** [`M13_M15_LANG_AUDIT_FINAL.md`](M13_M15_LANG_AUDIT_FINAL.md) — 2026-08-19; prieš naują apply skaityk FINAL §4–§7 (fixlist „✅“ ≠ visur live).  
+> **Statusas:** I0 užpildytas 2026-08-17. I1A P0+P1 + W2 filler + W3 chrome **pritaikyta** 2026-08-17. I2 first-screen + ciklas **pritaikyta** 2026-08-18. I3 handout ✅. **Wave F P0+P1 applied** 2026-08-19 (FINAL §7). P2 `Skyrius:` skip.  
+> **Taisyklės:** [`PAPRASTOS_KALBOS_GAIRES.md`](PAPRASTOS_KALBOS_GAIRES.md) · GOLDEN §6c · FINAL §1–§3.  
 > **Fixlistos:** [`M13_M15_LANG_FIXLIST_LT.md`](M13_M15_LANG_FIXLIST_LT.md) · [`M13_M15_LANG_FIXLIST_EN.md`](M13_M15_LANG_FIXLIST_EN.md).  
 > Jei termino nėra čia — fixlistoje žymėk `TERM?`, ne spėliok.
 
@@ -33,6 +34,7 @@ Kopijuojamuose promptuose EN komandos modeliui (ROLE / TASK / laukų vardai) **g
 | **promptas**                                                                               | promptas                                                      | prompt                              | projekto kanonas (ne barbarizmas) |
 | **DI**                                                                                     | DI                                                            | **AI**                              | GOLDEN §6c / PAPRASTOS §4         |
 | **16:9 / 1:1 / 9:16**                                                                      | kaip yra                                                      | same                                | formatas                          |
+| **Ready** (kelio chip, EN)                                                                 | — (LT = KEISTI `Paruoštas`)                                   | Ready                               | Q1: EN KEEP; LT chrome be EN      |
 
 ---
 
@@ -40,31 +42,35 @@ Kopijuojamuose promptuose EN komandos modeliui (ROLE / TASK / laukų vardai) **g
 
 Pirmas mokinio sakinys: LT + skliaustai. Toliau — kairysis stulpelis.
 
-| EN / hibridas     | LT kanonas (toliau)         | Pirmas paminėjimas                    | EN kanonas                                           |
-| ----------------- | --------------------------- | ------------------------------------- | ---------------------------------------------------- |
-| pipeline          | grandinė / darbo eiga       | grandinė (pipeline)                   | **media chain** / work chain (ne bare `pipeline` H1) |
-| workflow          | darbo eiga                  | darbo eiga (workflow)                 | workflow                                             |
-| consistency       | nuoseklumas                 | nuoseklumas (consistency)             | consistency                                          |
-| reference lock    | referencų užraktas          | referencų užraktas (reference lock)   | reference lock                                       |
-| referencai / refs | pavyzdžių nuotraukos        | pavyzdžių nuotraukos (referencai)     | reference photos / refs                              |
-| audio-first       | pirma garsas                | pirma garsas (audio-first)            | **sound first** (ne chrome `Audio-first`)            |
-| brief             | užduoties aprašas           | užduoties aprašas (brief)             | brief                                                |
-| hero              | pagrindinis vaizdas         | pagrindinis vaizdas (hero)            | hero image                                           |
-| CTA               | kvietimas veikti            | kvietimas veikti (CTA)                | call to action (CTA)                                 |
-| disclosure        | DI žyma                     | DI žyma (disclosure)                  | AI label / disclosure                                |
-| storyboard        | scenarijaus piešiniai       | scenarijaus piešiniai (storyboard)    | storyboard                                           |
-| aspect ratio      | proporcijos                 | proporcijos (aspect ratio)            | aspect ratio / ratio                                 |
-| keyframe          | raktinis kadras             | raktinis kadras (keyframe)            | keyframe                                             |
-| VO                | balsas                      | balsas (VO)                           | voice-over (VO)                                      |
-| bed               | fonas                       | fonas (bed)                           | bed                                                  |
-| checklist         | patikros sąrašas            | patikros sąrašas (checklist)          | checklist                                            |
-| provenance        | kilmė                       | kilmė (provenance)                    | provenance                                           |
-| KPI               | rodikliai                   | rodikliai (KPI)                       | metrics / KPI                                        |
-| landing           | tinklalapio įėjimo puslapis | tinklalapio įėjimo puslapis (landing) | landing page                                         |
-| social post       | įrašas socialiniame tinkle  | įrašas socialiniame tinkle            | social post                                          |
-| mix               | maišymas                    | maišymas (mix)                        | mix                                                  |
-| post-prod         | montažas po generavimo      | montažas po generavimo                | edit after generation                                |
-| stories           | vertikalus formatas         | vertikalus formatas (stories)         | stories                                              |
+| EN / hibridas                      | LT kanonas (toliau)                                        | Pirmas paminėjimas                          | EN kanonas                                           |
+| ---------------------------------- | ---------------------------------------------------------- | ------------------------------------------- | ---------------------------------------------------- |
+| pipeline                           | grandinė / darbo eiga                                      | grandinė (pipeline)                         | **media chain** / work chain (ne bare `pipeline` H1) |
+| workflow                           | darbo eiga                                                 | darbo eiga (workflow)                       | workflow                                             |
+| consistency                        | nuoseklumas                                                | nuoseklumas (consistency)                   | consistency                                          |
+| reference lock                     | referencų užraktas                                         | referencų užraktas (reference lock)         | reference lock                                       |
+| referencai / refs                  | pavyzdžių nuotraukos                                       | pavyzdžių nuotraukos (referencai)           | reference photos / refs                              |
+| audio-first                        | pirma garsas                                               | pirma garsas (audio-first)                  | **sound first** (ne chrome `Audio-first`)            |
+| brief                              | užduoties aprašas                                          | užduoties aprašas (brief)                   | brief                                                |
+| hero                               | pagrindinis vaizdas                                        | pagrindinis vaizdas (hero)                  | hero image                                           |
+| CTA                                | kvietimas veikti                                           | kvietimas veikti (CTA)                      | call to action (CTA)                                 |
+| disclosure                         | DI žyma                                                    | DI žyma (disclosure)                        | AI label / disclosure                                |
+| storyboard                         | scenarijaus piešiniai                                      | scenarijaus piešiniai (storyboard)          | storyboard                                           |
+| aspect ratio                       | proporcijos                                                | proporcijos (aspect ratio)                  | aspect ratio / ratio                                 |
+| keyframe                           | raktinis kadras                                            | raktinis kadras (keyframe)                  | keyframe                                             |
+| VO                                 | balsas                                                     | balsas (VO)                                 | voice-over (VO)                                      |
+| bed                                | fonas                                                      | fonas (bed)                                 | bed                                                  |
+| checklist                          | patikros sąrašas                                           | patikros sąrašas (checklist)                | checklist                                            |
+| provenance                         | kilmė                                                      | kilmė (provenance)                          | provenance                                           |
+| KPI                                | rodikliai                                                  | rodikliai (KPI)                             | metrics / KPI                                        |
+| landing                            | tinklalapio įėjimo puslapis                                | tinklalapio įėjimo puslapis (landing)       | landing page                                         |
+| social post                        | įrašas socialiniame tinkle                                 | įrašas socialiniame tinkle                  | social post                                          |
+| mix                                | maišymas                                                   | maišymas (mix)                              | mix                                                  |
+| post-prod                          | montažas po generavimo                                     | montažas po generavimo                      | edit after generation                                |
+| stories                            | vertikalus formatas                                        | vertikalus formatas (stories)               | stories                                              |
+| loudness                           | garsumas                                                   | garsumas (loudness)                         | loudness                                             |
+| Soft Binding                       | minkštasis susiejimas                                      | minkštasis susiejimas (Soft Binding)        | Soft Binding                                         |
+| TOFU / MOFU / BOFU                 | piltuvėlis (viršus / vidurys / apačia)                     | chrome be santrumpų; body max 1 gloss       | TOFU / MOFU / BOFU (body OK once)                    |
+| drift / tilt / orbit / invariantai | slinktis / pakreipimas / orbitavimas / nekintantys bruožai | Trumpai/Patikra PIRMAS; copyable MODEL KEEP | drift / tilt / orbit / invariants                    |
 
 ---
 
@@ -79,7 +85,8 @@ Live šaltinis: `modules.json` M13–15 + `m13*Content.ts` labeliai. I1A taiso t
 | `Lab: Consistency Drift` / `Consistency lab` | 13.325                | Praktikos dirbtuvė: nuoseklumo slinktis / Nuoseklumo dirbtuvė | I1B; ne `lab` H1           |
 | subtitle su `refs` / `fix` / `lock`          | 13.325                | LT veiksmažodžiai                                             | I1B                        |
 | `DI vaizdų workflow (5 žingsniai)`           | 13.35                 | DI vaizdų darbo eiga (5 žingsniai)                            | I1B                        |
-| `Ready promptas:`                            | 13.35                 | Paruoštas promptas:                                           | I1B                        |
+| `Ready promptas:`                            | 13.351 / 13.35        | Paruoštas promptas:                                           | Q1 Wave F                  |
+| `loudness` H1                                | 13.7                  | garsumas                                                      | Q5                         |
 | `storyboard` subtitle                        | 13.4                  | scenarijaus piešiniai                                         | I1C                        |
 | `image → video` subtitle                     | 13.4                  | vaizdas → video                                               | I1C OK jei LT žodžiai      |
 | `keyframe` subtitle                          | 13.47                 | raktinis kadras (keyframe)                                    | I1C                        |

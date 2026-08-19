@@ -81,7 +81,7 @@ export function getM15PracticeLoopExplanations(
         },
         {
           title: '3. Audio',
-          body: `Audio-first: VO or licensed bed sets the duration before montage.${cta}`,
+          body: `Sound first: VO or licensed bed sets the duration before montage.${cta}`,
         },
         {
           title: '4. QA',

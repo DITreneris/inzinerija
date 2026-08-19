@@ -125,15 +125,15 @@ export function getM13PromptStackExplanations(
   return [
     {
       title: 'Objektas',
-      body: 'Įvardyk pagrindinį subjektą konkrečiais daiktavardžiais – kas rodoma (žmogus, produktas, scenos elementas).',
+      body: 'Įvardyk pagrindinį subjektą konkrečiais daiktavardžiais – kas rodoma (žmogus, produktas, scenos elementas). Pvz. „verslininkas prie stalo“, ne „gražus žmogus“.',
     },
     {
       title: 'Kontekstas',
-      body: 'Vieta ir veiksmas: kur vyksta ir kas vyksta – biuras, gatvė, studija, laiko, eina.',
+      body: 'Vieta ir veiksmas: kur vyksta ir kas vyksta – biuras, gatvė, studija, laiko, eina. Be vietos vaizdas lieka „tuščias“.',
     },
     {
       title: 'Estetika',
-      body: 'Stilius ir šviesa vainikuoja idėją: fotorealistiškas, minimalus vektorius, studijos šviesa, aukso valanda. Proporcijas nurodyk atskirai.',
+      body: 'Stilius ir šviesa vainikuoja idėją: fotorealistiškas, minimalus vektorius, studijos šviesa, aukso valanda. Proporcijas nurodyk atskirai. Venk tuščių žodžių („gražu“, „8K“).',
     },
   ];
 }

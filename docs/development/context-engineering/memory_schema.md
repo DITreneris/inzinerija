@@ -6,23 +6,23 @@
 
 ## 1. Layers (conventions only)
 
-| Layer | What it is | Where it lives | Retention |
-|-------|------------|----------------|-----------|
-| **Working** | Current task, last file opened, current plan | Agent context / scratch (e.g. current conversation) | Until session ends |
-| **Session notes** | Today’s decisions, "what we did this session," open questions | Optional: `docs/development/scratch/YYYY-MM-DD.md` or in chat | Session or a few days |
-| **Long-term** | Release decisions, "why we chose X," patterns, release state | `CHANGELOG.md`, `docs/development/MEMORY.md` or `release_notes/`, TEST_REPORT | Indefinite (repo history) |
+| Layer             | What it is                                                    | Where it lives                                                                | Retention                 |
+| ----------------- | ------------------------------------------------------------- | ----------------------------------------------------------------------------- | ------------------------- |
+| **Working**       | Current task, last file opened, current plan                  | Agent context / scratch (e.g. current conversation)                           | Until session ends        |
+| **Session notes** | Today’s decisions, "what we did this session," open questions | Optional: `docs/development/scratch/YYYY-MM-DD.md` or in chat                 | Session or a few days     |
+| **Long-term**     | Release decisions, "why we chose X," patterns, release state  | `CHANGELOG.md`, `docs/development/MEMORY.md` or `release_notes/`, TEST_REPORT | Indefinite (repo history) |
 
 ---
 
 ## 2. What to write where
 
-| Content | Prefer |
-|---------|--------|
+| Content                                              | Prefer                                                  |
+| ---------------------------------------------------- | ------------------------------------------------------- |
 | "We decided Modulio 4 skaidrė order is 4.1–4.7 only" | CONTENT_MODULIU_ATPAZINIMAS.md or MEMORY.md / changelog |
-| "Current task: review MODULIO_4_TURINIO_PERZIURA" | Session (scratch or chat); no need to persist |
-| "Release 2026-02-12: M4 lietuviškos, HomePage CTA" | CHANGELOG.md; optional MEMORY.md bullet |
-| Bugs / test failures | docs/development/TEST_REPORT.md |
-| User feedback and next actions | docs/VARTOTOJU_ATSILIEPIMAI_BENDRAS.md |
+| "Current task: review MODULIO_4_TURINIO_PERZIURA"    | Session (scratch or chat); no need to persist           |
+| "Release 2026-02-12: M4 lietuviškos, HomePage CTA"   | CHANGELOG.md; optional MEMORY.md bullet                 |
+| Bugs / test failures                                 | docs/development/TEST_REPORT.md                         |
+| User feedback and next actions                       | docs/VARTOTOJU_ATSILIEPIMAI_BENDRAS.md                  |
 
 ---
 

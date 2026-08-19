@@ -6,6 +6,8 @@
 
 ## Pamokos
 
+2026-08-19 | Reflection Q2 „naujausia“ | Tas pats Apply/newest/try-first triad visuose `reflectionPrompt` – Q2 yra kurso atsiliepimas, ne Analyze | Q2 = trintis/klaida/riba; Q3 = apribojimas; tipas ≤15 min + įrankis/failas; EN atskiras balsas (I, learning assistant); M10–12 freeze = tik M11 Q2/Q3 + M12 EN parity | SUMMARY_SLIDE_SPEC.md, modules.json, build-en-m10-m12.mjs, m13-en-plain-overrides.mjs
+2026-08-19 | M13 13.325 lab chrome | Slide JSON jau LT-plain, bet lab `.ts` liko EN kabina (`Drift` / `Ref lock` / `brief`) – mokinys skaito dirbtuvę kaip mini-LMS | First-screen kanonas = pavyzdžių nuotraukos / slinktis / užraktas / taisymas / užduoties aprašas; EN gloss antras; serija įvardyta | m13ConsistencyLabContent.ts, M13ConsistencyLockLabBlock.tsx
 2026-08-19 | M15 completion chrome | M15 completion gate ≠ mokinio žodis „privaloma“; EN overlay gali būti pirmašvarus už LT | Copy = pirmas artefaktas / skip; gate lieka `minScenariosToComplete`; durable EN prieš rebuild | modules.json 150/150.5/140.5/151, build-en-m13-m15.mjs, m13-en-plain-overrides.mjs
 2026-08-18 | M13 I2 vs craft | Tas pats ID (`13.3`/`13.4`/`13.6`) negali viename JSON edite ir ploninti žargoną, ir kabinti last-frame/VO Stage — C-W8 | Dvi partijos: pirma I2 chrome, tada craft Stage; 13.47 first-screen = `i2vGen` i18n, ne tik JSON `patikra` | modules.json 13.3/13.4/13.6/13.47, lt.json/en.json i2vGen
 2026-08-18 | M15 I3 atmintinė | `m1315Handout` = formatų sąrašas + 3 laukų dump’ai + teisių paskaita; PDF p.2 `Delivery checklist` LT | Įtraukti į §2.11 partiją: tie patys promptai kaip skaidrėse; teisės = 1 eilutė; ne later | m1315HandoutContent.json, m1315HandoutPdf.ts

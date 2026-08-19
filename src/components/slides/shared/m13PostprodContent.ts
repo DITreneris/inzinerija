@@ -2,10 +2,10 @@ import type { StepExplanation } from './stepExplanations';
 import type { M10Locale } from './m10DiagramContent';
 
 const STEPS_LT = [
-  { label: 'Cut', desc: 'Klipai + hook' },
-  { label: 'Grade', desc: 'Spalvos' },
-  { label: 'Mix', desc: 'VO / bed' },
-  { label: 'Export', desc: '9:16 / 16:9' },
+  { label: 'Kirpimas', desc: 'Klipai + kablukas' },
+  { label: 'Spalvos', desc: 'Vienodas tonas' },
+  { label: 'Garsas', desc: 'Balsas / fonas' },
+  { label: 'Eksportas', desc: '9:16 / 16:9' },
 ] as const;
 
 const STEPS_EN = [
@@ -44,20 +44,20 @@ export function getM13PostprodExplanations(
   }
   return [
     {
-      title: '1. Cut',
-      body: 'Surink 2–4 klipus; nukirpk silpnus kadrus; hook pirmose 1–2 s.',
+      title: '1. Kirpimas',
+      body: 'Surink 2–4 klipus; nukirpk silpnus kadrus; kablukas pirmose 1–2 s.',
     },
     {
-      title: '2. Grade',
-      body: 'Sulygink spalvas tarp klipų, kad setas atrodytų viena kampanija.',
+      title: '2. Spalvos',
+      body: 'Sulygink spalvas tarp klipų, kad rinkinys atrodytų viena kampanija.',
     },
     {
-      title: '3. Mix',
-      body: 'VO arba licensed bed + SFX. Orientyras ~−14 LUFS muzikai / ~−16 VO mix – klausyk ausimis.',
+      title: '3. Garsas',
+      body: 'Balsas arba licencijuotas fonas + efektai. Orientyras ~−14 LUFS muzikai / ~−16 balso maišymui – klausyk ausimis.',
     },
     {
-      title: '4. Export',
-      body: 'Eksportuok pagal platformą (9:16 arba 16:9). DI rezultatas lieka raw, kol ši grandinė baigta.',
+      title: '4. Eksportas',
+      body: 'Eksportuok pagal platformą (9:16 arba 16:9). DI rezultatas lieka žalia medžiaga, kol ši grandinė baigta.',
     },
   ];
 }
@@ -77,14 +77,14 @@ export function getM13PostprodChrome(locale: M10Locale) {
     };
   }
   return {
-    title: 'Post-production grandinė',
-    metaphorCaption: 'Laiko juosta – Cut → Export eilės tvarka',
+    title: 'Montažo grandinė',
+    metaphorCaption: 'Laiko juosta – Kirpimas → Eksportas eilės tvarka',
     hint: 'Paspausk žingsnį – paaiškinimas apačioje',
-    aria: 'Keturi žingsniai laiko juostoje: cut, grade, mix, export',
-    regionAria: 'Post-production – keturi žingsniai',
+    aria: 'Keturi žingsniai laiko juostoje: kirpimas, spalvos, garsas, eksportas',
+    regionAria: 'Montažas – keturi žingsniai',
     youAreHere: 'Tu esi čia:',
-    navAria: 'Post-production žingsnių pasirinkimas',
+    navAria: 'Montažo žingsnių pasirinkimas',
     stepAria: (i: number, title: string) => `Žingsnis ${i + 1}: ${title}`,
-    enlargeLabel: 'Post-production',
+    enlargeLabel: 'Montažo grandinė',
   };
 }

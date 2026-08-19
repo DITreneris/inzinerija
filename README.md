@@ -1,7 +1,7 @@
 # Promptų anatomija – Interaktyvus DI mokymas
 
 **6 promptų struktūros blokai – interaktyvus mokymas nuo pamatų iki pažangių kelių.**  
-**Versija:** 1.6.3 (2026-08-16). **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) (Vercel; šis repo – **git submodulis** marketingo projekte). Training cut **v1.6.3**; live pin kol neperpinsi = **v1.6.2**. **12 live per Supabase**. Viešas Stripe = M1–6; M7–18 = corporate grant iki 2027-01. `v1.4.9` = istorinis learning freeze, ne current pin. Pakeitimai – [CHANGELOG.md](CHANGELOG.md).
+**Versija:** 1.6.3 (2026-08-16). **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) (Vercel; šis repo – **git submodulis** marketingo projekte). Release + live pin **v1.6.3** (`7e4c3bf`, [PR #96](https://github.com/DITreneris/promptanatomy/pull/96)). Unreleased HEAD ≠ re-pin. **12 live per Supabase**. Viešas Stripe = M1–6; M7–18 = corporate grant iki 2027-01. `v1.4.9` = istorinis learning freeze, ne current pin. Pakeitimai – [CHANGELOG.md](CHANGELOG.md).
 
 Interaktyvus mokymas apie DI (dirbtinio intelekto) promptų struktūrą ir konteksto inžineriją: **pilnai įgyvendinti moduliai 1–6** (MVP), **production bundle M1–9** (Duomenų analizės kelias, tier 9), **corporate12 M1–12**, **corporate15 M1–15** ir **full authoring katalogas M1–18** (dev; Kodo inžinerijos kelias). Kursas orientuotas į verslo problemų sprendimą ir **praktinius rezultatus**.  
 UI ir turinys palaiko **LT / EN** (M1–M18 authoring; M10–12 EN kai `maxModuleId >= 10`, M13–15 kai `>= 13`, M16–18 kai `>= 16`). Magic-link tiers lieka 3|6|9|12|15 (corporate18 Deferred).
@@ -76,14 +76,14 @@ Aplikacija bus prieinama: `http://localhost:3000`
 Prieš build automatiškai vykdoma JSON schemų validacija (`npm run validate:schema` per `prebuild`).
 
 ```bash
-npm run build:production   # Production M1–9 (Vercel)
+npm run build:corporate12  # Vercel production M1–12 (canonical)
 npm run preview
 ```
 
-**Corporate build'ai:**
+**Kiti build'ai:**
 
 ```bash
-npm run build:corporate12  # M1–12
+npm run build:production   # M1–9 profilis (fallback; ne gyvas Vercel kanonas)
 npm run build:corporate15  # M1–15
 ```
 
@@ -99,9 +99,9 @@ VITE_MVP_MODE=1 npm run build
 npm run build
 ```
 
-**Windows (PowerShell):** env kintamiesiems naudokite `$env:VITE_MVP_MODE="1"; npm run build` arba `$env:VITE_MAX_BUILD_MODULE="9"; npm run build`.
+**Windows (PowerShell):** env kintamiesiems naudokite `$env:VITE_MVP_MODE="1"; npm run build` arba `$env:VITE_MAX_BUILD_MODULE="12"; npm run build`.
 
-Pilnas aprašas: [docs/deployment/DEPLOYMENT.md](docs/deployment/DEPLOYMENT.md) skyrius „Production (moduliai 1–9)“.
+Pilnas aprašas: [docs/deployment/DEPLOYMENT.md](docs/deployment/DEPLOYMENT.md) skyrius „Production (moduliai 1–12, corporate12)“.
 
 ### Testavimas
 

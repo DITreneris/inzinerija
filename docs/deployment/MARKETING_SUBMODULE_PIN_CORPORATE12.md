@@ -2,7 +2,7 @@
 
 > **Repo:** [DITreneris/promptanatomy](https://github.com/DITreneris/promptanatomy)  
 > **Training šaltinis:** [DITreneris/inzinerija](https://github.com/DITreneris/inzinerija) → submodule `apps/prompt-anatomy/`  
-> **Atnaujinta:** 2026-08-16  
+> **Atnaujinta:** 2026-08-19 (GitHub verified)  
 > **Susiję:** [06_marketingo_memo_corporate12_supabase.md](../../06_marketingo_memo_corporate12_supabase.md), [MARKETING_HANDOFF_CHECKLIST.md](MARKETING_HANDOFF_CHECKLIST.md) §4 / §7a–corporate12, `TODO.md` §1.4 CAV-B1
 
 ---
@@ -11,7 +11,7 @@
 
 Po inzinerija app tag **v1.6.3** atnaujinti marketing monorepo submodule ir deploy'inti **M1–12** bundle (`build:corporate12`) į `https://www.promptanatomy.app/anatomy/`, su Supabase Phase 1 `access_tier=12` (be Stripe).
 
-**Statusas 2026-08-16:** Live GitHub pin vis dar `c35a1f5` / **v1.6.2** ([PR #92](https://github.com/DITreneris/promptanatomy/pull/92)). Training cut **v1.6.3** = kitas pin target. Parent build = `scripts/vercel-build.sh` → `VITE_MAX_BUILD_MODULE=12` + `build:corporate12`. **12 live per Supabase.**
+**Statusas 2026-08-19 (GitHub verified):** Live pin = **v1.6.3** / `7e4c3bf` ([PR #96](https://github.com/DITreneris/promptanatomy/pull/96); ankstesnis v1.6.2 = PR #92 `c35a1f5`). Parent build = `scripts/vercel-build.sh` → `VITE_MAX_BUILD_MODULE=12` + `build:corporate12`. **12 live per Supabase.** Unreleased HEAD ≠ automatinis re-pin.
 
 **Ne šis runbook:** istorinis learning freeze pin `v1.4.9`; corporate15 / tier 15; Stripe €199.
 

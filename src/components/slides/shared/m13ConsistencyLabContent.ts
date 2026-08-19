@@ -22,6 +22,23 @@ export const CONSISTENCY_REF_IDS: ConsistencyRefId[] = [
   'styleLight',
 ];
 
+const LAB_ASSET_DIR = 'm13/consistency-lab';
+
+export const CONSISTENCY_LAB_ASSETS = {
+  hero: `${LAB_ASSET_DIR}/oak-mug-hero.png`,
+  threeQuarter: `${LAB_ASSET_DIR}/oak-mug-side.png`,
+  detail: `${LAB_ASSET_DIR}/oak-mug-detail.png`,
+  styleLight: `${LAB_ASSET_DIR}/oak-mug-light.png`,
+  beforeDrift: `${LAB_ASSET_DIR}/oak-mug-before-drift.png`,
+  afterLock: `${LAB_ASSET_DIR}/oak-mug-after-lock.png`,
+} as const;
+
+export function consistencyLabAssetSrc(relPath: string): string {
+  const base = import.meta.env.BASE_URL || '/';
+  const prefix = base.endsWith('/') ? base : `${base}/`;
+  return `${prefix}${relPath.replace(/^\//, '')}`;
+}
+
 export function emptyConsistencyRefs(): ConsistencyRefState {
   return {
     hero: false,
@@ -38,70 +55,124 @@ export function countSelectedRefs(refs: ConsistencyRefState): number {
 export function getConsistencyLabUiLabels(locale: ConsistencyLabLocale) {
   if (locale === 'en') {
     return {
-      regionAria: 'Consistency drift lab',
-      hint: 'Tick the references you have, then pick what drifted – or a fresh brief.',
+      regionAria: 'Consistency workshop',
+      seriesLabel: 'Series: Oak Mug',
+      hint: 'Tick the sample photos you have for the Oak Mug series, then pick what drifted – or a new brief.',
       decisionRule:
         'Lock and fix when the product must match the set. Fresh generate only when the brief intentionally changes.',
       modeLegend: 'What drifted?',
       artefactHeading: 'Prompt rule',
       copyLabel: 'Copy rule',
       copiedLabel: 'Copied',
-      emptyArtefact: 'Choose a mode first – then copy the rule.',
-      refLegend: 'Reference sheet',
+      emptyArtefact: 'Choose a mode first – then copy your rule.',
+      sampleArtefactHint:
+        'After you pick a mode – your rule (Copy). Example below is filled for Oak Mug.',
+      refLegend: 'Series: Oak Mug – sample photos',
       refStatus: (n: number) => `You have ${n}/4`,
-      refReady: 'Ready for lock (≥3 refs)',
-      refNeedMore: 'Add refs until you have at least 3',
+      refReady: 'Ready for lock (≥3 sample photos)',
+      refNeedMore: 'Collect at least 3 sample photos',
       symptomLabel: 'Symptom',
       fixLabel: 'Fix',
       modePillEmpty: 'No mode yet',
-      missingPrefix: 'Missing refs:',
-      beforeDriftLabel: 'Before (Drift)',
+      missingPrefix: 'Missing sample photos:',
+      beforeDriftLabel: 'Before (drift)',
       beforeDriftHint: 'Muted, off-brand, proportions wander.',
-      afterLockLabel: 'After (Ref lock)',
+      afterLockLabel: 'After (lock)',
       afterLockHint: 'On-set color, shape and labels hold.',
-      compareStripAria: 'Drift versus reference lock',
+      compareStripAria: 'Drift versus lock',
+      beforeImageAlt:
+        'Oak Mug drifted: stretched body, muddy brown band, label off-center.',
+      afterImageAlt:
+        'Oak Mug locked: white ceramic, teal band, label in the same place.',
     };
   }
   return {
-    regionAria: 'Consistency drift lab',
-    hint: 'Pažymėk turimus reference, tada pasirink kas plaukioja – arba naują briefą.',
+    regionAria: 'Nuoseklumo dirbtuvė',
+    seriesLabel: 'Serija: Ąžuolo puodelis',
+    hint: 'Pažymėk turimas pavyzdžių nuotraukas serijai „Ąžuolo puodelis“, tada pasirink kas plaukioja – arba naują užduoties aprašą.',
     decisionRule:
-      'Lock ir fix – kai produktas turi sutapti su setu. Fresh generate – tik kai briefas sąmoningai keičiasi.',
+      'Užrakink ir taisyk, kai produktas turi sutapti su rinkiniu. Naują vaizdą generuok tik tada, kai užduoties aprašas sąmoningai keičiasi.',
     modeLegend: 'Kas plaukioja?',
     artefactHeading: 'Prompto taisyklė',
     copyLabel: 'Kopijuoti taisyklę',
     copiedLabel: 'Nukopijuota',
-    emptyArtefact: 'Pirmiausia pasirink režimą – tada kopijuok taisyklę.',
-    refLegend: 'Reference sheet',
+    emptyArtefact: 'Pirmiausia pasirink režimą – tada kopijuok savo taisyklę.',
+    sampleArtefactHint:
+      'Po režimo – tavo taisyklė (Copy). Žemiau – užpildytas pavyzdys serijai „Ąžuolo puodelis“.',
+    refLegend: 'Serija: Ąžuolo puodelis – pavyzdžių nuotraukos',
     refStatus: (n: number) => `Turi ${n}/4`,
-    refReady: 'Paruošta lock (≥3 refs)',
-    refNeedMore: 'Surink bent 3 reference',
+    refReady: 'Paruošta užraktui (≥3 pavyzdžių nuotraukos)',
+    refNeedMore: 'Surink bent 3 pavyzdžių nuotraukas',
     symptomLabel: 'Simptomas',
-    fixLabel: 'Fix',
+    fixLabel: 'Taisymas',
     modePillEmpty: 'Režimas dar nepasirinktas',
     missingPrefix: 'Trūksta:',
-    beforeDriftLabel: 'Prieš (Drift)',
-    beforeDriftHint: 'Blanku, nebrandu, proporcijos plaukioja.',
-    afterLockLabel: 'Po (Ref lock)',
-    afterLockHint: 'Seto spalvos, forma ir etiketės laikosi.',
-    compareStripAria: 'Drift ir reference lock palyginimas',
+    beforeDriftLabel: 'Prieš (slinktis)',
+    beforeDriftHint: 'Blanku, ne iš serijos, proporcijos plaukioja.',
+    afterLockLabel: 'Po (užraktas)',
+    afterLockHint: 'Rinkinio spalvos, forma ir etiketės laikosi.',
+    compareStripAria: 'Slinkties ir užrakto palyginimas',
+    beforeImageAlt:
+      'Ąžuolo puodelis su slinktimi: ištįsęs korpusas, drumstai ruda juosta, etiketė ne vietoje.',
+    afterImageAlt:
+      'Ąžuolo puodelis užrakintas: baltas keramikinis, žalsvai mėlyna juosta, etiketė toje pačioje vietoje.',
   };
 }
 
 export function getConsistencyRefOptions(locale: ConsistencyLabLocale) {
   if (locale === 'en') {
     return [
-      { id: 'hero' as const, label: 'Hero / front' },
-      { id: 'threeQuarter' as const, label: '¾ or side' },
-      { id: 'detail' as const, label: 'Detail / label' },
-      { id: 'styleLight' as const, label: 'Style / light' },
+      {
+        id: 'hero' as const,
+        label: 'Front (hero)',
+        alt: 'Oak Mug, front catalog shot: white ceramic, teal band, centered handle.',
+        src: CONSISTENCY_LAB_ASSETS.hero,
+      },
+      {
+        id: 'threeQuarter' as const,
+        label: '¾ or side',
+        alt: 'Oak Mug from a three-quarter angle: same teal band and white body.',
+        src: CONSISTENCY_LAB_ASSETS.threeQuarter,
+      },
+      {
+        id: 'detail' as const,
+        label: 'Detail / label',
+        alt: 'Close-up of the Oak Mug label on the teal band.',
+        src: CONSISTENCY_LAB_ASSETS.detail,
+      },
+      {
+        id: 'styleLight' as const,
+        label: 'Style / light',
+        alt: 'Oak Mug under catalog light from the left, clean white background.',
+        src: CONSISTENCY_LAB_ASSETS.styleLight,
+      },
     ];
   }
   return [
-    { id: 'hero' as const, label: 'Hero / priekis' },
-    { id: 'threeQuarter' as const, label: '¾ arba šonas' },
-    { id: 'detail' as const, label: 'Detalė / etiketė' },
-    { id: 'styleLight' as const, label: 'Stilius / šviesa' },
+    {
+      id: 'hero' as const,
+      label: 'Priekis (hero)',
+      alt: 'Ąžuolo puodelis iš priekio: balta keramika, žalsvai mėlyna juosta, rankena centre.',
+      src: CONSISTENCY_LAB_ASSETS.hero,
+    },
+    {
+      id: 'threeQuarter' as const,
+      label: '¾ arba šonas',
+      alt: 'Ąžuolo puodelis iš trijų ketvirčių: ta pati juosta ir baltas korpusas.',
+      src: CONSISTENCY_LAB_ASSETS.threeQuarter,
+    },
+    {
+      id: 'detail' as const,
+      label: 'Detalė / etiketė',
+      alt: 'Ąžuolo puodelio etiketės stambus planas ant juostos.',
+      src: CONSISTENCY_LAB_ASSETS.detail,
+    },
+    {
+      id: 'styleLight' as const,
+      label: 'Stilius / šviesa',
+      alt: 'Ąžuolo puodelis katalogo šviesoje iš kairės, švarus baltas fonas.',
+      src: CONSISTENCY_LAB_ASSETS.styleLight,
+    },
   ];
 }
 
@@ -122,19 +193,19 @@ export function getConsistencyModeOptions(
       {
         id: 'inflate',
         label: 'Inflated / proportions',
-        description: 'Shape or size drifted from the refs.',
+        description: 'Shape or size drifted from the sample photos.',
         driftSignal: 'Product looks puffed, stretched or wrong proportions.',
         fixCue:
-          'Simplify the scene; strengthen refs; inpaint only the deformed zone.',
+          'Simplify the scene; strengthen the sample photos; edit only the deformed zone.',
         pill: 'Proportions',
       },
       {
         id: 'color',
         label: 'Color shifted',
         description: 'Palette no longer matches the brand set.',
-        driftSignal: 'Hue or saturation drifted from the reference palette.',
+        driftSignal: 'Hue or saturation drifted from the sample palette.',
         fixCue:
-          'Re-attach color refs; add “same color palette”; avoid new lighting looks.',
+          'Re-attach color samples; add “same color palette”; avoid a new lighting look.',
         pill: 'Color',
       },
       {
@@ -143,7 +214,7 @@ export function getConsistencyModeOptions(
         description: 'Mark or logo placement broke.',
         driftSignal: 'Label or logo missing, warped or in the wrong place.',
         fixCue:
-          'Use a detail/label ref; lock placement; inpaint only the mark zone.',
+          'Use a detail/label sample; lock placement; edit only the mark zone.',
         pill: 'Label',
       },
       {
@@ -158,7 +229,7 @@ export function getConsistencyModeOptions(
       {
         id: 'fresh',
         label: 'Brief changed',
-        description: 'New look on purpose – no reference lock.',
+        description: 'New look on purpose – no lock.',
         driftSignal: 'Brief or brand look intentionally changes.',
         fixCue: 'Fresh generate without forcing the previous product identity.',
         pill: 'Fresh',
@@ -169,18 +240,19 @@ export function getConsistencyModeOptions(
     {
       id: 'inflate',
       label: 'Išsipūtė / proporcijos',
-      description: 'Forma ar dydis „plaukioja“ nuo refs.',
+      description: 'Forma ar dydis „plaukioja“ nuo pavyzdžių nuotraukų.',
       driftSignal: 'Produktas išsipūtė, ištįso arba pakeitė proporcijas.',
-      fixCue: 'Supaprastink sceną; stiprink refs; inpaint tik deformuotą zoną.',
+      fixCue:
+        'Supaprastink sceną; stiprink pavyzdžių nuotraukas; taisyti tik deformuotą zoną.',
       pill: 'Proporcijos',
     },
     {
       id: 'color',
       label: 'Spalva pasikeitė',
-      description: 'Paletė nebeatitinka kampanijos seto.',
-      driftSignal: 'Atspalvis ar sodrumas nutolo nuo reference paletės.',
+      description: 'Paletė nebeatitinka kampanijos rinkinio.',
+      driftSignal: 'Atspalvis ar sodrumas nutolo nuo pavyzdžių paletės.',
       fixCue:
-        'Prisek spalvų refs; pridėk „same color palette“; venk naujo apšvietimo look.',
+        'Prisek spalvų pavyzdžius; pridėk „ta pati spalvų paletė“; venk naujo apšvietimo vaizdo.',
       pill: 'Spalva',
     },
     {
@@ -189,25 +261,26 @@ export function getConsistencyModeOptions(
       description: 'Ženklas ar logo vieta sugedo.',
       driftSignal: 'Etiketė ar logo dingo, išsikraipė arba ne toje vietoje.',
       fixCue:
-        'Naudok detalės/etiketės ref; užrakink vietą; inpaint tik ženklo zoną.',
+        'Naudok detalės / etiketės pavyzdį; užrakink vietą; taisyti tik ženklo zoną.',
       pill: 'Etiketė',
     },
     {
       id: 'style',
-      label: 'Look / stilius plaukioja',
-      description: 'Setas nebeatrodo kaip viena serija.',
-      driftSignal: 'Stilius, apdaila ar nuotaika nutolo nuo seto.',
+      label: 'Vaizdas / stilius plaukioja',
+      description: 'Rinkinys nebeatrodo kaip viena serija.',
+      driftSignal: 'Stilius, apdaila ar nuotaika nutolo nuo rinkinio.',
       fixCue:
-        'Pakartok same style + same product; keisk tik aplinką ar veiksmą.',
+        'Pakartok tą patį stilių ir tą patį produktą; keisk tik aplinką ar veiksmą.',
       pill: 'Stilius',
     },
     {
       id: 'fresh',
-      label: 'Brief keičiasi',
-      description: 'Sąmoningai nauja išvaizda – be reference lock.',
-      driftSignal: 'Briefas ar look keičiasi sąmoningai.',
-      fixCue: 'Naujas generate be ankstesnio produkto tapatybės prievartos.',
-      pill: 'Fresh',
+      label: 'Užduoties aprašas keičiasi',
+      description: 'Sąmoningai nauja išvaizda – be užrakto.',
+      driftSignal: 'Užduoties aprašas ar vaizdas keičiasi sąmoningai.',
+      fixCue:
+        'Naujas generavimas be ankstesnio produkto tapatybės prievartos.',
+      pill: 'Naujas',
     },
   ];
 }
@@ -223,14 +296,14 @@ function missingRefLabels(
 function lockRuleLines(locale: ConsistencyLabLocale): string[] {
   return locale === 'en'
     ? [
-        'Reference lock: use the same 3–5 reference images.',
+        'Lock: use the same 3–5 sample photos.',
         'Rule: same product, same proportions, same label/logo placement, same color palette, same style.',
         'New scene: [ENVIRONMENT / ACTION]. Camera: [angle]. Format: [1:1 / 16:9 / 9:16].',
         'No text in image (unless product label).',
       ]
     : [
-        'Reference lock: naudok tuos pačius 3–5 reference vaizdus.',
-        'Taisyklė: same product, same proportions, same label/logo placement, same color palette, same style.',
+        'Užraktas: naudok tas pačias 3–5 pavyzdžių nuotraukas.',
+        'Taisyklė: tas pats produktas, tos pačios proporcijos, ta pati etiketės vieta, ta pati spalvų paletė, tas pats stilius.',
         'Nauja scena: [APLINKA / VEIKSMAS]. Kamera: [kampas]. Formatas: [1:1 / 16:9 / 9:16].',
         'Be teksto vaizde (nebent etiketė ant produkto).',
       ];
@@ -239,17 +312,37 @@ function lockRuleLines(locale: ConsistencyLabLocale): string[] {
 function freshRuleLines(locale: ConsistencyLabLocale): string[] {
   return locale === 'en'
     ? [
-        'Fresh generate (no reference lock).',
+        'Fresh generate (no lock).',
         'Brief change: [WHAT CHANGED]. New look: [STYLE / MOOD].',
         'Scene: [ENVIRONMENT / ACTION]. Camera: [angle]. Format: [1:1 / 16:9 / 9:16].',
         'Do not force same product identity from previous set.',
       ]
     : [
-        'Naujas generate (be reference lock).',
-        'Brief keitimas: [KAS PASIKEITĖ]. Nauja išvaizda: [STILIUS / NUOTAIKA].',
+        'Naujas generavimas (be užrakto).',
+        'Užduoties keitimas: [KAS PASIKEITĖ]. Nauja išvaizda: [STILIUS / NUOTAIKA].',
         'Scena: [APLINKA / VEIKSMAS]. Kamera: [kampas]. Formatas: [1:1 / 16:9 / 9:16].',
-        'Neverčiame tos pačios produkto tapatybės iš ankstesnio seto.',
+        'Neverčiame tos pačios produkto tapatybės iš ankstesnio rinkinio.',
       ];
+}
+
+export function getSampleConsistencyArtefact(
+  locale: ConsistencyLabLocale
+): string {
+  return locale === 'en'
+    ? [
+        'Fix: simplify the scene; keep the Oak Mug white with a teal band.',
+        'Lock: use the same 3–5 sample photos (front, ¾, label, light).',
+        'Rule: same product, same proportions, same label placement, same teal band, same catalog style.',
+        'New scene: oak table, morning light from the left. Camera: eye level. Format: 1:1.',
+        'No text in image (unless the product label).',
+      ].join('\n')
+    : [
+        'Taisymas: supaprastink sceną; palik Ąžuolo puodelį baltą su žalsvai mėlyna juosta.',
+        'Užraktas: naudok tas pačias 3–5 pavyzdžių nuotraukas (priekis, ¾, etiketė, šviesa).',
+        'Taisyklė: tas pats produktas, tos pačios proporcijos, ta pati etiketės vieta, ta pati juosta, tas pats katalogo stilius.',
+        'Nauja scena: ąžuolo stalas, rytinė šviesa iš kairės. Kamera: lygiu akims. Formatas: 1:1.',
+        'Be teksto vaizde (nebent etiketė ant produkto).',
+      ].join('\n');
 }
 
 export function formatConsistencyArtefact(
@@ -268,7 +361,11 @@ export function formatConsistencyArtefact(
     lines.push(...freshRuleLines(locale));
   } else {
     if (modeDef) {
-      lines.push(`Fix: ${modeDef.fixCue}`);
+      lines.push(
+        locale === 'en'
+          ? `Fix: ${modeDef.fixCue}`
+          : `Taisymas: ${modeDef.fixCue}`
+      );
     }
     lines.push(...lockRuleLines(locale));
   }

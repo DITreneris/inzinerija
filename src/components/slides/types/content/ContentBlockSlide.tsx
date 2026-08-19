@@ -81,6 +81,7 @@ const PREMIUM_DIAGRAM_IMAGE_KEYS = [
   'm13_consistency_lock',
   'm13_consistency_lab',
   'm13_postprod_steps',
+  'm13_still_workflow',
   'turinio_workflow',
   'm15_practice_loop',
   /** M16–18 signature schemas (TE-M1618) */
@@ -182,6 +183,14 @@ export function ContentBlockSlide({
   const [correctPromptUserText, setCorrectPromptUserText] = useState('');
   const [handoutError, setHandoutError] = useState(false);
   const sectionsList = content.sections ?? [];
+  const patikraSectionIndex = sectionsList.findIndex((s) => {
+    const h = (s.heading ?? '').trim().toLowerCase();
+    return h === 'patikra' || h === 'check';
+  });
+  const insertToolsBeforePatikra =
+    content.toolsPlacement === 'beforePatikra' &&
+    patikraSectionIndex >= 0 &&
+    (content.tools?.length ?? 0) > 0;
   const collapsibleSections = sectionsList.filter(
     (s) => Boolean(s.collapsible) && !isShortContent(s)
   );
@@ -416,6 +425,135 @@ export function ContentBlockSlide({
             {block.explanation}
           </p>
         )}
+      </div>
+    );
+  };
+
+  const renderToolsBlock = () => {
+    if (!content.tools || content.tools.length === 0) return null;
+    const toolsList = content.tools;
+    const toolsGrid = (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {toolsList.map((tool, idx) => (
+          <div
+            key={idx}
+            className="bg-white dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow"
+          >
+            <div className="flex flex-wrap items-baseline gap-2 mb-2">
+              {tool.url ? (
+                <a
+                  href={tool.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${typographyClasses.h3} text-brand-600 dark:text-brand-400 hover:text-brand-800 dark:hover:text-brand-200 underline underline-offset-2 inline-flex items-center gap-1`}
+                >
+                  {tool.name}
+                  <ExternalLink
+                    className="w-3.5 h-3.5 flex-shrink-0"
+                    aria-hidden="true"
+                  />
+                </a>
+              ) : (
+                <span
+                  className={`${typographyClasses.h3} text-gray-900 dark:text-white`}
+                >
+                  {tool.name}
+                </span>
+              )}
+            </div>
+            {tool.description && (
+              <p
+                className={`${typographyClasses.bodyMuted} leading-snug mb-3`}
+              >
+                {tool.description}
+              </p>
+            )}
+            {tool.useCases && tool.useCases.length > 0 && (
+              <div>
+                <p
+                  className={`${typographyClasses.labelUpper} text-gray-500 dark:text-gray-400 mb-1.5`}
+                >
+                  {tPractice('popularUseCases')}
+                </p>
+                <ul className="flex flex-wrap gap-1.5">
+                  {tool.useCases.map((uc, i) => (
+                    <li key={i}>
+                      <span
+                        className={`inline-block ${typographyClasses.small} px-2 py-0.5 rounded-md bg-brand-100 dark:bg-brand-900/40 text-brand-700 dark:text-brand-300`}
+                      >
+                        {uc}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    );
+    const toolsIntroBlock = content.toolsIntro ? (
+      <p
+        className={`${typographyClasses.body} text-gray-700 dark:text-gray-300 mb-6`}
+      >
+        {content.toolsIntro}
+      </p>
+    ) : null;
+    const toolsFooter = (
+      <p
+        className={`${typographyClasses.small} text-gray-500 dark:text-gray-400 italic mt-5`}
+      >
+        {tPractice('toolsPrincipleNote')}
+      </p>
+    );
+    const shellClass =
+      'border-2 border-brand-200 dark:border-brand-800 rounded-2xl bg-gradient-to-b from-brand-50/80 to-white dark:from-brand-950/50 dark:to-gray-900';
+
+    if (content.toolsCollapsible) {
+      return (
+        <details
+          className={`group ${shellClass} overflow-hidden`}
+          data-testid="content-tools-block"
+        >
+          <summary
+            className={`flex cursor-pointer list-none items-center gap-2 p-4 sm:p-5 ${typographyClasses.h2} text-gray-900 dark:text-white [&::-webkit-details-marker]:hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900 rounded-2xl`}
+            aria-label={tPractice('toolsCollapsibleAria')}
+          >
+            <ChevronDown
+              className="h-5 w-5 shrink-0 text-brand-500 transition-transform group-open:rotate-180"
+              aria-hidden
+            />
+            <Wrench className="h-5 w-5 text-brand-500" aria-hidden />
+            <span>{tPractice('toolsHeading')}</span>
+            <span
+              className={`${typographyClasses.body} font-normal text-gray-500 dark:text-gray-400`}
+            >
+              ({toolsList.length})
+            </span>
+          </summary>
+          <div className="border-t border-brand-200 dark:border-brand-700 px-4 pb-6 pt-2 sm:px-8 sm:pt-4">
+            {toolsIntroBlock}
+            {toolsGrid}
+            {toolsFooter}
+          </div>
+        </details>
+      );
+    }
+
+    return (
+      <div
+        className={`${shellClass} p-6 sm:p-8`}
+        data-testid="content-tools-block"
+      >
+        <h3
+          className={`${typographyClasses.h2} text-gray-900 dark:text-white mb-2 flex items-center gap-2`}
+        >
+          <Wrench className="w-5 h-5 text-brand-500" aria-hidden="true" />
+          {tPractice('toolsHeading')}
+        </h3>
+        {toolsIntroBlock}
+        {toolsGrid}
+        {toolsFooter}
       </div>
     );
   };
@@ -778,6 +916,9 @@ export function ContentBlockSlide({
             !sectionsList.slice(0, i).some((s) => s.collapsible);
           return (
             <Fragment key={i}>
+              {insertToolsBeforePatikra &&
+                i === patikraSectionIndex &&
+                renderToolsBlock()}
               {isFirstCollapsible &&
                 hasLinkedCopySections &&
                 renderPreCopyCheck()}
@@ -1536,129 +1677,7 @@ export function ContentBlockSlide({
       {hasLinkedCopySections &&
         !sectionsList.some((s) => s.collapsible) &&
         renderPreCopyCheck()}
-      {content.tools &&
-        content.tools.length > 0 &&
-        (() => {
-          const toolsList = content.tools!;
-          const toolsGrid = (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {toolsList.map((tool, idx) => (
-                <div
-                  key={idx}
-                  className="bg-white dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow"
-                >
-                  <div className="flex flex-wrap items-baseline gap-2 mb-2">
-                    {tool.url ? (
-                      <a
-                        href={tool.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`${typographyClasses.h3} text-brand-600 dark:text-brand-400 hover:text-brand-800 dark:hover:text-brand-200 underline underline-offset-2 inline-flex items-center gap-1`}
-                      >
-                        {tool.name}
-                        <ExternalLink
-                          className="w-3.5 h-3.5 flex-shrink-0"
-                          aria-hidden="true"
-                        />
-                      </a>
-                    ) : (
-                      <span
-                        className={`${typographyClasses.h3} text-gray-900 dark:text-white`}
-                      >
-                        {tool.name}
-                      </span>
-                    )}
-                  </div>
-                  {tool.description && (
-                    <p
-                      className={`${typographyClasses.bodyMuted} leading-snug mb-3`}
-                    >
-                      {tool.description}
-                    </p>
-                  )}
-                  {tool.useCases && tool.useCases.length > 0 && (
-                    <div>
-                      <p
-                        className={`${typographyClasses.labelUpper} text-gray-500 dark:text-gray-400 mb-1.5`}
-                      >
-                        {tPractice('popularUseCases')}
-                      </p>
-                      <ul className="flex flex-wrap gap-1.5">
-                        {tool.useCases.map((uc, i) => (
-                          <li key={i}>
-                            <span
-                              className={`inline-block ${typographyClasses.small} px-2 py-0.5 rounded-md bg-brand-100 dark:bg-brand-900/40 text-brand-700 dark:text-brand-300`}
-                            >
-                              {uc}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          );
-          const toolsIntroBlock = content.toolsIntro ? (
-            <p
-              className={`${typographyClasses.body} text-gray-700 dark:text-gray-300 mb-6`}
-            >
-              {content.toolsIntro}
-            </p>
-          ) : null;
-          const toolsFooter = (
-            <p
-              className={`${typographyClasses.small} text-gray-500 dark:text-gray-400 italic mt-5`}
-            >
-              {tPractice('toolsPrincipleNote')}
-            </p>
-          );
-          const shellClass =
-            'border-2 border-brand-200 dark:border-brand-800 rounded-2xl bg-gradient-to-b from-brand-50/80 to-white dark:from-brand-950/50 dark:to-gray-900';
-
-          if (content.toolsCollapsible) {
-            return (
-              <details className={`group ${shellClass} overflow-hidden`}>
-                <summary
-                  className={`flex cursor-pointer list-none items-center gap-2 p-4 sm:p-5 ${typographyClasses.h2} text-gray-900 dark:text-white [&::-webkit-details-marker]:hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900 rounded-2xl`}
-                  aria-label={tPractice('toolsCollapsibleAria')}
-                >
-                  <ChevronDown
-                    className="h-5 w-5 shrink-0 text-brand-500 transition-transform group-open:rotate-180"
-                    aria-hidden
-                  />
-                  <Wrench className="h-5 w-5 text-brand-500" aria-hidden />
-                  <span>{tPractice('toolsHeading')}</span>
-                  <span
-                    className={`${typographyClasses.body} font-normal text-gray-500 dark:text-gray-400`}
-                  >
-                    ({toolsList.length})
-                  </span>
-                </summary>
-                <div className="border-t border-brand-200 dark:border-brand-700 px-4 pb-6 pt-2 sm:px-8 sm:pt-4">
-                  {toolsIntroBlock}
-                  {toolsGrid}
-                  {toolsFooter}
-                </div>
-              </details>
-            );
-          }
-
-          return (
-            <div className={`${shellClass} p-6 sm:p-8`}>
-              <h3
-                className={`${typographyClasses.h2} text-gray-900 dark:text-white mb-2 flex items-center gap-2`}
-              >
-                <Wrench className="w-5 h-5 text-brand-500" aria-hidden="true" />
-                {tPractice('toolsHeading')}
-              </h3>
-              {toolsIntroBlock}
-              {toolsGrid}
-              {toolsFooter}
-            </div>
-          );
-        })()}
+      {!insertToolsBeforePatikra && renderToolsBlock()}
       {content.recognitionExercise && (
         <RecognitionExerciseBlock
           exercise={content.recognitionExercise}

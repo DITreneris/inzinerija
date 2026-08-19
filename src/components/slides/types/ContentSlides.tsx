@@ -451,14 +451,14 @@ export function SectionBreakSlide({
       className={`w-full ${footerShell} transition hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900 cursor-pointer min-h-[44px]`}
       aria-label={content.footer}
     >
-      <span className="text-xs font-semibold text-white flex items-center gap-2">
+      <span className="text-sm font-semibold text-white flex items-center gap-2">
         <ArrowRight className="w-4 h-4 flex-shrink-0" aria-hidden />
         {content.footer}
       </span>
     </button>
   ) : (
     <section className={footerShell} aria-label={t('nextStepAria')}>
-      <p className="text-xs font-semibold text-white flex items-center gap-2">
+      <p className="text-sm font-semibold text-white flex items-center gap-2">
         <ArrowRight className="w-4 h-4 flex-shrink-0" aria-hidden />
         {content.footer}
       </p>
@@ -645,11 +645,11 @@ export function SectionBreakSlide({
           className="pl-4 pr-3 py-3 text-left bg-slate-100 dark:bg-slate-800/60 border-emerald-500"
           ariaLabel={content.recap?.heading ?? ''}
         >
-          <h3 className="font-bold text-sm mb-1.5 text-gray-900 dark:text-white">
+          <h3 className={`${typographyClasses.h3} mb-1.5 text-gray-900 dark:text-white`}>
             {content.recap?.heading}
           </h3>
           {content.recap?.lead && (
-            <p className="text-xs text-gray-600 dark:text-gray-300 italic mb-2 leading-relaxed">
+            <p className={`${typographyClasses.body} text-gray-600 dark:text-gray-300 italic mb-2`}>
               {content.recap.lead}
             </p>
           )}
@@ -697,7 +697,7 @@ export function SectionBreakSlide({
                       aria-hidden
                     />
                   )}
-                  <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                  <span className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}>
                     {hasTermInItem && term ? (
                       <>
                         {before}
@@ -733,17 +733,17 @@ export function SectionBreakSlide({
             className={`py-2 pl-3 border-l-4 ${colors.kasToliau}`}
             ariaLabel={isEn ? 'What\u2019s next' : 'Kas toliau'}
           >
-            <h3 className="font-bold text-sm mb-1 text-gray-900 dark:text-white">
+            <h3 className={`${typographyClasses.h3} mb-1 text-gray-900 dark:text-white`}>
               {isEn ? 'What\u2019s next' : 'Kas toliau'}
             </h3>
             {hasNextSteps ? (
-              <ul className="space-y-0.5 text-xs text-gray-700 dark:text-gray-300 list-disc list-inside">
+              <ul className={`space-y-0.5 ${typographyClasses.body} text-gray-700 dark:text-gray-300 list-disc list-inside`}>
                 {(content.nextSteps ?? []).map((step, idx) => (
                   <li key={idx}>{step}</li>
                 ))}
               </ul>
             ) : (
-              <p className="text-xs text-gray-700 dark:text-gray-300">
+              <p className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}>
                 {content.subtitle}
               </p>
             )}

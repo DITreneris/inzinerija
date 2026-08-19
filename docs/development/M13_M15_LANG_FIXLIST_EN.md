@@ -1,6 +1,6 @@
 # M13–M15 EN proofreading fixlist (before → after)
 
-> **Scope:** M13–15 learner EN. **Status:** I1A P0+P1 **applied** 2026-08-17. W2 filler scan **applied**. P2 **skipped**. **I2 first-screen + cycle applied** 2026-08-18 (E2b-01…09).  
+> **Scope:** M13–15 learner EN. **Status:** I1A P0+P1 **applied** 2026-08-17. W2 filler scan **applied**. P2 **Wave G + Wave H applied** 2026-08-19 (Section: chrome; Soft Binding / funnel / 158 emotion). **I2 first-screen + cycle applied** 2026-08-18 (E2b-01…09). **Wave F P0+P1 applied** 2026-08-19 (cheap leaks + stub packs + AmE / sound first).  
 > **Source (read live):** `src/data/modules-en-m13-m15.json`. **Apply target:** [`scripts/build-en-m13-m15.mjs`](../../scripts/build-en-m13-m15.mjs) (`slideMeta`, `headingMap`) + [`scripts/lib/m13-en-plain-overrides.mjs`](../../scripts/lib/m13-en-plain-overrides.mjs) + EN branches in `m13*Content.ts`. Overlay-only patch **wipes** on `npm run build:modules-en-m13-m15`.  
 > **Severity:** P0 – meaning / first-screen FAIL; P1 – real error; P2 – polish (skip).  
 > **Term bank:** [`M13_M15_TERM_BANK.md`](M13_M15_TERM_BANK.md). Precedent: [`M10_M12_LANG_FIXLIST_EN.md`](M10_M12_LANG_FIXLIST_EN.md).
@@ -82,3 +82,29 @@ EN chrome kanonas: `brief` / `keyframe` / `checklist` / `Lab:` OK. KEISTI tik ka
 | E2b-10 | 13.9           | Consistency lab item               | + Consistency lab           | + consistency lab (EN)                        | P2 skip |
 
 **I2 apply:** E2b-01…09 ✅ 2026-08-18 via `m13-en-plain-overrides.mjs` + `build:modules-en-m13-m15`.
+
+## Wave F — I3–I5 (2026-08-19)
+
+| #     | slide                                               | after                                        | sev. |
+| ----- | --------------------------------------------------- | -------------------------------------------- | ---- |
+| EF-01 | 13.47                                               | title `I2V clip builder`                     | P0   |
+| EF-02 | 13.35 / 13.351                                      | shortTitle EN                                | P0   |
+| EF-03 | 13.9 / recap                                        | `What you learned` / `What you already know` | P0   |
+| EF-04 | 13.33 / 13.8                                        | unique bodies + 23 glossary twins            | P0   |
+| EF-05 | 13.34 / 13.5 / 13.6 / 13.7 / 13.101 / 13.35 / 13.11 | section packs                                | P0   |
+| EF-06 | 140 / 13.51                                         | knowledge / edit+audio subtitles             | P1   |
+| EF-07 | 158                                                 | EN `ownWorkTemplate` + Congratulations       | P0   |
+| EF-08 | M14 Q / 143 generic                                 | Sound first; no pipeline chrome              | P1   |
+| EF-09 | lock TS                                             | `recolor`                                    | P1   |
+
+**Wave F apply:** ✅ after `npm run build:modules-en-m13-m15`.
+
+## Wave H — §5.3 P2 (2026-08-19)
+
+| #     | slide  | after                                                                                       | sev. |
+| ----- | ------ | ------------------------------------------------------------------------------------------- | ---- |
+| EH-01 | 13.101 | heading `Art. 50 and Soft Binding`; body `Soft Binding (watermark)`                         | P2   |
+| EH-02 | 13.11  | heading `Platform, funnel and copy together`; funnel stages stay EN                         | P2   |
+| EH-03 | 158    | `Congratulations! You finished…`; tagline `audio`; `ownWorkLabel` EN; `nextStepCTA` aligned | P2   |
+
+**Wave H apply:** ✅ after `npm run build:modules-en-m13-m15`.

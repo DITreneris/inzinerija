@@ -803,8 +803,12 @@
     "m9DefaultMotivation": "Your task: copy the prompt below to AI, complete the task, and enter the result."
   },
   "i2vGen": {
-    "tldr": "In short: Describe the keyframe / scene, pick duration (3–5 s) and camera motion. The system builds an I2V (image-to-video) prompt – copy into Kling, Runway, Veo or Sora.",
-    "sectionTitle": "I2V clip parameters",
+    "tldr": "In short: Fill the frame, duration and motion – the system builds an image-to-video prompt. Copy it into a video tool.",
+    "sectionTitle": "Image-to-video",
+    "beat1": "1. Frame",
+    "beat2": "2. Duration and motion",
+    "beat3": "3. Same product",
+    "cycleHint": "After you copy: generate, change only one thing, then watch the last frame.",
     "labelKeyframe": "Keyframe / scene",
     "placeholderKeyframe": "E.g.: Hero product on a table, soft studio light, same angle as the locked frame",
     "labelDuration": "Duration",
@@ -829,7 +833,7 @@
     "chooseToolDesc": "Click – the prompt is copied and a new tab opens.",
     "openToolCopyAria": "Open {{name}} and copy prompt",
     "checkTitle": "Check:",
-    "checkText": "Does the prompt include a keyframe, 3 s first, one camera and one action? Will you watch the last second?"
+    "checkText": "Does the prompt include a keyframe, 3 s first, one camera and one action? Did you watch the last second – label readable, no new objects?"
   },
   "vaizdoGen": {
     "tldr": "In short: Fill in the fields below – the system will build the image prompt. Copy and paste into any image generation tool.",
@@ -838,7 +842,7 @@
     "stepText": "Text",
     "sectionCampaign": "Campaign context",
     "sectionVisual": "Visual essence",
-    "sectionText": "Text integration (optional)",
+    "sectionText": "Text integration",
     "labelGoal": "Goal description",
     "labelCampaignGoal": "Campaign goal (A/E/C)",
     "campaignGoalPlaceholder": "Pick A/E/C",

@@ -75,17 +75,17 @@ teaching-elements-overlay.json         ← curated Pattern / Shell / maturity
 
 | Bucket                         |                N |
 | ------------------------------ | ---------------: |
-| Skaidrės                       |              337 |
+| Skaidrės                       |              338 |
 | Naudoti SlideType              |               42 |
-| Live `sections[].image` unique |               48 |
-| Live `sections[].image` fields |               50 |
-| `diagramRenderers` keys        |               50 |
+| Live `sections[].image` unique |               49 |
+| Live `sections[].image` fields |               51 |
+| `diagramRenderers` keys        |               51 |
 | Off-renderer live šeimos       |                5 |
 | Orphaned                       |                2 |
 | ChoiceControl labai (audit)    |                7 |
-| Embed katalogas                |               47 |
+| Embed katalogas                |               48 |
 | `section.table`                | 51 / 45 skaidrių |
-| Inventory / overlay elements   |        201 / 201 |
+| Inventory / overlay elements   |        203 / 203 |
 
 _Šaltinis: `modules.json` + `diagramRenderers`; overlay `updatedAt`: **2026-08-01**._
 
@@ -117,6 +117,7 @@ _Šaltinis: `modules.json` + `diagramRenderers`; overlay `updatedAt`: **2026-08-
 | `diagram:m18_launch_gates`          | M18/18.19              | `linear-process`               | Taip  |        3 | M18LaunchGatesBlock (tollgate barriers)          |
 | `diagram:m13_media_pipeline`        | M13/13.12              | `linear-process`               | Taip  |        4 | M13MediaPipelineBlock                            |
 | `diagram:m13_postprod_steps`        | M13/13.52              | `linear-process`               | Taip  |        4 | M13PostprodBlock                                 |
+| `diagram:m13_still_workflow`        | M13/13.35              | `linear-process`               | Taip  |        3 | M13StillWorkflowBlock (desk stations)            |
 | `diagram:m13_prompt_stack`          | M13/13.2               | `stack`                        | Taip  |        4 | M13PromptStackBlock                              |
 | `diagram:m13_rule_of_thirds`        | M13/13.33              | `illustration`                 | Ne    |        2 | M13RuleOfThirdsBlock                             |
 | `diagram:m15_practice_loop`         | M15/150.25             | `dual-path`                    | Taip  |        3 | M15PracticeLoopBlock                             |
@@ -234,6 +235,7 @@ _Šaltinis: `modules.json` + `diagramRenderers`; overlay `updatedAt`: **2026-08-
 | `embed:toolChoiceBar:m7:90:s1`         | `sections[1].toolChoiceBar`                         | M7/90 (prompt-tool) |
 | `embed:toolChoiceBar:m7:84:s1`         | `sections[1].toolChoiceBar`                         | M7/84               |
 | `embed:toolChoiceBar:m10:10.48:s1`     | `sections[1].toolChoiceBar`                         | M10/10.48           |
+| `embed:toolChoiceBar:m13:13.5:s1`      | `sections[1].toolChoiceBar`                         | M13/13.5            |
 | `embed:toolChoiceBar:m10:10.35:s2`     | `sections[2].toolChoiceBar`                         | M10/10.35           |
 | `embed:toolChoiceBar:m10:10.36:s3`     | `sections[3].toolChoiceBar`                         | M10/10.36           |
 | `embed:toolChoiceBar:m10:10.37:s2`     | `sections[2].toolChoiceBar`                         | M10/10.37           |
@@ -282,8 +284,8 @@ _Šaltinis: `modules.json` + `diagramRenderers`; overlay `updatedAt`: **2026-08-
 
 | Kind             |   N | Avg maturity | Maturity ≤1 |
 | ---------------- | --: | -----------: | ----------: |
-| `diagram`        |  41 |         3.24 |           0 |
-| `embed`          |  47 |         2.11 |           0 |
+| `diagram`        |  42 |         3.24 |           0 |
+| `embed`          |  48 |         2.10 |           0 |
 | `lab`            |   7 |         3.14 |           0 |
 | `off-renderer`   |   5 |         2.80 |           0 |
 | `orphaned`       |   2 |         1.00 |           2 |

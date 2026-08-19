@@ -383,6 +383,11 @@
                     "type": "boolean",
                     "description": "Įrankių blokas – details/summary (pvz. M7 skaidrė 71)"
                   },
+                  "toolsPlacement": {
+                    "type": "string",
+                    "enum": ["afterSections", "beforePatikra"],
+                    "description": "Default afterSections. beforePatikra – katalogas prieš Patikra/Check (13.3)."
+                  },
                   "tools": {
                     "type": "array",
                     "items": {

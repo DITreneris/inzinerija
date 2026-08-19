@@ -2,6 +2,8 @@
 
 > Formatas: `YYYY-MM-DD | kontekstas | problema | sprendimas | failai` (`dod_01.md` §5).
 
+2026-08-19 | M13 13.35 still workflow | Naujas `image` be overlay = `audit:teaching-elements --strict` FAIL | Overlay + satellite + renderer **prieš** JSON insert; metafora desk-stations ≠ 13.12/13.52 | teaching-elements-overlay.json, M13StillWorkflow\*, DIAGRAMU_M13_M15_REGISTRY.md
+
 2026-08-16 | M10 10.15 hierarchy siūlas | Amber kotas × 0.72 + label ant ašies = lūžusi rodyklė; temptation = process antgalis | Kotas `flow` 2.5 opacity 1; label kairėje; T-lentyna = belongs-to, ne tip | hierarchyDropGeometry.ts, M10TriggerFlow*
 2026-08-16 | M12 120.5 2 eilių stalas | 2 eilių stalas 1024 px = skylė spine arba B∩Eval; unknot invariantė B.left-of-Eval sulaužė sakinį | Skaitymo modelis = šakė vamzdyje (A virš / B po, tas pats x); in-place scale + off-shaft pills | m12MultiAgentSchemaLayout.ts, M12MultiAgentSchemaDiagram.tsx
 2026-08-16 | M12 120.5 spaghetti unknot | fan-in į Eval left spine Y + B po Eval = spaghetti; du veiksmažodžiai šakėje | collect po stalu, tipas į bottom; B.right+24≤Eval.left — SUPERSEDED 2026-08-16: tuščias C–E = sulaužytas sakinys; grįžta šakė vamzdyje | m12MultiAgentSchemaLayout.ts

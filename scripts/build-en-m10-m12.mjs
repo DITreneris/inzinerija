@@ -1213,7 +1213,7 @@ const en = {
               },
             ],
             reflectionPrompt:
-              'META: You are a training reflection assistant. Goal – help me consolidate what I learned in Module 10.\nINPUT: I just finished training on AI agents – depth (Chat→Flow), multi-agent work, 5 workflow patterns, 3A, closed learning loop and prompts.\nOUTPUT: Ask 3 questions: (1) Which agent scenario could I apply today? (2) Which lesson after a trial would I want to capture? (3) What do I want to try first? After my answers, give one concrete tip.',
+              'META: You are a learning reflection assistant. Goal – help me consolidate what I learned in Module 10.\nINPUT: I just finished training on AI agents – depth (Chat→Flow), multi-agent work, 5 workflow patterns, 3A, closed learning loop and prompts.\nOUTPUT: Ask 3 questions: (1) Which agent scenario could I apply today? (2) Which lesson after a trial would I want to capture? (3) What do I want to try first? After my answers, give one concrete tip (15 minutes or less, named tool or file).',
             reflectionTitle: 'Reflection prompt',
             tagline:
               'Agent = steps + tools + limits – your foundation for automation.',
@@ -1494,7 +1494,7 @@ const en = {
             },
             reflectionTitle: 'Reflection prompt',
             reflectionPrompt:
-              'META: You are a training reflection assistant. Goal – consolidate knowledge after the Agent path test.\nINPUT: I just finished the Module 11 knowledge check – agent cycle, 3A, workflow patterns, tools and prompt safeguards.\nOUTPUT: Ask 3 questions: (1) Which agent step will I apply within 24 hours? (2) What was newest to you? (3) What do I want to try in Module 12? After my answers, give 1 concrete tip.',
+              'META: You are a learning reflection assistant. Goal – consolidate knowledge after the Agent path test.\nINPUT: I just finished the Module 11 knowledge check – agent cycle, 3A, workflow patterns, tools and prompt safeguards.\nOUTPUT: Ask 3 questions: (1) Which agent step (trigger, action, or human approval) will I do within 24 hours? (2) Which test question would I most likely get wrong at work – what will I review? (3) Which safeguard (limits or approval) will I write down before the project? After my answers, give one concrete tip (15 minutes or less, named tool or file).',
           },
         },
         {
@@ -2298,7 +2298,7 @@ en.modules.push({
         ],
         reflectionTitle: 'Reflection prompt',
         reflectionPrompt:
-          'META: You are a training reflection assistant. Goal – consolidate Agent engineering project results.\nINPUT: I just finished Module 12: at least one of 3 required practices (Automate / Augment / Autonomize) and maybe optional scenarios – I have a workflow diagram and artifacts.\nOUTPUT: Ask 3 questions: (1) Which agent or workflow step will I apply within 24 hours? (2) What was newest to you? (3) What do I want to try first with a real process? After my answers, give one concrete tip.',
+          'META: You are a learning reflection assistant. Goal – consolidate Agent engineering project results.\nINPUT: I just finished Module 12: a prompt-only multi-agent start or the full 3-practice path. I have a diagram, prompts, one trial, and a skill pack.\nOUTPUT: Ask 3 questions: (1) Which agent or workflow step will I apply within 24 hours? (2) Which lesson do I lock after the first trial? (3) What will I update: a rule, a prompt, a skill, or a test? After my answers, give one concrete tip (15 minutes or less, named tool or file).',
         tagline: '3 practices + artifacts + a lesson learned = a result that improves next time.',
         nextStepCTA: 'Go to Module 13: Content engineering with AI',
         firstAction24h:

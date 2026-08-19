@@ -30,7 +30,7 @@ const PLATFORMS_LT = [
   'LinkedIn',
   'Facebook',
   'Web baneris',
-  'Lauko reklama (Print)',
+  'Lauko reklama',
 ] as const;
 const PLATFORMS_EN = [
   'Instagram',
@@ -41,8 +41,8 @@ const PLATFORMS_EN = [
 ] as const;
 
 const TONES_LT = [
-  'Premium (Prabangus)',
-  'Bold (Drąsus)',
+  'Prabangus',
+  'Drąsus',
   'Minimalistinis',
   'Žaismingas',
   'Ekspertiškas',
@@ -71,9 +71,9 @@ const STYLES_EN = [
 ] as const;
 
 const LIGHTINGS_LT = [
-  'Cinematic (Kino apšvietimas)',
+  'Kino apšvietimas',
   'Minkšta dienos šviesa',
-  'Auksinė valanda (Golden Hour)',
+  'Auksinė valanda',
   'Studijinis apšvietimas',
   'Neoninis apšvietimas',
 ] as const;
@@ -86,11 +86,11 @@ const LIGHTINGS_EN = [
 ] as const;
 
 const CAMERAS_LT = [
-  'Close-up (Stambus planas)',
-  'Akių lygis (Eye level)',
-  'Iš viršaus (Flatlay)',
-  'Platus kampas (Wide angle)',
-  'Iš apačios (Hero shot)',
+  'Stambus planas',
+  'Akių lygis',
+  'Iš viršaus',
+  'Platus kampas',
+  'Iš apačios',
 ] as const;
 const CAMERAS_EN = [
   'Close-up',
@@ -129,9 +129,9 @@ const TYPOGRAPHIES_EN = [
 const ASPECT_RATIOS = ['1:1', '16:9', '9:16'] as const;
 
 const CAMPAIGN_GOALS_LT = [
-  'Awareness (atpažįstamumas)',
-  'Engagement (įsitraukimas)',
-  'Conversion (konversija)',
+  'Atpažįstamumas',
+  'Įsitraukimas',
+  'Konversija',
 ] as const;
 const CAMPAIGN_GOALS_EN = ['Awareness', 'Engagement', 'Conversion'] as const;
 
@@ -266,35 +266,35 @@ function buildPresets(isEn: boolean): Record<PresetId, Partial<FormData>> {
       goal: 'Naujo produkto pristatymas',
       audience: '25–40 m. e-komercijos pirkėjai',
       platform: 'Instagram',
-      tone: 'Premium (Prabangus)',
+      tone: 'Prabangus',
       object: 'Prabangus odinis rankinis ant šviesaus akmens paviršiaus',
       style: 'Tikroviška nuotrauka',
       lighting: 'Studijinis apšvietimas',
-      camera: 'Close-up (Stambus planas)',
+      camera: 'Stambus planas',
       color: 'Šilti auksiniai tonai',
       headline: 'Nauja kolekcija jau čia',
       cta: 'Pirkti dabar',
       textPosition: 'Apatinis trečdalis',
       typography: 'Modernus Sans-serif',
       aspectRatio: '1:1',
-      campaignGoal: 'Conversion (konversija)',
+        campaignGoal: 'Konversija',
     },
     events: {
       goal: 'Renginio registracijų auginimas',
       audience: 'Marketingo specialistai ir verslo atstovai',
       platform: 'LinkedIn',
-      tone: 'Bold (Drąsus)',
+      tone: 'Drąsus',
       object: 'Konferencijos scena su LED ekranu ir auditorija',
       style: 'Kinematografinis stilius',
       lighting: 'Neoninis apšvietimas',
-      camera: 'Platus kampas (Wide angle)',
+      camera: 'Platus kampas',
       color: 'Elektrinė mėlyna ir violetinė',
       headline: 'Didžiausias metų renginys',
       cta: 'Registruotis',
       textPosition: 'Viršutinė dalis',
       typography: 'Modernus Sans-serif',
       aspectRatio: '16:9',
-      campaignGoal: 'Awareness (atpažįstamumas)',
+      campaignGoal: 'Atpažįstamumas',
     },
     brand: {
       goal: 'Prekės ženklo žinomumo didinimas',
@@ -304,14 +304,14 @@ function buildPresets(isEn: boolean): Record<PresetId, Partial<FormData>> {
       object: 'Minimalistinis produktas ant skaidraus stiklo podiumo',
       style: 'Mados žurnalo stilius',
       lighting: 'Minkšta dienos šviesa',
-      camera: 'Akių lygis (Eye level)',
+      camera: 'Akių lygis',
       color: 'Gili indigo su gintaro akcentais',
       headline: 'Atpažink premium kokybę',
       cta: 'Sužinoti daugiau',
       textPosition: 'Centras',
       typography: 'Prabangus Serif',
       aspectRatio: '16:9',
-      campaignGoal: 'Awareness (atpažįstamumas)',
+      campaignGoal: 'Atpažįstamumas',
     },
     social: {
       goal: 'Aktyvumo didinimas socialiniuose tinkluose',
@@ -320,15 +320,15 @@ function buildPresets(isEn: boolean): Record<PresetId, Partial<FormData>> {
       tone: 'Žaismingas',
       object: 'Džiaugsminga pora su produktu miesto aplinkoje',
       style: 'Tikroviška nuotrauka',
-      lighting: 'Auksinė valanda (Golden Hour)',
-      camera: 'Iš viršaus (Flatlay)',
+      lighting: 'Auksinė valanda',
+      camera: 'Iš viršaus',
       color: 'Ryškus koralinis ir švelni mėlyna',
       headline: 'Pajusk naują energiją',
       cta: 'Išbandyk dabar',
       textPosition: 'Dinaminis išdėstymas',
       typography: 'Modernus Sans-serif',
       aspectRatio: '1:1',
-      campaignGoal: 'Engagement (įsitraukimas)',
+      campaignGoal: 'Įsitraukimas',
     },
   };
 }
@@ -463,6 +463,7 @@ export default function VaizdoGeneratoriusSlide({
   );
   const [copied, setCopied] = useState(false);
   const [showTips, setShowTips] = useState(false);
+  const [showTools, setShowTools] = useState(false);
   const [activeStep, setActiveStep] = useState(1);
   const [activePresetId, setActivePresetId] = useState<PresetId | null>(null);
 
@@ -604,7 +605,7 @@ export default function VaizdoGeneratoriusSlide({
     parts.push(`${style}, ${coreVisual}.`);
 
     if (isEn) {
-      const technical = `${camera}, ${lighting}${color ? `, ${color} color palette` : ''}, ultra-detailed, highest quality, professional composition. Aspect ratio: ${aspectRatio}.`;
+      const technical = `${camera}, ${lighting}${color ? `, ${color} color palette` : ''}, professional composition. Aspect ratio: ${aspectRatio}.`;
       parts.push(technical);
 
       if (goal || audience || platform || campaignGoal) {
@@ -622,7 +623,7 @@ export default function VaizdoGeneratoriusSlide({
         );
       }
     } else {
-      const technical = `${camera}, ${lighting}${color ? `, ${color} spalvų gama` : ''}, itin detalu, aukščiausia kokybė, profesionali kompozicija. Proporcijos: ${aspectRatio}.`;
+      const technical = `${camera}, ${lighting}${color ? `, ${color} spalvų gama` : ''}, profesionali kompozicija. Proporcijos: ${aspectRatio}.`;
       parts.push(technical);
 
       if (goal || audience || platform || campaignGoal) {
@@ -1141,37 +1142,49 @@ export default function VaizdoGeneratoriusSlide({
       </div>
 
       <section className="mt-4">
-        <h3
-          className={`${typographyClasses.h2} text-slate-900 dark:text-slate-100 mb-2`}
+        <button
+          type="button"
+          onClick={() => setShowTools((open) => !open)}
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[44px] px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/40 text-sm font-bold text-brand-700 dark:text-brand-300 hover:border-brand-500"
+          aria-expanded={showTools}
         >
           {t('chooseGeneratorTitle')}
-        </h3>
-        <p
-          className={`${typographyClasses.body} text-slate-500 dark:text-slate-400 mb-4`}
-        >
-          {t('chooseGeneratorDesc')}
-        </p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-          {imageTools.map((tool) => (
-            <button
-              key={tool.name}
-              type="button"
-              onClick={() => tool.url && handleOpenTool(tool.url)}
-              className="group bg-white dark:bg-slate-800/40 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-brand-500 dark:hover:border-brand-400 hover:shadow-md transition-all text-left flex flex-col min-h-[44px]"
-              aria-label={t('openToolCopyAria', { name: tool.name })}
+          {showTools ? (
+            <ChevronUp className="w-4 h-4" />
+          ) : (
+            <ChevronDown className="w-4 h-4" />
+          )}
+        </button>
+        {showTools ? (
+          <>
+            <p
+              className={`${typographyClasses.body} text-slate-500 dark:text-slate-400 mt-3 mb-4`}
             >
-              <div className="flex items-center gap-2 mb-1">
-                <span className="font-bold text-sm text-slate-900 dark:text-slate-100 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
-                  {tool.name}
-                </span>
-                <ExternalLink className="w-3 h-3 text-slate-400 dark:text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </div>
-              <span className="text-xs text-slate-500 dark:text-slate-400 leading-snug line-clamp-2">
-                {tool.description}
-              </span>
-            </button>
-          ))}
-        </div>
+              {t('chooseGeneratorDesc')}
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {imageTools.map((tool) => (
+                <button
+                  key={tool.name}
+                  type="button"
+                  onClick={() => tool.url && handleOpenTool(tool.url)}
+                  className="group bg-white dark:bg-slate-800/40 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-brand-500 dark:hover:border-brand-400 hover:shadow-md transition-all text-left flex flex-col min-h-[44px]"
+                  aria-label={t('openToolCopyAria', { name: tool.name })}
+                >
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="font-bold text-sm text-slate-900 dark:text-slate-100 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+                      {tool.name}
+                    </span>
+                    <ExternalLink className="w-3 h-3 text-slate-400 dark:text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                  <span className="text-xs text-slate-500 dark:text-slate-400 leading-snug line-clamp-2">
+                    {tool.description}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </>
+        ) : null}
       </section>
 
       <Banner

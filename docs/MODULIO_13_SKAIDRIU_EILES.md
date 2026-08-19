@@ -13,13 +13,14 @@
 | 2    | **13.12**                   | **Generatyvinės medijos grandinė (MUST)**       | Brief → stills → refs → I2V → garsas → edit → QA/provenance. 2026 stuburas prieš įrankių detales.      |
 | 3    | **13.15**                   | **Skyrius: Vaizdo generavimas (section-break)** | Skiriamoji skaidrė – vizualiai atskiria skyrių „Vaizdai“.                                              |
 | 4    | 13.2                        | Vaizdo prompto pagrindai                        | Content-block: Trumpai, formulė, CopyButton, Patikra.                                                  |
-| 5    | 13.3                        | Stilius ir proporcijos (vaizdai)                | Brand consistency (MUST); collapsible įrankių pozicionavimas (FLUX, GPT-Image, …).                     |
+| 5    | 13.3                        | Stilius ir proporcijos (vaizdai)                | Brand consistency (MUST); 6 starto kortelės **prieš Patikra** (ne collapsible).                        |
 | 5a   | **13.31**                   | **Savitikra: stilius ir proporcijos**           | Warm-up po 13.3.                                                                                       |
 | 5b   | **13.32**                   | **Character / product consistency (MUST)**      | 3–5 refs, same-product lock; po brand, prieš kompoziciją.                                              |
 | 5b2  | **13.325**                  | **Lab: Consistency Drift**                      | Ref checklist + drift diagnosis lab; Feature Doc `M13_CONSISTENCY_LOCK_LAB.md`; po 13.32, prieš 13.33. |
-| 5c   | **13.33**                   | **Kompozicija ir kadras (optional)**            | Optional: trečdalių taisyklė, kamera.                                                                  |
+| 5c   | **13.33**                   | **Kompozicija ir kadras (MUST)**                | Trečdalių taisyklė, kamera – Trumpas kelias **įtraukia**.                                              |
 | 5d   | **13.34**                   | **Praktika: atpažink stilių ir proporcijas**    | Recognition pratimas.                                                                                  |
-| 5e   | **13.35**                   | **Workflow ir MASTER šablonai (optional)**      | 5 žingsnių workflow, MASTER, ready prompts.                                                            |
+| 5e   | **13.35**                   | **Vaizdų darbo eiga**                           | Skip-only (be badge); 5 stočių schema `m13_still_workflow` + 1 Daryk.                                  |
+| 5e2  | **13.351**                  | **MASTER šablonai**                             | Skip-only (be badge); MASTER + vienas Ready; 8 scenarijai collapsible.                                 |
 | 5f   | **13.37**                   | **Vaizdo generatorius (interaktyvus)**          | Interaktyvus generatorius.                                                                             |
 | 6    | **13.36**                   | **Skyrius: Video generavimas (section-break)**  | Skyrius „Video“.                                                                                       |
 | 7    | 13.4                        | Scenarijus trumpam vaizdo įrašui                | Storyboard, 3–5 s klipai, image→video, audio-first hint.                                               |
@@ -32,7 +33,7 @@
 | 11   | 13.7                        | Garsai, licencijos ir loudness                  | SFX + commercial license + LUFS.                                                                       |
 | 12   | **13.101** (tema **13.10**) | **Verslas ir rizikos (MUST)**                   | KPI/A/B + Legal + **C2PA/SynthID/disclosure** + QA.                                                    |
 | 13   | **13.11**                   | **Workflow: nuo brief iki publikacijos (MUST)** | Verslo ciklas; nuoroda į **13.12** techninį pipeline.                                                  |
-| 14   | 13.8                        | Žodynėlis (optional)                            | + CPI, C2PA, Soft Binding, audio-first, reference lock.                                                |
+| 14   | 13.8                        | Žodynėlis (skip-only, be badge)                 | + CPI, C2PA, Soft Binding, audio-first, reference lock.                                                |
 | 15   | 13.9                        | Modulio 13 santrauka                            | 5 blokų modelis; CTA į M14 / M15.                                                                      |
 
 ---

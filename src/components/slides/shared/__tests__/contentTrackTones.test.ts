@@ -6,6 +6,7 @@ import {
   M13_MEDIA_PIPELINE_TONES,
   M13_POSTPROD_TONES,
   M13_PROMPT_STACK_TONES,
+  M13_STILL_WORKFLOW_TONES,
   M13_TURINIO_WORKFLOW_TONES,
 } from '../contentTrackDiagramTones';
 import {
@@ -30,6 +31,13 @@ describe('contentTrack tones (GOLDEN §6b)', () => {
       'emerald',
     ]);
     expect(M13_POSTPROD_TONES).toEqual(['brand', 'amber', 'slate', 'emerald']);
+    expect(M13_STILL_WORKFLOW_TONES).toEqual([
+      'brand',
+      'amber',
+      'slate',
+      'amber',
+      'emerald',
+    ]);
 
     for (const tone of [
       ...M13_AEC_TONES,
@@ -38,6 +46,7 @@ describe('contentTrack tones (GOLDEN §6b)', () => {
       ...M13_TURINIO_WORKFLOW_TONES,
       ...M13_CONSISTENCY_LOCK_TONES,
       ...M13_POSTPROD_TONES,
+      ...M13_STILL_WORKFLOW_TONES,
     ]) {
       expect(CONTENT_TRACK_TONE_SET.has(tone)).toBe(true);
       expect(DIAGRAM_TONE_COLORS[tone].bottom).toMatch(/^#/);

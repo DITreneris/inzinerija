@@ -1009,7 +1009,7 @@
             ],
             "tagline": "Structured prompts = predictable results = better efficiency",
             "reflectionTitle": "Reflection prompt",
-            "reflectionPrompt": "META: You are a learning reflection assistant. Goal – help consolidate knowledge after Module 1.\nINPUT: I just finished training on prompt engineering – the 6-block system (Meta, Input, Output, Reasoning, Quality, Advanced) and workflow principles.\nOUTPUT: Ask 3 questions: (1) Which block could I use at work today? (2) What was newest or most surprising? (3) What do I want to try first? After my answers – 1 concrete tip on how to start.",
+            "reflectionPrompt": "META: You are a learning reflection assistant. Goal – help consolidate knowledge after Module 1.\nINPUT: I just finished training on prompt engineering – the 6-block system (Meta, Input, Output, Reasoning, Quality, Advanced) and workflow principles.\nOUTPUT: Ask 3 questions: (1) Which one work task will I run with Meta + Input + Output within 24 hours? (2) Where does the result most likely drift without structure? (3) What will I deliberately leave out of the first prompt so it stays short? After my answers, give one concrete tip (15 minutes or less, named tool or file).",
             "abilityBefore": "You wrote prompts loosely – results were inconsistent.",
             "abilityAfter": "You can structure a prompt with 6 blocks and choose Basic vs Workflow.",
             "firstAction24h": "Today write one work prompt with Meta + Input + Output and run it in an AI tool.",
@@ -2090,7 +2090,7 @@
               }
             ],
             "reflectionTitle": "Reflection prompt",
-            "reflectionPrompt": "META: You are a learning reflection assistant. Goal – help consolidate practical knowledge after Module 3.\nINPUT: I just finished the practice module – I applied the 6-block system in 6 business scenarios (board report, sales analysis, marketing plan, internal comms, people analysis, complaint handling).\nOUTPUT: Ask 3 questions: (1) Which scenario could I use at work today? (2) What was newest in the practice? (3) What do I want to try with my real data? After my answers – 1 concrete tip on how to start.",
+            "reflectionPrompt": "META: You are a learning reflection assistant. Goal – help consolidate practical knowledge after Module 3.\nINPUT: I just finished the practice module – I applied the 6-block system in 6 business scenarios (board report, sales analysis, marketing plan, internal comms, people analysis, complaint handling).\nOUTPUT: Ask 3 questions: (1) Which scenario could I use at work today? (2) Where did the 6 blocks still feel too long or too short? (3) What do I want to try with my real data? After my answers, give one concrete tip (15 minutes or less, named tool or file).",
             "tagline": "6 blocks + 6 scenarios = your template library for the workday",
             "footer": "Next – slide 10: Part 1 summary",
             "abilityBefore": "You knew the theory but lacked your own practice prompt set.",
@@ -2174,7 +2174,7 @@
               }
             ],
             "reflectionTitle": "Reflection prompt",
-            "reflectionPrompt": "META: You are a learning reflection assistant. Goal – help consolidate knowledge after Part 1.\nINPUT: I just finished 3 modules: 6-block system (Meta, Input, Output, Reasoning, Quality, Advanced), knowledge quiz, and 6 practice scenarios.\nOUTPUT: Ask 3 questions: (1) What can I apply at work today? (2) What was newest or most surprising? (3) What do I want to try first? After my answers – 1 concrete tip on how to start.",
+            "reflectionPrompt": "META: You are a learning reflection assistant. Goal – help consolidate knowledge after Part 1.\nINPUT: I just finished 3 modules: 6-block system (Meta, Input, Output, Reasoning, Quality, Advanced), knowledge quiz, and 6 practice scenarios.\nOUTPUT: Ask 3 questions: (1) Which one work task will I do with the 6 blocks without the training slides? (2) Where would I still write a prompt from memory? (3) What will I save as my first template (short name)? After my answers, give one concrete tip (15 minutes or less, named tool or file).",
             "tagline": "3 modules = 6 blocks + quiz + 6 scenarios – your foundation for what's next.",
             "abilityBefore": "You used AI without a clear 6-block system.",
             "abilityAfter": "You finished Part 1: structure, check, and practice – ready for the advanced path.",

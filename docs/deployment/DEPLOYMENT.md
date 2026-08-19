@@ -33,7 +33,7 @@ Detalios instrukcijos yra `README.md`:
 - **Build:** `npm run build:corporate12` (`VITE_MAX_BUILD_MODULE=12`, be `VITE_MVP_MODE`).
 - **Bundle:** `*-m1-m12.json` (generate:core-data); M10–12 EN overlay merge. M13–15 **nėra** client-side.
 - **Prieiga:** viešas Stripe = tier 3 / 6 (M1–6). Corporate / Supabase grant = tier 9 / **12** (M7–18 corporate iki 2027-01). Gate kai tier 0.
-- **Pin:** live **v1.6.2** (`c35a1f5`, PR #92) kol marketingas neperpins. Training cut **v1.6.3**. **12 live per Supabase** (`highest_plan=12` → `access_tier=12`). Stripe Agentų €199 = Phase 2, ne blokas.
+- **Pin:** live **v1.6.3** (`7e4c3bf`, [PR #96](https://github.com/DITreneris/promptanatomy/pull/96); ankstesnis v1.6.2 = PR #92). Release tag = live pin. Unreleased HEAD ≠ re-pin. **12 live per Supabase** (`highest_plan=12` → `access_tier=12`). Stripe Agentų €199 = Phase 2, ne blokas.
 - **Handoff:** [06_marketingo_memo_corporate12_supabase.md](../../06_marketingo_memo_corporate12_supabase.md), [MARKETING_SUBMODULE_PIN_CORPORATE12.md](MARKETING_SUBMODULE_PIN_CORPORATE12.md).
 
 ### M1–9 profilis (fallback)
@@ -47,7 +47,7 @@ Detalios instrukcijos yra `README.md`:
 - **Build:** `npm run build:corporate15` (`VITE_MAX_BUILD_MODULE=15`, be `VITE_MVP_MODE`).
 - **Bundle:** `*-m1-m15.json` (generate:core-data); M13–15 EN overlay merge; Vaizdo/I2V **live** (ne stub).
 - **Prieiga:** magic link `access_tier=15` → moduliai 1–15; `MAGIC_LINK_TIERS` + `api/verify-access` priima 3|6|9|12|15.
-- **Cutover:** corporate grant / later; ne 2026 viešas SKU. Live pin **v1.6.2** / M1–12 kol marketingas perjungia į **v1.6.3**.
+- **Cutover:** corporate grant / later; ne 2026 viešas SKU. Live pin **v1.6.3** / M1–12; corporate15 = repo-ready, ne default Vercel cutover.
 
 ### Prieigos lygis (tier 3, 6, 9, 12, 15)
 
@@ -113,8 +113,8 @@ Aplikacija rodo modulius tik iki `getMaxAccessibleModuleId()` (šaltinis: `src/u
 
 **Build komandos:**
 
-- **Production (Vercel M1–9):** `npm run build:production`
-- **Corporate12 (M1–12):** `npm run build:corporate12`
+- **Vercel production (M1–12):** `npm run build:corporate12`
+- **M1–9 profilis (fallback):** `npm run build:production`
 - **Corporate15 (M1–15):** `npm run build:corporate15`
 - Pilnas SOT (authoring): `npm run build` (be env).
 - Core 1–6 demo (GitHub Pages): `VITE_MVP_MODE=1 npm run build` (žr. README).

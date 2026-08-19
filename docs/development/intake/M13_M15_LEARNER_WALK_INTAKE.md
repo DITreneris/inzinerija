@@ -7,20 +7,21 @@
 > **Statusas:** M14 `140→143` **walked**. **M14-ITEMS** ✅ 2026-08-18. M15 `150→158` **walked** (Walk RAW close). **M15-EMPTY / GRID / PROMPTS / I3 + I2-M14 + I2-M13 shipped** 2026-08-18. TRIM/TE neliesti.  
 > **Craft (ne šis intake):** Banga 1–3 C-M1–M3 + C-S1–S4 ✅ [`M13_M15_CRAFT_MOSCOW_2026-08.md`](M13_M15_CRAFT_MOSCOW_2026-08.md). Could parked.  
 > **Kiss shipped 2026-08-19:** Banga 0+1+2 chrome/`151` skip/`143` gloss/`142` refleksija/`13.101` pointer/`13.35` Ready collapse. Ne TE. Could C-C1 vis dar parked.  
-> **Kalbos auditas:** term bank + fixlistos. W1–W3 + I2-M14 + I2-M13 ✅.
+> **Kalbos auditas:** term bank + fixlistos. W1–W3 + I2-M14 + I2-M13 ✅.  
+> **M13 owner walk (naujas ciklas):** Phase A OPEN [`M13_OWNER_WALK_INTAKE_2026-08.md`](M13_OWNER_WALK_INTAKE_2026-08.md) — pirma `13.1`; **be JSON**. Šis failas = M14/M15 walk istorija.
 
 ---
 
 ## 0. Freeze vs intake
 
-| Sluoksnis                 | Būsena                                | Ką tai reiškia                                                              |
-| ------------------------- | ------------------------------------- | --------------------------------------------------------------------------- |
-| **M13 gyvas turinys**     | FREEZE TRIM/TE · **I2 kalba ✅**      | First-screen + ciklas shipped. Neliečiam metaforų / TE.                     |
-| **M14 lukštas**           | §3.4a1 OK                             | `140 → 140.5 → 141 → 142 → 143` neliečiama.                                 |
-| **M14 stuburas + chrome** | Wave 1 + I2-M14 done                  | Chip’ai LT; 0 % → Modulio 13; `140`/`143` chrome. `Savitikra` KEEP.         |
-| **M15**                   | **shipped** 2026-08-18                | Compact `practice-scenario` + `isM15` grid + §2.11 promptai + I3 atmintinė. |
-| **Šis intake**            | **OPEN** Walk RAW                     | **M14-ITEMS** shipped; M13 walk gali tęstis; I2 chrome done.                |
-| **LANG-M1315**            | W1–W3 + I2-M14 + I3 + **I2-M13 done** | TRIM/TE neliesti.                                                           |
+| Sluoksnis                 | Būsena                                | Ką tai reiškia                                                                              |
+| ------------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------- |
+| **M13 gyvas turinys**     | FREEZE TRIM/TE · **I2 kalba ✅**      | First-screen + ciklas shipped. Neliečiam metaforų / TE.                                     |
+| **M14 lukštas**           | §3.4a1 OK                             | `140 → 140.5 → 141 → 142 → 143` neliečiama.                                                 |
+| **M14 stuburas + chrome** | Wave 1 + I2-M14 done                  | Chip’ai LT; 0 % → Modulio 13; `140`/`143` chrome. `Savitikra` KEEP.                         |
+| **M15**                   | **shipped** 2026-08-18                | Compact `practice-scenario` + `isM15` grid + §2.11 promptai + I3 atmintinė.                 |
+| **Šis intake**            | M14/M15 **uždaryta**                  | M13 skaidrių walk → [`M13_OWNER_WALK_INTAKE_2026-08.md`](M13_OWNER_WALK_INTAKE_2026-08.md). |
+| **LANG-M1315**            | W1–W3 + I2-M14 + I3 + **I2-M13 done** | TRIM/TE neliesti.                                                                           |
 
 **Kodėl pre-triage be walk:** M11 parodė, kad shell 4.0 ≠ item kokybė. Live JSON jau turi leak + EN filler – Wave 1 neblokuojamas.
 
@@ -44,33 +45,33 @@
 
 ### 1.1 Intake žurnalas
 
-| #   | Data       | Skaidrė               | Tema                                                                               | Kur            | Statusas                                         |
-| --- | ---------- | --------------------- | ---------------------------------------------------------------------------------- | -------------- | ------------------------------------------------ |
-| 1   | 2026-08-17 | `140.5` / `141`       | `m14-warm-1` ≈ `m14-q2` (brand + 1:1/9:16)                                         | §2.1           | **apdorota** · Wave 1                            |
-| 2   | 2026-08-17 | `140.5` / `141`       | `m14-warm-2` ≈ `m14-q10` (audio-first)                                             | §2.1           | **apdorota** · Wave 1                            |
-| 3   | 2026-08-17 | `140` / `141` / `142` | Learner `pipeline` / `workflow` po M13 plain                                       | §2.2           | **apdorota** · Wave 1                            |
-| 4   | 2026-08-17 | `141` q1/q3/q4        | Thin `Tik X` distractoriai                                                         | §2.3           | **apdorota** · Wave 1                            |
-| 5   | 2026-08-17 | `141` q2/q6/q8        | `relatedSlideId` vs 2026 stuburas                                                  | §2.4           | **apdorota** · Wave 1                            |
-| 6   | 2026-08-17 | EN `141`              | Walk filler (`Only one narrow detail`)                                             | §2.5           | **apdorota** · Wave 1 durable                    |
-| 7   | 2026-08-17 | EN `140` / `140.5`    | whyBenefit ≠ LT; `shortTitle` = `Savitikra`                                        | §2.5           | **apdorota** · Wave 1                            |
-| 8   | 2026-08-17 | `158`                 | LT stats label `Quick start`                                                       | §2.6           | **apdorota** · Wave 2 LHF                        |
-| 9   | 2026-08-17 | `140→143`             | Owner walk RAW                                                                     | §R.M14         | **140 first-screen** · 2026-08-18                |
-| 10  | 2026-08-17 | `150→158`             | Owner walk RAW                                                                     | §R.M15         | **150–158 walked** · 2026-08-18                  |
-| 11  | 2026-08-17 | M13                   | Owner walk tik jei FAIL                                                            | §R.M13         | tuščia (be 130 paste)                            |
-| 12  | 2026-08-18 | `140`                 | First-screen žargonas (subtitle / whyBenefit / CTA dump / temos chip’ai)           | §R.M14 · §2.7  | **apdorota** · I2-M14                            |
-| 13  | 2026-08-18 | `140.5`               | Subtitle = Wave 1 ticket stuburas + `M15`; nebaigtas chrome jausmas                | §R.M14         | **apdorota** · I2-M14                            |
-| 14  | 2026-08-18 | `142`                 | 0 % → M2 fallback „peržiūrėti Modulį 1“ / 6 blokai                                 | §R.M14         | **apdorota** · `rawScore > 0` nuimtas M8/M11/M14 |
-| 15  | 2026-08-18 | `143`                 | Bonus cycle + copyable = EN/hibridas (`pipeline`, `brief`, `stills`, `disclosure`) | §R.M14 · §2.8  | **apdorota** · I2-M14 chrome; model KEEP         |
-| 16  | 2026-08-18 | Complete              | Transfer `consistency`/`brief` + complete-screen tipo kopėčia (ne naujas DS)       | §R.M14         | **parked** · ne šios sesijos                     |
-| 17  | 2026-08-18 | `150`                 | First-screen: `hero`/`brief` + **M3 verslo kortelės** ant M15 vardų                | §R.M15 · §2.9  | **apdorota** · `isM15`                           |
-| 18  | 2026-08-18 | `150.5`               | Tuščia praktika — tik chrome + footer                                              | §R.M15 · §2.10 | **apdorota** · compact + `practicalTask`         |
-| 19  | 2026-08-18 | `150.25`              | Schema + ciklas nebaigti; authoring / praktika nėra                                | §R.M15         | **apdorota** · „Pilnas kelias“ labeliai          |
-| 20  | 2026-08-18 | `150.26`              | Privaloma / neprivaloma = 0 kelionėje                                              | §R.M15 · §2.11 | **apdorota** · žmogaus checkpoint                |
-| 21  | 2026-08-18 | `151`                 | Tuščia + badge `Neprivaloma`; „nieko nėra“                                         | §R.M15 · §2.10 | **apdorota** · compact + be `badgeVariant`       |
-| 22  | 2026-08-18 | `150.5–158`           | Owner: promptai į DI įrankius (vaizdas / garsas / montažas / sujungimas)           | §2.11          | **apdorota** · M15-PROMPTS                       |
-| 23  | 2026-08-18 | I3 atmintinė          | Plokščia / neįdomi — įtraukti į tą pačią partiją                                   | §2.12          | **apdorota** · 4 promptai + LT p.2               |
-| 24  | 2026-08-18 | `141`                 | Testerio item kokybė: Q9/Q11 FAIL, Q12 C2PA, Q6 stem, length-cue                   | §2.13          | **apdorota** · M14-ITEMS                         |
-| 25  | 2026-08-18 | `151–158`             | Optional chrome + `158` žargonas + EN twins                                        | §R.M15         | **apdorota** · Walk RAW close                    |
+| #   | Data       | Skaidrė               | Tema                                                                               | Kur            | Statusas                                                                                              |
+| --- | ---------- | --------------------- | ---------------------------------------------------------------------------------- | -------------- | ----------------------------------------------------------------------------------------------------- |
+| 1   | 2026-08-17 | `140.5` / `141`       | `m14-warm-1` ≈ `m14-q2` (brand + 1:1/9:16)                                         | §2.1           | **apdorota** · Wave 1                                                                                 |
+| 2   | 2026-08-17 | `140.5` / `141`       | `m14-warm-2` ≈ `m14-q10` (audio-first)                                             | §2.1           | **apdorota** · Wave 1                                                                                 |
+| 3   | 2026-08-17 | `140` / `141` / `142` | Learner `pipeline` / `workflow` po M13 plain                                       | §2.2           | **apdorota** · Wave 1                                                                                 |
+| 4   | 2026-08-17 | `141` q1/q3/q4        | Thin `Tik X` distractoriai                                                         | §2.3           | **apdorota** · Wave 1                                                                                 |
+| 5   | 2026-08-17 | `141` q2/q6/q8        | `relatedSlideId` vs 2026 stuburas                                                  | §2.4           | **apdorota** · Wave 1                                                                                 |
+| 6   | 2026-08-17 | EN `141`              | Walk filler (`Only one narrow detail`)                                             | §2.5           | **apdorota** · Wave 1 durable                                                                         |
+| 7   | 2026-08-17 | EN `140` / `140.5`    | whyBenefit ≠ LT; `shortTitle` = `Savitikra`                                        | §2.5           | **apdorota** · Wave 1                                                                                 |
+| 8   | 2026-08-17 | `158`                 | LT stats label `Quick start`                                                       | §2.6           | **apdorota** · Wave 2 LHF                                                                             |
+| 9   | 2026-08-17 | `140→143`             | Owner walk RAW                                                                     | §R.M14         | **140 first-screen** · 2026-08-18                                                                     |
+| 10  | 2026-08-17 | `150→158`             | Owner walk RAW                                                                     | §R.M15         | **150–158 walked** · 2026-08-18                                                                       |
+| 11  | 2026-08-17 | M13                   | Owner walk tik jei FAIL                                                            | §R.M13         | **tęsia** [`M13_OWNER_WALK_INTAKE_2026-08.md`](M13_OWNER_WALK_INTAKE_2026-08.md) Phase A · T01 `13.1` |
+| 12  | 2026-08-18 | `140`                 | First-screen žargonas (subtitle / whyBenefit / CTA dump / temos chip’ai)           | §R.M14 · §2.7  | **apdorota** · I2-M14                                                                                 |
+| 13  | 2026-08-18 | `140.5`               | Subtitle = Wave 1 ticket stuburas + `M15`; nebaigtas chrome jausmas                | §R.M14         | **apdorota** · I2-M14                                                                                 |
+| 14  | 2026-08-18 | `142`                 | 0 % → M2 fallback „peržiūrėti Modulį 1“ / 6 blokai                                 | §R.M14         | **apdorota** · `rawScore > 0` nuimtas M8/M11/M14                                                      |
+| 15  | 2026-08-18 | `143`                 | Bonus cycle + copyable = EN/hibridas (`pipeline`, `brief`, `stills`, `disclosure`) | §R.M14 · §2.8  | **apdorota** · I2-M14 chrome; model KEEP                                                              |
+| 16  | 2026-08-18 | Complete              | Transfer `consistency`/`brief` + complete-screen tipo kopėčia (ne naujas DS)       | §R.M14         | **parked** · ne šios sesijos                                                                          |
+| 17  | 2026-08-18 | `150`                 | First-screen: `hero`/`brief` + **M3 verslo kortelės** ant M15 vardų                | §R.M15 · §2.9  | **apdorota** · `isM15`                                                                                |
+| 18  | 2026-08-18 | `150.5`               | Tuščia praktika — tik chrome + footer                                              | §R.M15 · §2.10 | **apdorota** · compact + `practicalTask`                                                              |
+| 19  | 2026-08-18 | `150.25`              | Schema + ciklas nebaigti; authoring / praktika nėra                                | §R.M15         | **apdorota** · „Pilnas kelias“ labeliai                                                               |
+| 20  | 2026-08-18 | `150.26`              | Privaloma / neprivaloma = 0 kelionėje                                              | §R.M15 · §2.11 | **apdorota** · žmogaus checkpoint                                                                     |
+| 21  | 2026-08-18 | `151`                 | Tuščia + badge `Neprivaloma`; „nieko nėra“                                         | §R.M15 · §2.10 | **apdorota** · compact + be `badgeVariant`                                                            |
+| 22  | 2026-08-18 | `150.5–158`           | Owner: promptai į DI įrankius (vaizdas / garsas / montažas / sujungimas)           | §2.11          | **apdorota** · M15-PROMPTS                                                                            |
+| 23  | 2026-08-18 | I3 atmintinė          | Plokščia / neįdomi — įtraukti į tą pačią partiją                                   | §2.12          | **apdorota** · 4 promptai + LT p.2                                                                    |
+| 24  | 2026-08-18 | `141`                 | Testerio item kokybė: Q9/Q11 FAIL, Q12 C2PA, Q6 stem, length-cue                   | §2.13          | **apdorota** · M14-ITEMS                                                                              |
+| 25  | 2026-08-18 | `151–158`             | Optional chrome + `158` žargonas + EN twins                                        | §R.M15         | **apdorota** · Walk RAW close                                                                         |
 
 ### 1.2 Triažas
 
@@ -315,11 +316,13 @@ Chrome be `Optional:` / `Neprivaloma` ašies (`optional: true` lieka). `151` rak
 
 M14 walk įrodė, kad M13 terminai teka į testo lukštą. TRIM/TE vis dar freeze. I2 first-screen + ciklas **shipped** 2026-08-18. 130 paste vis dar naudingas, bet nebe blokas.
 
+**2026-08-19:** savininko M13 skaidrių walk (schema / raiška, ne I2 kalba) → [`M13_OWNER_WALK_INTAKE_2026-08.md`](M13_OWNER_WALK_INTAKE_2026-08.md). Pirma: `13.1`. Be JSON.
+
 ---
 
 ## 4. Handoff
 
 **2026-08-18 shipped:** M15-EMPTY / GRID / PROMPTS / I3 + I2-M14 + **I2-M13** + **M14-ITEMS** + **Walk RAW `151–158`**. Compact `practice-scenario` + `isM15` + 4 promptai atmintinėje + M14 0 % / chip’ai + M13 first-screen/ciklas + `141` item kokybė + uodegos chrome. **Ne** Feature Doc.
 
-**Next:** complete-screen transfer (#16) parked · Could C-C\* parked.  
+**Next:** M13 owner walk Phase A [`M13_OWNER_WALK_INTAKE_2026-08.md`](M13_OWNER_WALK_INTAKE_2026-08.md) · complete-screen transfer (#16) parked · Could C-C\* parked.  
 **Craft:** Banga 1–3 C-M1–M3 + C-S1–S4 ✅ — [`TODO.md`](../../../TODO.md) **§1.3b**; spec [`M13_M15_CRAFT_MOSCOW_2026-08.md`](M13_M15_CRAFT_MOSCOW_2026-08.md).

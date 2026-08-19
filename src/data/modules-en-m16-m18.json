@@ -1262,7 +1262,7 @@
               "blockVariant": "accent"
             },
             "reflectionTitle": "Reflection prompt",
-            "reflectionPrompt": "META: You are a learning reflection assistant. Goal – lock in brief planning knowledge.\nINPUT: I just finished the Module 17 quiz – brief narrowness, triage, cycle, and success criterion.\nOUTPUT: Ask 3 questions: (1) Which brief field will I strengthen in 24h? (2) What was newest? (3) What is my first M18 PACKET step? After my answers give 1 concrete tip.",
+            "reflectionPrompt": "META: You are a learning reflection assistant. Goal – lock in brief planning knowledge.\nINPUT: I just finished the Module 17 quiz – brief narrowness, triage, cycle, and success criterion.\nOUTPUT: Ask 3 questions: (1) Which brief field will I strengthen within 24 hours? (2) Where is the brief still too wide – what will I cut? (3) What is the first PACKET step before code? After my answers, give one concrete tip (15 minutes or less, named tool or file).",
             "footer": "Next – slide 5: Bonus: brief checklist"
           }
         },

@@ -1099,7 +1099,8 @@ function ModuleView({
                           : t('completedLabel')}
                     </Badge>
                   )}
-                  {currentSlideData.recommended &&
+                  {moduleId !== 13 &&
+                    currentSlideData.recommended &&
                     !currentSlideData.optional && (
                       <span
                         className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-brand-100 text-brand-800 dark:bg-brand-900/30 dark:text-brand-300 border border-brand-200 dark:border-brand-700/50"
@@ -1108,7 +1109,8 @@ function ModuleView({
                         {t('common:required')}
                       </span>
                     )}
-                  {currentSlideData.optional &&
+                  {moduleId !== 13 &&
+                    currentSlideData.optional &&
                     (currentSlideData.badgeVariant === 'bonus' ? (
                       <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-gradient-to-r from-accent-100 to-amber-100 dark:from-accent-900/30 dark:to-amber-900/20 text-accent-800 dark:text-accent-200 border border-accent-200 dark:border-accent-700/50">
                         <Sparkles

@@ -22,7 +22,7 @@ import {
 import { buildVerticalColumnOrigin } from './diagramLayoutMath';
 
 const STEP_COUNT = 6;
-const BOX_H = 46;
+const BOX_H = 52;
 const GAP = VERTICAL_FLOW_MIN_GAP;
 const PROCESS_ARROW = getProcessArrowMarkerGeom();
 const ARROW_MARKER_LEN = PROCESS_ARROW.tipLen;
@@ -48,14 +48,14 @@ export const M13_MEDIA_PIPELINE_GEOMETRY = {
   startY: 74,
   desktop: {
     viewBoxWidth: DESKTOP_W,
-    viewBoxHeight: 520,
+    viewBoxHeight: 560,
     colsX: DESKTOP_COL.colsX,
     colsW: DESKTOP_COL_W,
     cx: DESKTOP_COL.cx,
   },
   compact: {
     viewBoxWidth: COMPACT_W,
-    viewBoxHeight: 520,
+    viewBoxHeight: 560,
     colsX: COMPACT_COL.colsX,
     colsW: COMPACT_COL_W,
     cx: COMPACT_COL.cx,
@@ -99,7 +99,7 @@ export default function M13MediaPipelineDiagram({
   return (
     <svg
       viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
-      className={`w-full max-w-2xl mx-auto block ${className}`}
+      className={`w-full max-w-4xl mx-auto block ${className}`}
       role="img"
       aria-label={`${chrome.aria}${isInteractive ? ` ${chrome.hint}` : ''}`}
       data-metaphor={M13_MEDIA_PIPELINE_GEOMETRY.metaphor}

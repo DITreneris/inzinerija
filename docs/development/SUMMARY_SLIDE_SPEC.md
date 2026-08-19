@@ -30,8 +30,17 @@
 
 ## 3. Refleksijos prompto šablonas
 
-- **Struktūra:** 3 klausimai (Apply, Analyze, Create) + 1 patarimas.
-- **Stilius:** „What – So What – Now What“ (ką išmokai, ką tai reiškia, ką daryti toliau).
+- **Struktūra:** 3 klausimai (Apply, Analyze, Create) + 1 patarimas. Max 6–8 eilutės.
+- **Q1 Apply:** įvardytas artefaktas + kada (per 24 val. / within 24 hours).
+- **Q2 Analyze:** trintis, klaida arba riba. **Draudžiama:** „Kas buvo naujausia?“ / „What was newest?“ (tai kurso atsiliepimas, ne Analyze).
+- **Q3 Create:** apribojimas arba kito ciklo atnaujinimas – ne antras Apply.
+- **Patarimas:** iki 15 min + konkretus įrankis arba failas. Be bendrų frazių.
+  - LT: `Po mano atsakymų duok vieną konkretų patarimą (iki 15 min, konkretus įrankis arba failas).`
+  - EN: `After my answers, give one concrete tip (15 minutes or less, named tool or file).`
+- **Stilius:** „What – So What – Now What“ (ką padarei, ką tai reiškia, ką darysi toliau).
+- **Lukštas:** META / INPUT / OUTPUT summary ir test-results skaidrėse. M4 `66.97` ir M6 `65` lieka be META (esamas formatas).
+- **INPUT:** palikti mokomus terminus; taisyti tik gramatiką (pvz. _baigiau Modulį 4_, ne _Modulio 4_).
+- **EN balsas:** `learning reflection assistant`; klausimai **I** forma; American English (`artifact`, `license`).
 - **Copy mygtukas:** Prominent; feedback „Nukopijuota!“.
 
 ---

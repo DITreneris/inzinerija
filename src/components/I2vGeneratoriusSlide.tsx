@@ -11,18 +11,14 @@ import { typographyClasses } from '../design-tokens';
 const DURATIONS = ['3', '4', '5'] as const;
 
 const MOTIONS_LT = [
-  'Lėtai į priekį (dolly in)',
-  'Šonu (pan)',
-  'Stabiliai (locked)',
-  'Crane up',
-  'Švelnus orbitavimas',
+  'Lėtai į priekį',
+  'Šonu',
+  'Stabiliai',
 ] as const;
 const MOTIONS_EN = [
-  'Slow dolly in',
+  'Slow push-in',
   'Pan sideways',
   'Locked / static',
-  'Crane up',
-  'Gentle orbit',
 ] as const;
 
 const READY_BADGE: Record<string, string> = {
@@ -70,7 +66,7 @@ export default function I2vGeneratoriusSlide({
       .filter((tool) =>
         preferred.some((p) => tool.name.toLowerCase().includes(p.toLowerCase()))
       )
-      .slice(0, 6);
+      .slice(0, 4);
   }, [locale]);
 
   const readiness = getI2vReadiness(
@@ -91,7 +87,7 @@ export default function I2vGeneratoriusSlide({
 
   const generatedPrompt = useMemo(() => {
     const scene =
-      keyframe.trim() || (isEn ? '[Keyframe / scene]' : '[Keyframe / scena]');
+      keyframe.trim() || (isEn ? '[Frame / scene]' : '[Raktinis kadras / scena]');
     const locks: string[] = [];
     if (sameProduct) locks.push(isEn ? 'same product' : 'tas pats produktas');
     if (sameStyle) {
@@ -104,24 +100,24 @@ export default function I2vGeneratoriusSlide({
     const lockLine = locks.length
       ? locks.join(', ') + '.'
       : isEn
-        ? 'Keep visual continuity with the keyframe.'
-        : 'Išlaikyk vizualinį tęstinumą su keyframe.';
+        ? 'Keep visual continuity with the frame.'
+        : 'Išlaikyk vizualinį tęstinumą su raktiniu kadru.';
 
     if (isEn) {
       return [
         `Image-to-video clip: ${duration} seconds (not longer).`,
-        `Start from this keyframe / scene: ${scene}.`,
+        `Start from this frame: ${scene}.`,
         `Camera motion: ${motion || '[motion]'}.`,
         lockLine,
         'Natural motion, no morphing faces or labels. Single continuous shot.',
       ].join(' ');
     }
     return [
-      `Image-to-video klipas: ${duration} sekundės (ne ilgiau).`,
-      `Pradžia iš šio keyframe / scenos: ${scene}.`,
-      `Kameros judesys: ${motion || '[judesys]'}.`,
+      `Video iš kadro: ${duration} s (ne ilgiau).`,
+      `Raktinis kadras: ${scene}.`,
+      `Kamera: ${motion || '[judesys]'}.`,
       lockLine,
-      'Natūralus judesys, be veidų/etikėčių deformacijų. Vienas vientisas kadras.',
+      'Natūralus judesys, be veidų ar etikečių deformacijų. Vienas vientisas kadras.',
     ].join(' ');
   }, [keyframe, duration, motion, sameStyle, sameProduct, isEn]);
 
@@ -197,8 +193,13 @@ export default function I2vGeneratoriusSlide({
               </h3>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-5">
               <div>
+                <p
+                  className={`${typographyClasses.labelUpper} text-brand-600 dark:text-brand-400 mb-2`}
+                >
+                  {t('beat1')}
+                </p>
                 <label
                   className={`block ${typographyClasses.labelUpper} text-slate-400 dark:text-slate-500 mb-1.5`}
                 >
@@ -214,67 +215,81 @@ export default function I2vGeneratoriusSlide({
                 />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label
-                    className={`block ${typographyClasses.labelUpper} text-slate-400 dark:text-slate-500 mb-1.5`}
-                  >
-                    {t('labelDuration')}
-                  </label>
-                  <select
-                    value={duration}
-                    onChange={(e) => setDuration(e.target.value)}
-                    className="w-full p-3 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-medium text-slate-900 dark:text-slate-100"
-                    aria-label={t('labelDuration')}
-                  >
-                    {DURATIONS.map((d) => (
-                      <option key={d} value={d}>
-                        {d} s
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label
-                    className={`block ${typographyClasses.labelUpper} text-slate-400 dark:text-slate-500 mb-1.5`}
-                  >
-                    {t('labelMotion')}
-                  </label>
-                  <select
-                    value={motion}
-                    onChange={(e) => setMotion(e.target.value)}
-                    className="w-full p-3 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-medium text-slate-900 dark:text-slate-100"
-                    aria-label={t('labelMotion')}
-                  >
-                    <option value="">{t('motionPlaceholder')}</option>
-                    {MOTIONS.map((m) => (
-                      <option key={m} value={m}>
-                        {m}
-                      </option>
-                    ))}
-                  </select>
+              <div>
+                <p
+                  className={`${typographyClasses.labelUpper} text-brand-600 dark:text-brand-400 mb-2`}
+                >
+                  {t('beat2')}
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label
+                      className={`block ${typographyClasses.labelUpper} text-slate-400 dark:text-slate-500 mb-1.5`}
+                    >
+                      {t('labelDuration')}
+                    </label>
+                    <select
+                      value={duration}
+                      onChange={(e) => setDuration(e.target.value)}
+                      className="w-full p-3 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-medium text-slate-900 dark:text-slate-100"
+                      aria-label={t('labelDuration')}
+                    >
+                      {DURATIONS.map((d) => (
+                        <option key={d} value={d}>
+                          {d} s
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label
+                      className={`block ${typographyClasses.labelUpper} text-slate-400 dark:text-slate-500 mb-1.5`}
+                    >
+                      {t('labelMotion')}
+                    </label>
+                    <select
+                      value={motion}
+                      onChange={(e) => setMotion(e.target.value)}
+                      className="w-full p-3 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-medium text-slate-900 dark:text-slate-100"
+                      aria-label={t('labelMotion')}
+                    >
+                      <option value="">{t('motionPlaceholder')}</option>
+                      {MOTIONS.map((m) => (
+                        <option key={m} value={m}>
+                          {m}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3">
-                <label className="inline-flex items-center gap-2 min-h-[44px] text-sm font-medium text-slate-700 dark:text-slate-200 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={sameStyle}
-                    onChange={(e) => setSameStyle(e.target.checked)}
-                    className="rounded border-slate-300 text-brand-600 focus:ring-brand-500"
-                  />
-                  {t('labelSameStyle')}
-                </label>
-                <label className="inline-flex items-center gap-2 min-h-[44px] text-sm font-medium text-slate-700 dark:text-slate-200 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={sameProduct}
-                    onChange={(e) => setSameProduct(e.target.checked)}
-                    className="rounded border-slate-300 text-brand-600 focus:ring-brand-500"
-                  />
-                  {t('labelSameProduct')}
-                </label>
+              <div>
+                <p
+                  className={`${typographyClasses.labelUpper} text-brand-600 dark:text-brand-400 mb-2`}
+                >
+                  {t('beat3')}
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <label className="inline-flex items-center gap-2 min-h-[44px] text-sm font-medium text-slate-700 dark:text-slate-200 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={sameProduct}
+                      onChange={(e) => setSameProduct(e.target.checked)}
+                      className="rounded border-slate-300 text-brand-600 focus:ring-brand-500"
+                    />
+                    {t('labelSameProduct')}
+                  </label>
+                  <label className="inline-flex items-center gap-2 min-h-[44px] text-sm font-medium text-slate-700 dark:text-slate-200 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={sameStyle}
+                      onChange={(e) => setSameStyle(e.target.checked)}
+                      className="rounded border-slate-300 text-brand-600 focus:ring-brand-500"
+                    />
+                    {t('labelSameStyle')}
+                  </label>
+                </div>
               </div>
             </div>
           </section>
@@ -363,6 +378,11 @@ export default function I2vGeneratoriusSlide({
               >
                 {copied ? t('copiedButton') : t('copyButton')}
               </button>
+              <p
+                className={`${typographyClasses.body} mt-3 text-slate-300`}
+              >
+                {t('cycleHint')}
+              </p>
             </div>
           </div>
         </div>

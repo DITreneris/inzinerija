@@ -7,12 +7,12 @@ export type M13BusinessLocale = 'lt' | 'en';
 
 export const M13_BUSINESS_WORKFLOW_EXPLANATIONS_LT: StepExplanation[] = [
   {
-    title: 'Brief',
-    body: '**Marketing brief** – kam skirta, kokiam tikslui (Awareness / Engagement / Conversion), kokia auditorija. Trumpas dokumentas – pagrindas visam darbui. Techninę medijos grandinę (kadrai → I2V → garsas → patikra) žr. skaidrę „Generatyvinės medijos grandinė“.',
+    title: 'Užduotis',
+    body: '**Užduoties aprašas** – kam skirta, kokiam tikslui (Awareness / Engagement / Conversion), kokia auditorija. Trumpas dokumentas – pagrindas visam darbui. Techninę medijos grandinę (kadrai → I2V → garsas → patikra) žr. skaidrę „Generatyvinės medijos grandinė“.',
   },
   {
     title: 'Prompt generavimas',
-    body: 'Pagal brief ir **brand consistency** (spalvos, tonas, stilius) sugeneruok vaizdo ar video promptą. Naudok šablonus iš modulio (stilius, proporcijos, ko vengti).',
+    body: 'Pagal užduoties aprašą ir **ženklo nuoseklumą** (spalvos, tonas, stilius) sugeneruok vaizdo ar video promptą. Naudok šablonus iš modulio (stilius, proporcijos, ko vengti).',
   },
   {
     title: 'Variantai',
@@ -93,20 +93,20 @@ export interface M13BusinessWorkflowDiagramLabels {
 
 const LABELS_LT: M13BusinessWorkflowDiagramLabels = {
   steps: [
-    { label: 'Brief', desc: 'Kam, tikslas, auditorija' },
-    { label: 'Prompt', desc: 'Brand consistency' },
+    { label: 'Užduotis', desc: 'Kam, tikslas, auditorija' },
+    { label: 'Prompt', desc: 'Ženklo nuoseklumas' },
     { label: 'Variantai', desc: '3–5 vaizdų' },
     { label: 'Iteracija', desc: 'Gerinimas pagal atsiliepimus' },
     { label: 'Adaptacija', desc: 'Platformos, formatai' },
     { label: 'Testavimas', desc: 'A/B, KPI' },
     { label: 'Optimizacija', desc: 'Rezultatai → ciklas' },
   ],
-  title: 'Nuo brief iki publikacijos',
-  metaphorCaption: 'Verslo ciklas – rezultatai grįžta į brief',
+  title: 'Nuo užduoties iki publikacijos',
+  metaphorCaption: 'Verslo ciklas – rezultatai grįžta į užduotį',
   cycleReturnLabel: 'Kartoti',
   hint: 'Paspausk žingsnį – paaiškinimas apačioje',
   ariaBase:
-    'Turinio workflow ciklas: nuo brief iki optimizacijos su grįžimu į brief.',
+    'Turinio darbo eigos ciklas: nuo užduoties iki optimizacijos su grįžimu į užduotį.',
   ariaInteractiveSuffix: 'Paspausk žingsnį, kad pamatytum paaiškinimą.',
   stepAria: (i, label) => `Žingsnis ${i + 1}: ${label}. Paspausk paaiškinimui.`,
 };

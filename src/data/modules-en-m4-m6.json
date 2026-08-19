@@ -3516,9 +3516,9 @@
               },
               {
                 "heading": "Copyable prompt",
-                "body": "You are a training reflection assistant.\n\nI've just finished Module 4 (context engineering) – RAG, Deep research, tokens, fact-checking.\n\nAsk me 3 questions:\n1. What can I apply from this at work today?\n2. What was newest or most surprising?\n3. What do I want to try first – the test (M5) or the project (M6)?\n\nAfter my answers, give one concrete tip on how to start.",
+                "body": "You are a learning reflection assistant.\n\nI just finished Module 4 (context engineering) – RAG, Deep research, tokens, fact-checking.\n\nAsk me 3 questions:\n1. Which one work document will I give as a source to AI within 24 hours?\n2. Where would I still trust an answer without a citation or a link?\n3. Which one check step will I write next to the prompt?\n\nAfter my answers, give one concrete tip (15 minutes or less, named tool or file).",
                 "blockVariant": "terms",
-                "copyable": "You are a training reflection assistant.\n\nI've just finished Module 4 (context engineering) – RAG, Deep research, tokens, fact-checking.\n\nAsk me 3 questions:\n1. What can I apply from this at work today?\n2. What was newest or most surprising?\n3. What do I want to try first – the test (M5) or the project (M6)?\n\nAfter my answers, give one concrete tip on how to start."
+                "copyable": "You are a learning reflection assistant.\n\nI just finished Module 4 (context engineering) – RAG, Deep research, tokens, fact-checking.\n\nAsk me 3 questions:\n1. Which one work document will I give as a source to AI within 24 hours?\n2. Where would I still trust an answer without a citation or a link?\n3. Which one check step will I write next to the prompt?\n\nAfter my answers, give one concrete tip (15 minutes or less, named tool or file)."
               },
               {
                 "heading": "Quality check",
@@ -4580,7 +4580,7 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "Three steps: answer for yourself (hardest, first use, what to learn next); copy the reflection prompt; first action within 24–48 hours.",
+                "body": "Three steps: answer for yourself (hardest, artifact, library); copy the reflection prompt; first action within 24–48 hours.",
                 "blockVariant": "accent"
               },
               {
@@ -4590,12 +4590,12 @@
               },
               {
                 "heading": "Reflection questions",
-                "body": "Answer for yourself (you can write or just think):\n\n1. What was hardest in the project?\n2. Which skill will you use first at work?\n3. What else would you like to learn about AI?"
+                "body": "Answer for yourself (you can write or just think):\n\n1. What was hardest in the project?\n2. Which artifact will I use at work first?\n3. What will I add to my prompt library within 24 hours?"
               },
               {
                 "heading": "Reflection prompt",
                 "body": "Copy the prompt below and use it with any AI tool – you'll get 3 reflection questions and one concrete tip.",
-                "copyable": "You are a training reflection assistant.\n\nI have just finished the Module 6 project – a research report with 6 blocks (META, INPUT, OUTPUT, REASONING, QUALITY, ADVANCED) and RAG.\n\nAsk me 3 questions:\n1. What was hardest in the project?\n2. Which skill will you use first at work?\n3. What else would you like to learn about AI?\n\nAfter my answers, give one concrete tip on how to get started."
+                "copyable": "You are a learning reflection assistant.\n\nI just finished the Module 6 project – a research report with 6 blocks (META, INPUT, OUTPUT, REASONING, QUALITY, ADVANCED) and RAG.\n\nAsk me 3 questions:\n1. What was hardest in the project?\n2. Which artifact will I use at work first?\n3. What will I add to my prompt library within 24 hours?\n\nAfter my answers, give one concrete tip (15 minutes or less, named tool or file)."
               },
               {
                 "heading": "Module outcome",
@@ -4882,7 +4882,7 @@
               }
             ],
             "reflectionTitle": "Reflection prompt",
-            "reflectionPrompt": "META: You are a learning reflection assistant. Goal – lock in Module 6 project results.\nINPUT: I just finished one project – a research report with AI or a Custom GPT (6 blocks, RAG, technique buffet).\nOUTPUT: Ask 3 questions: (1) Which artifact will I use at work first? (2) Where in the project was it hardest? (3) What will I add to my prompt library within 24h? After answers – 1 concrete tip.",
+            "reflectionPrompt": "META: You are a learning reflection assistant. Goal – lock in Module 6 project results.\nINPUT: I just finished one project – a research report with AI or a Custom GPT (6 blocks, RAG, technique buffet).\nOUTPUT: Ask 3 questions: (1) Which artifact will I use at work first? (2) Where in the project was it hardest? (3) What will I add to my prompt library within 24 hours? After my answers, give one concrete tip (15 minutes or less, named tool or file).",
             "tagline": "One project + handout = a repeatable AI work rhythm",
             "abilityBefore": "You lacked a finished project with a prompt set and checks.",
             "abilityAfter": "You have a project artifact and know how to repeat the process for another topic.",

@@ -3721,7 +3721,7 @@
                 ]
               }
             ],
-            "reflectionPrompt": "META: You are a training reflection assistant. Goal – help consolidate knowledge after Module 7.\nINPUT: I just finished the Data Analysis path theory – pipeline, role activation, DB structure, EDA, BI schema and MASTER PROMPT.\nOUTPUT: Ask 3 questions: (1) Which prompt or technique could I apply at work today? (2) What was newest or most surprising? (3) What do I want to try first? After my answers give 1 concrete tip on how to start.",
+            "reflectionPrompt": "META: You are a learning reflection assistant. Goal – help consolidate knowledge after Module 7.\nINPUT: I just finished the Data Analysis path theory – pipeline, role activation, DB structure, EDA, BI schema and MASTER PROMPT.\nOUTPUT: Ask 3 questions: (1) Which sales prompt could I apply at work today? (2) Where would I still trust a KPI or a forecast without a check? (3) Which template will I save (short name)? After my answers, give one concrete tip (15 minutes or less, named tool or file).",
             "reflectionTitle": "Reflection",
             "tagline": "Data → Insights → Decisions",
             "nextStepCTA": "Go to Module 8: knowledge check, then Module 9: capstone project (start with Sources catalog).",
@@ -3978,7 +3978,7 @@
           "subtitle": "Next – project (Module 9)",
           "type": "test-results",
           "content": {
-            "reflectionPrompt": "META: You are a training reflection assistant. Goal – consolidate knowledge after the Data analysis path test.\nINPUT: I just finished Module 8 knowledge check – pipeline, MASTER prompt, BI, sentiment and 4 analysis types.\nOUTPUT: Ask 3 questions: (1) Which M7 prompt will I apply at work? (2) What was hardest? (3) What do I want to repeat in Module 9? After my answers, give 1 concrete tip.",
+            "reflectionPrompt": "META: You are a learning reflection assistant. Goal – consolidate knowledge after the Data analysis path test.\nINPUT: I just finished Module 8 knowledge check – pipeline, MASTER prompt, BI, sentiment and 4 analysis types.\nOUTPUT: Ask 3 questions: (1) Which M7 prompt will I apply at work? (2) What was hardest? (3) Which data step in the project will I check myself, not leave to AI? After my answers, give one concrete tip (15 minutes or less, named tool or file).",
             "reflectionTitle": "Reflection prompt"
           }
         },
@@ -4357,7 +4357,7 @@
                 "body": "What did you do? (What) — What does it mean for you or the team? (So What) — What will you do next? (Now What). Answer briefly to yourself or use the prompt below in AI."
               }
             ],
-            "reflectionPrompt": "META: You are a training reflection assistant. Goal – consolidate Data Analysis path project results.\nINPUT: I just finished Module 9 project – business analysis with AI (8-step cycle; optional extra scenario if I did one).\nOUTPUT: Ask 3 questions: (1) What did I do in this project and where will I apply it? (2) What does this mean for me or the team? (3) What will I do in the next 24–48 hours? After my answers give 1 concrete tip.",
+            "reflectionPrompt": "META: You are a learning reflection assistant. Goal – consolidate Data Analysis path project results.\nINPUT: I just finished Module 9 project – business analysis with AI (8-step cycle; optional extra scenario if I did one).\nOUTPUT: Ask 3 questions: (1) What did I do in this project and where will I apply it? (2) What does this mean for me or the team? (3) What will I do in the next 24–48 hours? After my answers, give one concrete tip (15 minutes or less, named tool or file).",
             "tagline": "One kit = catalog + clean data + 8-step prompts + summary.",
             "handoutDownloadLabel": "Download Data analytics path handout (PDF)",
             "kitChecklist": [

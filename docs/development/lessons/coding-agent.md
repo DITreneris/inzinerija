@@ -4,6 +4,7 @@
 
 ## Pamokos
 
+2026-08-19 | M13 13.3 tools footer | `content.tools` visada po visomis sekcijomis — Patikra visada prieš katalogą | `toolsPlacement: beforePatikra` + heading match `Patikra`/`Check`; default `afterSections` | ContentBlockSlide.tsx, modules.schema.json
 2026-08-19 | Compact + M9 overlay | `synthesizeCompactPracticalTask` padaro `slide.practicalTask` optional — M9 93.1/93.2 spread `...slide.practicalTask` → `title?: string` vs `PracticalTask.title` | Overlay mutuoja resolved `task`, ne `slide.practicalTask` | SlideContent.tsx
 2026-08-18 | M15 compact contract | RTL ieškojo `slide.practicalTask.template` ant `150.5` — compact laiko promptą `content.template`, o `synthesizeCompactPracticalTask` = tik mark-complete | Assert `content.template`; PracticalTask = synthesized (be template) | TestPracticeSlides.m15.test.tsx
 2026-08-18 | M15 compact `practice-scenario` | `content.template` + `practicalTask.template` = du Copy blokai; `!slide.scenario` early return slėpė visą kūną | Compact šaka prieš `return null`; Copy palikti `PracticalTask` kai yra `practicalTask.template`; mark-complete `allowMarkWithoutAnswer` | TestPracticeSlides.tsx, compactPractice.ts, SlideContent.tsx

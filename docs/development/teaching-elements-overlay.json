@@ -590,6 +590,36 @@
       "slideId": 13.52
     },
     {
+      "elementId": "diagram:m13_still_workflow",
+      "kind": "diagram",
+      "key": "m13_still_workflow",
+      "pattern": "linear-process",
+      "shell": "Taip",
+      "render": "M13StillWorkflowBlock",
+      "layoutSot": "M13StillWorkflowDiagram.tsx",
+      "contentSot": "m13StillWorkflowContent.ts",
+      "maturity": 3,
+      "owner": "SCHEME",
+      "notes": "13.35 desk-stations metaphor (S4-INDIV); not 13.12 chain / not 13.52 timeline",
+      "moduleId": 13,
+      "slideId": 13.35
+    },
+    {
+      "elementId": "embed:toolChoiceBar:m13:13.5:s1",
+      "kind": "embed",
+      "key": "sections[1].toolChoiceBar",
+      "pattern": "embed",
+      "shell": "n/a",
+      "render": null,
+      "layoutSot": null,
+      "contentSot": "modules.json#13.5 + modules-en-m13-m15.json",
+      "maturity": 2,
+      "owner": "CONTENT",
+      "notes": "Video tools Choice cards (Kling/Veo/Seedance/Sora); not a new Pattern",
+      "moduleId": 13,
+      "slideId": 13.5
+    },
+    {
       "elementId": "diagram:turinio_workflow",
       "kind": "diagram",
       "key": "turinio_workflow",

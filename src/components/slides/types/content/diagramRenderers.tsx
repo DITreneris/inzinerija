@@ -25,6 +25,7 @@ import {
   M13PostprodBlock,
   M13PromptStackBlock,
   M13RuleOfThirdsBlock,
+  M13StillWorkflowBlock,
   M15PracticeLoopBlock,
   M16DeliveryGatesBlock,
   M16DirectionPickerLabBlock,
@@ -256,6 +257,11 @@ const DIAGRAM_RENDERERS = [
     key: 'm13_postprod_steps',
     bodyPlacement: 'after',
     render: () => <M13PostprodBlock />,
+  },
+  {
+    key: 'm13_still_workflow',
+    bodyPlacement: 'after',
+    render: () => <M13StillWorkflowBlock />,
   },
   {
     key: 'm13_prompt_stack',

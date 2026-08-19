@@ -1,7 +1,7 @@
 /**
  * M13 13.325 – Consistency Drift Lab (ref checklist + drift diagnosis).
  * Pattern interactive-control-lab; Shell = Ne; brand-only ChoiceControl (10.45 style).
- * Contrast panel etalon: M7/67 (Simptomas | Fix).
+ * Contrast panel etalon: M7/67 (Simptomas | Taisymas). SYS-G: thumbs + image Before/After.
  */
 
 import { useMemo, useState } from 'react';
@@ -9,12 +9,15 @@ import { useLocale } from '../../../contexts/LocaleContext';
 import ChoiceControl from '../../ui/ChoiceControl';
 import CopyButton from './CopyButton';
 import {
+  consistencyLabAssetSrc,
+  CONSISTENCY_LAB_ASSETS,
   countSelectedRefs,
   emptyConsistencyRefs,
   formatConsistencyArtefact,
   getConsistencyLabUiLabels,
   getConsistencyModeOptions,
   getConsistencyRefOptions,
+  getSampleConsistencyArtefact,
   type ConsistencyModeId,
   type ConsistencyRefId,
   type ConsistencyRefState,
@@ -25,7 +28,7 @@ const LAB_SHELL_CLASS =
   'rounded-xl border border-rose-200/80 bg-rose-50/40 p-4 dark:border-rose-800/50 dark:bg-rose-950/20';
 
 const CHECK_ROW_CLASS =
-  'flex cursor-pointer items-center gap-2 rounded-lg border border-gray-200 bg-white/80 px-3 py-2 text-sm text-gray-800 dark:border-gray-600 dark:bg-gray-900/40 dark:text-gray-100';
+  'flex cursor-pointer items-center gap-3 rounded-lg border bg-white/80 px-3 py-2 text-sm text-gray-800 dark:bg-gray-900/40 dark:text-gray-100';
 
 export default function M13ConsistencyLockLabBlock() {
   const { locale } = useLocale();
@@ -38,6 +41,7 @@ export default function M13ConsistencyLockLabBlock() {
 
   const refCount = countSelectedRefs(refs);
   const activeMode = modes.find((m) => m.id === mode) ?? null;
+  const sampleArtefact = getSampleConsistencyArtefact(loc);
 
   const artefact = useMemo(() => {
     if (mode == null) return '';
@@ -106,17 +110,34 @@ export default function M13ConsistencyLockLabBlock() {
           className="grid grid-cols-1 gap-2 sm:grid-cols-2"
           data-testid="m13-consistency-refs"
         >
-          {refOptions.map((opt) => (
-            <label key={opt.id} className={CHECK_ROW_CLASS}>
-              <input
-                type="checkbox"
-                className="h-4 w-4 rounded border-gray-300 text-brand-600 focus:ring-brand-500"
-                checked={refs[opt.id]}
-                onChange={() => toggleRef(opt.id)}
-              />
-              <span>{opt.label}</span>
-            </label>
-          ))}
+          {refOptions.map((opt) => {
+            const selected = refs[opt.id];
+            return (
+              <label
+                key={opt.id}
+                className={`${CHECK_ROW_CLASS} ${
+                  selected
+                    ? 'border-rose-400 ring-2 ring-rose-300/80 dark:border-rose-500 dark:ring-rose-700/60'
+                    : 'border-gray-200 dark:border-gray-600'
+                }`}
+              >
+                <input
+                  type="checkbox"
+                  className="h-4 w-4 shrink-0 rounded border-gray-300 text-brand-600 focus:ring-brand-500"
+                  checked={selected}
+                  onChange={() => toggleRef(opt.id)}
+                />
+                <img
+                  src={consistencyLabAssetSrc(opt.src)}
+                  alt={opt.alt}
+                  width={56}
+                  height={56}
+                  className="h-14 w-14 shrink-0 rounded-md object-cover"
+                />
+                <span>{opt.label}</span>
+              </label>
+            );
+          })}
         </div>
       </fieldset>
 
@@ -126,22 +147,36 @@ export default function M13ConsistencyLockLabBlock() {
         role="group"
         aria-label={ui.compareStripAria}
       >
-        <div className="rounded-xl border border-slate-300 bg-slate-200/80 px-3 py-3 dark:border-slate-600 dark:bg-slate-700/60 sm:px-4">
-          <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-slate-300">
-            {ui.beforeDriftLabel}
-          </p>
-          <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-200">
-            {ui.beforeDriftHint}
-          </p>
-        </div>
-        <div className="rounded-xl border border-emerald-300 bg-emerald-50/80 px-3 py-3 dark:border-emerald-700/60 dark:bg-emerald-950/30 sm:px-4">
-          <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-emerald-800 dark:text-emerald-200">
-            {ui.afterLockLabel}
-          </p>
-          <p className="text-sm leading-relaxed text-emerald-950 dark:text-emerald-100">
-            {ui.afterLockHint}
-          </p>
-        </div>
+        <figure className="overflow-hidden rounded-xl border border-slate-300 bg-slate-200/80 dark:border-slate-600 dark:bg-slate-700/60">
+          <img
+            src={consistencyLabAssetSrc(CONSISTENCY_LAB_ASSETS.beforeDrift)}
+            alt={ui.beforeImageAlt}
+            className="h-40 w-full object-cover sm:h-48"
+          />
+          <figcaption className="px-3 py-3 sm:px-4">
+            <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-slate-300">
+              {ui.beforeDriftLabel}
+            </p>
+            <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-200">
+              {ui.beforeDriftHint}
+            </p>
+          </figcaption>
+        </figure>
+        <figure className="overflow-hidden rounded-xl border border-emerald-300 bg-emerald-50/80 dark:border-emerald-700/60 dark:bg-emerald-950/30">
+          <img
+            src={consistencyLabAssetSrc(CONSISTENCY_LAB_ASSETS.afterLock)}
+            alt={ui.afterImageAlt}
+            className="h-40 w-full object-cover sm:h-48"
+          />
+          <figcaption className="px-3 py-3 sm:px-4">
+            <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-emerald-800 dark:text-emerald-200">
+              {ui.afterLockLabel}
+            </p>
+            <p className="text-sm leading-relaxed text-emerald-950 dark:text-emerald-100">
+              {ui.afterLockHint}
+            </p>
+          </figcaption>
+        </figure>
       </div>
 
       <ChoiceControl
@@ -194,9 +229,14 @@ export default function M13ConsistencyLockLabBlock() {
           ) : null}
         </div>
         {mode == null ? (
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            {ui.emptyArtefact}
-          </p>
+          <div data-testid="m13-consistency-sample">
+            <p className="mb-2 text-sm text-gray-600 dark:text-gray-400">
+              {ui.sampleArtefactHint}
+            </p>
+            <pre className="whitespace-pre-wrap font-mono text-xs leading-relaxed text-gray-500 dark:text-gray-400">
+              {sampleArtefact}
+            </pre>
+          </div>
         ) : (
           <pre className="whitespace-pre-wrap font-mono text-xs leading-relaxed text-gray-800 dark:text-gray-200">
             {artefact}

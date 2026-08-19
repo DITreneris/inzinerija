@@ -638,9 +638,9 @@
               },
               {
                 "heading": "Copyable prompt",
-                "body": "You are a training reflection assistant.\n\nI've just finished Module 4 (context engineering) – RAG, Deep research, tokens, fact-checking.\n\nAsk me 3 questions:\n1. What can I apply from this at work today?\n2. What was newest or most surprising?\n3. What do I want to try first – the test (M5) or the project (M6)?\n\nAfter my answers, give one concrete tip on how to start.",
+                "body": "You are a learning reflection assistant.\n\nI just finished Module 4 (context engineering) – RAG, Deep research, tokens, fact-checking.\n\nAsk me 3 questions:\n1. Which one work document will I give as a source to AI within 24 hours?\n2. Where would I still trust an answer without a citation or a link?\n3. Which one check step will I write next to the prompt?\n\nAfter my answers, give one concrete tip (15 minutes or less, named tool or file).",
                 "blockVariant": "terms",
-                "copyable": "You are a training reflection assistant.\n\nI've just finished Module 4 (context engineering) – RAG, Deep research, tokens, fact-checking.\n\nAsk me 3 questions:\n1. What can I apply from this at work today?\n2. What was newest or most surprising?\n3. What do I want to try first – the test (M5) or the project (M6)?\n\nAfter my answers, give one concrete tip on how to start."
+                "copyable": "You are a learning reflection assistant.\n\nI just finished Module 4 (context engineering) – RAG, Deep research, tokens, fact-checking.\n\nAsk me 3 questions:\n1. Which one work document will I give as a source to AI within 24 hours?\n2. Where would I still trust an answer without a citation or a link?\n3. Which one check step will I write next to the prompt?\n\nAfter my answers, give one concrete tip (15 minutes or less, named tool or file)."
               },
               {
                 "heading": "Next step",

@@ -154,7 +154,7 @@ Proporcijos: [1:1 / 16:9 / 9:16]. Kalba: lietuviška scena arba neutrali, be tek
 
 **Patikra:** Ar platforma palaiko nurodytas proporcijas? Jei vaizdas „nukirpto“ – pakeisk proporcijas arba papildyk aprašymą.
 
-**Įrankiai (UI – `content.tools` ant 13.3, po Patikra; ne collapsible wall):** 6 TOP kortelės su exact `tools.json` `name`: GPT-Image (OpenAI), Ideogram, FLUX, Midjourney, Leonardo.ai, Adobe Firefly. `toolsIntro`: principas tas pats; skiriasi stipriosios pusės; pradžiai užtenka vieno. Pilnas katalogas – skiltis „Įrankiai“ (moduleId 13, category „Vaizdų generavimas“).
+**Įrankiai (UI – `content.tools` ant 13.3, po Daryk / copyable, prieš Patikra; matomas katalogas, ne `<details>`):** 6 TOP kortelės su exact `tools.json` `name`: GPT-Image (OpenAI), Ideogram, FLUX, Midjourney, Leonardo.ai, Adobe Firefly. `toolsPlacement: beforePatikra`. `toolsIntro`: kur pradėti (6) – pradžiai užtenka vieno. Ankstesnės MUST skaidrės (130, 13.2) moko formulę **be** „atidaryk įrankį“ / be Ideogram vardo – katalogas pirmą kartą 13.3. Pilnas katalogas – skiltis „Įrankiai“ (moduleId 13, category „Vaizdų generavimas“).
 
 **Įrankių pozicionavimas (cheat sheet → kortelės):** GPT-Image – natūrali kalba, greitas brief→vaizdas; Ideogram – tekstas vaizde; FLUX – fotorealizmas + multi-ref consistency; Midjourney – meninis lygis, character ref; Leonardo.ai – produktai / fotorealizmas; Adobe Firefly – CC, teisiškai saugesnis kelias, C2PA. (Kataloge lieka ir DALL·E, Canva AI, Imagen, Stable Diffusion – ne privaloma 13.3 kortelėse.)
 
@@ -207,7 +207,7 @@ Be teksto vaizde (nebent etiketė ant produkto).
 
 **Remediation:** Jei klysti – grįžk į 13.3 ir perrašyk vieną promptą taip, kad jame būtų subjektas, stilius ir proporcijos.
 
-### 3.3 Kompozicija ir kadras (neprivaloma, 13.3 optional)
+### 3.3 Kompozicija ir kadras (MUST, 13.33)
 
 **Trumpai:** Kompozicija ir kadravimas pakelia rezultatą į „profi“ lygį: kur dėti pagrindinį objektą, kokį kadrą ir kameros kampą nurodyti. **Ryšys su video:** tie patys principai kaip trumpo vaizdo įrašo skaidrėje – čia pritaikymas **statinio vaizdo** promptui (modules.json – vienas sakinys „Trumpai“).
 
@@ -260,17 +260,17 @@ Stilius: [nurodyk]. Proporcijos: 16:9.
 
 **Tikslas dalyviui:** Prieš pereidamas prie generatoriaus, jis atskiria, ką valdo stilius, ką valdo proporcijos, ir kada reikia kompozicijos ar prekės ženklo taisyklės.
 
-### 3.4 DI vaizdų generavimo workflow (5 žingsniai, optional)
+### 3.4 Vaizdų darbo eiga (5 stotys, 13.35, skip-only)
 
-**Kaip naudotis skaidre (modules.json):** Jei užtenka vieno sprendimo – rinkis tik MASTER šabloną arba vieną ready šabloną; visa kita – gilinimuisi.
+**Skaidrė `13.35`:** schema `m13_still_workflow` (stalo stotys) + vienas Daryk („pažymėk kur esi / užpildyk 1 žingsnį“). #1000Books = vienas paruoštas pavyzdys, ne antra eiga. MASTER šablonai – gretima skaidrė `13.351`.
 
-Karkasas, kurį galima naudoti nuo koncepcijos iki rezultato:
+Karkasas, kurį mokinys žymi schemoje:
 
-1. **Koncepcija:** Tikslas, kontekstas, stilius, nuotaika, auditorija.
-2. **Prompt formulavimas (kategorijos):** objektai/subjektai; stilius (fotorealizmas / piešinys / animacija); kompozicija (kadro planas, kampas, perspektyva); apšvietimas (natūralus, dirbtinis, „aukso valanda“); spalvų paletė + nuotaika; techniniai parametrai (raiška, formatas).
-3. **Optimizavimas:** Struktūra pagal svarbą, negative prompts (ko vengti), parametrai, 3–5 test variantai.
-4. **Generavimas + iteracijos:** Bazinis promptas → analizė → korekcijos („šviesesnis“, „mažiau teksto“) → kartoti.
-5. **Post-processing:** Upscaling, spalvų korekcija, retušas, formato optimizavimas.
+1. **Idėja:** tikslas, kam skirta, nuotaika – prieš atidarant įrankį.
+2. **Promptas:** objektas + kontekstas + estetika; serijai – stiliaus užraktas.
+3. **Bandymas:** 2–3 trumpi testai; keisk po vieną dalyką.
+4. **Generuok:** vienas modelis serijai; išsaugok veikusį promptą.
+5. **Pataisyk:** kirpimas, spalvos, tekstas jei reikia.
 
 **Kas dar padaro profesionalų lygį:** Acceptance criteria (priėmimo kriterijai – kompozicija, personažo tęstinumas, žinutės aiškumas, brand safety); A/B test protokolas (jau §5a.1); promptų biblioteka pagal use-case (žr. §3.5 MASTER ir ready prompts).
 
@@ -280,7 +280,7 @@ Karkasas, kurį galima naudoti nuo koncepcijos iki rezultato:
 
 **Kas trūksta, kad veiktų profesionaliai:** Vertinimo kriterijai (kompozicija, personažo tęstinumas, žinutės aiškumas, brand safety); failų naming ir versijavimas (V1/V2/V3 + kas pasikeitė); teisių ir panaudojimo gairės (žr. §5a.2 Legal).
 
-### 3.6 MASTER prompt šablonas ir ready prompts (optional)
+### 3.6 MASTER prompt šablonas ir ready prompts (13.351, skip-only)
 
 **MASTER (universalus) – CopyButton:**
 
@@ -316,7 +316,7 @@ Negative prompts: [ko vengti – pvz. be teksto, be veidų].
 
 **Trumpai:** Interaktyvus įrankis, kuris padeda sudėlioti vaizdo promptą žingsnis po žingsnio: kampanijos kontekstas (tikslas, platforma, auditorija, tonas), vizualo esmė (objektas, stilius, apšvietimas, kamera, spalva) ir tekstų integracija (antraštė, CTA, šriftas). Rezultatas – vienas paruoštas promptas, kurį galima nukopijuoti ir įklijuoti į bet kurį vaizdų generavimo įrankį.
 
-**Ryšys su 13.35 (MASTER):** MASTER šablonas (§3.6) – universalus, bet reikalauja pačiam užpildyti laukus tekstu. Generatorius (13.37) – interaktyvūs laukai su dropdown pasirinkimais ir laisvais tekstais; promptas sudedamas automatiškai. Tai „Daryk dabar" skaidrė: vartotojas išbando visus principus (stilius, proporcijos, kompozicija) viename įrankyje.
+**Ryšys su 13.351 (MASTER):** MASTER šablonas (§3.6) – universalus, bet reikalauja pačiam užpildyti laukus tekstu. Generatorius (13.37) – interaktyvūs laukai su dropdown pasirinkimais ir laisvais tekstais; promptas sudedamas automatiškai. Tai „Daryk dabar“ skaidrė: mokinys išbando stilių, proporcijas ir kompoziciją viename įrankyje.
 
 **Brandumas (meter + proporcijos):** Sticky išvestyje – kokybės / pasirengimo matuoklis (užpildyti laukai + hint „Trūksta / Sustiprink / Paruošta“). Formoje – **proporcijos** (1:1 / 16:9 / 9:16) ir **A/E/C** kampanijos tikslas (Awareness / Engagement / Conversion). Keturi greiti šablonai (e-commerce, renginiai, brand, social) užpildo formą. UX idėjos – sibling įrankis _vaizdas_; kanonas lieka in-app.
 
@@ -324,7 +324,7 @@ Negative prompts: [ko vengti – pvz. be teksto, be veidų].
 
 1. **Kampanijos kontekstas:** A/E/C tikslas + laisvas tikslo aprašymas, platforma (Instagram, LinkedIn, Facebook, Web, Print), auditorija (laisvas), prekės ženklo tonas (Premium, Bold, Minimalistinis, Žaismingas, Ekspertiškas).
 2. **Vizualo esmė:** Kas vaizduojama (laisvas), stilius, apšvietimas, kameros kampas, dominuojanti spalva, **proporcijos**.
-3. **Tekstų integracija (neprivaloma):** Antraštė, kvietimas veikti (CTA), teksto pozicija, šrifto stilius.
+3. **Tekstų integracija:** Antraštė, kvietimas veikti, teksto pozicija, šrifto stilius.
 
 **Rezultatas:** Vienas sugeneruotas promptas – nukopijuok ir įklijuok į Ideogram, Leonardo.ai, Midjourney, ChatGPT (DALL·E), Adobe Firefly arba Canva AI. Paspaudus ant įrankio kortelės – promptas nukopijuojamas automatiškai ir atsidaro naujas skirtukas.
 
@@ -637,7 +637,7 @@ Failų naming ir versijavimas: V1, V2, V3 + viena eilutė „kas pasikeitė prom
 
 ## 5b. Workflow: nuo brief iki publikacijos (13.11) – MUST
 
-**Ryšys su 13.35:** Pilname „Trumpai“ tekste (modules.json) – nuoroda į neprivalomą skaidrę **13.35** kaip į techninį 5 žingsnių vaizdų pipeline; čia – **verslo** ciklas nuo brief iki publikacijos.
+**Ryšys su 13.35:** Techninė vaizdų eiga (5 stotys, schema `m13_still_workflow`) – gretima skaidrė; čia – **verslo** ciklas nuo brief iki publikacijos.
 
 Pilnas verslo ciklas (techninį medijos pipeline žr. **13.12**):
 

@@ -12,11 +12,13 @@
 **Modulis 4** – „Konteksto inžinerija“ (pažangusis teorijos modulis). Apima: konteksto inžinerijos sąvoką, 4 dedamąsias, RL/RLHF, parametrų lauką, struktūruotą procesą (8 žingsniai), LLM schemas (RAG, multi-modal), **RAG**, atvirus duomenis, RAG įrankius ir duomenų paruošimą, **Deep research**, **tokenų ekonomiką**, **promptų manipuliacijas**, **žinių patikrinimą ir haliucinacijas**, santrauką su ryšiais tarp temų ir CTA į Modulį 5.
 
 **Stiprybės (sutampa su SOT ir istoriniu MODULIO_4_TURINIO_ANALIZE, archyve):**
+
 - Aiški prielaida (Moduliai 1–3 baigti), nuosekli tema po temos, ryšiai su 6 blokais.
 - Kopijuojami šablonai (CopyButton), kartojimo skaidrė, „3 klausimai sau“ prieš testą.
 - Oficiali skaidrių eilė dokumentuota (`MODULIO_4_SKAIDRIU_EILES.md`), RAG įvade – nuoroda į tokenus (4.4).
 
 **Silpnos vietos (sutampa + iš geriausių praktikų):**
+
 - Kognityvinė apkrova: daug sąvokų (RAG, Deep research, CoT, ToT, tokenai, manipuliacijos, haliucinacijos) be vienos „bridžinės“ praktikos, jungiančios kelis blokus.
 - RAG: trūksta aiškios „chunk size / dokumentų paruošimo“ gairių pagal šaltinius (balansas tarp konteksto ir retrieval tikslumo).
 - Haliucinacijos: nėra nuorodos į **verifikacijos grandinę** (CoVe – chain-of-verification) kaip pažangų būdą.
@@ -52,6 +54,7 @@
 ## 3. Must–Should–Could prioritizacija
 
 Prioritetai apibrėžti taip:
+
 - **MUST** – būtina: be to modulio tikslai nepasiekiami arba didelė kokybės/patikimumo rizika.
 - **SHOULD** – labai pageidautina: atitinka geriausias praktikas ir stiprina įsisavinimą.
 - **COULD** – norima: gerina patirtį, bet ne kritinė.
@@ -60,36 +63,36 @@ Prioritetai apibrėžti taip:
 
 ### MUST (būtina)
 
-| # | Pasiūlymas | Pagrindimas | Kur taikyti |
-|---|------------|-------------|-------------|
-| M1 | **Santraukoje (4.7) aiškiai išlaikyti ryšius tarp temų** | Bloom „Suprasti“ – dalyvis turi matyti, kaip RAG, tokenai, patikrinimas ir manipuliacijos susiję. | SOT – skaidrė 4.7 (jau įgyvendinta: „Ryšiai tarp temų“). |
-| M2 | **RAG skaidrėse (4.2) būtinai reikalauti „Jei nėra kontekste – parašyk Nežinau“ ir citavimo** | Sumažina haliucinacijas; atitinka RAG geriausias praktikas (gerai suprojektuoti promptai). | SOT – 4.2 pristatymas, mini-šablonas; patikrinti, ar visur pateikiama. |
-| M3 | **4.6 (haliucinacijos) – anti-haliucinacinis šablonas ir 4–5 taisyklės visada matomi** | Žinių patikrinimas – pagrindinis modulio tikslas; be aiškios „kaip mažinti“ dalyvis neįgyja įgūdžio. | SOT – 4.6; UI – CopyButton ir taisyklės nepaslėpti. |
-| M4 | **Manipuliacijų (4.5) skyriuje aiškiai atskirti „verslo manipuliacija“ (šališkumas, įrėminimas) nuo „saugumo“ (prompt injection, jailbreak)** | OWASP: prompt injection – #1 GenAI grėsmė; dalyvis turi žinoti ir etiką, ir pagrindus apsaugos. | SOT – 4.5: pridėti 1 skaidrę arba collapsible „Saugumas: prompt injection ir jailbreak“ su trumpu apibrėžimu ir nuoroda į OWASP/Anthropic. |
+| #   | Pasiūlymas                                                                                                                                    | Pagrindimas                                                                                          | Kur taikyti                                                                                                                                |
+| --- | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| M1  | **Santraukoje (4.7) aiškiai išlaikyti ryšius tarp temų**                                                                                      | Bloom „Suprasti“ – dalyvis turi matyti, kaip RAG, tokenai, patikrinimas ir manipuliacijos susiję.    | SOT – skaidrė 4.7 (jau įgyvendinta: „Ryšiai tarp temų“).                                                                                   |
+| M2  | **RAG skaidrėse (4.2) būtinai reikalauti „Jei nėra kontekste – parašyk Nežinau“ ir citavimo**                                                 | Sumažina haliucinacijas; atitinka RAG geriausias praktikas (gerai suprojektuoti promptai).           | SOT – 4.2 pristatymas, mini-šablonas; patikrinti, ar visur pateikiama.                                                                     |
+| M3  | **4.6 (haliucinacijos) – anti-haliucinacinis šablonas ir 4–5 taisyklės visada matomi**                                                        | Žinių patikrinimas – pagrindinis modulio tikslas; be aiškios „kaip mažinti“ dalyvis neįgyja įgūdžio. | SOT – 4.6; UI – CopyButton ir taisyklės nepaslėpti.                                                                                        |
+| M4  | **Manipuliacijų (4.5) skyriuje aiškiai atskirti „verslo manipuliacija“ (šališkumas, įrėminimas) nuo „saugumo“ (prompt injection, jailbreak)** | OWASP: prompt injection – #1 GenAI grėsmė; dalyvis turi žinoti ir etiką, ir pagrindus apsaugos.      | SOT – 4.5: pridėti 1 skaidrę arba collapsible „Saugumas: prompt injection ir jailbreak“ su trumpu apibrėžimu ir nuoroda į OWASP/Anthropic. |
 
 ---
 
 ### SHOULD (labai pageidautina)
 
-| # | Pasiūlymas | Pagrindimas | Kur taikyti |
-|---|------------|-------------|-------------|
-| S1 | **Prieš RAG (4.2) – 1–2 sakiniai apie konteksto langą/tokenus + nuoroda į 4.4** | Sumažina kognityvinę spragą „kodėl tokenai taip vėlai“. | SOT – 4.2 (jau įgyvendinta; tikrinti, ar rodoma UI). |
-| S2 | **RAG duomenų paruošimas (4.2b): įtraukti „chunk size“ / fragmentų dydžio gairę** | Geriausios praktikos: chunk dydis lemia retrieval kokybę. | SOT – 4.2b: pridėti punktą „Logiški fragmentai (chunk), ne per ilgi – retrieval tikslesnis“. |
-| S3 | **4.6 (haliucinacijos): viena pastraipa arba „Giluminiam“ blokas apie Chain-of-Verification (CoVe)** | CoVe – tyrimuose įrodytas būdas mažinti haliucinacijas (planuoti klausimus → atsakyti atskirai → galutinis atsakymas). | SOT – 4.6: naujas poskyris „Verifikacijos grandinė (CoVe)“ arba collapsible. |
-| S4 | **Viena trumpa „bridžinė“ praktika po 4.3 (arba prieš 4.4): RAG + Deep research + šaltiniai vienoje 5–10 min užduotyje** | Fragmentuota praktika – stiprybė; bet viena jungiamoji užduotis stiprina „Suprasti“ ir „Taikyti“. | SOT – po 4.3a arba kaip 4.3a pratęsimas; užduotis: „Paruošk vieną trumpą atsakymą su šaltiniais naudodamas RAG/Deep research stiliaus promptą“. |
-| S5 | **Optional/BONUS skaidres žymėti nuosekliai** | Mažina kognityvinę apkrovą – dalyvis gali pasirinkti gilintis. | SOT – 2.1 lentelė: 4.1a2-viz, 4.1-workflow-ex, 4.1a5-style, 4.1a5-practice, 4.1b2, 4.2a-academic – vienoda žyma (pvz. „Optional“ arba „Giluminiam“). |
-| S6 | **Ilgoms skaidrėms – trumpas UI pavadinimas** | UX: skaitomumas ir navigacija. | SOT – 2.1 arba 2.2: pvz. „Darbas su RAG: memory, įrankiai“ → UI: „RAG: memory ir įrankiai“. |
+| #   | Pasiūlymas                                                                                                               | Pagrindimas                                                                                                            | Kur taikyti                                                                                                                                          |
+| --- | ------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| S1  | **Prieš RAG (4.2) – 1–2 sakiniai apie konteksto langą/tokenus + nuoroda į 4.4**                                          | Sumažina kognityvinę spragą „kodėl tokenai taip vėlai“.                                                                | SOT – 4.2 (jau įgyvendinta; tikrinti, ar rodoma UI).                                                                                                 |
+| S2  | **RAG duomenų paruošimas (4.2b): įtraukti „chunk size“ / fragmentų dydžio gairę**                                        | Geriausios praktikos: chunk dydis lemia retrieval kokybę.                                                              | SOT – 4.2b: pridėti punktą „Logiški fragmentai (chunk), ne per ilgi – retrieval tikslesnis“.                                                         |
+| S3  | **4.6 (haliucinacijos): viena pastraipa arba „Giluminiam“ blokas apie Chain-of-Verification (CoVe)**                     | CoVe – tyrimuose įrodytas būdas mažinti haliucinacijas (planuoti klausimus → atsakyti atskirai → galutinis atsakymas). | SOT – 4.6: naujas poskyris „Verifikacijos grandinė (CoVe)“ arba collapsible.                                                                         |
+| S4  | **Viena trumpa „bridžinė“ praktika po 4.3 (arba prieš 4.4): RAG + Deep research + šaltiniai vienoje 5–10 min užduotyje** | Fragmentuota praktika – stiprybė; bet viena jungiamoji užduotis stiprina „Suprasti“ ir „Taikyti“.                      | SOT – po 4.3a arba kaip 4.3a pratęsimas; užduotis: „Paruošk vieną trumpą atsakymą su šaltiniais naudodamas RAG/Deep research stiliaus promptą“.      |
+| S5  | **Optional/BONUS skaidres žymėti nuosekliai**                                                                            | Mažina kognityvinę apkrovą – dalyvis gali pasirinkti gilintis.                                                         | SOT – 2.1 lentelė: 4.1a2-viz, 4.1-workflow-ex, 4.1a5-style, 4.1a5-practice, 4.1b2, 4.2a-academic – vienoda žyma (pvz. „Optional“ arba „Giluminiam“). |
+| S6  | **Ilgoms skaidrėms – trumpas UI pavadinimas**                                                                            | UX: skaitomumas ir navigacija.                                                                                         | SOT – 2.1 arba 2.2: pvz. „Darbas su RAG: memory, įrankiai“ → UI: „RAG: memory ir įrankiai“.                                                          |
 
 ---
 
 ### COULD (norima)
 
-| # | Pasiūlymas | Pagrindimas | Kur taikyti |
-|---|------------|-------------|-------------|
-| C1 | **Pasirinktinai žymėti skaidres „Verslui“ / „Studentams“** | 4.2a-academic – studentams; RAG analitikas – verslui; skirtingi segmentai randa savo. | SOT – 2.1 lentelė: stulpelis arba etiketė. |
-| C2 | **Nuorodos į išorinius šaltinius (OWASP, Anthropic, Learn Prompting) 4.5 ir 4.6** | Padidina patikimumą ir leidžia gilintis. | SOT – 4.5 (manipuliacijos), 4.6 (haliucinacijos): collapsible „Šaltiniai“. |
-| C3 | **Modulio 4 pradžioje (4.1) – vienas sakinys: „Šiame modulyje visi 6 blokai susieti su RAG, patikrinimu ir tokenais“** | Orientacija ir motyvacija. | SOT – 4.1 blokas „Kodėl konteksto inžinerija?“ |
-| C4 | **Tokenų skaidrėse – nuoroda į oficialius modelių konteksto langus (atnaujinti 2025–2026)** | Skaičiai keičiasi; „patikrinkite oficialiuose šaltiniuose“ jau yra – galima nuorodos. | SOT – 4.4 lentelė „Maksimalus konteksto langas“. |
+| #   | Pasiūlymas                                                                                                             | Pagrindimas                                                                           | Kur taikyti                                                                |
+| --- | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| C1  | **Pasirinktinai žymėti skaidres „Verslui“ / „Studentams“**                                                             | 4.2a-academic – studentams; RAG analitikas – verslui; skirtingi segmentai randa savo. | SOT – 2.1 lentelė: stulpelis arba etiketė.                                 |
+| C2  | **Nuorodos į išorinius šaltinius (OWASP, Anthropic, Learn Prompting) 4.5 ir 4.6**                                      | Padidina patikimumą ir leidžia gilintis.                                              | SOT – 4.5 (manipuliacijos), 4.6 (haliucinacijos): collapsible „Šaltiniai“. |
+| C3  | **Modulio 4 pradžioje (4.1) – vienas sakinys: „Šiame modulyje visi 6 blokai susieti su RAG, patikrinimu ir tokenais“** | Orientacija ir motyvacija.                                                            | SOT – 4.1 blokas „Kodėl konteksto inžinerija?“                             |
+| C4  | **Tokenų skaidrėse – nuoroda į oficialius modelių konteksto langus (atnaujinti 2025–2026)**                            | Skaičiai keičiasi; „patikrinkite oficialiuose šaltiniuose“ jau yra – galima nuorodos. | SOT – 4.4 lentelė „Maksimalus konteksto langas“.                           |
 
 ---
 
@@ -127,17 +130,21 @@ Prioritetai apibrėžti taip:
 ## 6. CHANGES / CHECKS / RISKS / NEXT
 
 **CHANGES:**
+
 - Sukurtas `docs/MODULIO_4_TOBULINIMAI_GERIAUSIOS_PRAKTIKOS.md` – 4 modulio turinio analizė, geriausios praktikos iš interneto, Must–Should–Could prioritizacija ir konkretūs pasiūlymai.
 
 **CHECKS:**
+
 - Skaityta SOT (Modulio 4 skyriai), MODULIO_4_SKAIDRIU_EILES.md.
 - Interneto paieška: prompt engineering courses, RAG best practices, hallucination verification (CoVe), prompt injection/jailbreak (OWASP, Anthropic).
 
 **RISKS:**
+
 - Nauji SOT pakeitimai reikalauja CONTENT_AGENT (turinis), vėliau DATA_AGENT (JSON), CODING_AGENT (UI) – laikytis agentų orkestratoriaus.
 - Prompt injection skaidrė gali padidinti 4.5 apimtį – geriau trumpas blokas arba collapsible.
 
 **NEXT:**
+
 1. Priimti sprendimą dėl MUST M4 (4.5 – prompt injection/jailbreak blokas) ir SHOULD S2–S4 (chunk, CoVe, bridžinė praktika).
 2. CONTENT_AGENT: įgyvendinti pasirinktus pakeitimus SOT faile.
 3. DATA_AGENT: sinchronizuoti `modules.json` su nauju turiniu.

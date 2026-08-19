@@ -2,12 +2,31 @@
 
 > Tikslas: viena vieta po release ar didesnio Unreleased sprinto patikrinti, ar agentų įėjimo dokumentai, release/ops dokumentai ir techniniai registry atitinka faktinę kodo bazę.
 
-**Baseline:** training **1.6.3** + Unreleased 08-19 (kiss + gate-green · corp15 slice · hygiene **40** · v4.36) · live pin **v1.6.2** · **12 live per Supabase**  
-**Testai:** tag **1.6.3** = **171/1056**; Unreleased HEAD = **176/1078**  
-**Data:** 2026-08-19 (docs meta sync v4.36; ne 1.6.4 / ne re-pin)  
-**Šaltiniai:** `package.json`, `CHANGELOG.md`, `docs/development/RELEASE_QA_RUN.md`, `docs/development/RELEASE_QA_CHECKLIST.md`, `docs/development/DOCS_MAINTENANCE.md`.
+**Baseline:** release + live pin **1.6.3** (GitHub PR #96 `7e4c3bf`) + Unreleased 08-19 (M13-WALK · Wave F/G/H · reflections · hygiene **39** · **v4.38**) · **12 live per Supabase**  
+**Testai:** tag **1.6.3** = **171/1056**; Unreleased HEAD = **177/1081**  
+**Data:** 2026-08-19 (live pin truth sync v4.38; ne 1.6.4)  
+**Šaltiniai:** `package.json`, `CHANGELOG.md`, GitHub `DITreneris/inzinerija` + `DITreneris/promptanatomy`, `docs/development/RELEASE_QA_RUN.md`, `docs/development/RELEASE_QA_CHECKLIST.md`, `docs/development/DOCS_MAINTENANCE.md`.
 
 ## Sync lentelė
+
+### Live pin truth – 2026-08-19 (v4.38)
+
+| #   | Failas                                                        | Laukas   | Buvo                | Turi būti                   | Done |
+| --- | ------------------------------------------------------------- | -------- | ------------------- | --------------------------- | ---- |
+| 1   | TODO / ROADMAP / README                                       | live pin | v1.6.2 / next 1.6.3 | **v1.6.3** PR #96 `7e4c3bf` | [x]  |
+| 2   | DEPLOYMENT / MARKETING\_\* / memo 06 / MON_P0                 | pin      | v1.6.2              | **v1.6.3**                  | [x]  |
+| 3   | QUICK_REF / LEAN / INDEX / CODEBASE / CHANGELOG / TEST_REPORT | meta     | v4.37 · pin 1.6.2   | **v4.38** · pin **1.6.3**   | [x]  |
+
+### Unreleased closeout + pre-launch – 2026-08-19 (v4.37)
+
+| #   | Failas                              | Laukas     | Buvo                                     | Turi būti                                                  | Done |
+| --- | ----------------------------------- | ---------- | ---------------------------------------- | ---------------------------------------------------------- | ---- |
+| 1   | `TODO.md` / `ROADMAP.md`            | open/meta  | Wave F open · QUICK_REF Open P1 M13-WALK | Wave F/G/H ✅ · Open P1 nėra · **v4.37**                   | [x]  |
+| 2   | QUICK_REF / LEAN / INDEX / CODEBASE | open/meta  | P1 M13-WALK open · v4.36                 | closed · Wave F/G/H · reflections · **v4.37**              | [x]  |
+| 3   | `modules-m1-m15` / glossary-m1-m15  | core check | ≠ SOT (post Wave H / reflections)        | `generate:core-data` sync · max id 15                      | [x]  |
+| 4   | README / DEPLOYMENT                 | Vercel     | `build:production` = Vercel              | Vercel = `corporate12`; `build:production` = M1–9 fallback | [x]  |
+| 5   | archive `TODO_DONE_SPRINTS_2026-08` | 08-19      | be M13-WALK / Wave F–H                   | SYS-A…H + Wave F/G/H + reflections blokas                  | [x]  |
+| 6   | `CHANGELOG` / `TEST_REPORT`         | Unreleased | v4.36 gate-green                         | Docs **v4.37** + pre-launch **177/1081** PASS              | [x]  |
 
 ### Unreleased kiss + gate-green – 2026-08-19
 

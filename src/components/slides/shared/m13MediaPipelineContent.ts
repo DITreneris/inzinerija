@@ -6,10 +6,10 @@ export type M13Locale = M10Locale;
 const STEPS_LT = [
   { label: 'Užduotis + ženklas', desc: 'Tikslas, auditorija' },
   { label: 'Kadrai', desc: 'Scenarijaus piešiniai' },
-  { label: 'Referencų užraktas', desc: 'Tas pats produktas' },
-  { label: 'Trumpi I2V', desc: '3–5 s' },
+  { label: 'Pavyzdžių nuotraukos', desc: 'Tas pats produktas' },
+  { label: 'Trumpi klipai', desc: 'Video iš kadro (I2V)' },
   { label: 'Garsas + montažas', desc: 'Pirmiausia garsas' },
-  { label: 'Patikra + DI žyma', desc: 'Teisės, žyma' },
+  { label: 'Patikra + DI žyma', desc: 'Teisės, C2PA' },
 ] as const;
 
 const STEPS_EN = [
@@ -67,12 +67,12 @@ export function getM13MediaPipelineExplanations(
       body: 'Pirmiausia pigūs scenarijaus piešiniai: pagrindinis kadras + 0–2 papildomi. Užrakink kompoziciją **prieš** mokėdamas už video – kitaip brangiai kartosi.',
     },
     {
-      title: '3. Referencų užraktas',
-      body: '3–5 to paties produkto ar personažo kampai. Prompte: tas pats produktas / tas pats stilius. Be referencų rinkinys „plaukioja“.',
+      title: '3. Pavyzdžių nuotraukos',
+      body: '3–5 to paties produkto ar personažo kampai. Prompte: tas pats produktas / tas pats stilius. Be pavyzdžių nuotraukų rinkinys „plaukioja“.',
     },
     {
-      title: '4. Trumpi I2V',
-      body: 'Iš užrakinto kadro generuok 2–4 trumpus **3–5 s** klipus (video iš nuotraukos / I2V). Venk vieno ilgo „iš teksto į video“ bandymo be plano – brangu ir sunku taisyti.',
+      title: '4. Trumpi klipai',
+      body: 'Iš užrakinto kadro generuok 2–4 trumpus **3–5 s** klipus (video iš kadro / I2V). Venk vieno ilgo „iš teksto į video“ bandymo be plano – brangu ir sunku taisyti.',
     },
     {
       title: '5. Garsas + montažas',
@@ -88,10 +88,10 @@ export function getM13MediaPipelineExplanations(
 export function getM13MediaPipelineChrome(locale: M13Locale) {
   if (locale === 'en') {
     return {
-      title: 'Generative media chain',
+      title: 'Media chain',
       hint: 'Tap a step – explanation below',
-      aria: 'Six steps: brief, frames, reference lock, short I2V, audio and edit, QA and AI label',
-      regionAria: 'Generative media chain – six steps',
+      aria: 'Six steps: brief, frames, reference photos, short clips, audio and edit, QA and AI label',
+      regionAria: 'Media chain – six steps',
       youAreHere: 'You are here:',
       navAria: 'Chain step selection',
       stepAria: (i: number, title: string) => `Step ${i + 1}: ${title}`,
@@ -99,10 +99,10 @@ export function getM13MediaPipelineChrome(locale: M13Locale) {
     };
   }
   return {
-    title: 'Generatyvinės medijos grandinė',
+    title: 'Medijos grandinė',
     hint: 'Paspausk žingsnį – paaiškinimas apačioje',
-    aria: 'Šeši žingsniai: užduotis, kadrai, referencų užraktas, trumpi I2V, garsas ir montažas, patikra ir DI žyma',
-    regionAria: 'Generatyvinės medijos grandinė – šeši žingsniai',
+    aria: 'Šeši žingsniai: užduotis, kadrai, pavyzdžių nuotraukos, trumpi klipai, garsas ir montažas, patikra ir DI žyma',
+    regionAria: 'Medijos grandinė – šeši žingsniai',
     youAreHere: 'Tu esi čia:',
     navAria: 'Grandinės žingsnių pasirinkimas',
     stepAria: (i: number, title: string) => `Žingsnis ${i + 1}: ${title}`,

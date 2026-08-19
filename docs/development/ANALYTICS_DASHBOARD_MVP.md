@@ -31,14 +31,14 @@
 
 ## 2. KPI baseline ir interpretacijos
 
-| KPI | Jei krenta | Jei kyla |
-|-----|-------------|----------|
-| M1 completion rate | Drop-off per anksti; per sunkios pirmos skaidrės arba trūksta motyvacijos | Geras įsitraukimas |
-| M3 completion rate | Praktikos per sunkios arba laiko trūkumas | Praktika veikia |
-| Overall funnel (Landing → M3 complete) | Silpna pirmoji skaidrė arba per daug žingsnių | Stiprus funnel |
-| Practice completion rate | Per sunki užduotis arba neaiškus CTA | Geras practice design |
-| CTA conversion (po M3) | CTA neaiškus arba per vėlus | Aiškus „kitas žingsnis“ |
-| Drop-off at first slide (M1) | Pirmoji skaidrė nepatraukli | Geras hook |
+| KPI                                    | Jei krenta                                                                | Jei kyla                |
+| -------------------------------------- | ------------------------------------------------------------------------- | ----------------------- |
+| M1 completion rate                     | Drop-off per anksti; per sunkios pirmos skaidrės arba trūksta motyvacijos | Geras įsitraukimas      |
+| M3 completion rate                     | Praktikos per sunkios arba laiko trūkumas                                 | Praktika veikia         |
+| Overall funnel (Landing → M3 complete) | Silpna pirmoji skaidrė arba per daug žingsnių                             | Stiprus funnel          |
+| Practice completion rate               | Per sunki užduotis arba neaiškus CTA                                      | Geras practice design   |
+| CTA conversion (po M3)                 | CTA neaiškus arba per vėlus                                               | Aiškus „kitas žingsnis“ |
+| Drop-off at first slide (M1)           | Pirmoji skaidrė nepatraukli                                               | Geras hook              |
 
 Baseline bus žinomas po 2–4 sav. instrumentacijos (žr. planą „Patvirtintas kontekstas“).
 

@@ -56,6 +56,7 @@ export { default as M13ConsistencyLockLabBlock } from './M13ConsistencyLockLabBl
 export { default as M13MediaPipelineBlock } from './M13MediaPipelineBlock';
 export { default as M13PostprodBlock } from './M13PostprodBlock';
 export { default as M13PromptStackBlock } from './M13PromptStackBlock';
+export { default as M13StillWorkflowBlock } from './M13StillWorkflowBlock';
 export { default as M13RuleOfThirdsBlock } from './M13RuleOfThirdsBlock';
 export { default as M16DeliveryGatesBlock } from './M16DeliveryGatesBlock';
 export { default as M16DirectionPickerLabBlock } from './M16DirectionPickerLabBlock';

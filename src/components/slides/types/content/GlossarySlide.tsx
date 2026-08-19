@@ -4,9 +4,9 @@ import type { GlossaryContent } from '../../../../types/modules';
 
 export function GlossarySlide({
   content,
-  optional,
 }: {
   content: GlossaryContent;
+  /** Kept for callers; M13 T17 – no learner “optional” badge. */
   optional?: boolean;
 }) {
   useTranslation();
@@ -18,14 +18,6 @@ export function GlossarySlide({
           <h4 className="font-bold text-lg text-brand-900 dark:text-brand-100">
             {t('glossaryLabel')}
           </h4>
-          {optional && (
-            <span
-              className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-200"
-              aria-label={t('optionalSlideAria')}
-            >
-              {t('optionalSlideLabel')}
-            </span>
-          )}
         </div>
         <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
           {t('glossarySlideIntro')}

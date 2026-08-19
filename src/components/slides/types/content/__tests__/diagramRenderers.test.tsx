@@ -96,6 +96,16 @@ describe('diagramRenderers registry contract', () => {
     expect(postprod.textContent).toContain('Postprod body');
     expect(postprod.querySelectorAll('nav button')).toHaveLength(4);
 
+    const { container: stillWorkflow } = renderDiagram(
+      'm13_still_workflow',
+      'Still workflow body'
+    );
+    expect(stillWorkflow.textContent).toContain('Still workflow body');
+    expect(stillWorkflow.querySelectorAll('nav button')).toHaveLength(5);
+    expect(
+      stillWorkflow.querySelector('[data-metaphor="desk-stations"]')
+    ).toBeTruthy();
+
     const { container: turinioWorkflow } = renderDiagram(
       'turinio_workflow',
       'Content workflow body'

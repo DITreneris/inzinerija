@@ -52,6 +52,15 @@ export const M13_POSTPROD_TONES: DiagramTone[] = [
   'emerald',
 ];
 
+/** Idea → Prompt → Try → Generate → Fix (desk stations) */
+export const M13_STILL_WORKFLOW_TONES: DiagramTone[] = [
+  'brand',
+  'amber',
+  'slate',
+  'amber',
+  'emerald',
+];
+
 export const CONTENT_TRACK_TONE_SET = new Set<DiagramTone>([
   'brand',
   'slate',

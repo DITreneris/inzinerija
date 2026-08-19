@@ -7,13 +7,13 @@
 
 ## 1. Dimensions
 
-| Dimension | What we measure | Pass threshold (1–3) |
-|-----------|-----------------|----------------------|
-| **CTA clarity** | "Next step" is explicit (e.g. "Pereikite prie Modulio 2" not "Tęskite mokymąsi") | 3 = CTA names target (module/quiz/certificate) |
-| **Tone** | Professional, consistent with DI terminology (DI not "AI" in UI) | 3 = No violations in sampled slides |
-| **Lietuviškos** | Correct Lithuanian characters (ž, ė, ą, ų, ū, š, č, į) in user-facing text | 3 = No common substitutions (perziureti→peržiūrėti, etc.) in sampled set |
-| **Links** | Internal (#main-content) and external (tools, sources) work | 3 = Spot-check no 404s |
-| **Module/slide consistency** | Skaidrė numbering (4.1–4.7 = only Modulio 4); no conflicting "Modulis X" usage | 3 = Matches CONTENT_MODULIU_ATPAZINIMAS |
+| Dimension                    | What we measure                                                                  | Pass threshold (1–3)                                                     |
+| ---------------------------- | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| **CTA clarity**              | "Next step" is explicit (e.g. "Pereikite prie Modulio 2" not "Tęskite mokymąsi") | 3 = CTA names target (module/quiz/certificate)                           |
+| **Tone**                     | Professional, consistent with DI terminology (DI not "AI" in UI)                 | 3 = No violations in sampled slides                                      |
+| **Lietuviškos**              | Correct Lithuanian characters (ž, ė, ą, ų, ū, š, č, į) in user-facing text       | 3 = No common substitutions (perziureti→peržiūrėti, etc.) in sampled set |
+| **Links**                    | Internal (#main-content) and external (tools, sources) work                      | 3 = Spot-check no 404s                                                   |
+| **Module/slide consistency** | Skaidrė numbering (4.1–4.7 = only Modulio 4); no conflicting "Modulis X" usage   | 3 = Matches CONTENT_MODULIU_ATPAZINIMAS                                  |
 
 ---
 

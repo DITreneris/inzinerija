@@ -3,7 +3,7 @@
 > Feature Doc Contract (§1b). Pattern: **`interactive-control-lab`**. Shell: **Ne**.  
 > elementId: `lab:m13_consistency_lab`.  
 > Slide: M13 / **13.325** (po 13.32, prieš 13.33).  
-> Atnaujinta: 2026-07-28 (Drift + Ref checklist enhancement – ne naujas `special` tipas).
+> Atnaujinta: 2026-08-19 (SYS-G workshop feel: thumbs + image Before/After + sample Stage + plain LT).
 
 ## Paskirtis
 
@@ -24,11 +24,13 @@ Po Character / product consistency (13.32) – praktikos įrankis: **ref sheet c
 
 1. Trumpai (content-block) – refs + drift vs fresh brief
 2. Lab surface:
-   - Ref sheet checklist ×4 (Hero / ¾|šonas / Detalė|etiketė / Style|šviesa); statusas `Turi N/4`
-   - Status mirror: ref count pill + aktyvus režimas
-   - ChoiceControl ×5 (4 drift + brief→fresh); null iki pick; `columns={2}`
-   - Po pick: **Simptomas | Fix** kontrastas (`driftSignal` / `fixCue`)
-   - Artefaktas + `CopyButton` (tik po pasirinkimo); jei `N < 3` – eilutė „Trūksta: …“
+   - Serija **Ąžuolo puodelis / Oak Mug** – 4 fixture thumbs ant checkbox eilučių (priekis / ¾ / detalė / šviesa); statusas `Turi N/4`
+   - Status mirror: pavyzdžių skaičius + aktyvus režimas
+   - Prieš/Po = **poros vaizdai** (slinktis vs užraktas), ne tik tekstas
+   - ChoiceControl ×5 (4 slinktys + užduoties aprašas→naujas); null iki pick; `columns={2}`
+   - Po pick: **Simptomas | Taisymas** kontrastas (`driftSignal` / `fixCue`)
+   - First-screen **pavyzdinis Stage** (read-only) iki režimo; `CopyButton` tik po pasirinkimo; jei `N < 3` – eilutė „Trūksta: …“
+   - First-screen LT be `reference` / `Drift` / `Ref lock` / `Fix` / `brief` (EN gloss antras)
 3. Patikra (content-block)
 
 ## Artefaktai
@@ -45,6 +47,7 @@ Po Character / product consistency (13.32) – praktikos įrankis: **ref sheet c
 - [x] `modules.json` + EN + footers §3.6 (13.32 be dublikatinio copyable)
 - [x] `diagramRenderers` + unit smoke (checklist, drift, fresh, missing refs)
 - [x] `audit:teaching-elements --strict`
+- [x] SYS-G 2026-08-19: fixture thumbs + image Before/After + sample artefact + plain LT (tas pats `elementId`)
 
 ## Susiję
 
