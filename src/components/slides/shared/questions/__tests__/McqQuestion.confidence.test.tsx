@@ -59,4 +59,14 @@ describe('McqQuestion confidence gate', () => {
       screen.getByRole('button', { name: /Pasirinkimas: Meta/i })
     ).toBeInTheDocument();
   });
+
+  it('renders confidence after the first answer option', () => {
+    renderMcq(undefined);
+    const option = screen.getByRole('button', { name: /Pasirinkimas: Meta/i });
+    const confidence = screen.getByRole('group', { name: /Kiek esi tikras/i });
+    expect(
+      option.compareDocumentPosition(confidence) &
+        Node.DOCUMENT_POSITION_FOLLOWING
+    ).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+  });
 });

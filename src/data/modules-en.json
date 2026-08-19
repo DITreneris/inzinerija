@@ -1200,13 +1200,13 @@
             }
           ],
           "content": {
-            "footer": "Next – slide 5: Priority ordering"
+            "footer": "Next – slide 5: 6-block sequence"
           }
         },
         {
           "id": 24,
-          "title": "Priority ordering",
-          "subtitle": "Order the blocks by priority",
+          "title": "6-block sequence",
+          "subtitle": "Order the blocks as this course’s model sequences them (first to last)",
           "type": "test-section",
           "testQuestions": [
             {

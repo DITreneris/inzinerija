@@ -392,7 +392,7 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       setLocale('en');
       const { container } = renderWithProviders(<M15PracticeLoopBlock />);
       expect(container.textContent).toContain('Quick path');
-      expect(container.textContent).toContain('Full path (optional)');
+      expect(container.textContent).toContain('Full path');
       expect(container.textContent).toContain('Brief');
       expect(container.textContent).not.toContain('Greitas kelias');
     });
@@ -401,7 +401,7 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       setLocale('lt');
       const { container } = renderWithProviders(<M15PracticeLoopBlock />);
       expect(container.textContent).toContain('Greitas kelias');
-      expect(container.textContent).toContain('Pilnas kelias (optional)');
+      expect(container.textContent).toContain('Pilnas kelias');
       expect(container.textContent).toContain('Koreguok, kol tinka');
       expect(container.textContent).toContain('Tu esi čia:');
       expect(container.querySelectorAll('nav button')).toHaveLength(5);
@@ -415,11 +415,9 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       const { container, getByRole } = renderWithProviders(
         <M15PracticeLoopBlock />
       );
-      fireEvent.click(
-        getByRole('button', { name: 'Pilnas kelias (optional)' })
-      );
+      fireEvent.click(getByRole('button', { name: 'Pilnas kelias' }));
       expect(container.textContent).toContain('1. Vaizdas');
-      expect(container.textContent).toContain('optional scenarijus');
+      expect(container.textContent).toContain('vaizdo scenarijus');
       expect(container.querySelectorAll('nav button')).toHaveLength(5);
     });
 

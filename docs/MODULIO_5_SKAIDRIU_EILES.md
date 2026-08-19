@@ -11,8 +11,8 @@
 | Eilė | ID    | Skaidrė / tema                              | Kodėl čia?                                                     |
 | ---- | ----- | ------------------------------------------- | -------------------------------------------------------------- |
 | 1    | 45.5  | action-intro                                | Hook, outcomes, handoutPromise; CTA → skaidrė 47 title.        |
-| 2    | 47    | Kas yra 15 min sprintas                     | Brief + 8 struktūra + preCopy; Master collapsible; be 6 blokų. |
-| 3    | 47.2  | Storyline – sprendimas ir 3 argumentai      | Teiginys-antraštės; copyable storyline promptas.               |
+| 2    | 47    | Kas yra prezentacijos sprintas              | Brief + 8 struktūra + preCopy; Master collapsible; be 6 blokų. |
+| 3    | 47.2  | Argumentų seka (storyline)                  | Teiginys-antraštės; copyable storyline promptas.               |
 | 4    | 47.5  | Pilnas turinys ir įrankiai                  | Vienintelis 6 blokų promptas + įrankio medis (3 keliai).       |
 | 5    | 510   | Sprintas: Brief, struktūra, skaidrės        | Timed šablonas + soft proof.                                   |
 | 6    | 510.5 | QC lab – blogas vs geras juodraštis         | 6 punktų QC + bridgeable patikra; tiltas į 515.                |

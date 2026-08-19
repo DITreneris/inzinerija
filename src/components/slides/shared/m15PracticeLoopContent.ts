@@ -8,7 +8,7 @@ export function getM15PracticeLoopLabels(locale: M10Locale) {
     return {
       title: 'Project loop',
       quick: 'Quick path',
-      full: 'Full path (optional)',
+      full: 'Full path',
       brief: 'Brief',
       pick: 'Pick one',
       img: 'Image',
@@ -20,7 +20,7 @@ export function getM15PracticeLoopLabels(locale: M10Locale) {
       qa: 'QA',
       done: 'Done',
       repeat: 'Tweak until ready',
-      aria: 'Project loop: quick path from brief to one asset, optional full path from image to video to audio, montage and quality check',
+      aria: 'Project loop: quick path from brief to one asset, or full path from image to video to audio, montage and quality check',
       modeAria: 'Project path mode',
       regionAriaQuick: 'Quick project path – five steps',
       regionAriaFull: 'Full project path – five steps',
@@ -34,8 +34,8 @@ export function getM15PracticeLoopLabels(locale: M10Locale) {
   return {
     title: 'Projekto ciklas',
     quick: 'Greitas kelias',
-    full: 'Pilnas kelias (optional)',
-    brief: 'Brief',
+    full: 'Pilnas kelias',
+    brief: 'Užduotis',
     pick: 'Pasirink vieną',
     img: 'Vaizdas',
     vid: 'Video',
@@ -43,10 +43,10 @@ export function getM15PracticeLoopLabels(locale: M10Locale) {
     prompt: 'Promptas',
     result: 'Rezultatas',
     fix: 'Korekcija',
-    qa: 'QA',
+    qa: 'Patikra',
     done: 'Baigta',
     repeat: 'Koreguok, kol tinka',
-    aria: 'Projekto ciklas: greitas kelias nuo brief iki vieno artefakto, optional pilnas kelias nuo vaizdo iki video, garso, montažo ir patikros',
+    aria: 'Projekto ciklas: greitas kelias nuo užduoties aprašo iki vieno artefakto, arba pilnas kelias nuo vaizdo iki video, garso, montažo ir patikros',
     modeAria: 'Projekto kelio režimas',
     regionAriaQuick: 'Greitas projekto kelias – penki žingsniai',
     regionAriaFull: 'Pilnas projekto kelias – penki žingsniai',
@@ -58,10 +58,10 @@ export function getM15PracticeLoopLabels(locale: M10Locale) {
   };
 }
 
-const CTA_QUICK_LT = ' Kitas žingsnis: greitas startas (hero vaizdas).';
-const CTA_QUICK_EN = ' Next step: quick start (hero image).';
-const CTA_FULL_LT = ' Kitas žingsnis: optional scenarijus (vaizdas).';
-const CTA_FULL_EN = ' Next step: optional scenario (image).';
+const CTA_QUICK_LT = ' Kitas žingsnis: greitas startas (pagrindinis vaizdas).';
+const CTA_QUICK_EN = ' Next step: quick start (main image).';
+const CTA_FULL_LT = ' Kitas žingsnis: vaizdo scenarijus.';
+const CTA_FULL_EN = ' Next step: image scenario.';
 
 export function getM15PracticeLoopExplanations(
   locale: M10Locale,
@@ -89,30 +89,30 @@ export function getM15PracticeLoopExplanations(
         },
         {
           title: '5. Done',
-          body: `Optional montage 15–30 s + CPI note, then go to the project summary.${cta}`,
+          body: `Montage 15–30 s + CPI note, then go to the project summary.${cta}`,
         },
       ];
     }
     return [
       {
         title: '1. Vaizdas',
-        body: `Užrakink keyframe (hero) su brand ir refs. Tai vizualus stuburas trumpiems klipams.${cta}`,
+        body: `Užrakink raktinį kadrą su ženklu ir pavyzdžių nuotraukomis. Tai vizualus stuburas trumpiems klipams.${cta}`,
       },
       {
         title: '2. Video',
-        body: `Generuok **3–5 s** I2V klipus iš keyframe – ne vieną ilgą one-shot.${cta}`,
+        body: `Generuok **3–5 s** klipus iš raktinio kadro (I2V) – ne vieną ilgą bandymą.${cta}`,
       },
       {
         title: '3. Garsas',
-        body: `Audio-first: VO arba licensed bed diktuoja trukmę prieš montažą.${cta}`,
+        body: `Pirma garsas: balsas arba licencijuotas fonas diktuoja trukmę prieš montažą.${cta}`,
       },
       {
-        title: '4. QA',
-        body: `Patikrink brand, žinutę, teises ir disclosure prieš publikaciją.${cta}`,
+        title: '4. Patikra',
+        body: `Patikrink ženklą, žinutę, teises ir DI žymą prieš publikaciją.${cta}`,
       },
       {
         title: '5. Baigta',
-        body: `Optional montažas 15–30 s + CPI pastaba, tada eik į projekto santrauką.${cta}`,
+        body: `Montažas 15–30 s + CPI pastaba, tada eik į projekto santrauką.${cta}`,
       },
     ];
   }
@@ -145,12 +145,12 @@ export function getM15PracticeLoopExplanations(
 
   return [
     {
-      title: '1. Brief',
-      body: `Dvi eilutės: tikslas (A/E/C), auditorija ir platforma. Pakanka hero vaizdui.${cta}`,
+      title: '1. Užduotis',
+      body: `Dvi eilutės: tikslas (A/E/C), auditorija ir platforma. Pakanka pagrindiniam vaizdui.${cta}`,
     },
     {
       title: '2. Pasirink vieną',
-      body: `Greitam keliui rinkis vieną artefaktą – dažniausiai hero vaizdą.${cta}`,
+      body: `Greitam keliui rinkis vieną rezultatą – dažniausiai pagrindinį vaizdą.${cta}`,
     },
     {
       title: '3. Promptas',
@@ -158,11 +158,11 @@ export function getM15PracticeLoopExplanations(
     },
     {
       title: '4. Rezultatas',
-      body: `Sugeneruok hero vaizdą. Brief + promptą laikyk kartu su failu.${cta}`,
+      body: `Sugeneruok pagrindinį vaizdą. Užduoties aprašą ir promptą laikyk kartu su failu.${cta}`,
     },
     {
       title: '5. Korekcija',
-      body: `Koreguok, kol brand ir žinutė tinka – tada eik į santrauką (greito starto hero pakanka).${cta}`,
+      body: `Koreguok, kol ženklas ir žinutė tinka – tada eik į santrauką (greito starto vaizdo pakanka).${cta}`,
     },
   ];
 }

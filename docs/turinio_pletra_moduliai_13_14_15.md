@@ -675,12 +675,13 @@ Brand: [1–2 sakiniai – spalvos, tipografija, nuotaika]. Variantų skaičius:
 
 ## 5c. Modulio 14 testas (LT, modules.json)
 
-- **Intro (140):** `thresholdExplanation` – „rekomenduojame **peržiūrėti** … Modulio 13 **skaidres**“; `firstActionCTA` – **12 klausimų** apie vaizdus, video, garsą, pipeline, rizikas, workflow, image→video, audio-first, licencijas, C2PA.
-- **Klausimai (141):** Esami m14-q1…q8 + nauji:
-  - **m14-q9** – kodėl pipeline / storyboard prieš brangų video (`relatedSlideId`: **13.12**);
+- **Intro (140):** `thresholdExplanation` – „rekomenduojame **peržiūrėti** … Modulio 13 **skaidres**“; `firstActionCTA` – **12 klausimų** apie vaizdus, video, garsą, medijos grandinę, rizikas, darbo eigą, image→video, audio-first, licencijas, C2PA.
+- **Klausimai (141):** 12 itemų (M14-ITEMS 2026-08-18):
+  - **m14-q6** – multimodalė grandinė nuo užduoties aprašo iki patikros (`relatedSlideId`: **13.11**);
+  - **m14-q9** – kodėl storyboard / still kadrai prieš brangų video, be CPI kaip rakto (`relatedSlideId`: **13.12**);
   - **m14-q10** – kas yra audio-first (`relatedSlideId`: **13.6**);
-  - **m14-q11** – kada ElevenMusic/Soundraw vs Suno klientui (`relatedSlideId`: **13.7**);
-  - **m14-q12** – C2PA / disclosure prieš publikaciją (`relatedSlideId`: **13.101**).
+  - **m14-q11** – komercinė licencija ir monetizacija, ne vendor quiz (`relatedSlideId`: **13.7**);
+  - **m14-q12** – C2PA / Content Credentials = provenance (`relatedSlideId`: **13.101**).
 - **Rezultatai (142):** `useCaseBlock` – **„Kitas žingsnis: Modulis 15“**.
 
 ---
@@ -738,14 +739,14 @@ Pagal [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md
 
 - **whyBenefit:** Po šio testo žinosi, ar esi pasiruošęs finaliniam Turinio inžinerijos projektui (Modulis 15).
 - **duration:** ~12–15 min.
-- **firstActionCTA:** Atsakyk į 12 klausimų – apie vaizdus, video, garsą, pipeline, audio-first, licencijas, C2PA, rizikas, workflow ir image → video grandinę.
+- **firstActionCTA:** Atsakyk į 12 klausimų apie vaizdus, video, garsą ir teises.
 - **microWinPhrase:** „Kiekvienas teisingas atsakymas parodo, kad moki formuluoti turinio promptus.“
 - **Slenksčiai:** ≥70 % – rekomenduojama pereiti prie Modulio 15 (projektas). &lt;70 % – peržiūrėk rekomenduojamas M13 skaidres (remediation pagal klausimą).
 
 ### 8.2 warm-up, test-section, test-results, bonus
 
-- **Warm-up (`140.5`):** 3 unscored – brand/formatas; audio-first vs tik muzika; forward bridge į M15 MUST vs optional.
-- **Klausimai (`141`):** **12** klausimai – MCQ ir scenarijų tipas. Remediation – `relatedSlideId` į M13 (įsk. 13.12, 13.6, 13.7, 13.101). Įskaitant **m14-q7** conversion 9:16; **m14-q8** image → video; **m14-q9–q12** pipeline/CPI, audio-first, licencijos, C2PA.
+- **Warm-up (`140.5`):** 3 unscored – A/E/C tikslas (`13.1`); tas pats vaizdas / reference lock (`13.32`); forward bridge į M15 MUST vs optional. **Ne** preview `m14-q2` (brand+formatas) ir **ne** preview `m14-q10` (audio-first seka).
+- **Klausimai (`141`):** **12** klausimai – MCQ ir scenarijų tipas. Remediation – `relatedSlideId` į M13 (įsk. 13.12, 13.6, 13.7, 13.101). Įskaitant **m14-q6** grandinę; **m14-q7** conversion 9:16; **m14-q8** image → video (`relatedSlideId`: **13.12**); **m14-q9** stills be CPI rakto; **m14-q10** audio-first; **m14-q11** licencijos principas; **m14-q12** C2PA provenance.
 - **test-results (`142`):** passedMessage, failedMessage, **useCaseBlock** – „Kitas žingsnis: Modulis 15“ (150.5 MUST / 151–154 optional). thresholdExplanation (tu): „Kai pasieksi ≥70 %, gali pereiti prie Modulio 15 (projektas). Jei mažiau – rekomenduoju peržiūrėti Modulio 13 skaidres.“
 - **Bonus (`143`):** optional content-block – 5 min medijos grandinės checklist (Trumpai → Daryk → Copy → Patikra).
 

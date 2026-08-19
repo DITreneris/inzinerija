@@ -1,6 +1,7 @@
 # DATA_AGENT: Svarbūs duomenys ir atnaujinimo periodiškumas
 
-> Kurie duomenų failai reikalauja DATA_AGENT dėmesio bėgant laikui, kodėl ir kaip dažnai juos tikrinti/atnaujinti.
+> Kurie duomenų failai reikalauja DATA_AGENT dėmesio bėgant laikui, kodėl ir kaip dažnai juos tikrinti/atnaujinti.  
+> Hero KPI vintage (Eurostat / MIT / kontekstų langai) — parked memo, **ne** P0: [`DATA_MEMO.md`](DATA_MEMO.md). Gerinti etiketes, kai skaidrė jau atidaryta; nelaužyti skaičių.
 
 **Architektūra A:** `modules.json`, `glossary.json`, `tools.json` ir `tools-en.json` yra full redagavimo SOT (tools – LT+EN twin). **Build/runtime profiliai** generuojami iš full SOT per `npm run generate:core-data` (`scripts/generate-core-data.mjs`):
 

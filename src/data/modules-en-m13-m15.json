@@ -3,7 +3,7 @@
     {
       "id": 13,
       "title": "Content engineering with AI",
-      "subtitle": "Images, video, music",
+      "subtitle": "Images, video, audio",
       "description": "Create marketing visuals, short videos and audio with AI prompts, checks and rights awareness.",
       "icon": "Image",
       "level": "learn",
@@ -15,12 +15,12 @@
         {
           "id": 130,
           "title": "Content engineering path",
-          "subtitle": "Images, video, music",
+          "subtitle": "Images, video, audio",
           "type": "action-intro",
           "content": {
             "whyBenefit": "After this module you will create images, short videos and audio with AI – from a clear brief to quality and rights checks.",
             "heroStat": "One path.",
-            "heroText": "Images, video, music.",
+            "heroText": "Images, video, audio.",
             "heroSubText": "For marketing and communication specialists – visual and audio content with AI.",
             "firstActionCTA": "In 1–2 minutes open one image tool (e.g. ChatGPT with DALL·E or Ideogram) and generate one image from your description.",
             "outcomes": [
@@ -32,14 +32,14 @@
             "audience": "For marketing and communication specialists.",
             "footer": "Next slide",
             "howToUseModule": {
-              "heading": "Pasirink kelia",
+              "heading": "Choose a path",
               "short": {
-                "label": "Trumpas",
-                "description": "After this module you will create images, short videos and audio with AI – from a clear brief to quality and rights checks."
+                "label": "Short path",
+                "description": "Without extra slides (composition, MASTER templates, glossary)."
               },
               "full": {
-                "label": "Ilgas",
-                "description": "After this module you will create images, short videos and audio with AI – from a clear brief to quality and rights checks."
+                "label": "Full path",
+                "description": "All slides, including extras."
               }
             }
           }
@@ -47,7 +47,7 @@
         {
           "id": 13.1,
           "title": "What you will find in this path",
-          "subtitle": "Images, video, music – tools and prompts",
+          "subtitle": "Images, video, audio – tools and prompts",
           "type": "content-block",
           "content": {
             "sections": [
@@ -97,8 +97,8 @@
         {
           "id": 13.12,
           "title": "Generative media chain",
-          "shortTitle": "Medijos grandine",
-          "subtitle": "Brief → stills → refs → I2V → audio → edit → QA",
+          "shortTitle": "Media chain",
+          "subtitle": "From the brief to a check – 6 steps without expensive guesswork",
           "type": "content-block",
           "content": {
             "sections": [
@@ -108,35 +108,35 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "Grandines schema",
-                "body": "Use this step to create, check and improve your AI content artifact.",
+                "heading": "Chain diagram",
+                "body": "6 steps – tap a stage. For the business cycle (brief → A/B) see the slide “Workflow: from brief to publication”.",
                 "blockVariant": "brand",
                 "image": "m13_media_pipeline",
-                "imageAlt": "AI content engineering diagram"
+                "imageAlt": "Generative media chain: brief, frames, refs, I2V, audio, check"
               },
               {
-                "heading": "Kodel sie 6 zingsniai",
-                "body": "Use this step to create, check and improve your AI content artifact.",
+                "heading": "Why these 6 steps",
+                "body": "The six diagram steps are the technical spine. The checklist below is practice for your topic (not a second step list).",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Do this now",
-                "body": "Use this step to create, check and improve your AI content artifact.",
+                "body": "Fill the checklist for your topic – this is a plan, not a generator prompt.",
                 "blockVariant": "brand"
               },
               {
-                "heading": "Kopijuojamas sablonas",
-                "body": "Use this step to create, check and improve your AI content artifact.",
-                "copyable": "Use the module template, fill the brackets, then check the result and improve one detail."
+                "heading": "Copyable template",
+                "body": "Chain checklist – copy and fill it in.",
+                "copyable": "Chain checklist:\nBrief: goal [awareness / engagement / conversion], audience [who], platform [where].\nBrand: colors [X], tone [Y].\nFrames: main + [0–2] extras (lock before video).\nRefs: [product/character – 3–5 angles] / none.\nClips: [2–4] × 3–5 s (I2V – image-to-video), not one long clip.\nAudio: [voice first / bed only] + rights [licensed / demo].\nEdit: cut + color + mix.\nCheck: brand | message | format | rights | AI label (C2PA / disclosure)."
               },
               {
                 "heading": "Check",
-                "body": "Use this step to create, check and improve your AI content artifact.",
+                "body": "Before video, do you have at least one locked frame? Do you know whether sound will be voice-first or bed only?",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Where to use this",
-                "body": "Use this step to create, check and improve your AI content artifact.",
+                "body": "Ad clips, short social video, product demos, internal explainers.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -162,12 +162,12 @@
               "Interactive image builder for practice"
             ],
             "recap": {
-              "heading": "Ka jau zinai?",
-              "lead": "Pries vaizdu skyriu – medijos grandine.",
+              "heading": "What you already know?",
+              "lead": "Before the image section – the media chain.",
               "items": [
-                "Create, check and reuse the artifact with a clear prompt.",
-                "Create, check and reuse the artifact with a clear prompt.",
-                "Create, check and reuse the artifact with a clear prompt."
+                "Generative media chain: brief → frames → refs → video → audio → check.",
+                "You lock frames before expensive video generation.",
+                "The chain checklist is a plan for your topic, not a generator prompt."
               ]
             }
           }
@@ -181,39 +181,39 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "A good image prompt describes the subject, context, style, ratio and what to avoid.",
+                "body": "A good image prompt covers what is shown (subject, place, action), style (photoreal, illustration), ratio (e.g., 16:9, 1:1) and what to avoid.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Formula and three layers",
-                "body": "A good image prompt describes the subject, context, style, ratio and what to avoid.",
+                "body": "Image = Object + Context + Aesthetics (style). Layers: object (what is shown), context (place, action), aesthetics (style, light).",
                 "blockVariant": "brand",
                 "image": "m13_prompt_stack",
-                "imageAlt": "AI content engineering diagram"
+                "imageAlt": "Image prompt: object, context, aesthetics"
               },
               {
                 "heading": "Minimum requirements",
-                "body": "A good image prompt describes the subject, context, style, ratio and what to avoid.",
+                "body": "At least 3–7 words; avoid vague words (“nice”, “interesting” with no context); use concrete nouns. A style keyword crowns the idea.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Do this now",
-                "body": "A good image prompt describes the subject, context, style, ratio and what to avoid.",
+                "body": "Open one image tool and copy the prompt below. Replace [DESCRIPTION] with your topic.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Copyable prompt",
-                "body": "A good image prompt describes the subject, context, style, ratio and what to avoid.",
+                "body": "Image prompt template – copy and fill [DESCRIPTION].",
                 "copyable": "Create an image: [DESCRIPTION]. Style: professional, bright, minimal. Ratio: 16:9. Do not add text inside the image."
               },
               {
                 "heading": "Check",
-                "body": "A good image prompt describes the subject, context, style, ratio and what to avoid.",
+                "body": "Did the image match the description? If not – add place, lighting or style, or say “no text in the image”.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Why this works",
-                "body": "A good image prompt describes the subject, context, style, ratio and what to avoid.",
+                "body": "Start with “create an image” (or “generate an image”) plus a concrete ask – the tool then knows the task.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -244,7 +244,7 @@
               },
               {
                 "heading": "Do this now",
-                "body": "Pick one style and one ratio. Copy the template below and fill it in.",
+                "body": "Pick one style and one ratio. Write a 15+ word style header and do not rewrite it. Copy the lock below – one model for the whole series.",
                 "blockVariant": "brand"
               },
               {
@@ -253,8 +253,13 @@
                 "copyable": "Image: [WHAT IS SHOWN].\nStyle: [photorealistic / acrylic painting / minimal vector / 3D render].\nRatio: [1:1 / 16:9 / 9:16]. Language: neutral scene, no text in the image unless needed."
               },
               {
+                "heading": "Copyable style lock",
+                "body": "3–7 lines – repeat the same sentence in the series.",
+                "copyable": "Style lock (do not swap the words): clean catalog shot, light from the left, white background, true product colors, readable label, no text on top.\nSame product, same ratio, same label placement.\nModel for this series: [one]. Do not switch mid-series."
+              },
+              {
                 "heading": "Check",
-                "body": "Does the platform support the ratio you chose? If the image looks cropped – change the ratio or add detail to the description.",
+                "body": "Is the style header still verbatim (15+ words)? Same model for the whole series? Does the platform support the ratio?",
                 "blockVariant": "accent"
               }
             ],
@@ -350,7 +355,7 @@
                 "explanation": "The best answer uses a clear goal, context, format and quality check."
               }
             ],
-            "footer": "Next slide"
+            "footer": "Next – slide 8: Same look"
           }
         },
         {
@@ -398,7 +403,7 @@
           "id": 13.325,
           "title": "Lab: Consistency Drift",
           "shortTitle": "Consistency lab",
-          "subtitle": "Tick refs, pick what drifted – copy fix + lock rule",
+          "subtitle": "Tick examples, pick what drifted – copy the fix and lock rule",
           "type": "content-block",
           "content": {
             "sections": [
@@ -408,8 +413,8 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "Drift lab",
-                "body": "Tick refs (≥3), pick what drifted. Below – Symptom | Fix and the prompt rule – copy it into your next generation.",
+                "heading": "Drift practice",
+                "body": "Tick examples (≥3), pick what drifted. Below – Symptom | Fix and the prompt rule – copy it into your next generation.",
                 "blockVariant": "brand",
                 "image": "m13_consistency_lab",
                 "imageAlt": "Consistency drift lab: refs, Symptom and Fix, copyable rule"
@@ -426,7 +431,7 @@
         {
           "id": 13.33,
           "title": "Composition and framing",
-          "shortTitle": "Kompozicija ir kadras",
+          "shortTitle": "Composition and framing",
           "subtitle": "Rule of thirds, camera angle, shot types",
           "type": "content-block",
           "optional": true,
@@ -497,7 +502,7 @@
         {
           "id": 13.34,
           "title": "Practice: recognize style and ratios",
-          "shortTitle": "Atpazink stiliu",
+          "shortTitle": "Recognize style",
           "subtitle": "5 situations: style, ratio, composition, brand",
           "type": "content-block",
           "content": {
@@ -559,7 +564,7 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "Optional library: if one solution is enough – pick a MASTER template or one ready prompt. Workflow and 8 scenarios are for deeper practice (expand).",
+                "body": "Optional library: if one solution is enough – pick a MASTER template or one ready prompt. Ready prompts work only with a style lock (same product / 15+ word header / one model). Workflow and 8 scenarios are for deeper practice (expand).",
                 "blockVariant": "accent"
               },
               {
@@ -583,18 +588,27 @@
               },
               {
                 "heading": "Ready prompt: Logo",
-                "body": "Use one MASTER template or one ready prompt if you need a fast result; use the rest for deeper practice.",
-                "copyable": "Create a logo for [business area] company [name]. Style [minimal/modern], colors [x], transparent/white background, deliver 3 variants."
+                "body": "For a logo – copy and fill the brackets. Before you run it, paste the style lock and the model name.",
+                "copyable": "Create a logo for [business area] company [name]. Style [minimal/modern], colors [x], transparent/white background, deliver 3 variants.\nStyle lock: [15+ words, verbatim]. Model: [one].",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
               },
               {
                 "heading": "Ready prompt: Social post",
-                "body": "Use one MASTER template or one ready prompt if you need a fast result; use the rest for deeper practice.",
-                "copyable": "From this text [paste], create a LinkedIn/Facebook illustration. Look [corporate], colors [x], format 1:1 or 4:5, no text / with CTA text [if needed]."
+                "body": "For a social post – a template with a text field. Before you run it, paste the style lock and the model name.",
+                "copyable": "From this text [paste], create a LinkedIn/Facebook illustration. Look [corporate], colors [x], format 1:1 or 4:5, no text / with CTA text [if needed].\nStyle lock: [15+ words, verbatim]. Model: [one].",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
               },
               {
                 "heading": "Ready prompt: Poster",
-                "body": "Use one MASTER template or one ready prompt if you need a fast result; use the rest for deeper practice.",
-                "copyable": "Create a bold poster for event [name], date/place [x], style [x], include exact text: '…'."
+                "body": "For an event poster – add date, place and style. Before you run it, paste the style lock and the model name.",
+                "copyable": "Create a bold poster for event [name], date/place [x], style [x], include exact text: '…'.\nStyle lock: [15+ words, verbatim]. Model: [one].",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
               },
               {
                 "heading": "All 8 business scenarios",
@@ -605,7 +619,7 @@
               },
               {
                 "heading": "Check",
-                "body": "Use one MASTER template or one ready prompt if you need a fast result; use the rest for deeper practice.",
+                "body": "Did you use at least 3 fields from the MASTER template (subject, style, composition, lighting, colors)? Did you run a Ready prompt with the same lock, not an empty style?",
                 "blockVariant": "accent"
               }
             ],
@@ -641,12 +655,12 @@
               "Edit after generation"
             ],
             "recap": {
-              "heading": "Ka jau zinai?",
-              "lead": "Vaizdu skyrius – pamatas video.",
+              "heading": "What you already know?",
+              "lead": "The image section is the base for video.",
               "items": [
-                "Create, check and reuse the artifact with a clear prompt.",
-                "Create, check and reuse the artifact with a clear prompt.",
-                "Create, check and reuse the artifact with a clear prompt."
+                "An image prompt = object + context + style.",
+                "Style, ratios and the same product in a series.",
+                "Reference photos – same product / same style for the set."
               ]
             }
           }
@@ -661,7 +675,7 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "A short video needs a clear script, tone and camera. Prefer 2–4 short clips (3–5 s) over one long try – lock stills before expensive video.",
+                "body": "A short video needs a clear script, tone and camera. Prefer 2–4 short clips (3–5 s) over one long try – lock frames before expensive video.",
                 "blockVariant": "accent"
               },
               {
@@ -673,7 +687,7 @@
               },
               {
                 "heading": "Image-to-video chain",
-                "body": "Hero / keyframe → I2V (Runway, Kling, Veo, Seedance, Sora) → edit. Audio-first hint: if you will add VO, lock VO length first – then cut clips to the audio.",
+                "body": "Hero image / keyframe → I2V (Runway, Kling, Veo, Seedance, Sora) → edit. Sound first: if you will add voice-over, lock voice length first – then cut clips to the audio.",
                 "blockVariant": "brand",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -690,12 +704,17 @@
               },
               {
                 "heading": "Copyable chain – image → video",
-                "body": "Hero first, then animation; for longer pieces use several keyframes.",
+                "body": "Hero image first, then animation; for longer pieces use several keyframes.",
                 "copyable": "1) Hero frame: [SUBJECT], [CONTEXT], style [STYLE], 16:9 or 9:16.\n2) I2V 3–5 s from that frame: camera […], same product / same style.\n(If you need longer – second keyframe, then edit.)"
               },
               {
+                "heading": "Copyable I2V cycle",
+                "body": "Change one variable – then watch the last frame.",
+                "copyable": "Start: attach the keyframe. Keep identity and framing.\nWhat does not change: [product / label / colors / light from the left].\nThe subject does: [one verb].\nCamera: [one move]. No orbit, no tilt, no stacked moves.\nDuration: 3 s first. Last frame: label readable, no new objects."
+              },
+              {
                 "heading": "Check",
-                "body": "Does the video start look like the hero? Did the product or character stay consistent? If not – simplify the scene or strengthen the reference (same product, style and colors).",
+                "body": "Did you write the invariants? Did you change only one thing? Did you watch the last second (label, fingers, crop)?",
                 "blockVariant": "accent"
               },
               {
@@ -712,12 +731,12 @@
         {
           "id": 13.47,
           "title": "I2V klipo generatorius",
-          "subtitle": "Image-to-video: keyframe → 3–5 s → camera → same style",
+          "subtitle": "Image-to-video (I2V): keyframe → 3–5 s → camera → same style",
           "type": "i2v-generatorius",
           "shortTitle": "I2V builder",
           "content": {
-            "tldr": "In short: Describe the keyframe / scene, pick duration (3–5 s) and camera move. The system builds an image-to-video prompt – copy it into Kling, Runway, Veo or Sora.",
-            "patikra": "Does the prompt include a keyframe, duration 3–5 s, and same style/product? Can the opening match your hero still?",
+            "tldr": "In short: Describe the keyframe / scene, pick duration (3–5 s) and camera move. The system builds an I2V (image-to-video) prompt – copy it into Kling, Runway, Veo or Sora.",
+            "patikra": "Does the prompt include a keyframe, 3 s first, one camera and one action? Did you watch the last second – label readable, no new objects? If you need a brand voice – keep the clip silent and write voice separately (do not stack Veo native sound on the same file).",
             "footer": "Next slide"
           }
         },
@@ -730,7 +749,7 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "Video: format (16:9 / 9:16), length 3–5 s. Track cost per usable clip (CPI) = generation + retries / usable clips – not only €/s. Use the matrix for a quick pick.",
+                "body": "Video: format (16:9 / 9:16), length 3–5 s. Track cost per usable clip (CPI) = generation + retries / usable clips – not only €/s. Brand voice – silent I2V + voice separately, not native sound on the same clip.",
                 "blockVariant": "accent"
               },
               {
@@ -746,12 +765,26 @@
               {
                 "heading": "Copyable prompt",
                 "body": "Choose a tool, set the ratio and duration, then check whether you can use the output publicly.",
-                "copyable": "Video: [SHORT SCRIPT]. Format: [16:9 / 9:16]. Duration: 5-10 seconds. Style: [STYLE]."
+                "copyable": "Video clip from a keyframe: [1–2 sentences of action].\nFormat: [16:9 / 9:16]. Duration: 3–5 sec. Style: [specify].\nCPI note: how many retries until usable? [N]"
               },
               {
                 "heading": "Check",
-                "body": "Choose a tool, set the ratio and duration, then check whether you can use the output publicly.",
+                "body": "Did you download the file? Do commercial rights fit? What is the CPI (count retries)? Brand voice – silent I2V + voice separately, not native sound on the same clip.",
                 "blockVariant": "accent"
+              },
+              {
+                "heading": "Sound: same generate or separate?",
+                "body": "Dialog or ambient in one generate – Veo class: write sound in the same prompt. Brand voice / license – silent I2V + voice separately + mix (safer for a client). Never stack native sound and a new voice on the same clip if you do not know which you will drop.",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
+              },
+              {
+                "heading": "Garsas: tame paciame generate ar atskirai?",
+                "body": "Choose a tool, set the ratio and duration, then check whether you can use the output publicly.",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
               },
               {
                 "heading": "All video tools (overview)",
@@ -829,34 +862,34 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "Use this step to create, check and improve your AI content artifact.",
+                "body": "AI video is raw material, not the final deliverable. Professional practice: edit 3–5 s clips, color grade, text/overlay, mix audio, export for the platform (CapCut / Premiere).",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Edit diagram",
-                "body": "Use this step to create, check and improve your AI content artifact.",
+                "body": "Four steps – Cut → Grade → Mix → Export. Tap a stage.",
                 "blockVariant": "brand",
                 "image": "m13_postprod_steps",
-                "imageAlt": "AI content engineering diagram"
+                "imageAlt": "Edit: cut, color, mix, export"
               },
               {
-                "heading": "Minimalus checklist",
-                "body": "Use this step to create, check and improve your AI content artifact.",
+                "heading": "Minimum checklist",
+                "body": "(1) Gather 2–4 clips to the script / VO. (2) Cut weak frames; hook in the first 1–2 s. (3) Keep colors consistent. (4) VO or bed + SFX. (5) Loudness guide ~−14 LUFS (music) / ~−16 (VO mix) – trust your ears. (6) Export 9:16 or 16:9.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Do this now",
-                "body": "Use this step to create, check and improve your AI content artifact.",
+                "body": "Write a 4-line edit plan for your mini clip.",
                 "blockVariant": "brand"
               },
               {
-                "heading": "Kopijuojamas sablonas",
-                "body": "Use this step to create, check and improve your AI content artifact.",
-                "copyable": "Use the module template, fill the brackets, then check the result and improve one detail."
+                "heading": "Copyable template",
+                "body": "Edit plan for 15–30 s.",
+                "copyable": "Edit plan (15–30 s):\n0–3 s: [hook clip]\n3–8 s: [product / benefit]\n8–15 s: [proof / detail]\nEnd: [CTA frame + text]\nAudio: [VO / bed] | rights: [licensed]"
               },
               {
                 "heading": "Check",
-                "body": "Use this step to create, check and improve your AI content artifact.",
+                "body": "Without AI “magic”, does the clip still read as a story? Does the bed drown the VO?",
                 "blockVariant": "accent"
               }
             ],
@@ -880,31 +913,31 @@
               "Loudness guide and a listen-through check"
             ],
             "recap": {
-              "heading": "Ka jau zinai?",
-              "lead": "Video skyrius – pries garsa.",
+              "heading": "What you already know?",
+              "lead": "The video section comes before audio.",
               "items": [
-                "Create, check and reuse the artifact with a clear prompt.",
-                "Create, check and reuse the artifact with a clear prompt.",
-                "Create, check and reuse the artifact with a clear prompt."
+                "Video = short clips + format + cost per usable clip.",
+                "Image-to-video chain with a keyframe.",
+                "Edit – cut / color / audio after generation."
               ]
             }
           }
         },
         {
           "id": 13.6,
-          "title": "Audio-first: VO and music description",
+          "title": "Sound first: voice and music description",
           "subtitle": "Sound first, then video cuts",
           "type": "content-block",
           "content": {
             "sections": [
               {
                 "heading": "In short",
-                "body": "Sound first (audio-first): plan voice or bed length first, then cut video to that pacing. For music describe mood, style, tempo, instruments. Client / ads – licensed stack; Suno/Udio – demo, not client work.",
+                "body": "Sound first: plan voice or bed length first, then cut video to that pacing. For music describe mood, style, tempo, instruments. Client / ads – licensed stack; Suno/Udio – demo, not client work.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Do this now",
-                "body": "For music, describe mood, genre, tempo, instruments, voice and use case.",
+                "body": "If you have voice-over – generate or record the voice first. If bed only – copy the music prompt. Mark whether the license allows commercial use.",
                 "blockVariant": "brand"
               },
               {
@@ -914,12 +947,17 @@
               },
               {
                 "heading": "Prompt to copy – VO",
-                "body": "For music, describe mood, genre, tempo, instruments, voice and use case.",
+                "body": "Voice-over template (ElevenLabs or similar).",
                 "copyable": "Voiceover, [EN], tone [professional / friendly], tempo [calm].\nScript: [paste 2–4 scenario sentences].\nNo bed in the file – voice only. Mix with bed later."
               },
               {
+                "heading": "Copyable voice card",
+                "body": "Write for the ear – keep the same tempo across the series.",
+                "copyable": "Role: [who they speak to]. Tone: [warm / calm]. Keep the same tempo.\nGlossary: [brand] = [how to say it].\nFirst try 3 lines: hook / benefit / ask. Then the full script.\nBed: no vocal, quiet, leave room for the voice. License: commercial."
+              },
+              {
                 "heading": "Check",
-                "body": "For music, describe mood, genre, tempo, instruments, voice and use case.",
+                "body": "Did you try 3 anchor lines before the full script? Does the bed come after the voice and leave room? Same tempo / pronunciation across the series?",
                 "blockVariant": "accent"
               },
               {
@@ -940,35 +978,35 @@
             ],
             "footer": "Next slide"
           },
-          "shortTitle": "Audio-first ir music"
+          "shortTitle": "Sound first and music"
         },
         {
           "id": 13.7,
           "title": "Audio effects and usage rights",
-          "shortTitle": "Licencijos ir loudness",
-          "subtitle": "Sound effects and license",
+          "shortTitle": "Licenses and loudness",
+          "subtitle": "Sound effects, commercial use, LUFS",
           "type": "content-block",
           "content": {
             "sections": [
               {
                 "heading": "In short",
-                "body": "Before using generated audio publicly, check the tool license and usage rules.",
+                "body": "Separate effects from music. For client work use licensed tools. Loudness guide: about −14 LUFS (music) / −16 (voice mix) – decide by listening. Campaign rights / C2PA – see “Business and risks”.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Teisiu checklist (5 punktai)",
+                "heading": "Rights checklist (5 points)",
                 "body": "Before using generated audio publicly, check the tool license and usage rules.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Do this now",
-                "body": "Before using generated audio publicly, check the tool license and usage rules.",
+                "body": "Before public use, open the terms; write down “commercial OK?” yes/no.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Copyable prompt",
                 "body": "Before using generated audio publicly, check the tool license and usage rules.",
-                "copyable": "Create a short sound effect: [DESCRIPTION]. Format: MP3 or WAV. No music, sound effect only."
+                "copyable": "Create a short sound: [e.g. “soft transition whoosh, 1 second”]. Format: WAV or MP3. No music – effect only."
               },
               {
                 "heading": "Check",
@@ -993,7 +1031,7 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "Before you publish you will know what to check: results (KPI), rights, an AI label (C2PA / disclosure) and at least one A/B hypothesis. Details below.",
+                "body": "Before you publish you will know what to check: results (KPI), rights, an AI label (C2PA) and at least one A/B hypothesis. Details below.",
                 "blockVariant": "accent"
               },
               {
@@ -1044,7 +1082,7 @@
               },
               {
                 "heading": "Check",
-                "body": "Before publishing, measure results, test variants and check rights, brand safety and versions.",
+                "body": "Before publishing, did you check rights, an AI label (C2PA) and at least one A/B hypothesis? If not – go back to the required block and the check list. The evaluation template (3 criteria) is under “Evaluation rubric” – copy it and score your artifact.",
                 "blockVariant": "accent"
               }
             ],
@@ -1282,19 +1320,19 @@
       ],
       "businessExamples": [
         {
-          "title": "Vaizdu generavimas",
-          "description": "Use this step to create, check and improve your AI content artifact."
+          "title": "Image generation",
+          "description": "Prompts, style, ratios, tools"
         },
         {
-          "title": "Video ir music",
-          "description": "Use this step to create, check and improve your AI content artifact."
+          "title": "Video and audio",
+          "description": "Short clips and AI-generated sound"
         }
       ]
     },
     {
       "id": 14,
       "title": "Knowledge check: Content path",
-      "subtitle": "Images, video, music and workflow",
+      "subtitle": "Images, video, audio and workflow",
       "description": "Check image, video and audio principles. ≥70% recommended before Module 15.",
       "icon": "ClipboardCheck",
       "level": "test",
@@ -1306,64 +1344,64 @@
         {
           "id": 140,
           "title": "Module 14 test",
-          "subtitle": "Content engineering knowledge",
+          "subtitle": "Images, video, audio",
           "type": "test-intro",
           "content": {
-            "whyBenefit": "Answer 12 questions before starting the final content project.",
+            "whyBenefit": "After this test you will know whether you are ready for the Module 15 project.",
             "duration": "~12–18 min",
-            "firstActionCTA": "Answer 12 questions – images, video, audio, pipeline, audio-first, licenses, C2PA, risks and workflow.",
+            "firstActionCTA": "Answer 12 questions about images, video, audio and rights.",
             "microWinPhrase": "Each correct answer shows that you can apply content prompts.",
             "thresholds": {
               "pass": 70,
               "fail": 0
             },
-            "thresholdExplanation": "At 70% or more, continue to Module 15. Below 70%, review the recommended Module 13 slides.",
+            "thresholdExplanation": "At 70% or more, continue to Module 15 (the project). Below 70%, review the recommended Module 13 slides.",
             "footer": "Next slide"
           }
         },
         {
           "id": 140.5,
           "title": "Warm-up before the test",
-          "shortTitle": "Savitikra",
-          "subtitle": "3 questions: brand, audio-first, path to M15",
+          "shortTitle": "Warm-up",
+          "subtitle": "3 questions before the graded test – not scored",
           "type": "warm-up-quiz",
           "content": {
             "questions": [
               {
                 "id": "m14-warm-1",
-                "question": "How do you reduce a chaotic brand look across a social image series?",
+                "question": "Before you generate a hero image, what should you choose first?",
                 "options": [
-                  "Specify brand colors, tone, visual identity and platform ratios",
-                  "Only write “make it pretty” and switch tools",
-                  "Specify only the file name",
-                  "Specify only music BPM"
+                  "The campaign goal: awareness, engagement or conversion – then the visual",
+                  "Only the tool, and leave the goal “as it comes”",
+                  "Only the file name",
+                  "Only the music BPM"
                 ],
                 "correct": 0,
-                "explanation": "Strong: brand consistency plus clear ratios (e.g. 1:1 feed / 9:16 Stories) reduces random style. If you missed it – revisit style and ratios."
+                "explanation": "Strong: A/E/C (awareness / engagement / conversion) tells you what to emphasize in the image. If you missed it – go back to campaign goals."
               },
               {
                 "id": "m14-warm-2",
-                "question": "What does audio-first thinking mean on the content path?",
+                "question": "How do you keep the same product or character across several frames?",
                 "options": [
-                  "Plan audio (VO, SFX, music) with pacing and frames – not only “add music at the end”",
-                  "Use only a music generator with no scene plan",
-                  "Always pick the longest track",
-                  "Ignore licenses if the audio is short"
+                  "3–5 reference photos from different angles and the rule “same product / same style”",
+                  "One long prompt with no references, hoping the set will match",
+                  "Switch tools after every frame",
+                  "Specify only the file name"
                 ],
                 "correct": 0,
-                "explanation": "Strong: audio means VO + SFX + music and pacing. If you thought only “music” – go back to audio description and audio-first logic."
+                "explanation": "Strong: a single prompt does not lock identity. If the set drifts – use reference photos and the “same product” rule."
               },
               {
                 "id": "m14-warm-3",
-                "question": "After the test, what should you do first in Module 15?",
+                "question": "After the test, what should you do first in the project module?",
                 "options": [
-                  "The required quick start: hero image + prompt + brief (MUST); video/audio only on the optional path",
-                  "Jump straight into editing a 3-minute film with no brief",
-                  "Skip the hero and go only to music",
+                  "One main image with a prompt and a short task note; video and audio if you want to join the pieces",
+                  "Jump straight into editing a 3-minute film with no task note",
+                  "Skip the image and go only to music",
                   "Wait for AI to choose the campaign goal"
                 ],
                 "correct": 0,
-                "explanation": "Forward bridge: Module 15 required minimum is the quick start (hero). Optional full path adds video, audio and edit. Do not burn time before you have a base artifact."
+                "explanation": "First one image with a prompt. Video, audio and edit if you want to join the pieces. Do not burn time before you have a base result."
               }
             ],
             "footer": "Next – slide 3: Questions"
@@ -1372,7 +1410,7 @@
         {
           "id": 141,
           "title": "Questions",
-          "subtitle": "Images, video, audio, pipeline",
+          "subtitle": "Images, video, audio, media chain",
           "type": "test-section",
           "testQuestions": [
             {
@@ -1380,28 +1418,28 @@
               "type": "mcq",
               "question": "What should a good image prompt include?",
               "options": [
-                "Only one narrow detail",
+                "Describe only the lighting in detail and leave style “as it comes”",
                 "Subject, style, ratio and what to avoid",
-                "Only one narrow detail",
-                "Only one narrow detail"
+                "Name the tool and a seed number, with no subject",
+                "Write a long mood description with no format and no “what to avoid”"
               ],
               "correct": 1,
-              "explanation": "The best answer uses a clear goal, context, format and quality check.",
+              "explanation": "A good image prompt covers what is shown (subject, place), style (photoreal, illustration), ratio (16:9, 1:1) and what to avoid (e.g. text in the image).",
               "relatedSlideId": 13.2
             },
             {
               "id": "m14-q2",
               "type": "scenario",
-              "scenarioContext": "Read the situation and choose the best next step.",
-              "question": "How do you reduce a random, inconsistent brand look?",
+              "scenarioContext": "You need a LinkedIn post series: every image should look like one brand, and Stories should be vertical.",
+              "question": "What must you specify in the prompt to reduce a chaotic brand look and hit the format?",
               "options": [
-                "Only one narrow detail",
-                "A clear, specific option based on goal, format and checks",
-                "Only one narrow detail",
-                "Only one narrow detail"
+                "Specify only a mood (“professional”) and leave the format to the tool",
+                "Brand colors, tone and ratios (e.g. 1:1 feed / 9:16 Stories)",
+                "Specify only the file name and duration, with no brand rules",
+                "Specify only the music tempo – the image will supposedly assemble itself"
               ],
               "correct": 1,
-              "explanation": "The best answer uses a clear goal, context, format and quality check.",
+              "explanation": "Brand consistency (colors, tone) plus clear platform ratios keeps the model from inventing a random style.",
               "relatedSlideId": 13.3
             },
             {
@@ -1409,13 +1447,13 @@
               "type": "mcq",
               "question": "What should you specify for a short video?",
               "options": [
-                "Only one narrow detail",
-                "A script: what happens, duration and tone",
-                "Only one narrow detail",
-                "Only one narrow detail"
+                "Name only the tool (Kling or Runway) and hope the scene assembles itself",
+                "A script: what happens, how many seconds, and in what tone",
+                "Ask for “dynamic video” with no shots and no duration",
+                "Specify only 9:16 and leave the action empty"
               ],
               "correct": 1,
-              "explanation": "The best answer uses a clear goal, context, format and quality check.",
+              "explanation": "A short video needs a clear script: what happens, how long, and in what tone (professional, dynamic, calm).",
               "relatedSlideId": 13.4
             },
             {
@@ -1423,129 +1461,129 @@
               "type": "mcq",
               "question": "What should you describe for music generation?",
               "options": [
-                "Only one narrow detail",
+                "Specify only BPM and hope the mood appears",
                 "Mood, style, tempo and, if needed, instruments or voice",
-                "Only one narrow detail",
-                "Only one narrow detail"
+                "Ask for “nice music for an ad” with no style and no use case",
+                "Specify only duration (30 s) with no mood"
               ],
               "correct": 1,
-              "explanation": "The best answer uses a clear goal, context, format and quality check.",
+              "explanation": "Music generation needs mood (upbeat, calm), style (pop, acoustic), tempo (slow, mid) and, if needed, instruments or voice.",
               "relatedSlideId": 13.6
             },
             {
               "id": "m14-q5",
               "type": "scenario",
-              "scenarioContext": "Read the situation and choose the best next step.",
-              "question": "Choose the best answer for this content engineering situation.",
+              "scenarioContext": "You are planning a public campaign where an AI-made face or voice will look like a real person.",
+              "question": "What should you check before publishing?",
               "options": [
-                "Only one narrow detail",
-                "Consent, rights and deepfake risk",
-                "Only one narrow detail",
-                "Only one narrow detail"
+                "Only image sharpness and the color palette",
+                "Consent, copyright and deepfake risk",
+                "Only whether the face looks realistic enough",
+                "Only the social-network algorithm rules"
               ],
               "correct": 1,
-              "explanation": "The best answer uses a clear goal, context, format and quality check.",
+              "explanation": "A face or voice in an ad raises ethics and rights questions: consent, whose likeness, and the tool rules. If you miss this, review the risks slide.",
               "relatedSlideId": 13.101
             },
             {
               "id": "m14-q6",
               "type": "mcq",
-              "question": "In the full brief-to-publication workflow, what comes right after the brief?",
+              "question": "You need a 15 s product ad from one marketing brief. Which generation chain is the most logical?",
               "options": [
-                "A clear, specific option based on goal, format and checks",
-                "Write a brand-aligned prompt and plan several variants",
-                "A clear, specific option based on goal, format and checks",
-                "A clear, specific option based on goal, format and checks"
+                "Video → brief → image → music",
+                "Brief → concept / prompt → hero image → video → voice / music → edit → QA",
+                "Music → publish → image → brief",
+                "Hero image → publish → video"
               ],
               "correct": 1,
-              "explanation": "The best answer uses a clear goal, context, format and quality check.",
+              "explanation": "A logical work process: first the brief and direction, then the image, then video and sound, then edit and a check. Generating the final video first or publishing without a check is expensive and chaotic.",
               "relatedSlideId": 13.11
             },
             {
               "id": "m14-q7",
               "type": "scenario",
-              "scenarioContext": "Read the situation and choose the best next step.",
-              "question": "Which prompt best fits this situation?",
+              "scenarioContext": "Your goal is a conversion ad in Instagram Stories. You need a hero image with a clear product and space for a headline.",
+              "question": "Which prompt fits this situation best?",
               "options": [
-                "A clear, specific option based on goal, format and checks",
-                "A vertical 9:16 product hero image with brand colors and space for a headline",
-                "A clear, specific option based on goal, format and checks",
-                "A clear, specific option based on goal, format and checks"
+                "Create an attention-grabbing 9:16 image with no product – only emotion matters.",
+                "Create a vertical 9:16 product hero: [product] in the foreground, clean background, brand colors [X], headline space at the top, a call-to-action area at the bottom, no random text in the image.",
+                "Create a 1:1 image with lots of detail and text in the frame – product in the background.",
+                "Create an artistic 9:16 frame with no headline space – atmosphere only, product optional."
               ],
               "correct": 1,
-              "explanation": "The best answer uses a clear goal, context, format and quality check.",
+              "explanation": "A conversion visual needs a clear format, the product, brand rules and space for copy. Pure emotion or abstract beauty fits awareness better.",
               "relatedSlideId": 13.1
             },
             {
               "id": "m14-q8",
               "type": "scenario",
-              "scenarioContext": "Read the situation and choose the best next step.",
-              "question": "What is the safest workflow here?",
+              "scenarioContext": "You want a short 5–8 s clip that keeps the same product look and colors as the campaign hero visual.",
+              "question": "What is the safest path here?",
               "options": [
-                "A clear, specific option based on goal, format and checks",
-                "A clear, specific option based on goal, format and checks",
-                "A clear, specific option based on goal, format and checks",
-                "A clear, specific option based on goal, format and checks"
+                "Write only a generic text-to-video prompt and hope the style matches.",
+                "First generate the hero image / keyframe, then use it in an image-to-video tool and ask to keep the same style and colors.",
+                "Start from music and make the video with no script.",
+                "Generate a 1-minute video in one prompt, because longer is better."
               ],
               "correct": 1,
-              "explanation": "The best answer uses a clear goal, context, format and quality check.",
-              "relatedSlideId": 13.4
+              "explanation": "An image-to-video chain helps keep the same style, object and colors. A long video in one prompt is better split into short, clear scenes.",
+              "relatedSlideId": 13.12
             },
             {
               "id": "m14-q9",
               "type": "mcq",
-              "question": "Choose the best answer for this content engineering situation.",
+              "question": "Why prepare a storyboard or still frames before expensive video generation?",
               "options": [
-                "A clear, specific option based on goal, format and checks",
-                "A clear, specific option based on goal, format and checks",
-                "A clear, specific option based on goal, format and checks",
-                "A clear, specific option based on goal, format and checks"
+                "So the file gets larger and export becomes heavier",
+                "So you can check composition and scene logic before video, and cut wasted generations and cost",
+                "So you no longer need a brief and can publish right away",
+                "So you no longer need to check usage rights before publishing"
               ],
               "correct": 1,
-              "explanation": "The best answer uses a clear goal, context, format and quality check.",
+              "explanation": "Still frames lock the visual cheaply; the video model then works on motion. That cuts randomness and the cost of a usable clip.",
               "relatedSlideId": 13.12
             },
             {
               "id": "m14-q10",
               "type": "mcq",
-              "question": "Why plan audio-first pacing before expensive video?",
+              "question": "What does an audio-first work process mean?",
               "options": [
-                "A clear, specific option based on goal, format and checks",
-                "A clear, specific option based on goal, format and checks",
-                "Only one narrow detail",
-                "Only one narrow detail"
+                "Video first, then any audio",
+                "Finish the VO (or background-music length) first, then cut / generate video to the sound rhythm",
+                "Only SFX, no music",
+                "Only a silent export"
               ],
               "correct": 1,
-              "explanation": "The best answer uses a clear goal, context, format and quality check.",
+              "explanation": "Audio-first: voice or background music sets the edit rhythm. If the sound drifts, the video feels disconnected.",
               "relatedSlideId": 13.6
             },
             {
               "id": "m14-q11",
               "type": "scenario",
-              "scenarioContext": "Read the situation and choose the best next step.",
-              "question": "Choose the best answer for this content engineering situation.",
+              "scenarioContext": "A client needs AI-generated background music for a paid YouTube ad.",
+              "question": "What should you check before choosing a tool?",
               "options": [
-                "A clear, specific option based on goal, format and checks",
-                "A clear, specific option based on goal, format and checks",
-                "A clear, specific option based on goal, format and checks",
-                "A clear, specific option based on goal, format and checks"
+                "Whether the music is loud enough under the ad",
+                "Whether the license allows commercial use and monetization",
+                "Whether the tool has a free plan with no sign-up",
+                "Whether the track generates in under a minute"
               ],
               "correct": 1,
-              "explanation": "The best answer uses a clear goal, context, format and quality check.",
+              "explanation": "For a client and a paid ad, the license must allow commercial use and monetization. A demo or a fast file with no rights check is not enough.",
               "relatedSlideId": 13.7
             },
             {
               "id": "m14-q12",
               "type": "mcq",
-              "question": "What is C2PA / disclosure practice before publishing AI content?",
+              "question": "What are C2PA / Content Credentials used for?",
               "options": [
-                "Only one narrow detail",
-                "Provenance marking: Content Credentials / watermark and, where needed, a human-visible AI label",
-                "Only one narrow detail",
-                "Only one narrow detail"
+                "To increase image resolution before publishing",
+                "To record and pass on the origin of the content and its edit history",
+                "To shorten the prompt so the model makes fewer mistakes",
+                "To auto-correct colors to match the brand"
               ],
               "correct": 1,
-              "explanation": "The best answer uses a clear goal, context, format and quality check.",
+              "explanation": "C2PA / Content Credentials record origin: who made or changed the file, and how. A human-visible AI label is a separate disclosure practice; a persistent watermark (e.g. SynthID) is another layer, not C2PA itself.",
               "relatedSlideId": 13.101
             }
           ]
@@ -1557,21 +1595,21 @@
           "type": "test-results",
           "content": {
             "passedMessage": "Great work! You can continue to Module 15: Content engineering project.",
-            "failedMessage": "Review Module 13 again – pipeline, images, video, audio, licenses and C2PA.",
-            "thresholdExplanation": "At 70% or more, continue to Module 15. Below 70%, review the recommended Module 13 slides.",
+            "failedMessage": "Review Module 13 again – the media chain, images, video, audio, licenses and C2PA.",
+            "thresholdExplanation": "At 70% or more, continue to the project. Below 70%, review the Module 13 slides.",
             "useCaseBlock": {
               "heading": "Next step: Module 15",
-              "body": "Use your result to decide whether to review Module 13 or continue to the project.",
+              "body": "Prepare at least a hero image (quick start); optionally a mini campaign: video, audio and edit. Tools are in the Tools section.",
               "blockVariant": "accent"
             },
-            "reflectionPrompt": "Use the module template, fill the brackets, then check the result and improve one detail.",
+            "reflectionPrompt": "After the test, ask 3 questions: (1) Which artifact will I make first — image, video, or audio?\n(2) What was new? (3) What will I try in the next 24 hours? After the answers — one concrete tip.",
             "reflectionTitle": "Reflection prompt"
           }
         },
         {
           "id": 143,
-          "title": "Bonus: pipeline checklist in 5 min",
-          "subtitle": "Brief → stills → video/audio → disclosure",
+          "title": "Bonus: media chain checklist in 5 min",
+          "subtitle": "Task → frames → video/audio → AI label",
           "type": "content-block",
           "optional": true,
           "badgeVariant": "bonus",
@@ -1579,38 +1617,38 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "After the test, spend 5 minutes on a mini pipeline: brief, stills/storyboard, then I2V or audio-first, and only then publish with a license and C2PA / disclosure.",
+                "body": "After the test, spend 5 minutes on the chain: task note, 2–3 frames, then a short video or sound first, and only then publish with a license and C2PA / AI label.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Do this now",
-                "body": "Pick one real topic (product or event). Copy the checklist prompt below, run it in AI, and note what you need before expensive video and what you will check before publishing.",
+                "body": "Pick one real topic (product or event). Copy the check prompt below, run it in AI, and note what you need before expensive video and what you will check before publishing.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Copyable prompt",
                 "body": "Use this in one AI chat.",
-                "copyable": "You are a content pipeline assistant. Topic: [DESCRIBE].\n1) BRIEF: goal (A/E/C), audience, platform, ratios.\n2) STILLS / STORYBOARD: 2–3 frames (what, style, what to avoid).\n3) VIDEO OR AUDIO-FIRST: if video – I2V from hero; if audio – VO/SFX/music + pacing.\n4) RIGHTS: commercial license; faces/voices – consent.\n5) DISCLOSURE: C2PA / Content Credentials or a human-visible AI label.\nOUTPUT: checklist table (step | status | risk) + 1 next action."
+                "copyable": "You are a content-chain assistant. Topic: [DESCRIBE].\n1) Task: goal (A/E/C), audience, platform, ratios.\n2) Frames: 2–3 frames (what, style, what to avoid).\n3) Video or sound first: if video – image-to-video from the hero; if audio – voice / SFX / music + pacing.\n4) Rights: commercial license; faces/voices – consent.\n5) AI label (C2PA): Content Credentials or a human-visible AI label.\nOutput: checklist table (step | status | risk) + 1 next action."
               },
               {
                 "heading": "Check",
-                "body": "If license or disclosure is missing – do not publish; go back to audio rights and business/risk topics in Module 13. If the checklist is complete – you are ready for the Module 15 quick start.",
+                "body": "If a license or AI label is missing – do not publish; go back to audio rights and risk topics. If the list is complete – you are ready for the project quick start. Second try: change only one thing (the frame or one field), not the whole prompt.",
                 "blockVariant": "accent"
               }
             ],
             "footer": "Next – Module 15: Content project"
           },
-          "shortTitle": "Grandines checklist"
+          "shortTitle": "Chain checklist"
         }
       ],
       "businessExamples": [
         {
-          "title": "Vaizdu ir video promptai",
-          "description": "Use this step to create, check and improve your AI content artifact."
+          "title": "Image and video prompts",
+          "description": "Formats, tools, quality"
         },
         {
-          "title": "Turinio kelio zinios",
-          "description": "Use this step to create, check and improve your AI content artifact."
+          "title": "Content-path knowledge",
+          "description": "12 questions before the Module 15 project"
         }
       ],
       "transfer": {
@@ -1635,26 +1673,26 @@
         {
           "id": 150,
           "title": "Content engineering project",
-          "subtitle": "Quick start or full mini campaign",
+          "subtitle": "One main image or a mini campaign",
           "type": "practice-intro",
           "content": {
-            "whyBenefit": "Start with one hero image; optionally continue to short video and background music.",
+            "whyBenefit": "After the project you will have a main image with the prompt you used and a short task note. If you want – also video, audio and an edit.",
             "duration": "~20 min quick startas / ~60–90 min full path",
             "minScenariosToComplete": 1,
-            "firstActionCTA": "Start with the quick path: create one hero image with the prompt you used.",
-            "recommendedStart": "Start with one hero image; optionally continue to short video and background music.",
+            "firstActionCTA": "Start with one main image: copy the prompt into an image tool and save the result.",
+            "recommendedStart": "The quick path ends with one image. The full path continues – video, audio, edit.",
             "recommendedSlideIds": [150.5, 150.25],
-            "primaryPathIntro": "Start with one hero image; optionally continue to short video and background music.",
-            "taskOneLiner": "Start with one hero image; optionally continue to short video and background music.",
+            "primaryPathIntro": "One main image is enough to go to the summary. Video, audio and edit are for joining the pieces.",
+            "taskOneLiner": "Make one main image with a prompt. If you want a mini campaign – continue to video, audio and edit.",
             "howToUseModule": {
-              "heading": "Pasirink kelia",
+              "heading": "Choose a path",
               "short": {
-                "label": "Greitas startas",
-                "description": "Start with one hero image; optionally continue to short video and background music."
+                "label": "Quick start",
+                "description": "~20 min – one main image."
               },
               "full": {
-                "label": "Pilnas",
-                "description": "Start with one hero image; optionally continue to short video and background music."
+                "label": "Full path",
+                "description": "~60–90 min – image, video, audio and edit."
               }
             },
             "footer": "Next slide"
@@ -1662,95 +1700,105 @@
         },
         {
           "id": 150.5,
-          "title": "Quick start: one hero image",
-          "subtitle": "Brief + hero image + prompt",
+          "title": "Quick start: one main image",
+          "subtitle": "Task note + image + the prompt you used",
           "type": "practice-scenario",
           "content": {
-            "scenarioTitle": "Quick start: one hero image",
-            "scenarioDescription": "Create one hero image, a short brief and the prompt you used.",
+            "scenarioTitle": "Quick start: one main image",
+            "scenarioDescription": "In ~20 min: a hero image + the prompt you used + a 2-line brief. That is enough to go to the summary.",
             "taskFrame": "Task",
             "scenario": {
-              "narrativeLead": "Create one hero image, a short brief and the prompt you used."
+              "narrativeLead": "Write a short task note: goal, who, where you will use it. Lock a 15+ word style header and one model for the series. Then paste the prompt into an image tool."
             },
-            "template": "Brief: goal [awareness / engagement / conversion], audience [who], platform [where]. Create a hero image: [subject and action], setting [context], style [style], ratio [1:1 / 16:9 / 9:16]. Brand: colors [X], tone [professional / friendly / premium].",
-            "templateLabel": "Prompt to copy",
+            "template": "Brief: goal [Awareness / Engagement / Conversion], audience [who], platform [where].\nCreate a hero image: [SUBJECT and action], setting [CONTEXT], style [STYLE], ratio [1:1 / 16:9 / 9:16].\nBrand: colors [X], tone [professional / friendly / premium]. No text in the image unless needed.\nStyle lock (do not rewrite): [15+ words]. Model for this series: [one].",
+            "templateLabel": "Prompt – paste into an image tool",
             "instructions": {
-              "title": "Zingsniai",
+              "title": "Steps",
               "steps": [
                 {
                   "step": 1,
-                  "title": "Uzrasyk 2 eiluciu brief",
-                  "description": "Create one hero image, a short brief and the prompt you used."
+                  "title": "Write a 2-line task note",
+                  "description": "Goal, who, and where you will use it."
                 },
                 {
                   "step": 2,
-                  "title": "Sugeneruok hero vaizda ir issaugok prompta",
-                  "description": "Create one hero image, a short brief and the prompt you used."
+                  "title": "Lock style and model",
+                  "description": "Write the 15+ word header verbatim. One model for the series – do not switch mid-way."
+                },
+                {
+                  "step": 3,
+                  "title": "Generate the main image and save the prompt",
+                  "description": "Artifact: main image + prompt + task note + style lock."
                 }
               ]
             },
             "footer": "Next slide"
           },
           "recommended": true,
-          "shortTitle": "Greitas startas: hero image"
+          "shortTitle": "Quick start: hero image"
         },
         {
           "id": 150.25,
-          "title": "Project loop: quick and full paths",
-          "subtitle": "One asset first; full path if you want more",
+          "title": "Project loop: branch and iterate",
+          "subtitle": "One image or a mini campaign",
           "type": "content-block",
           "content": {
             "sections": [
               {
                 "heading": "In short",
-                "body": "Quick path: brief -> one asset -> tweak. Full path: image -> video -> music -> QA.",
+                "body": "Quick path: task note → one main image → prompt → tweak → summary. Full path: the same image → short video → audio → edit.",
                 "blockVariant": "accent",
                 "image": "m15_practice_loop",
-                "imageAlt": "AI content engineering diagram"
+                "imageAlt": "Content project loop: quick path and mini-campaign path"
               },
               {
                 "heading": "Do this now",
-                "body": "Quick path: brief -> one asset -> tweak. Full path: image -> video -> music -> QA.",
+                "body": "Name your path: quick (image only) or full (video → audio → edit). Write the first result in one sentence.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Lock card",
+                "body": "One card for the series: model · style header (15+ words, verbatim) · 3–5 reference photos · voice (tone + glossary) · rights · AI label. Do not switch models mid-way.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Check",
-                "body": "Quick path: brief -> one asset -> tweak. Full path: image -> video -> music -> QA.",
+                "body": "Do you have a main image, a prompt and a short task note? Next step – summary or video?",
                 "blockVariant": "accent"
               }
             ],
             "footer": "Next slide"
           },
-          "shortTitle": "Projekto ciklas"
+          "shortTitle": "Project loop"
         },
         {
           "id": 150.26,
           "title": "Checkpoint: project path",
           "shortTitle": "Checkpoint",
-          "subtitle": "Content path – confirm your path before scenarios",
+          "subtitle": "Have an image? Continue to video or go to the summary?",
           "type": "path-step",
           "content": {
-            "title": "Ar aiskus tavo projekto ?",
-            "pathLabel": "Turinio projekto",
+            "title": "Do you have a main image?",
+            "pathLabel": "Content project path",
             "stepNumber": 1,
             "stepTotal": 1,
-            "body": "Use this step to create, check and improve your AI content artifact.",
+            "body": "If you already have a main image and a prompt – you can go to the summary. If you want to join image, video and audio – continue the next steps.",
             "sections": [
               {
-                "heading": "Greitas  (privalomas minimumas)",
-                "body": "Use this step to create, check and improve your AI content artifact."
+                "heading": "You already have an image",
+                "body": "One **main image** with the prompt you used and a 2-line task note. That is enough – then **go to the summary**."
               },
               {
-                "heading": "Pilnas  (neprivalomas)",
-                "body": "Use this step to create, check and improve your AI content artifact."
+                "heading": "You continue",
+                "body": "The same image → **short video** → **audio** (voice or bed) → **edit**. That joins the pieces."
               },
               {
                 "heading": "Check",
-                "body": "Use this step to create, check and improve your AI content artifact."
+                "body": "Are you going to the summary, or continuing with video? What do you already have?"
               },
               {
                 "heading": "First action within 48 hours",
-                "body": "Use this step to create, check and improve your AI content artifact.",
+                "body": "Publish or send one image (or one 3–5 s clip) with the prompt you used. Note what changed between tries.",
                 "blockVariant": "brand"
               }
             ],
@@ -1759,27 +1807,29 @@
         },
         {
           "id": 151,
-          "title": "Scenario: Hero image",
-          "subtitle": "Create a keyframe for your topic",
+          "title": "Scenario: Image",
+          "subtitle": "A keyframe for the series",
           "type": "practice-scenario",
           "optional": true,
-          "badgeVariant": "optional",
           "content": {
-            "scenarioTitle": "Scenario: Hero image",
-            "scenarioDescription": "Create a hero image or keyframe that can anchor the full path.",
-            "taskFrame": "Task",
-            "scenario": {
-              "narrativeLead": "Create a hero image or keyframe that can anchor the full path."
+            "scenarioTitle": "Scenario: Image",
+            "scenarioDescription": "If the quick-start image already works as the keyframe — go to video. Build here only if you need a different frame. Artifact: image + prompt.",
+            "taskFrame": {
+              "task": "Prepare a keyframe for the series: same product, same style.",
+              "doneWhen": "You have an image and a prompt; the frame works as the video start."
             },
-            "template": "Hero image / keyframe: [WHAT IS SHOWN]. Setting: [CONTEXT]. Style: [STYLE]. Brand colors: [X]. Ratio: [1:1 / 16:9 / 9:16]. Leave space for a headline if needed.",
-            "templateLabel": "Prompt to copy",
+            "scenario": {
+              "narrativeLead": "If the quick-start image already works as the keyframe — go to video. Build here only if you need a different frame."
+            },
+            "template": "Keyframe: [WHAT IS SHOWN]. Setting: [CONTEXT]. Style: [STYLE]. Brand colors: [X]. Ratio: [1:1 / 16:9 / 9:16]. Leave space for a headline if needed.",
+            "templateLabel": "Prompt – paste into an image tool",
             "instructions": {
-              "title": "Zingsniai",
+              "title": "Steps",
               "steps": [
                 {
                   "step": 1,
-                  "title": "Sugeneruok hero vaizda / keyframe (arba skip)",
-                  "description": "Create a hero image or keyframe that can anchor the full path."
+                  "title": "Choose or create a keyframe",
+                  "description": "Same image works – go to video. Need another – paste the prompt into an image tool."
                 }
               ]
             },
@@ -1791,95 +1841,101 @@
         {
           "id": 152,
           "title": "Scenario: Short video",
-          "subtitle": "Animate the hero image into a 5–10 s clip",
+          "subtitle": "A 3–5 s clip from the keyframe",
           "type": "practice-scenario",
           "optional": true,
-          "badgeVariant": "optional",
           "content": {
             "scenarioTitle": "Scenario: Short video",
-            "scenarioDescription": "Use the hero image as a reference frame and animate it into a short clip.",
-            "taskFrame": "Task",
-            "scenario": {
-              "narrativeLead": "Use the hero image as a reference frame and animate it into a short clip."
+            "scenarioDescription": "Turn the keyframe into a 3 s I2V clip: one camera, one action. Paste the prompt into a video tool (Runway, Kling, Veo or similar).",
+            "taskFrame": {
+              "task": "Generate a 3 s I2V clip from the keyframe: one camera, one action.",
+              "doneWhen": "You watched the last second: label readable, no new objects, you changed only one thing. If the tool accepts an end frame – you attached it; first = keyframe, last = what must remain at the end."
             },
-            "template": "Animation from the hero image: 5-10 seconds. Script: [DESCRIBE]. Camera moves [slow push-in / side move / stable]. Tone: [professional / dynamic / calm]. Keep the same style, colors and subject.",
-            "templateLabel": "Prompt to copy",
+            "scenario": {
+              "narrativeLead": "Use the I2V cycle: invariants + last-frame check, not only “did the style hold”."
+            },
+            "template": "Start: attach the keyframe. Keep identity and framing.\nWhat does not change: [product / label / colors / light from the left].\nThe subject does: [one verb].\nCamera: [one move]. No orbit, no tilt, no stacked moves.\nDuration: 3 s first. Last frame: label readable, no new objects.\nIf the tool supports it: also attach an end frame (what must remain at the end).",
+            "templateLabel": "Prompt – paste into a video tool",
             "instructions": {
-              "title": "Zingsniai",
+              "title": "Steps",
               "steps": [
                 {
                   "step": 1,
-                  "title": "Sugeneruok video is hero vaizdo",
-                  "description": "Use the hero image as a reference frame and animate it into a short clip."
+                  "title": "Generate a 3 s clip and watch the last frame",
+                  "description": "Artifact: video file or link + prompt. Done when the last second is clean. If the tool accepts an end frame – attach it."
                 }
               ]
             },
             "footer": "Next slide"
           },
           "recommended": false,
-          "shortTitle": "Trumpas vaizdo irasas"
+          "shortTitle": "Short video"
         },
         {
           "id": 153,
-          "title": "Scenario: Music fragment",
-          "subtitle": "Mood and style for 30–60 s audio",
+          "title": "Scenario: Voice or bed",
+          "subtitle": "Write for the ear + 3 anchor lines",
           "type": "practice-scenario",
           "optional": true,
-          "badgeVariant": "optional",
           "content": {
-            "scenarioTitle": "Scenario: Music fragment",
-            "scenarioDescription": "Create background music or a sound cue that fits the visual mood.",
-            "taskFrame": "Task",
-            "scenario": {
-              "narrativeLead": "Create background music or a sound cue that fits the visual mood."
+            "scenarioTitle": "Scenario: Voice or bed",
+            "scenarioDescription": "Write for the ear: glossary + 3 anchor lines, then the full voice. Bed after the voice. One line: can you use it publicly?",
+            "taskFrame": {
+              "task": "Try 3 anchor lines at the same tempo, then the full voice.",
+              "doneWhen": "Tempo and pronunciation stayed the same; the bed leaves room for the voice; rights are marked."
             },
-            "template": "Create a 30-60 second music fragment. Mood: [calm / energetic]. Style: [acoustic / electronic / piano]. No vocals. Use as background music.",
-            "templateLabel": "Prompt to copy",
+            "scenario": {
+              "narrativeLead": "Drift is tempo and pronunciation, not a “bad voice”. Try 3 lines first. Bed leaves room for the voice."
+            },
+            "template": "Role: [who they speak to]. Tone: [warm / calm]. Keep the same tempo.\nGlossary: [brand] = [how to say it].\nFirst try 3 lines: hook / benefit / ask. Then the full script.\nBed: no vocal, quiet, leave room for the voice. Rights: commercial.",
+            "templateLabel": "Prompt – paste into a voice tool",
             "instructions": {
-              "title": "Zingsniai",
+              "title": "Steps",
               "steps": [
                 {
                   "step": 1,
-                  "title": "Sugeneruok muzika arba garsa ir issaugok prompta",
-                  "description": "Create background music or a sound cue that fits the visual mood."
+                  "title": "Try 3 anchor lines, then the full voice",
+                  "description": "Save the file or link, the prompt, and the glossary. Bed comes after the voice."
                 }
               ]
             },
             "footer": "Next slide"
           },
           "recommended": false,
-          "shortTitle": "Scenario: Garsas"
+          "shortTitle": "Voice or bed"
         },
         {
           "id": 154,
-          "title": "Scenario: Montazas",
-          "subtitle": "Optional: 15–30 s is 2–4 klipu",
+          "title": "Scenario: Edit",
+          "subtitle": "15–30 s from 2–4 clips",
           "type": "practice-scenario",
           "optional": true,
-          "badgeVariant": "optional",
           "content": {
-            "scenarioTitle": "Montazas",
-            "scenarioDescription": "Use this step to create, check and improve your AI content artifact.",
-            "taskFrame": "Task",
-            "scenario": {
-              "narrativeLead": "Use this step to create, check and improve your AI content artifact."
+            "scenarioTitle": "Scenario: Edit",
+            "scenarioDescription": "Join image, video and audio into a 15–30 s whole. Use an edit tool (CapCut or similar). This is a plan, not a long prompt.",
+            "taskFrame": {
+              "task": "Assemble a 15–30 s clip: hook in the first 1–2 s, then export.",
+              "doneWhen": "You have an export, rights marked, an AI label, and a CPI note (how many tries)."
             },
-            "template": "Use the module template, fill the brackets, then check the result and improve one detail.",
-            "templateLabel": "Prompt to copy",
+            "scenario": {
+              "narrativeLead": "AI gives the raw clips. Hook in the first 1–2 seconds. Before export, mark rights and an AI label."
+            },
+            "template": "Edit plan (15–30 s):\n0–3 s: [hook]\n3–8 s: [product / benefit]\n8–15 s: [detail]\nEnd: [CTA]\nAudio: [voice / bed] | rights: [licensed]\nAI label: made with [tool]. CPI note: [N retries].",
+            "templateLabel": "Edit plan – use in an edit tool",
             "instructions": {
-              "title": "Zingsniai",
+              "title": "Steps",
               "steps": [
                 {
                   "step": 1,
-                  "title": "Sumontuok ir eksportuok",
-                  "description": "Use this step to create, check and improve your AI content artifact."
+                  "title": "Assemble and export",
+                  "description": "File or link + rights + an AI label."
                 }
               ]
             },
             "footer": "Next slide"
           },
           "recommended": false,
-          "shortTitle": "Scenario: Montazas"
+          "shortTitle": "Scenario: Edit"
         },
         {
           "id": 158,
@@ -1887,8 +1943,8 @@
           "subtitle": "What next?",
           "type": "summary",
           "content": {
-            "introHeading": "Ka ismokai",
-            "introBody": "You now have a prompt and at least one usable content artifact.",
+            "introHeading": "What you learned",
+            "introBody": "You have prompts and results: a main image, and if you continued – video, audio and an edit.",
             "stats": [
               {
                 "label": "Quick start",
@@ -1900,7 +1956,7 @@
               },
               {
                 "label": "Prompt",
-                "value": "issaugotas"
+                "value": "saved"
               }
             ],
             "sections": [
@@ -1909,38 +1965,38 @@
                 "icon": "Image",
                 "color": "brand",
                 "items": [
-                  "Create, check and reuse the artifact with a clear prompt.",
-                  "Create, check and reuse the artifact with a clear prompt.",
-                  "Create, check and reuse the artifact with a clear prompt."
+                  "Brief: goal, audience, platform",
+                  "Hero image / keyframe with brand colors",
+                  "Artifact: image + prompt used + a V1/V2 note if you iterated"
                 ]
               },
               {
-                "heading": "Trumpas vaizdo irasas",
+                "heading": "Short video",
                 "icon": "Video",
                 "color": "violet",
                 "items": [
-                  "Create, check and reuse the artifact with a clear prompt.",
-                  "Create, check and reuse the artifact with a clear prompt.",
-                  "Create, check and reuse the artifact with a clear prompt."
+                  "Image-to-video from the hero keyframe",
+                  "3–5 s clips, same style",
+                  "Artifact: clip / link + prompt + CPI"
                 ]
               },
               {
-                "heading": "Garsas, montazas ir checklist",
+                "heading": "Audio, edit and checklist",
                 "icon": "Music",
                 "color": "amber",
                 "items": [
-                  "Create, check and reuse the artifact with a clear prompt.",
-                  "Create, check and reuse the artifact with a clear prompt.",
-                  "Create, check and reuse the artifact with a clear prompt."
+                  "Sound first: voice or bed + rights",
+                  "15–30 s edit if you joined the pieces",
+                  "List: task note, prompt, rights, AI label"
                 ]
               },
               {
-                "heading": "Kitas Zingsnis",
+                "heading": "Next step",
                 "icon": "ArrowRight",
                 "color": "emerald",
                 "items": [
-                  "Create, check and reuse the artifact with a clear prompt.",
-                  "Create, check and reuse the artifact with a clear prompt."
+                  "Go back to the module list – repeat the practice with another topic or open another advanced path (data analysis 7–9, agents 10–12).",
+                  "Save your best prompts – you will reuse them as templates."
                 ]
               }
             ],
@@ -1948,24 +2004,24 @@
             "reflectionPrompt": "Ask me 3 reflection questions: (1) Which artifact or prompt will I use in 24 hours? (2) What would I improve in the next version? (3) Did I write down usage rights? Then give one practical suggestion.",
             "tagline": "Image + video + music = one content engineering path.",
             "nextStepCTA": "Open the modules list or repeat the project with another topic",
-            "firstAction24h": "You now have a prompt and at least one usable content artifact.",
-            "abilityBefore": "Neturejai mini kampanijos ar hero vaizdo su issaugotais promptais.",
-            "abilityAfter": "Turi greito starto ar mini kampanijos artefakta ir gali ji pakartoti kitai temai.",
+            "firstAction24h": "Within 24–48 hours, use the quick-start image or one mini-campaign piece in a real project (social post, slide, or background).",
+            "abilityBefore": "You had no mini campaign or main image with saved prompts.",
+            "abilityAfter": "You have a quick-start or mini-campaign artifact and can repeat it for another topic.",
             "ownWorkLabel": "Tavo kampanijos / kanalo kontekstas",
-            "ownWorkPlaceholder": "Pvz. LinkedIn anonsas, produkto landing hero…",
-            "ownWorkTemplate": "META: Tu esi turinio direktorius.\nINPUT: Mano kanalas ir tikslas: {{context}}\nOUTPUT: Duok 1 hero vaizdo prompta (stilius, proporcijos, tekstas kadre) ir 3 Patikros punktus."
+            "ownWorkPlaceholder": "e.g. LinkedIn announcement, product hero…",
+            "ownWorkTemplate": "META: Tu esi turinio direktorius.\nINPUT: Mano kanalas ir tikslas: {{context}}\nOUTPUT: Duok 1 pagrindinio vaizdo prompta (stilius, proporcijos, tekstas kadre) ir 3 Patikros punktus."
           },
           "shortTitle": "Project summary"
         }
       ],
       "businessExamples": [
         {
-          "title": "Greitas startas",
-          "description": "Use this step to create, check and improve your AI content artifact."
+          "title": "Quick start",
+          "description": "One main image with a task note and prompt"
         },
         {
-          "title": "Mini kampanijos",
-          "description": "Use this step to create, check and improve your AI content artifact."
+          "title": "Mini campaign path",
+          "description": "Image → video → audio"
         }
       ]
     }

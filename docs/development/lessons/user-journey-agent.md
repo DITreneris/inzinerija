@@ -4,6 +4,7 @@
 
 ## Pamokos
 
+2026-08-18 | M15 `150–151` | Privaloma/neprivaloma/optional/`M15 užbaigti` kaip kelionės ašis = 0; badge `Neprivaloma` ant tuščios 151 = „nieko nėra?“ | Kanonas: problema + promptas į DI įrankį (vaizdas/garsas/montažas/sujungimas). Kelias = vienas vaizdas arba mini kampanija — be „minimumo“. Intake §2.11 | M13_M15_LEARNER_WALK_INTAKE.md, modules.json 150/150.26/151
 2026-08-01 | M16–18 ritmas | Ilgas content-block streak be breath = energijos kritimas vs M4 | In-place path-step + section-break/warm-up (be Feature Doc) > naujas lab; Soft DoD = path-step 1/2–2/2 | MODULIO_16_SKAIDRIU_EILES.md, modules.json 16.85/16.8/18.55/18.125/18.16/18.23, TODO.md §1.2h
 2026-08-01 | M16–18 Kodo kelias | M7 viz (100–106) painiojamas su vibe track; hard DoD closer | Teorija→testas(M17 brief)→projektas; soft DoD / ownWork ant 18.24; interactive 16.15 lab + 18.19 gates (Should ✅); open = Could; M7 viz ≠ šis kelias | MODULIO_16_SKAIDRIU_EILES.md, modules.json 16.15/18.19/18.24, TODO.md §1.2g
 2026-07-28 | Turinio kelias M13–15 | Authoring ✅ slepia, kad prod learner mato rose coming-soon; M15 Greitas/Pilnas ≈ M12, ne M9 quest | Journey balą skirti: (a) katalogo matomumas, (b) learn Pattern tankis, (c) practice lukštas | accessTier.ts, ModulesPage, practice-intro 150 vs practice-quest-intro M9

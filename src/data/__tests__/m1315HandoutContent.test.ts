@@ -39,6 +39,7 @@ function visibleStrings(content: M1315HandoutContent): string[] {
     content.imagePromptTemplate,
     content.videoPromptTemplate,
     content.musicPromptTemplate,
+    content.montagePromptTemplate ?? '',
     ...content.rightsChecklist,
     ...content.deliveryChecklist,
     content.reflectionSummary,

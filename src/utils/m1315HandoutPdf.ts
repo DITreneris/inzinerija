@@ -105,23 +105,31 @@ export async function downloadM1315HandoutPdf(
     content.videoPromptTemplate,
     y
   );
-  addPromptTemplate(
+  y = addPromptTemplate(
     ctx,
-    isEn ? '4. Music prompt' : '4. Muzikos promptas',
+    isEn ? '4. Audio prompt' : '4. Garso promptas',
     content.musicPromptTemplate,
     y
   );
+  if (content.montagePromptTemplate) {
+    addPromptTemplate(
+      ctx,
+      isEn ? '5. Edit plan' : '5. Montažo planas',
+      content.montagePromptTemplate,
+      y
+    );
+  }
 
   ctx.doc.addPage();
   let pageTwoY = addListSection(
     ctx,
-    isEn ? '5. Rights check' : '5. Teisių patikra',
+    isEn ? '6. Rights check' : '6. Teisių patikra',
     content.rightsChecklist,
     HANDOUT_CONTENT_X
   );
   pageTwoY = addListSection(
     ctx,
-    isEn ? '6. Delivery checklist' : '6. Delivery checklist',
+    isEn ? '7. Delivery checklist' : '7. Pristatymo sąrašas',
     content.deliveryChecklist,
     pageTwoY,
     { colorHex: HANDOUT_ACCENT_COLOR }
@@ -130,8 +138,8 @@ export async function downloadM1315HandoutPdf(
   pageTwoY = addSectionTitle(
     ctx,
     isEn
-      ? '7. Reflection and 48-hour action'
-      : '7. Refleksija ir 48 val. veiksmas',
+      ? '8. Reflection and 48-hour action'
+      : '8. Refleksija ir 48 val. veiksmas',
     pageTwoY,
     HANDOUT_ACCENT_COLOR
   );

@@ -62,12 +62,6 @@ export function McqQuestion({
 
       {stemVisual ? <div className="mb-4">{stemVisual}</div> : null}
 
-      <ConfidenceSelector
-        value={confidence}
-        onChange={(level) => onConfidence?.(level)}
-        disabled={showResults}
-      />
-
       <div className="space-y-2">
         {options.map((option, idx) => {
           const isSelected = userAnswer === idx;
@@ -120,6 +114,14 @@ export function McqQuestion({
           );
         })}
       </div>
+
+      {onConfidence ? (
+        <ConfidenceSelector
+          value={confidence}
+          onChange={onConfidence}
+          disabled={showResults}
+        />
+      ) : null}
 
       {/* Progressive hint */}
       {showHint && question.hint && !showResults && (

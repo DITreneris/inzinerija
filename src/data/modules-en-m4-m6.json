@@ -3462,7 +3462,7 @@
             "footer": "Next – slide 40: 3 questions for yourself",
             "celebrationText": "Module 4 theory – done. Before the test – a short recap.",
             "nextSteps": [
-              "Module 5 – 15 min sprint and mini test; ≥70% recommended before Module 6 project.",
+              "Module 5 – 25–30 min presentation sprint and mini quiz; ≥70% recommended before Module 6 project.",
               "Module 6 – practice: SUPER PROMPTS, COMBO, HTML and project.",
               "To review – RAG and Deep research slides (4.2, 4.3)."
             ],
@@ -3543,7 +3543,7 @@
               },
               {
                 "heading": "Do it now: Module 5 test",
-                "body": "Go to Module 5 — a 15-min presentation sprint and a short comprehension test. Aim for ≥70%, then the Module 6 project will be clearer.",
+                "body": "Go to Module 5 — a 25–30 min presentation sprint and a short comprehension test. Aim for ≥70%, then the Module 6 project will be clearer.",
                 "blockVariant": "brand"
               },
               {
@@ -3588,8 +3588,8 @@
     {
       "id": 5,
       "title": "Presentation sprint",
-      "subtitle": "Sprint + mini quiz: brief → storyline → draft → QC",
-      "description": "Presentation draft + mini quiz. Brief → storyline → slides. ≥70% before Module 6.",
+      "subtitle": "8-slide draft and a mini quiz before Module 6",
+      "description": "You will make a presentation draft and check yourself. ≥70% before Module 6.",
       "icon": "ClipboardCheck",
       "level": "test",
       "duration": "25–30 min",
@@ -3604,26 +3604,26 @@
             "ctaText": "See what's ahead – in 1 minute!",
             "heroStat": "Module 5: Presentation sprint.",
             "heroText": "25–30 min – 8-slide presentation with AI.",
-            "heroSubText": "Brief → storyline → structure → content → QC. You copy templates, fill [Topic] and [Audience], run AI – and get a draft before Module 6.",
-            "firstActionCTA": "Next: open the slide \"What is the 15 min sprint and what to do first\" and copy the 8-slide template. Fill [Topic], [Audience], run AI.",
-            "duration": "~25–30 min (sprint + QC + mini quiz)",
-            "audience": "For those who finished Module 4 and want a presentation draft with storyline and quality check before the Module 6 project.",
+            "heroSubText": "Brief → storyline → structure → content → quality check. You copy templates, fill [Topic] and [Audience], run AI – and get a draft before Module 6.",
+            "firstActionCTA": "Next: open the slide \"What is the sprint?\" and copy the 8-slide template. Fill [Topic], [Audience], run AI.",
+            "duration": "~25–30 min (sprint + quality check + mini quiz)",
+            "audience": "For those who finished Module 4 and want a presentation draft with a storyline and quality check before the Module 6 project.",
             "outcomes": [
               "Create a brief (topic, audience, goal)",
-              "Form a storyline (decision + 3 arguments + CTA)",
+              "Form a storyline (decision + 3 arguments + call to action)",
               "Generate an 8-slide structure and draft with AI",
               "Complete the QC lab and mini quiz (≥70% → Module 6)",
               "Download Module 5 handout (PDF)"
             ],
-            "handoutPromise": "After this module you can download the Module 5 handout (PDF): sprint, brief, storyline, 8-slide template, QC and quiz summary.",
+            "handoutPromise": "After this module you can download the Module 5 handout (PDF): sprint, brief, storyline, 8-slide template, quality check and quiz summary.",
             "unstructuredPrompt": "Write an 8-slide presentation about [topic].",
             "structuredPrompt": "Brief: topic [X], audience [Y], goal [Z]. Storyline: decision + 3 arguments. 8 slides. Structure (assertion title + 2 bullets), then full content for slide 3. Quality check – 6 points."
           },
-          "footer": "Next – slide 2: What is the 15 min sprint and what to do first"
+          "footer": "Next – slide 2: What is the sprint?"
         },
         {
           "id": 47,
-          "title": "What is the 15 min sprint and what to do first",
+          "title": "What is the presentation sprint and what to do first",
           "shortTitle": "What is the sprint?",
           "subtitle": "Brief and 8-slide structure – first step",
           "type": "content-block",
@@ -3650,7 +3650,7 @@
             "sections": [
               {
                 "heading": "1️⃣ In short (30 s)",
-                "body": "**Process:** Brief → storyline (next slide) → 8-slide structure → content → QC. Start with brief and structure – copy the template below.",
+                "body": "**Process:** Brief → storyline (next slide) → 8-slide structure → content → quality check. Start with brief and structure – copy the template below.",
                 "blockVariant": "accent"
               },
               {
@@ -3838,7 +3838,7 @@
               },
               {
                 "heading": "Quality check",
-                "body": "Before QC:\n• Did you run the 6-block prompt with [Topic] / [Audience] filled?\n• Did you pick 1 tool path (not all at once)?\n• Do you have a draft for 8 slides?\n\n**Bottom line:** a good prompt and clear structure ≈ 80% of the deck; the tool is formatting.",
+                "body": "Before the quality check:\n• Did you run the 6-block prompt with [Topic] / [Audience] filled?\n• Did you pick 1 tool path (not all at once)?\n• Do you have a draft for 8 slides?\n\n**Bottom line:** a good prompt and clear structure ≈ 80% of the deck; the tool is formatting.",
                 "blockVariant": "accent"
               }
             ],
@@ -3866,7 +3866,7 @@
             "sections": [
               {
                 "heading": "1️⃣ In short (30 s)",
-                "body": "**Why it is worth it:** One template gives an 8-slide structure + 1 fully prepared slide + QC. This is a draft, not polish.",
+                "body": "**Why it is worth it:** One template gives an 8-slide structure + 1 fully prepared slide + quality check. This is a draft, not polish.",
                 "blockVariant": "accent"
               },
               {
@@ -3881,13 +3881,13 @@
               },
               {
                 "heading": "🔽 Sprint timeline (guide)",
-                "body": "0–3 min: brief + storyline direction.\n3–8 min: 8-slide structure (assertion + 2 bullets).\n8–14 min: full content / 2 heavy slides.\n14–18 min: paste into a tool (polish optional).\n18–22 min: QC (next slide) + soft proof.",
+                "body": "0–3 min: brief + storyline direction.\n3–8 min: 8-slide structure (assertion + 2 bullets).\n8–14 min: full content / 2 heavy slides.\n14–18 min: paste into a tool (polish optional).\n18–22 min: quality check (next slide) + soft proof.",
                 "collapsible": true,
                 "collapsedByDefault": true
               },
               {
                 "heading": "Quality check",
-                "body": "This is a draft, not final polish. Check yourself:\n• I ran AI with brief / storyline\n• I have 8 titles (ideally assertions)\n• I did a quick QC (or the next slide – QC lab)",
+                "body": "This is a draft, not final polish. Check yourself:\n• I ran AI with brief / storyline\n• I have 8 titles (ideally assertions)\n• I did a quick quality check (or the next slide – QC lab)",
                 "blockVariant": "accent"
               }
             ],
@@ -3905,8 +3905,8 @@
           "subtitle": "Human quality check before you send",
           "type": "content-block",
           "content": {
-            "whyBenefit": "An AI draft looks finished before it is accurate. QC is your stop before publishing.",
-            "firstActionCTA": "Read the weak fragment, then the strong one. Copy the QC checklist onto your draft.",
+            "whyBenefit": "An AI draft looks finished before it is accurate. Quality check is your stop before publishing.",
+            "firstActionCTA": "Read the weak fragment, then the strong one. Copy the quality-check checklist onto your draft.",
             "sections": [
               {
                 "heading": "1️⃣ In short",
@@ -3951,7 +3951,7 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "Four quick help cards for the sprint. Pick a situation, copy the template, return to QC.",
+                "body": "Four quick help cards for the sprint. Pick a situation, copy the template, return to the quality check.",
                 "blockVariant": "accent"
               },
               {
@@ -4065,8 +4065,8 @@
           "type": "test-intro",
           "content": {
             "introTitle": "Mini quiz after the presentation sprint",
-            "introBody": "You just did the **presentation sprint** (brief, storyline, draft, QC). This mini quiz checks the essentials: brief, storyline, structure, tool choice and a quick quality check.",
-            "microWinPhrase": "If you've already done the sprint and QC – you're ready. This quiz reinforces what you learned.",
+            "introBody": "You just did the **presentation sprint** (brief, storyline, draft, quality check). This mini quiz checks the essentials: brief, storyline, structure, tool choice and a quick quality check.",
+            "microWinPhrase": "If you've already done the sprint and quality check – you're ready. This quiz reinforces what you learned.",
             "thresholdsText": "Score **≥70%** – recommended to move to Module 6 (practice). Score **<70%** – retake the mini quiz and review the sprint, storyline and QC lab. You can still continue if you prefer.",
             "ctaLabel": "Start mini quiz"
           }
@@ -4093,7 +4093,7 @@
               "ifWrongSee": {
                 "moduleId": 5,
                 "slideId": 47,
-                "label": "What is the 15 min sprint"
+                "label": "What is the sprint?"
               }
             },
             {
@@ -4159,7 +4159,7 @@
                 "Delete all slides and start with no brief"
               ],
               "correct": 0,
-              "explanation": "A messy deck is fixed with structure and QC, not a new tool. The rescue prompt is on the bonus slide after results.",
+              "explanation": "A messy deck is fixed with structure and a quality check, not a new tool. The rescue prompt is on the bonus slide after results.",
               "ifWrongSee": {
                 "moduleId": 5,
                 "slideId": 516,
@@ -4226,19 +4226,19 @@
       ],
       "businessExamples": [
         {
-          "title": "15 min sprint",
-          "description": "Presentation draft from what you have"
+          "title": "Presentation sprint",
+          "description": "A draft from a brief and a line of argument"
         },
         {
           "title": "Mini quiz",
-          "description": "Brief + structure + quality check"
+          "description": "Brief, storyline, and quality check"
         }
       ],
       "accent": "cyan",
       "identityIcon": "ClipboardCheck",
       "transfer": {
         "abilityBefore": "You drafted decks without a clear brief and quality gate.",
-        "abilityAfter": "You can go brief → structure → slides and decide whether to proceed.",
+        "abilityAfter": "You can go from a brief to structure and slides and decide whether to proceed.",
         "firstAction24h": "Today take one real brief, generate a 5–7 slide structure with AI, then fix one weak spot.",
         "nextStepCTA": "Go to Module 6 – build a full work deliverable."
       }

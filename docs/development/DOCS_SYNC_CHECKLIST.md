@@ -2,12 +2,58 @@
 
 > Tikslas: viena vieta po release ar didesnio Unreleased sprinto patikrinti, ar agentų įėjimo dokumentai, release/ops dokumentai ir techniniai registry atitinka faktinę kodo bazę.
 
-**Baseline:** 1.6.2 corporate12 pin + **12 live per Supabase** + training HEAD T01–T08 + T09 · hygiene **41** · Unreleased visual QA PASS  
-**Testai:** training HEAD **168/1033** (2026-08-14); tag **1.6.2** = **165/1005**; tag 1.6.1 freeze = 161/982  
-**Data:** 2026-08-16 (owner status: 12 live · M7–18 corporate iki 2027-01)  
+**Baseline:** training **1.6.3** + Unreleased 08-19 (kiss + gate-green · corp15 slice · hygiene **40** · v4.36) · live pin **v1.6.2** · **12 live per Supabase**  
+**Testai:** tag **1.6.3** = **171/1056**; Unreleased HEAD = **176/1078**  
+**Data:** 2026-08-19 (docs meta sync v4.36; ne 1.6.4 / ne re-pin)  
 **Šaltiniai:** `package.json`, `CHANGELOG.md`, `docs/development/RELEASE_QA_RUN.md`, `docs/development/RELEASE_QA_CHECKLIST.md`, `docs/development/DOCS_MAINTENANCE.md`.
 
 ## Sync lentelė
+
+### Unreleased kiss + gate-green – 2026-08-19
+
+| #   | Failas                                       | Laukas     | Buvo                      | Turi būti                                              | Done |
+| --- | -------------------------------------------- | ---------- | ------------------------- | ------------------------------------------------------ | ---- |
+| 1   | `TODO.md` / `ROADMAP.md`                     | version    | v4.35 · hygiene 41        | **v4.36** · hygiene **40**                             | [x]  |
+| 2   | `modules-m1-m15.json`                        | 13.31      | footer `Consistency`      | `Tas pats vaizdas` via `generate:core-data`; max id 15 | [x]  |
+| 3   | QUICK_REF / LEAN / INDEX / CODEBASE / AGENTS | open/meta  | kiss missing · hygiene 41 | kiss + slice · hygiene 40 · v4.36                      | [x]  |
+| 4   | `tsc` + isolated RTL + preflight             | gates      | 3 tsc · pool timeout      | typecheck OK · 8/36 · preflight **176/1078**           | [x]  |
+| 5   | `CHANGELOG` / `TEST_REPORT`                  | Unreleased | kiss be slice             | gate-green Fixed + Docs v4.36                          | [x]  |
+
+### Unreleased corp15 + C-S2/C-S4 – 2026-08-18
+
+| #   | Failas                              | Laukas  | Buvo                   | Turi būti                                | Done |
+| --- | ----------------------------------- | ------- | ---------------------- | ---------------------------------------- | ---- |
+| 1   | `TODO.md` §1.3b                     | C-S\*   | C-S2/C-S4 `[ ]`        | C-S1–S4 `[x]`; Could parked              | [x]  |
+| 2   | `ROADMAP.md`                        | version | v4.34                  | **v4.35** Horizon C                      | [x]  |
+| 3   | `modules-m1-m15.json`               | 151–158 | Optional / Quick start | sync via `generate:core-data`; max id 15 | [x]  |
+| 4   | QUICK_REF / LEAN / INDEX / CODEBASE | open    | C-S2/C-S4              | I5 · Should · TOOL-5                     | [x]  |
+| 5   | craft + walk intakes                | close   | C-S2/C-S4 open         | Banga 3 shipped                          | [x]  |
+| 6   | `TEST_REPORT.md`                    | gates   | v4.34                  | Wave corp15 + C-S2/C-S4                  | [x]  |
+
+### Unreleased Walk RAW + C-S1/S3 + M17 analog – 2026-08-18
+
+| #   | Failas                                              | Laukas     | Buvo                               | Turi būti                                                  | Done |
+| --- | --------------------------------------------------- | ---------- | ---------------------------------- | ---------------------------------------------------------- | ---- |
+| 1   | `TODO.md` §1.3a / §1.3b                             | late stack | Walk RAW `152–158` · C-S\* open    | Walk RAW + M17-ANALOG + C-S1/S3 `[x]`; C-S2/C-S4 open      | [x]  |
+| 2   | `ROADMAP.md`                                        | version    | v4.33                              | **v4.34** Horizon C/D                                      | [x]  |
+| 3   | `DOCUMENTATION_QUICK_REF.md` / `LEAN_INDEX` / INDEX | open       | `152–158` + C-S\*                  | C-S2/C-S4 · I5 · TOOL-5                                    | [x]  |
+| 4   | `CODEBASE_WHAT_IS_DONE.md`                          | M13–18     | Walk RAW liekana                   | Walk RAW + C-S1/S3 + M17 analog ✅; corporate15 158 caveat | [x]  |
+| 5   | `CHANGELOG` Unreleased TOC                          | tree       | v4.33                              | M15 honesty · C-S1/S3 · M17 analog · **v4.34**             | [x]  |
+| 6   | intakes walk + craft                                | close      | `152–158` gali tęstis · C-S\* open | §R.M15 close · craft §9 C-S1/S3 shipped                    | [x]  |
+| 7   | `TEST_REPORT.md`                                    | gates      | v4.33 docs-only                    | Wave 4 vartai + M17 analog                                 | [x]  |
+
+### Unreleased 08-17/18 + docs meta sync – 2026-08-18
+
+| #   | Failas                                 | Laukas      | Buvo                                    | Turi būti                                                             | Done |
+| --- | -------------------------------------- | ----------- | --------------------------------------- | --------------------------------------------------------------------- | ---- |
+| 1   | `TODO.md` §1.3a / §1.3b / §2           | late stack  | Walk RAW vague · be M5                  | M14-ITEMS / I2-M13 / C-M1–M3 / M15 FAIL / M5 ✅; Walk RAW = `152–158` | [x]  |
+| 2   | `ROADMAP.md`                           | version     | v4.32                                   | **v4.33** docs meta sync                                              | [x]  |
+| 3   | `DOCUMENTATION_QUICK_REF.md`           | ROADMAP     | v4.25                                   | **v4.33** + open liekana                                              | [x]  |
+| 4   | `LEAN_INDEX.md`                        | header      | 08-16 · open = tik MON/D3               | 08-18 · late stack + TOOL-5                                           | [x]  |
+| 5   | `CODEBASE_WHAT_IS_DONE.md`             | HEAD vs tag | HEAD = 171/1056                         | tag 1.6.3 = 171/1056; HEAD Unreleased = daugiau kontraktų             | [x]  |
+| 6   | `CHANGELOG` Unreleased TOC             | tree        | „Po 1.6.3.“                             | 08-17/18 scope + docs sync; ne 1.6.4                                  | [x]  |
+| 7   | archive `TODO_DONE_SPRINTS_2026-08.md` | 08-17/18    | baigiasi 08-16                          | Unreleased 08-17/18 blokas                                            | [x]  |
+| 8   | `DOCUMENTATION_INDEX.md` header        | open/date   | 2026-08-01 · Could open · release 1.4.9 | 2026-08-18 · late stack · training 1.6.3 / pin 1.6.2                  | [x]  |
 
 ### Owner status – 2026-08-16
 

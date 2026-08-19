@@ -154,12 +154,6 @@ export function MatchingQuestion({
         </p>
       )}
 
-      <ConfidenceSelector
-        value={confidence}
-        onChange={(level) => onConfidence?.(level)}
-        disabled={isChecked}
-      />
-
       <div className="grid grid-cols-2 gap-3">
         {/* Left column */}
         <div className="space-y-2">
@@ -247,6 +241,14 @@ export function MatchingQuestion({
           })}
         </div>
       </div>
+
+      {onConfidence ? (
+        <ConfidenceSelector
+          value={confidence}
+          onChange={onConfidence}
+          disabled={showResults}
+        />
+      ) : null}
 
       {/* Check button */}
       {!isChecked && allMatched && (

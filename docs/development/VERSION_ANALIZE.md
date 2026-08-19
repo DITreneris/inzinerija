@@ -1,6 +1,6 @@
 # Versijavimo analizė – ar galima identifikuoti ir keisti versiją?
 
-> **Data:** 2026-08-16 (procedūra; release truth = `package.json`)  
+> **Data:** 2026-08-18 (procedūra; release truth = `package.json`; Unreleased ≠ 1.6.4)  
 > **Klausimas:** Ar kodo bazėje galima vienareikšmiškai identifikuoti versiją ir ją pakeisti?
 
 ---

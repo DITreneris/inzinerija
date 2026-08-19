@@ -14,7 +14,7 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 | Skiltis                     | Ką rasite                                                                                                                                                                                  |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **[Unreleased]**            | Po 1.6.3.                                                                                                                                                                                  |
+| **[Unreleased]**            | Po 1.6.3: Unreleased gate-green · kiss/chrome · corp15 slice honesty · C-S2/C-S4 · M15 tail · craft · M17 analog · M14-ITEMS · I2 · M5 polish. Docs **v4.36**. Ne 1.6.4 / ne re-pin.       |
 | **[1.6.3] – 2026-08-16**    | Testerio Must T01–T08 + T09; M11 chrome + item quality; sertifikatai/PDF; M11/M12 walked; 12 live; hygiene **41**; tests **171/1056**; training cut. Live pin kol neperpinsi = **v1.6.2**. |
 | **[1.6.2] – 2026-08-13**    | M10–12 content freeze; katalogo UX + CATALOG-HOME; SCHEME-CENTRAL W1 governance CI; Docs Lean; tests **165/1005**; corporate12 pin **v1.6.2**.                                             |
 | **[1.6.1] – 2026-08-12**    | Node.js 24 runtime bump; CI matrica 22.x / 24.x; ESLint 9 flat config; Vite 7 + Vitest 4; advisory sweep 27 → **0**; corporate12 cutover pin target **v1.6.1**.                            |
@@ -47,7 +47,7 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 - **LT/EN (i18n):** Pilnas UI; turinys M1–M15 per loader merge; 20 namespace (`lt.json` top-level); schemos/diagramos lokalizuoti.
 - **Sertifikatai, PDF atmintinės (M1/M4/M5/M6/M7–9/M10–12/M13–15), žodynėlis, apklausa, įrankiai, progresas:** Įgyvendinta. **Access tier** 3 / 6 / 9 / **12** / **15** (magic link); sertifikatai tier 1–5, įskaitant tier 4 po M10–12 + M11 ≥ 70 % ir tier 5 po M13–15 + M14 ≥ 70 %.
 - **Ekosistema M7–12:** `ECOSYSTEM_MAP.md`, blog deepen, spinoff analytics.
-- **Testai:** training **1.6.3** = **171** failai / **1056** testai (2026-08-16 preflight). Tag **1.6.2** freeze buvo **165/1005**. Validacija: prebuild schema (+ `audit:tools`); release gate `npm run audit:release-preflight` (incl. `audit:m1618`, `audit:en-spelling`, `audit:lt-address`, `audit:m1012-content-hygiene:gate`); `audit:governance` CI; M10–12 `audit:m1012`; M13–15 `audit:m1315`; M9 journey `validate:journey-m9`.
+- **Testai:** training **1.6.3** = **171** failai / **1056** testai (2026-08-16 preflight). Unreleased HEAD **176/1078** (2026-08-19). Tag **1.6.2** freeze buvo **165/1005**. Validacija: prebuild schema (+ `audit:tools`); release gate `npm run audit:release-preflight` (incl. `audit:m1618`, `audit:en-spelling`, `audit:lt-address`, `audit:m1012-content-hygiene:gate`); `audit:governance` CI; M10–12 `audit:m1012`; M13–15 `audit:m1315`; M9 journey `validate:journey-m9`.
 - **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis ([DITreneris/promptanatomy](https://github.com/DITreneris/promptanatomy)); training cut **1.6.3**; live pin kol neperpinsi = **v1.6.2**; **12 live per Supabase**. Viešas Stripe = M1–6; M7–18 = corporate grant iki 2027-01. `v1.4.9` = istorinis learning freeze. Handoff: [`06_marketingo_memo_corporate12_supabase.md`](06_marketingo_memo_corporate12_supabase.md), [`MARKETING_SUBMODULE_PIN_CORPORATE12.md`](docs/deployment/MARKETING_SUBMODULE_PIN_CORPORATE12.md); `MON_P0_EXECUTION_PLAN.md` superseded.
 
 ---
@@ -56,9 +56,75 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 ### Fixed
 
-### Added
+- **Unreleased gate-green (2026-08-19):** `tsc` — M9 overlay spreads resolved `task` (not optional `practicalTask`); M14 EN `whyBenefit` narrow; Path Test submit fixture `explanation`. `generate:core-data` after kiss so `modules-m1-m15` `13.31` footer = `Tas pats vaizdas` (max id 15). Isolated RTL 8/36 `--maxWorkers=1`. `audit:release-preflight` **176/1078**. Ne 1.6.4 / ne re-pin.
 
 ### Changed
+
+- **Docs meta sync (2026-08-19, v4.36):** TODO / ROADMAP / CODEBASE / QUICK_REF / LEAN / INDEX / AGENTS hygiene **40** (freeze buvo 41; ne `--write-baseline`). Ne 1.6.4 / ne re-pin.
+
+- **M13–15 brandos kiss (2026-08-19):** chrome ir optional vietos, ne TE / ne nauja skaidrė. `13.31` footer be Consistency; `150`/`150.5`/`140.5` warm-3 be „privaloma“ ašies (gate lieka `150.5`); `151` skip eilutė; `143` LT gloss; `142` refleksija be META; `13.101` Patikra rodo į rubriką; `13.35` Ready suskleisti + 1 užrakto eilutė (MASTER lieka). Durable EN `build:modules-en-m13-m15`. Slice regen — Fixed „Unreleased gate-green“. Ne 1.6.4 / ne re-pin.
+
+### Fixed
+
+- **Corporate15 profile honesty (2026-08-18):** `generate:core-data` sync `modules-m1-m15.json` su full SOT — `151–154` be `Optional:` / `badgeVariant: optional`; `158` LT `Greitas startas`. Spill gate: max `module.id` 15. Ne 1.6.4 / ne re-pin.
+
+### Added
+
+- **Craft Banga 3 C-S2 + C-S4 (2026-08-18):** `152` first+last frame copy (kai įrankis moka) — be 13.47 control / Feature Doc. `143` Patikra: antras bandymas — keisk tik vieną dalyką. EN durable `build:modules-en-m13-m15`.
+
+### Changed
+
+- **Docs meta sync (2026-08-18, v4.35):** TODO / ROADMAP / CODEBASE / QUICK_REF / LEAN sulygiuoti su C-S2/C-S4 close + corp15 sync. Ne 1.6.4 / ne re-pin.
+
+### Fixed
+
+- **M15 Walk RAW `151–158` honesty (2026-08-18):** `158` stats LT `Quick start` → `Greitas startas`. `151–154` be `Optional:` chrome ir be `badgeVariant: optional` (`optional: true` lieka). `150.25` / `150.26` – žmogaus šaka, ne privaloma/neprivaloma ašis. EN twins: `152` 3 s (ne 5–10), `153` Voice or bed (ne Music fragment), `154` Edit (ne Montazas), `158` intro/stats EN. Durable `m13-en-plain-overrides` + `build:modules-en-m13-m15`. Corp15 slice sync – žr. Fixed „Corporate15 profile honesty“ (vėliau tą pačią dieną).
+
+- **M17 Path Test analog (2026-08-18):** `TestResultsSlide` `moduleId === 17` prieš M2 default. 0 % → Modulis 16 (ne Modulį 1 / 6 blokai); pass → bonusas + Modulis 18 (ne Modulis 3). Skaito `172` JSON. `LINKS_M17` chip’ai. `173` LT be English `Optional`. Ne `generate:core-data`.
+
+### Added
+
+- **Craft Banga 2 C-S1 + C-S3 (2026-08-18):** `13.5` šakutė (Veo native garsas vs tylus I2V + balsas atskirai) + `13.47` Patikra hint. `150.25` užrakto kortelė + I3 atmintinės eilutė. Be naujos skaidrės / Pattern. C-S2 / C-S4 – Banga 3 (žr. Added).
+
+### Changed
+
+- **Docs meta sync (2026-08-18, v4.34):** TODO / ROADMAP / CODEBASE / QUICK_REF / LEAN sulygiuoti su Walk RAW close + C-S1/S3 + M17 analog. Ne 1.6.4 / ne re-pin.
+
+### Fixed
+
+- **M14-ITEMS Path Test kokybė (2026-08-18):** `141` – Q6 multimodalė grandinė; Q9 be CPI; Q11 licencijos principas (ne vendoriai); Q12 C2PA = provenance, ne watermark/disclosure. Q5 be slide hint. Wave 1 chrome/warm-up/Q1/Q3/Q4 sulygiuoti su SOT. EN durable `build-en-m13-m15.mjs`. Ne 12 rewrite. Intake §2.13.
+
+- **I2-M13 first-screen + ciklas (2026-08-18):** MUST kelio chrome be bare `storyboard` / `image → video` / `clipą` / `audio-first` / `SFX, commercial OK` / `Consistency lab` H1. Ciklas (Trumpai/Daryk/Patikra) + `i2vGen` i18n. EN durable `m13-en-plain-overrides` + `build:modules-en-m13-m15`. TRIM/TE neliesta. Ne `generate:core-data`.
+
+- **M15 walk FAIL + I2-M14 (2026-08-18):** `150` nebepiešia M3 „🔥 6 Verslo“ tinklelio (`isM15` kaip M12). `150.5` / `151–154` compact kūnas skaito `content.template` + `practicalTask` (nebe tuščia). M8/M11/M14 0 % rezultatai nebekrenta į Modulį 1. M14 temos/fail chip’ai: Grandinė / Pirma garsas / Ženklas / Užduotis → publikacija. Atmintinė = tie patys 4 promptai; LT p.2 „Pristatymo sąrašas“. Ne `generate:core-data`. Intake [`M13_M15_LEARNER_WALK_INTAKE.md`](docs/development/intake/M13_M15_LEARNER_WALK_INTAKE.md).
+
+- **Path Test leftovers (2026-08-18):** pasitikėjimas po atsakymo + „Nebūtina“ / Optional; retake be eilutės; ordering rodyklės lieka po lokalaus „Patikrinti tvarką“. M2 unused bank chrome be „prioritetą“. M14 I0: `vaizde`, `Pilname cikle`, foninės muzikos trukmė (LT + durable EN). M8 q8 `relatedSlideId` 891 paliktas (darbo eiga). M11 neliesta (FREEZE).
+
+- **M2 Path Test unlock + fair stems (2026-08-17):** submitas nebereikalauja 15× pasitikėjimo; Q13 dabartinė tvarka = atsakymas (be „Patikrinti tvarką“ varto); matching/ordering nebeužrakina pasitikėjimo po check. Stemos: QC (prompto instrukcija), Meta = pirmas **šiame** modelyje, rikiavimas = modelio seka (ne „svarba“), Q15 be GPT-4/3.5. Deep-link į dabartinius M1 ID (Meta 5, ne CoT 8). Live balsas = `questionPool.ts` / `.en.ts`. `generate:core-data` po JSON banko sync.
+
+- **M14 Path Test items + chrome (2026-08-17):** warm-up nebepreviewina graded `m14-q2` / `m14-q10` (A/E/C + tas pats vaizdas; M15 tiltas lieka). q1/q3/q4 distractoriai plausible-but-wrong. `m14-q8` remediacija → `13.12`. Learner chrome be bare `pipeline`/`workflow`. EN `141` bankas durable (nebe walk filler). M13 neliesta. Ne `generate:core-data`. Intake [`M13_M15_LEARNER_WALK_INTAKE.md`](docs/development/intake/M13_M15_LEARNER_WALK_INTAKE.md).
+
+### Added
+
+- **Craft Banga 1 C-M1–M3 (2026-08-18):** Stage + Patikra ant `13.3` / `13.4` / `13.6` / `13.47` + `150.5` žingsnis + `152` `doneWhen` + `153` balso kortelė. I3 viena užrakto eilutė. Be naujos skaidrės / Pattern. [`M13_M15_CRAFT_MOSCOW_2026-08.md`](docs/development/intake/M13_M15_CRAFT_MOSCOW_2026-08.md).
+
+### Changed
+
+- **Docs meta sync (2026-08-18):** TODO / ROADMAP **v4.33** / CODEBASE / QUICK_REF / LEAN / DOCS_SYNC / INDEX header sulygiuoti su Unreleased (M14-ITEMS, I2-M13, craft Banga 1, M15 FAIL, M5 polish). Archive 08-17/18 blokas. Ne 1.6.4 / ne re-pin.
+
+- **TODO §1.3b craft MoSCoW (2026-08-18):** C-M1–M3 shipped; C-S1–S4 / C-C1–C5 / C-W lieka. Spec [`M13_M15_CRAFT_MOSCOW_2026-08.md`](docs/development/intake/M13_M15_CRAFT_MOSCOW_2026-08.md).
+
+- **M5 47 trukmė (2026-08-18):** antraštė `Kas yra prezentacijos sprintas…` (nebe „15 min“); M4→M5 tease ir EN twin = 25–30 min. `generate:core-data`.
+
+- **M5 mini testas stem’ai (2026-08-18):** `draftą`/`draftui` → `juodraštį`/`juodraščiui`; q3 `Quality` → `Kokybės patikra`; q5 bare `QC` → `kokybės patikra`; q1 remediacija `Kas yra sprintas?` (be 15 min). EN: q5 `quality check`, q1 label `What is the sprint?`. Warm-up ir copyable neliesti. `generate:core-data`.
+
+- **M5 body + atmintinė LT (2026-08-18):** 47/47.5/510/515 Trumpai–Patikra: `draftas` → `juodraštis`, `polish` → `galutinis tvarkymas`, bare `QC` → `kokybės patikra`. Atmintinės `sequenceSteps` + `briefDefinition` su pirmu gloss. EN body: tik bare `QC` → `quality check`. Quiz ir copyable neliesti. `generate:core-data`.
+
+- **M5 katalogas + chrome LT (2026-08-18):** kortelėje be `brief` / `draftas` / `QC` (`užduoties aprašas`, `juodraštis`, `kokybės patikra`). 45.5 pirmas gloss; `draftas` chrome → `juodraštis`; `QC lab` lieka. EN overlay balsas sutapdintas (ne keyword juosta). Atmintinės antraštė + `m5IntroBodyDefault`. `generate:core-data`. Body / testų stem’ai neliesti.
+
+- **M13–15 kalbos apply W1–W3 (2026-08-17):** I1A LT P1 (`pvz.,` / `garsas` / `vaizde` / chip’ai) + EN first-screen P0 (`130` path picker, `13.12`/`13.15`/`13.2` walk filler) + W2 EN stub scan (`150`/`150.25`/`150.26`/`151–154`/`158`) + W3 LT chrome (`13.325` dirbtuvė, `13.32` referencų užraktas, `13.6` pirma garsas, `151–154` be `Optional:` subtitle). Durable EN = `m13-en-plain-overrides.mjs` + `build:modules-en-m13-m15`. P2 / I2 body / I3 / I5 atidėta. Ne TRIM/TE · ne `generate:core-data`.
+
+- **M15 `158` stats label (2026-08-17):** LT `Quick start` → **Greitas startas**. Completion claim (greitas arba pilnas) nepaliestas. Ne naujas Pattern.
 
 ---
 

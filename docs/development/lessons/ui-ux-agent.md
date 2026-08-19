@@ -42,7 +42,7 @@
 2026-07-20 | M10–12 content-block | trečias accent (Daryk kaip accent) | GOLDEN §3.2: Trumpai+Patikra = accent OK; Daryk privalo brand; CI`audit:accent-budget`| GOLDEN_STANDARD.md, audit-accent-budget.mjs, modules.json
 2026-07-20 | Agent track chrome | SlideWorkspace tik M10; complete be track accent | SlideWorkspace +11/12; ModuleComplete`resolveModuleAccent` top bar | SlideContent.tsx, ModuleCompleteScreen.tsx, DESIGN_SYSTEM.md
 2026-07-21 | M13 MUST collapsible | Legal/KPI default collapsed = slepiamas mokymas | MUST santrauka matoma; detalės collapsible | modules.json 13.101, GOLDEN_STANDARD.md
-2026-07-21 | M15 quick/full | minScenarios=1, bet linear nav vis tiek veda į 151 | checkpoint + „Eiti į santrauką“ kai min atlikta; optional badge 151–153 | ModuleView.tsx, PathStepSlide, modules.json
+2026-07-21 | M15 quick/full | minScenarios=1, bet linear nav vis tiek veda į 151 | Checkpoint + „Eiti į santrauką“ KEEP. SUPERSEDED 2026-08-18: optional badge kaip mokinio chrome — §2.11 (ne „Neprivaloma“ ant tuščios) | ModuleView.tsx, PathStepSlide, modules.json
 2026-07-22 | ModulesPage tracks | visos sekcijos brand → keliai susilieja | track header pagal accent (brand/sky/fuchsia/rose); coming-soon agents+content atskiros sekcijos | ModulesPage.tsx, moduleIdentity.ts trackSectionClasses
 2026-07-22 | ModulesPage DS | h2+nested button; icon/chip = level; 1 recommended | h3 + CTA span; accent well/chip; duration; recommended per track; overlay AA | ModulesPage.tsx, moduleIdentity.ts, GOLDEN_STANDARD.md §6
 2026-07-23 | Bazė M1–6 grid | M4–M6 atrodo kaip tos pačios eilės overflow | subsection po M3 (`trackBaseCycle2\*`); track lieka vienas | ModulesPage.tsx, lt/en.json, GOLDEN §8.4

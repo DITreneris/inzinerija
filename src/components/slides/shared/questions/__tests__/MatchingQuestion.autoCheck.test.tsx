@@ -51,4 +51,34 @@ describe('MatchingQuestion auto-check', () => {
       expect(onComplete).toHaveBeenCalledWith('m1', expect.any(Number));
     });
   });
+
+  it('keeps confidence buttons enabled after auto-check', async () => {
+    render(
+      <LocaleProvider>
+        <MatchingQuestion
+          question={matchingQuestion}
+          questionIndex={0}
+          showResults={false}
+          showHint={false}
+          onComplete={vi.fn()}
+          onConfidence={vi.fn()}
+          onRequestHint={vi.fn()}
+        />
+      </LocaleProvider>
+    );
+
+    const leftButtons = screen.getAllByRole('button', { name: /Kairė pusė/i });
+    const rightButtons = screen.getAllByRole('button', {
+      name: /Dešinė pusė/i,
+    });
+
+    fireEvent.click(leftButtons[0]);
+    fireEvent.click(rightButtons[0]);
+    fireEvent.click(leftButtons[1]);
+    fireEvent.click(rightButtons[1]);
+
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: 'Tikras' })).not.toBeDisabled();
+    });
+  });
 });

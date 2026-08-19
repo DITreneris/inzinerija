@@ -2,6 +2,465 @@
 
 > **Tikslas:** QA_AGENT priima vartotojo testų klaidas, fiksuoja čia ir įrašo sprendimus į `TODO.md`.
 
+## 2026-08-19 – Unreleased gate-green (v4.36)
+
+**Statusas:** PASS · preflight **176/1078** · ne 1.6.4 / ne re-pin  
+**Apimtis:** tsc + corp15 slice + isolated RTL + docs meta. Kiss kūnai neliesti.
+
+### Vartai
+
+| Vartai                                   | Rezultatas                                                      |
+| ---------------------------------------- | --------------------------------------------------------------- |
+| `npm run typecheck`                      | OK (M9 `task` spread · m14 `whyBenefit` · submit `explanation`) |
+| `npm run generate:core-data` + `--check` | OK · max `module.id` 15 · `13.31` `Tas pats vaizdas`            |
+| `npm run audit:m1315`                    | OK                                                              |
+| isolated RTL `--maxWorkers=1`            | **8** failai / **36** testai                                    |
+| `audit:release-preflight`                | OK · **176** failai / **1078** testai                           |
+
+**Liekama:** T01 I5 · Should · complete-screen #16 · C-C\* · TOOL-5 · MON / D3.
+
+## 2026-08-19 – Pre-launch deep audit
+
+**Statusas:** NO-GO Unreleased · CONDITIONAL GO tagged **v1.6.3** re-pin (marketing) · live HOLD **v1.6.2**  
+**Apimtis:** dirty tree vs tag vs live. Ne 1.6.4. Corporate15 iš dirty — ne.
+
+### Vartai (ši sesija)
+
+| Vartai                                                | Rezultatas                                     |
+| ----------------------------------------------------- | ---------------------------------------------- |
+| `validate:schema`                                     | OK                                             |
+| `lint`                                                | OK                                             |
+| `typecheck`                                           | FAIL · 3 klaidos                               |
+| `generate:core-data:check`                            | FAIL · `modules-m1-m15.json` ≠ SOT             |
+| `audit:m1315` / `m1012` / `m1618`                     | OK                                             |
+| `audit:m1012-content-hygiene:gate`                    | OK · 40 findings (docs freeze vis dar 41)      |
+| `audit:lt-address` + `audit:en-spelling`              | OK                                             |
+| `audit:teaching-elements:check-docs` + footer-numbers | OK                                             |
+| targeted RTL (m14/m15/m17/gate/handout)               | harness FAIL · 8 vitest-pool timeout · 0 tests |
+| `audit:release-preflight`                             | NOT RUN (blokuota typecheck + core-data)       |
+
+### Blockers
+
+| Simptomas               | Root cause                                                                                                    |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Unreleased nepin'inamas | 65 modified + 13 untracked ant švaraus `v1.6.3`                                                               |
+| `tsc`                   | `SlideContent` M9 spread `practicalTask?`; m14 `whyBenefit` union; `TestSectionSlide.submit` be `explanation` |
+| Corp15 honesty          | kiss `13.31` footer `Tas pats vaizdas` SOT; slice vis dar `Consistency`                                       |
+| Preflight               | typecheck + core-data + `test:run` visi ne žali šioje sesijoje                                                |
+
+**Liekama (ne P0):** T01 I5 · Should 2-as pass · complete-screen #16 · C-C\* · TOOL-5 · MON · D3.
+
+## 2026-08-19 – M13–15 brandos kiss (Banga 0+1+2)
+
+**Statusas:** PASS · ne 1.6.4 / ne re-pin · `generate:core-data` nenaudotas  
+**Apimtis:** chrome + kiss + `13.35` Ready collapse. Kūnai MARRY. Could C-C1 parked.
+
+### Vartai
+
+| Vartai                             | Rezultatas                  |
+| ---------------------------------- | --------------------------- |
+| `npm run build:modules-en-m13-m15` | OK (prieš QA; durable maps) |
+| `npm run audit:m1315`              | OK                          |
+| `npm run audit:lt-address`         | OK                          |
+| `npm run audit:en-spelling`        | OK                          |
+| `npm run validate:schema`          | OK                          |
+| `audit:teaching-elements`          | neliesta (planas)           |
+
+### Rankinis spot (LT UI, ne curriculum ID)
+
+| Check                        | Tikėtina                                                        |
+| ---------------------------- | --------------------------------------------------------------- |
+| `13.31` footer               | `Tas pats vaizdas`, be `Consistency`                            |
+| `150` / `150.5` first-screen | be „privaloma“; gate vis tiek `150.5`                           |
+| `140.5` Q3                   | be MUST / privalomas minimumas                                  |
+| `151` pirmas sakinys         | skip, jei greito starto vaizdas tinka                           |
+| `143` copyable               | LT etiketės (`Užduotis`, `Kadrai`, `video iš kadro`, `DI žyma`) |
+| `142` refleksija             | 3 klausimai, be META/INPUT/OUTPUT                               |
+| `13.101` Patikra             | pointeris į „Vertinimo rubrika“                                 |
+| `13.35`                      | MASTER matomas; Ready suskleisti; užrakto eilutė                |
+
+### Drift, kurį uždarė ši sesija
+
+| Simptomas                      | Fix                                                              |
+| ------------------------------ | ---------------------------------------------------------------- |
+| `13.31` footer `Consistency`   | title-pointer `Tas pats vaizdas` + EN `Same look`                |
+| `150`/`150.5` „privaloma“ ašis | first artifact / ~20 min copy; `minScenariosToComplete` neliesta |
+| `140.5` warm-3 MUST            | LT pasivijo EN overlay                                           |
+| `151` dvynys `150.5`           | skip-first sakinys                                               |
+| `143` EN tokenai               | LT gloss + `copyableBySlide`                                     |
+| `142` META refleksija          | 3 klausimai                                                      |
+| `13.101` rubrika po fold       | Patikra pointeris                                                |
+| `13.35` atviri Ready           | collapse + 1 Stage užrakto eilutė                                |
+
+**Liekana (ne šis epic):** Could C-C1 · complete-screen #16 · `13.9`/`158` META refleksija · `150.recommendedStart` „neprivalomus“ · `13.101` antraštė „Teisės ir rizikos (privaloma)“ (teisių blokas, ne M15 kelio ašis).
+
+## 2026-08-18 – Corp15 sync + C-S2/C-S4 (v4.35)
+
+**Statusas:** PASS · ne 1.6.4 / ne re-pin  
+**Apimtis:** `generate:core-data` → `modules-m1-m15` honesty; `152` first+last frame copy; `143` retry eilutė.
+
+### Vartai
+
+| Vartai                             | Rezultatas                           |
+| ---------------------------------- | ------------------------------------ |
+| `npm run generate:core-data`       | OK; max `module.id` 15; be M16 spill |
+| `npm run build:modules-en-m13-m15` | OK                                   |
+| `npm run validate:schema`          | OK                                   |
+| `npm run audit:m1315`              | OK                                   |
+| `npm run audit:lt-address`         | OK                                   |
+| `npm run audit:en-spelling`        | OK                                   |
+| `npm run lint`                     | OK                                   |
+| `TestPracticeSlides.m15`           | žali                                 |
+
+### Drift
+
+| Simptomas                                            | Fix                                                   |
+| ---------------------------------------------------- | ----------------------------------------------------- |
+| Corp15 `151–154` vis dar `Optional:` / `Quick start` | `generate:core-data` iš full SOT                      |
+| C-S2 open                                            | `152` Stage + doneWhen + EN filler (be 13.47 control) |
+| C-S4 open                                            | `143` Patikra + EN `bonus143Sections`                 |
+
+**Pastaba:** `generate:core-data` atnaujino ir m1-m6/m9/m12 (SOT sync churn) — ne tik m1-m15.
+
+**Open lieka:** T01 I5 parked · Should 2-as pass · TOOL-5 · MON / D3 · complete-screen #16 · Could C-C\*.
+
+## 2026-08-18 – Walk RAW `151–158` + C-S1/S3 + M17 analog (v4.34)
+
+**Statusas:** PASS (vartai žali) · ne 1.6.4 / ne re-pin · `generate:core-data` nenaudotas  
+**Apimtis:** M15 uodegos chrome + EN twins + craft Banga 2 + M17 results analog + docs Lean.
+
+### Vartai
+
+| Vartai                                                                            | Rezultatas                 |
+| --------------------------------------------------------------------------------- | -------------------------- |
+| `npm run validate:schema`                                                         | OK                         |
+| `npm run audit:m1315`                                                             | OK (po 151 EN `taskFrame`) |
+| `npm run audit:lt-address`                                                        | OK                         |
+| `npm run audit:en-spelling`                                                       | OK                         |
+| `npm run lint`                                                                    | OK                         |
+| `TestPracticeSlides.m15` + `TestResultsSlide.m17`                                 | 7 žali                     |
+| `TestPracticeSlides.m14` / `TestResultsSlide.m14` / handout / DiagramLocalization | žali (targeted)            |
+
+### Drift, kurį uždarė ši sesija
+
+| Simptomas                                                   | Fix                                                   |
+| ----------------------------------------------------------- | ----------------------------------------------------- |
+| Docs sakė `158` Greitas startas, JSON vis dar `Quick start` | LT label + durable EN (`Quick start` lieka EN)        |
+| `151–154` `Optional:` + `badgeVariant: optional`            | chrome nuimtas; `optional: true` lieka                |
+| `150.26` privalomas/optional paskaita                       | žmogaus šaka                                          |
+| M17 0 % / pass → Modulis 1 / 3                              | `moduleId === 17` prieš M2 default                    |
+| C-S1 / C-S3 open                                            | `13.5`/`13.47` šakutė + `150.25` užraktas + I3 eilutė |
+
+**QA caveat:** corporate15 profilis `modules-m1-m15.json` `158` gali likti `Quick start` iki vėlesnio profilio sync. **Ne** `generate:core-data` (M1–9; spill M16+).
+
+**Open lieka:** C-S2/C-S4 · T01 I5 parked · Should 2-as pass · TOOL-5 · MON / D3.
+
+## 2026-08-18 – HEAD `test:run` + M15 compact contract
+
+**Statusas:** 1 FAIL tada pataisytas · produktas OK  
+**Suite:** **175** failai / **1073** testai (1 failęs). Tag 1.6.3 = 171/1056.
+
+| Simptomas                                               | Root cause                                                     | Fix                                                            |
+| ------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| `TestPracticeSlides.m15` `liveTask?.template` undefined | Compact `150.5` = `content.template`, ne `slide.practicalTask` | Contract skaito `content.template` + synthesized mark-complete |
+| `/Parašyk trumpą užduoties aprašą/` nerado              | Craft C-M2 copy = `brief`                                      | Assert gyvą `Parašyk trumpą brief`                             |
+
+Targeted: `TestPracticeSlides.m15` 2/2 žali.
+
+## 2026-08-18 – Docs meta sync (TODO / ROADMAP / CHANGELOG)
+
+**Statusas:** PASS (dokumentai) · kodas nekeistas · ne 1.6.4 / ne re-pin  
+**Apimtis:** sulygiuoti `TODO.md` · `ROADMAP.md` **v4.33** · `CHANGELOG` Unreleased TOC · `CODEBASE_WHAT_IS_DONE` · `DOCUMENTATION_QUICK_REF` (buvo v4.25) · `LEAN_INDEX` · `DOCS_SYNC_CHECKLIST` · `DOCUMENTATION_INDEX` header · archive 08-17/18 blokas.
+
+### Drift, kurį uždarė šis sync
+
+| Simptomas                               | Fix                                   |
+| --------------------------------------- | ------------------------------------- |
+| QUICK_REF vis dar `ROADMAP v4.25`       | **v4.33**                             |
+| DOCS_SYNC baseline 168/1033 / 1.6.2 era | 08-18 lentelė; tag 1.6.3 = 171/1056   |
+| LEAN / INDEX sakė open = tik MON/D3     | Late stack `152–158` + C-S\* + TOOL-5 |
+| CODEBASE HEAD = 171/1056                | Tag vs Unreleased atskirta            |
+| Archive baigėsi 08-16                   | 08-17/18 Unreleased blokas            |
+
+**Open lieka:** Walk RAW `152–158` · C-S1–S4 · T01 I5 parked · Should 2-as pass · TOOL-5 · MON / D3.
+
+## 2026-08-18 – M14-ITEMS Path Test kokybė
+
+**Statusas:** implementuota (automatizuoti vartai žali)  
+**Apimtis:** `141` item kokybė (12 ID lieka). Q6 = multimodalė grandinė; Q9 be CPI; Q11 licencijos principas; Q12 C2PA = provenance. Q5 be slide hint; Wave 1 chrome/warm-up/Q1/Q3/Q4 SOT sync. Lukštas `140→143` neliestas. Ne 12 rewrite.
+
+### Vartai
+
+| Vartai                                                    | Rezultatas |
+| --------------------------------------------------------- | ---------- |
+| `TestPracticeSlides.m14`                                  | 9 žali     |
+| `npm run audit:m1315`                                     | OK         |
+| `npm run audit:lt-address`                                | OK         |
+| `npm run audit:en-spelling`                               | OK         |
+| `npm run validate:schema`                                 | OK         |
+| `build:modules-en-m13-m15` + `generate:core-data` (slice) | OK         |
+
+## 2026-08-18 – I2-M13 + craft Banga 1
+
+**Statusas:** implementuota (automatizuoti vartai žali)  
+**Apimtis:** I2-M13 MUST first-screen + ciklas (L2-01…19 / E2b-01…09) + `i2vGen` i18n. Craft C-M1–M3 Stage + Patikra ant `13.3` / `13.4` / `13.6` / `13.47` + `150.5` / `152` / `153`. Dvi JSON partijos (C-W8). Ne `generate:core-data`. TRIM/TE neliesta.
+
+### Vartai
+
+| Vartai                             | Rezultatas |
+| ---------------------------------- | ---------- |
+| `npm run build:modules-en-m13-m15` | OK         |
+| `npm run validate:schema`          | OK         |
+| `npm run audit:m1315`              | OK         |
+| `npm run audit:lt-address`         | OK         |
+| `npm run audit:en-spelling`        | OK         |
+
+### Copy / renderer
+
+| Simptomas                                   | Fix                                         |
+| ------------------------------------------- | ------------------------------------------- |
+| `13.4` subtitle `storyboard, image → video` | scenarijaus piešiniai, vaizdas → video      |
+| `13.47` tldr `keyframe` / `image-to-video`  | raktinis kadras / I2V (`i2vGen`)            |
+| `13.5` `2026 matrix` / `clipą`              | matrica / klipą                             |
+| `13.6` ciklas `audio-first` / `VO` / `bed`  | pirma garsas / balsas / fonas               |
+| Craft be last-frame / stiliaus / VO inkarų  | Stage copyable + Patikra + `152` `doneWhen` |
+
+## 2026-08-18 – M15 walk FAIL + I2-M14
+
+**Statusas:** implementuota (automatizuoti vartai žali)  
+**Apimtis:** `150` `isM15` (be M3 tinklelio); compact `practice-scenario` (`150.5` / `151–154`); M8/M11/M14 0 % rezultatai; M14 chip’ai; I3 atmintinė (4 promptai + LT „Pristatymo sąrašas“). Ne `generate:core-data`. I2-M13 ✅.
+
+### Vartai
+
+| Vartai                                                                | Rezultatas                |
+| --------------------------------------------------------------------- | ------------------------- |
+| Targeted (m15 / m14 0 % / m14 chrome / handout / DiagramLocalization) | OK · 6 failai, 118 testai |
+| `npm run lint`                                                        | OK                        |
+| `npm run validate:schema`                                             | OK                        |
+| `npm run audit:m1315`                                                 | OK                        |
+| `npm run audit:lt-address`                                            | OK                        |
+| `npm run audit:en-spelling`                                           | OK                        |
+
+### Copy / renderer
+
+| Simptomas                                               | Fix                                                        |
+| ------------------------------------------------------- | ---------------------------------------------------------- |
+| `150` = „🔥 6 Verslo Scenarijai“ / „Generuok ataskaitą“ | `isM15` kaip M12 — be M3 cover/grid                        |
+| `150.5` / `151–154` tuščias kūnas                       | Compact kelias skaito `content.template` + `practicalTask` |
+| M14 0 % → „Modulį 1“                                    | Nuimtas `rawScore > 0` (M8/M11/M14)                        |
+| M14 chip’ai `Pipeline` / `audio-first`                  | Grandinė / Pirma garsas / Ženklas / Užduotis → publikacija |
+| LT PDF p.2 „Delivery checklist“                         | „7. Pristatymo sąrašas“                                    |
+
+## 2026-08-18 – M5 47 trukmė
+
+**Statusas:** implementuota (automatizuoti vartai žali)  
+**Apimtis:** 47 title be „15 min“; M4→M5 tease 25–30 min; EN twin.
+
+### Vartai
+
+| Vartai                       | Rezultatas |
+| ---------------------------- | ---------- |
+| `npm run generate:core-data` | OK         |
+| `npm run validate:schema`    | OK         |
+| `npm run audit:m46`          | OK         |
+
+## 2026-08-18 – M5 mini testas stem’ai
+
+**Statusas:** implementuota (automatizuoti vartai žali)  
+**Apimtis:** 513 q1/q3/q4/q5 + EN twin. 511 warm-up neliestas (`brief`/`storyline` KEEP).
+
+### Vartai
+
+| Vartai                       | Rezultatas |
+| ---------------------------- | ---------- |
+| `npm run generate:core-data` | OK         |
+| `npm run validate:schema`    | OK         |
+| `npm run audit:m46`          | OK         |
+
+### Copy
+
+| Simptomas                       | Fix                               |
+| ------------------------------- | --------------------------------- |
+| q1 `draftą` / `15 min sprintas` | `juodraštį` / `Kas yra sprintas?` |
+| q3 `Quality =`                  | `Kokybės patikra =`               |
+| q4 `15 min … draftui`           | `juodraščiui`                     |
+| q5 `ir QC`                      | `ir kokybės patikra`              |
+
+## 2026-08-18 – M5 body + atmintinė
+
+**Statusas:** implementuota (automatizuoti vartai žali)  
+**Apimtis:** 47/47.5/510/515 `sections[].body` + `m5HandoutContent` `sequenceSteps`/`briefDefinition`. Ne quiz, ne copyable.
+
+### Vartai
+
+| Vartai                       | Rezultatas |
+| ---------------------------- | ---------- |
+| `npm run generate:core-data` | OK         |
+| `npm run validate:schema`    | OK         |
+| `npm run audit:m46`          | OK         |
+| `npm run audit:lt-address`   | OK         |
+
+### Copy
+
+| Simptomas                                    | Fix                                                      |
+| -------------------------------------------- | -------------------------------------------------------- |
+| `greitas draftas` / `ne polish` / `Prieš QC` | `juodraštis` / `galutinis tvarkymas` / `kokybės patikra` |
+| Atmintinė `Brief` / `QC`                     | gloss + `Kokybės patikra`                                |
+
+## 2026-08-18 – M5 katalogas + chrome LT
+
+**Statusas:** implementuota (automatizuoti vartai žali)  
+**Apimtis:** ModulesPage kortelė + M5 chrome (45.5, 47.2 title, 47.5 forWhom, 510.5/512/516). Ne body, ne quiz stem’ai, ne M6.
+
+### Vartai
+
+| Vartai                       | Rezultatas |
+| ---------------------------- | ---------- |
+| `npm run generate:core-data` | OK         |
+| `npm run validate:schema`    | OK         |
+| `npm run audit:m46`          | OK         |
+| `npm run audit:lt-address`   | OK         |
+| `npm run audit:en-spelling`  | OK         |
+
+### Copy
+
+| Simptomas                                  | Fix                                        |
+| ------------------------------------------ | ------------------------------------------ |
+| Kortelė `brief → storyline → draftas → QC` | `8 skaidrių juodraštis…` / `Paruoši… ≥70%` |
+| `draftas` vs `juodraštis` chrome           | visur `juodraštis`                         |
+| Bare `QC` antraštėse                       | `kokybės patikra`; `QC lab` lieka          |
+
+## 2026-08-18 – Path Test leftovers (confidence UX + I0)
+
+**Statusas:** PASS (land 2026-08-18) · kodas nekeistas · savininko browser pixel optional  
+**Apimtis:** shared klausimų eilė + M17/M2 ordering preview + M2 unused chrome + M14 I0. Ne QuizPage. M11 FREEZE.
+
+### Vartai
+
+| Vartai                                                                            | Rezultatas                            |
+| --------------------------------------------------------------------------------- | ------------------------------------- |
+| `npm run lint`                                                                    | OK (re-run land)                      |
+| Targeted vitest (MCQ order / ordering after check / matching confidence / submit) | 4 failai, 10 testai, žali             |
+| `TestPracticeSlides.m14`                                                          | 8 žali                                |
+| `questionPoolSelector`                                                            | 16 žali                               |
+| `validate:schema`                                                                 | OK                                    |
+| `audit:m1315` / `audit:m46`                                                       | OK                                    |
+| `audit:lt-address` / `audit:en-spelling`                                          | OK                                    |
+| `generate:core-data` / `build:modules-en-m13-m15`                                 | N/A land (jau ran implement sesijose) |
+
+### I0
+
+| Simptomas                                         | Root cause                         | Fix                                        |
+| ------------------------------------------------- | ---------------------------------- | ------------------------------------------ |
+| 2× klikų jausmas po unlock                        | Pasitikėjimas virš variantų        | Eilutė po atsakymo + „Nebūtina“            |
+| M17 q4 / M2 Q13 po lokalaus check neberedaguojama | `isChecked` užrakina rodykles      | Lock tik `showResults`; move valo preview  |
+| Authoring „prioritetą“                            | Unused M2 bank chrome              | „6 blokų seka“                             |
+| M14 q1/q6/q10                                     | `vaize` / `Pilname ciklui` / `bed` | `vaizde` / `Pilname cikle` / foninė muzika |
+
+### Smoke (rankinė)
+
+- [x] M2: pasitikėjimas po variante; „Nebūtina“ — RTL `McqQuestion.confidence` + `t('confidenceOptional')`
+- [x] M17 q4: po „Patikrinti tvarką“ rodyklės veikia — `m17-q4` = ordering; `OrderingQuestion` lock tik `showResults`
+- [x] M14 q1 explanation `vaizde` — live `modules.json` `m14-q1`
+- [x] Retake be pasitikėjimo eilutės — review path omituoja `onConfidence`
+
+**Verdict:** PASS. Shared contracts + live JSON. Owner browser pixel optional. M13 collapsible QA vis dar `vaize` — I2 / freeze, ne šios sesijos.
+
+## 2026-08-17 – M2 Path Test unlock + fair stems
+
+**Statusas:** PASS (land 2026-08-18; tie patys shared vartai)  
+**Apimtis:** shared `TestSectionSlide` submitas + M2 live pool stemos + M1 deep-link. Ne kirpti iki 10 Q. Ne Q2/Q4. Ne QuizPage.
+
+### Vartai
+
+| Vartai                                                                                                                           | Rezultatas                                                                                                                                              |
+| -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run lint`                                                                                                                   | OK                                                                                                                                                      |
+| Targeted vitest (submit / ordering auto-complete / matching confidence / MCQ confidence / `questionPoolSelector` relatedSlideId) | 5 failai, visi žali                                                                                                                                     |
+| `npm run generate:core-data`                                                                                                     | OK (po JSON banko sync)                                                                                                                                 |
+| `audit:lt-address` / `audit:en-spelling`                                                                                         | OK                                                                                                                                                      |
+| `npm run test:run` (pilnas)                                                                                                      | Nutrauktas po ~12 min (jsdom ErrorBoundary triukšmas). Ankstyva eilutė: `App.quiz.integration` empty-state — nesusiję su Path Test / QuizPage neliesta. |
+
+### I0
+
+| Simptomas                        | Root cause                                                             | Fix                                                                                                   |
+| -------------------------------- | ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| „Dar reikia: atsakyk“ visiems 15 | Submitas reikalavo atsakymo **ir** pasitikėjimo                        | Pasitikėjimas optional                                                                                |
+| Q13/Q14 „neįmanoma baigti“       | Ordering tik po „Patikrinti tvarką“; confidence `disabled={isChecked}` | Auto-score current order; confidence `disabled={showResults}`                                         |
+| Q6/Q13 „nekorektiška“            | QC trap vs skaidrė 10; rikiavimas kaip „svarba“                        | Naujos stemos; seka, ne reitingas                                                                     |
+| Fail deep-link į CoT             | `relatedSlideId` / `CATEGORY_META` sena numeracija                     | Meta 5, Input 6, Output 7, Reasoning 9, Quality 10, Advanced 11, Bendra 12, Technikos 14, Workflow 15 |
+
+### Smoke (rankinė)
+
+- [x] M2 LT: baigti testą be pasitikėjimo — `getIncompleteReasons` be confidence; `TestSectionSlide.submit`
+- [x] M2 EN: tas pats — `confidenceOptional` = Optional
+- [x] Q13 be lokalaus „Patikrinti tvarką“ – submitas aktyvus — ordering `onComplete` ant mount
+- [x] Q14 visos 6 poros – submitas aktyvus; pasitikėjimas vis dar paspaudžiamas — matching `disabled={showResults}`
+- [x] Fail „Peržiūrėti skaidrę“ Meta atidaro M1 id 5, ne 8 — pool + `CATEGORY_META.meta.slideId` = 5
+
+---
+
+## 2026-08-17 – M13–15 kalbos apply W1–W3
+
+**Statusas:** PASS (gates) · I2/I3/I5 atidėta · walk RAW vis dar OPEN  
+**Apimtis:** kalbos-only P0+P1 + EN filler + LT chrome. Ne TRIM/TE · ne I2 body.
+
+### I0
+
+| Sluoksnis    | Buvo                                                     | Po                                                       |
+| ------------ | -------------------------------------------------------- | -------------------------------------------------------- |
+| I1A LT P1    | `pvz.` / `muzika` / `landingo` / `vaize` / EN chip’ai    | `pvz.,` / `garsas` / tinklalapis / `vaizde` / LT chip’ai |
+| I1A EN P0    | `130` LT path picker; `13.12`/`13.15`/`13.2` walk filler | durable overrides + `slideMeta` audio                    |
+| W2 EN        | `Use this step…` / `Pasirink kelia` ant 150–158          | `applyM1315EnFiller` + 150.26 pack                       |
+| W3 LT chrome | lab/audio-first/`Optional:` subtitle                     | dirbtuvė / pirma garsas / badge-only optional            |
+
+### Vartai
+
+| Gate                       | Rezultatas |
+| -------------------------- | ---------- |
+| `audit:lt-address`         | ✅         |
+| `audit:en-spelling`        | ✅         |
+| `audit:m1315`              | ✅         |
+| `audit:slide-titles`       | ✅         |
+| footer-numbers 13–15 LT/EN | ✅         |
+| `validate:schema`          | ✅         |
+| `generate:core-data`       | N/A (M13+) |
+
+**Verdict:** LANG-M1315 W1–W3 shipped. I2 body / I3 handout / I5 owner walk — atidėta.
+
+---
+
+## 2026-08-17 – M14 Path Test item quality + M15 158 LHF
+
+**Statusas:** PASS (gates + m14 contract) · M13 freeze · walk RAW OPEN  
+**Apimtis:** late stack Wave 1 (M11 analogas) + Wave 2 `158` label. Ne 38×7 · ne M13 plain/TRIM · ne naujas Pattern.
+
+### I0
+
+| Klausimas / laukas       | Buvo                    | Po                             |
+| ------------------------ | ----------------------- | ------------------------------ |
+| `m14-warm-1`             | brand + 1:1/9:16 ≈ q2   | A/E/C tikslas (`13.1`)         |
+| `m14-warm-2`             | audio-first ≈ q10       | tas pats vaizdas (`13.32`)     |
+| q1/q3/q4                 | `Tik X` stubs           | plausible-but-wrong            |
+| q8 pointer               | `13.4`                  | `13.12`                        |
+| `140`/`141`/`142` chrome | `pipeline` / `workflow` | grandinė / darbo eiga          |
+| EN `141`                 | walk filler             | durable `m14GradedQuestionsEn` |
+| `158` stats              | `Quick start` LT        | `Greitas startas`              |
+
+### Vartai
+
+| Gate                     | Rezultatas                        |
+| ------------------------ | --------------------------------- |
+| `TestPracticeSlides.m14` | ✅ 8                              |
+| `audit:m1315`            | ✅                                |
+| `audit:lt-address`       | ✅                                |
+| `audit:en-spelling`      | ✅ (13.11 `Optimization` durable) |
+| `generate:core-data`     | N/A                               |
+
+**Verdict:** Wave 1+2 shipped. Wave 3/4 freeze iki savininko walk RAW.
+
+---
+
 ## 2026-08-16 – Release 1.6.3 cut
 
 **Statusas:** PASS · training cut **v1.6.3** · live pin kol neperpinsi = **v1.6.2**  

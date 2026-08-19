@@ -75,12 +75,6 @@ export function ScenarioQuestion({
         {question.question}
       </p>
 
-      <ConfidenceSelector
-        value={confidence}
-        onChange={(level) => onConfidence?.(level)}
-        disabled={showResults}
-      />
-
       {/* Options - same as MCQ */}
       <div className="space-y-2">
         {options.map((option, idx) => {
@@ -134,6 +128,14 @@ export function ScenarioQuestion({
           );
         })}
       </div>
+
+      {onConfidence ? (
+        <ConfidenceSelector
+          value={confidence}
+          onChange={onConfidence}
+          disabled={showResults}
+        />
+      ) : null}
 
       {/* Progressive hint */}
       {showHint && question.hint && !showResults && (

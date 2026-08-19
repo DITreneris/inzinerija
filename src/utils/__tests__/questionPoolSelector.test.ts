@@ -162,7 +162,11 @@ describe('questionPoolSelector', () => {
       const groups = assignToSlides(mcqOnly);
       expect(groups.length).toBeGreaterThanOrEqual(1);
       const first = groups[0];
-      expect(first.questions.every((q) => (q.type || 'mcq') === 'mcq' || q.type === 'true-false')).toBe(true);
+      expect(
+        first.questions.every(
+          (q) => (q.type || 'mcq') === 'mcq' || q.type === 'true-false'
+        )
+      ).toBe(true);
     });
 
     it('includes matching slide when questions have type matching', () => {
@@ -171,13 +175,45 @@ describe('questionPoolSelector', () => {
         makeQuestion('m2', 'input'),
       ];
       const groups = assignToSlides(withMatching);
-      const matchingGroup = groups.find((g) => g.slideTitle.includes('Sujunk') || g.questions.some((q) => q.type === 'matching'));
+      const matchingGroup = groups.find(
+        (g) =>
+          g.slideTitle.includes('Sujunk') ||
+          g.questions.some((q) => q.type === 'matching')
+      );
       expect(matchingGroup).toBeDefined();
     });
 
     it('returns empty array when given empty questions', () => {
       const groups = assignToSlides([]);
       expect(groups).toEqual([]);
+    });
+  });
+
+  describe('M1 relatedSlideId map', () => {
+    const expected: Record<string, number> = {
+      meta: 5,
+      input: 6,
+      output: 7,
+      reasoning: 9,
+      quality: 10,
+      advanced: 11,
+      bendra: 12,
+      technikos: 14,
+      workflow: 15,
+    };
+
+    it('LT pool points each category at the current M1 slide', () => {
+      for (const q of QUESTION_POOL) {
+        const cat = q.category || 'bendra';
+        expect(q.relatedSlideId, q.id).toBe(expected[cat]);
+      }
+    });
+
+    it('EN pool matches the same M1 slide map', () => {
+      for (const q of QUESTION_POOL_EN) {
+        const cat = q.category || 'bendra';
+        expect(q.relatedSlideId, q.id).toBe(expected[cat]);
+      }
     });
   });
 });

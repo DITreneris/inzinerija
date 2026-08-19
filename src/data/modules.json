@@ -14923,25 +14923,25 @@
               },
               {
                 "heading": "Grandinės schema",
-                "body": "6 žingsniai – spausk etapą diagramoje. Verslo ciklą (brief → A/B) žr. skaidrę „Darbo eiga: nuo brief iki publikacijos“.",
+                "body": "6 žingsniai – spausk etapą diagramoje. Verslo ciklą (užduoties aprašas → A/B) žr. skaidrę „Darbo eiga: nuo užduoties aprašo iki publikacijos“.",
                 "blockVariant": "brand",
                 "image": "m13_media_pipeline",
                 "imageAlt": "Generatyvinės medijos grandinė: brief, kadrai, referencai, I2V, garsas, patikra"
               },
               {
                 "heading": "Kodėl šie 6 žingsniai",
-                "body": "Šeši diagramos žingsniai – techninis stuburas. Checklist žemiau – praktika savo temai (ne antras žingsnių sąrašas).",
+                "body": "Šeši diagramos žingsniai – techninis stuburas. Patikros sąrašas žemiau – praktika savo temai (ne antras žingsnių sąrašas).",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Užpildyk checklistą savo temai – tai planas, ne generatoriaus promptas.",
+                "body": "Užpildyk patikros sąrašą savo temai – tai planas, ne generatoriaus promptas.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Kopijuojamas šablonas",
-                "body": "Grandinės checklist – nukopijuok ir užpildyk.",
-                "copyable": "Grandinės checklist:\nBrief: tikslas [atpažįstamumas / įsitraukimas / konversija], auditorija [kam], platforma [kur].\nŽenklas: spalvos [X], tonas [Y].\nKadrai: pagrindinis + [0–2] papildomi (užrakinti prieš video).\nReferencai: [produktas/personažas – 3–5 kampai] / nėra.\nKlipai: [2–4] × 3–5 s (I2V – video iš kadro), ne vienas ilgas klipas.\nGarsas: [balsas pirmiausia / tik fonas] + teisės [licencijuota / demo].\nMontažas: kirpimas + spalvos + mix.\nPatikra: ženklas | žinutė | formatas | teisės | DI žyma (C2PA / disclosure)."
+                "body": "Grandinės patikros sąrašas – nukopijuok ir užpildyk.",
+                "copyable": "Grandinės patikros sąrašas:\nUžduotis: tikslas [atpažįstamumas / įsitraukimas / konversija], auditorija [kam], platforma [kur].\nŽenklas: spalvos [X], tonas [Y].\nKadrai: pagrindinis + [0–2] papildomi (užrakinti prieš video).\nPavyzdžių nuotraukos: [produktas/personažas – 3–5 kampai] / nėra.\nKlipai: [2–4] × 3–5 s (I2V – video iš kadro), ne vienas ilgas klipas.\nGarsas: [balsas pirmiausia / tik fonas] + teisės [licencijuota / demo].\nMontažas: kirpimas + spalvos + maišymas.\nPatikra: ženklas | žinutė | formatas | teisės | DI žyma (C2PA)."
               },
               {
                 "heading": "Patikra",
@@ -14950,7 +14950,7 @@
               },
               {
                 "heading": "Kur pritaikyti?",
-                "body": "Reklamos klipai, social trumpi video, produktų demo, vidiniai paaiškinimai.",
+                "body": "Reklamos klipai, trumpi vaizdo įrašai socialiniame tinkle, produktų demo, vidiniai paaiškinimai.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -15058,17 +15058,22 @@
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Pasirink vieną stilių ir proporcijas. Nukopijuok žemiau esantį šabloną ir užpildyk.",
+                "body": "Pasirink vieną stilių ir proporcijas. Parašyk 15+ žodžių stiliaus antraštę ir neužrašinėk jos iš naujo. Nukopijuok užraktą žemiau – vienas modelis visai serijai.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Kopijuojamas promptas",
                 "body": "Žemiau – šablonas su stiliaus ir proporcijų laukais.",
-                "copyable": "Vaizdas: [KĄ RODOMI].\nStilius: [fotorealistiškas / akrilo tapyba / minimalistinė vektorinė grafika / 3D renderis].\nProporcijos: [1:1 / 16:9 / 9:16]. Kalba: lietuviška scena arba neutrali, be tekstų vaize."
+                "copyable": "Vaizdas: [KĄ RODOMI].\nStilius: [fotorealistiškas / akrilo tapyba / minimalistinė vektorinė grafika / 3D renderis].\nProporcijos: [1:1 / 16:9 / 9:16]. Kalba: lietuviška scena arba neutrali, be tekstų vaizde."
+              },
+              {
+                "heading": "Kopijuojamas stiliaus užraktas",
+                "body": "3–7 eilutės – tą patį sakinį kartok serijoje.",
+                "copyable": "Stiliaus užraktas (nekaitaliok žodžių): švarus katalogo kadras, šviesa iš kairės, baltas fonas, tikros produkto spalvos, raiški etiketė, be teksto viršuje.\nTas pats produktas, tos pačios proporcijos, ta pati etiketės vieta.\nModelis šiai serijai: [vienas]. Nekelk į kitą viduryje."
               },
               {
                 "heading": "Patikra",
-                "body": "Ar platforma palaiko nurodytas proporcijas? Jei vaizdas „nukirpto“ – pakeisk proporcijas arba papildyk aprašymą.",
+                "body": "Ar stiliaus antraštė liko pažodžiui (15+ žodžių)? Ar visai serijai tas pats modelis? Ar platforma palaiko nurodytas proporcijas?",
                 "blockVariant": "accent"
               }
             ],
@@ -15078,9 +15083,9 @@
               {
                 "name": "GPT-Image (OpenAI)",
                 "url": "https://chatgpt.com",
-                "description": "Natūrali kalba, greitas brief→vaizdas – patogu marketingo juodraščiui.",
+                "description": "Natūrali kalba, greitas užduoties aprašas → vaizdas – patogu marketingo juodraščiui.",
                 "useCases": [
-                  "Greitas brief",
+                  "Greita užduotis",
                   "Social juodraštis",
                   "Idėjų variantai"
                 ]
@@ -15180,7 +15185,7 @@
                 "explanation": "Prekės ženklo pastovumas atsiranda tada, kai prompte aiškiai nurodai spalvas, toną, tipografijos kryptį ir vizualinį identitetą."
               }
             ],
-            "footer": "Toliau – skaidrė 8: Consistency"
+            "footer": "Toliau – skaidrė 8: Tas pats vaizdas"
           }
         },
         {
@@ -15193,60 +15198,60 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Vienas promptas neužrakina tapatybės. Marketinge reikia 3–5 pavyzdžių nuotraukų (reference) – skirtingi kampai – ir taisyklės „tas pats produktas / stilius / spalvos“, kitaip serija „plaukioja“.",
+                "body": "Vienas promptas neužrakina tapatybės. Marketinge reikia 3–5 pavyzdžių nuotraukų – skirtingi kampai – ir taisyklės „tas pats produktas / stilius / spalvos“, kitaip serija „plaukioja“.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Reference lock – schema",
-                "body": "Keturi žingsniai – spausk etapą. Taisyklę nukopijuosi Consistency lab.",
+                "body": "Keturi žingsniai – spausk etapą. Taisyklę nukopijuosi nuoseklumo dirbtuvėje.",
                 "blockVariant": "brand",
                 "image": "m13_consistency_lock",
-                "imageAlt": "Reference lock: refs, taisyklė, generavimas, QA"
+                "imageAlt": "Referencų užraktas: pavyzdžių nuotraukos, taisyklė, generavimas, patikra"
               },
               {
                 "heading": "Brand / product sheet (minimumas)",
-                "body": "(1) Hero / priekinis vaizdas. (2) ¾ arba šonas. (3) Flatlay arba detalė (etiketė). (4) Optional – stiliaus / apšvietimo ref.",
+                "body": "(1) Pagrindinis / priekinis vaizdas. (2) ¾ arba šonas. (3) Iš viršaus arba detalė (etiketė). (4) Jei nori – stiliaus / apšvietimo pavyzdys.",
                 "blockVariant": "brand",
                 "collapsible": true,
                 "collapsedByDefault": true
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Surink arba sugeneruok bent 3 pavyzdžių nuotraukas savo produktui ar personažui. Kitame Consistency lab pažymėk refs ir diagnozuok, kur „plaukioja“.",
+                "body": "Surink arba sugeneruok bent 3 pavyzdžių nuotraukas savo produktui ar personažui. Kitoje nuoseklumo dirbtuvėje pažymėk pavyzdžius ir diagnozuok, kur „plaukioja“.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Patikra",
-                "body": "Ar turi bent 3 skirtingų kampų refs? Jei setas „plaukioja“ – Consistency lab: Simptomas | Fix ir nukopijuok taisyklę. Venk realių žmonių veidų be sutikimo.",
+                "body": "Ar turi bent 3 skirtingų kampų pavyzdžių nuotraukas? Jei rinkinys „plaukioja“ – nuoseklumo dirbtuvė: Simptomas | Taisymas ir nukopijuok taisyklę. Venk realių žmonių veidų be sutikimo.",
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Toliau – skaidrė 9: Consistency lab"
+            "footer": "Toliau – skaidrė 9: Nuoseklumo dirbtuvė"
           }
         },
         {
           "id": 13.325,
-          "title": "Lab: Consistency Drift",
-          "shortTitle": "Consistency lab",
-          "subtitle": "Pažymėk refs, pasirink kas plaukioja – nukopijuok fix + lock taisyklę",
+          "title": "Praktikos dirbtuvė: nuoseklumo slinktis",
+          "shortTitle": "Nuoseklumo dirbtuvė",
+          "subtitle": "Pažymėk pavyzdžius, pasirink kas plaukioja – nukopijuok taisymą ir užrakto taisyklę",
           "type": "content-block",
           "content": {
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Po reference lock schemos – praktika: pažymėk turimus refs, atpažink drift (proporcijos, spalva, etiketė, stilius) arba naują briefą. Vienas pasirinkimas → viena kopijuojama taisyklė.",
+                "body": "Po referencų užrakto schemos – praktika: pažymėk turimus pavyzdžius, atpažink slinktį (proporcijos, spalva, etiketė, stilius) arba naują užduotį. Vienas pasirinkimas → viena kopijuojama taisyklė.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Drift lab",
-                "body": "Pažymėk refs (≥3), pasirink kas plaukioja. Apačioje – Simptomas | Fix ir prompto taisyklė – nukopijuok ją į kitą generavimą.",
+                "heading": "Slinkties pratimas",
+                "body": "Pažymėk pavyzdžius (≥3), pasirink kas plaukioja. Apačioje – Simptomas | Taisymas ir prompto taisyklė – nukopijuok ją į kitą generavimą.",
                 "blockVariant": "brand",
                 "image": "m13_consistency_lab",
-                "imageAlt": "Consistency drift lab: refs, Simptomas ir Fix, kopijuojama taisyklė"
+                "imageAlt": "Nuoseklumo slinkties pratimas: pavyzdžiai, Simptomas ir Taisymas, kopijuojama taisyklė"
               },
               {
                 "heading": "Patikra",
-                "body": "Ar pažymėjai refs, pasirinkai režimą ir nukopijavai taisyklę? Jei trūksta refs – grįžk į „Produktas ir personažas – tas pats vaizdas“ ir surink 3–5 kampus.",
+                "body": "Ar pažymėjai pavyzdžius, pasirinkai režimą ir nukopijavai taisyklę? Jei trūksta pavyzdžių – grįžk į „Produktas ir personažas – tas pats vaizdas“ ir surink 3–5 kampus.",
                 "blockVariant": "accent"
               }
             ],
@@ -15389,7 +15394,7 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Papildoma biblioteka: jei užtenka vieno sprendimo – rinkis MASTER šabloną arba vieną paruoštą promptą. Darbo eiga ir 8 scenarijai – gilinimuisi (išskleisk).",
+                "body": "Papildoma biblioteka: jei užtenka vieno sprendimo – rinkis MASTER šabloną arba vieną paruoštą promptą. Paruošti promptai veikia tik su stiliaus užraktu (tas pats produktas / 15+ žodžių antraštė / vienas modelis). Darbo eiga ir 8 scenarijai – gilinimuisi (išskleisk).",
                 "blockVariant": "accent"
               },
               {
@@ -15413,18 +15418,27 @@
               },
               {
                 "heading": "Ready promptas: Logotipas",
-                "body": "Logotipui – nukopijuok ir užpildyk laužtiniuose skliaustuose.",
-                "copyable": "Sukurk logotipą [verslo sritis] įmonei [pavadinimas]. Stilius [minimalistinis/modernus], spalvos [x], fonas skaidrus/baltas, pateik 3 variantus."
+                "body": "Logotipui – nukopijuok ir užpildyk laužtiniuose skliaustuose. Prieš paleidžiant įklijuok stiliaus užraktą ir modelio vardą.",
+                "copyable": "Sukurk logotipą [verslo sritis] įmonei [pavadinimas]. Stilius [minimalistinis/modernus], spalvos [x], fonas skaidrus/baltas, pateik 3 variantus.\nStiliaus užraktas: [15+ žodžių, pažodžiui]. Modelis: [vienas].",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
               },
               {
                 "heading": "Ready promptas: Social post",
-                "body": "Socialiniam įrašui – šablonas su lauku tekstui.",
-                "copyable": "Pagal šį tekstą [įklijuoti], sukurk iliustraciją LinkedIn/Facebook. Įvaizdis [korporatyvus], spalvos [x], formatas 1:1 ar 4:5, be teksto / su CTA tekstu [jei reikia]."
+                "body": "Socialiniam įrašui – šablonas su lauku tekstui. Prieš paleidžiant įklijuok stiliaus užraktą ir modelio vardą.",
+                "copyable": "Pagal šį tekstą [įklijuoti], sukurk iliustraciją LinkedIn/Facebook. Įvaizdis [korporatyvus], spalvos [x], formatas 1:1 ar 4:5, be teksto / su CTA tekstu [jei reikia].\nStiliaus užraktas: [15+ žodžių, pažodžiui]. Modelis: [vienas].",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
               },
               {
                 "heading": "Ready promptas: Plakatas",
-                "body": "Renginio plakatui – įrašyk datą, vietą ir stilių.",
-                "copyable": "Sukurk ryškų plakatą renginiui [pavadinimas], data/vieta [x], stilius [x], įtrauk tikslų tekstą: '…'."
+                "body": "Renginio plakatui – įrašyk datą, vietą ir stilių. Prieš paleidžiant įklijuok stiliaus užraktą ir modelio vardą.",
+                "copyable": "Sukurk ryškų plakatą renginiui [pavadinimas], data/vieta [x], stilius [x], įtrauk tikslų tekstą: '…'.\nStiliaus užraktas: [15+ žodžių, pažodžiui]. Modelis: [vienas].",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
               },
               {
                 "heading": "Visi 8 verslo scenarijai",
@@ -15435,7 +15449,7 @@
               },
               {
                 "heading": "Patikra",
-                "body": "Ar naudoji bent 3 kategorijas iš MASTER šablono (subjektas, stilius, kompozicija, apšvietimas, spalvos)? Ar pasirinkai tinkamą ready prompt scenarijui?",
+                "body": "Ar naudoji bent 3 kategorijas iš MASTER šablono (subjektas, stilius, kompozicija, apšvietimas, spalvos)? Ar Ready paleidai su tuo pačiu užraktu, ne tuščiu stiliumi?",
                 "blockVariant": "accent"
               }
             ],
@@ -15485,13 +15499,13 @@
           "id": 13.4,
           "title": "Scenarijus trumpam vaizdo įrašui",
           "shortTitle": "Trumpas vaizdo scenarijus",
-          "subtitle": "3–5 s klipai, storyboard, image → video",
+          "subtitle": "3–5 s klipai, scenarijaus piešiniai, vaizdas → video",
           "type": "content-block",
           "content": {
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Trumpam vaizdo įrašui reikia aiškaus scenarijaus, tono ir kameros. Geriau 2–4 trumpi klipai (3–5 s) nei vienas ilgas bandymas – kadrus (stills) užrakink prieš brangų video.",
+                "body": "Trumpam vaizdo įrašui reikia aiškaus scenarijaus, tono ir kameros. Geriau 2–4 trumpi klipai (3–5 s) nei vienas ilgas bandymas – kadrus užrakink prieš brangų video.",
                 "blockVariant": "accent"
               },
               {
@@ -15502,8 +15516,8 @@
                 "collapsedByDefault": true
               },
               {
-                "heading": "Image → video grandinė",
-                "body": "Hero / keyframe → I2V (Runway, Kling, Veo, Seedance, Sora) → montažas. Audio-first hint: jei bus VO, pirmiausia užfiksuok VO trukmę – tada kirpk klipus pagal audio.",
+                "heading": "Vaizdas → video grandinė",
+                "body": "Pagrindinis vaizdas / raktinis kadras (keyframe) → I2V (Runway, Kling, Veo, Seedance, Sora) → montažas. Pirma garsas: jei bus balsas, pirmiausia užfiksuok balso trukmę – tada kirpk klipus pagal garsą.",
                 "blockVariant": "brand",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -15520,12 +15534,17 @@
               },
               {
                 "heading": "Kopijuojama grandinė – vaizdas → video",
-                "body": "Pirma hero, tada animacija; ilgesniam – keli keyframe.",
+                "body": "Pirma pagrindinis vaizdas, tada animacija; ilgesniam – keli raktiniai kadrai.",
                 "copyable": "1) Hero kadaras: [OBJEKTAS], [KONTEKSTAS], stilius [STILIUS], 16:9 arba 9:16.\n2) I2V 3–5 s iš šio kadro: kamera […], same product / same style.\n(Jei reikia ilgesnio – antras keyframe, tada montažas.)"
               },
               {
+                "heading": "Kopijuojamas I2V ciklas",
+                "body": "Vienas kintamasis – tada žiūrėk paskutinį kadrą.",
+                "copyable": "Pradžia: pridedamas raktinis kadras. Laikyk tapatybę ir kadravimą.\nKas nekinta: [produktas / etiketė / spalvos / šviesa iš kairės].\nObjektas daro: [vienas veiksmažodis].\nKamera: [vienas judesys]. Be orbitos, be tilt, be kelių judesių.\nTrukmė: 3 s pirma. Paskutinis kadras: etiketė skaitoma, nėra naujų objektų."
+              },
+              {
                 "heading": "Patikra",
-                "body": "Ar video pradžia panaši į hero? Ar produktas ar personažas neišsikraipė? Jei ne – supaprastink sceną arba stiprink reference (tas pats produktas, stilius ir spalvos).",
+                "body": "Ar invariantai parašyti? Ar keitei tik vieną dalyką? Ar žiūrėjai paskutinę sekundę (etiketė, pirštai, kadras)?",
                 "blockVariant": "accent"
               },
               {
@@ -15542,19 +15561,19 @@
         {
           "id": 13.47,
           "title": "I2V klipo generatorius",
-          "subtitle": "Video iš kadro (image-to-video): keyframe → 3–5 s → kamera → tas pats stilius",
+          "subtitle": "Video iš kadro (I2V): raktinis kadras (keyframe) → 3–5 s → kamera → tas pats stilius",
           "type": "i2v-generatorius",
           "shortTitle": "I2V generatorius",
           "content": {
-            "tldr": "Trumpai: Aprašyk keyframe / sceną, pasirink trukmę (3–5 s) ir kameros judesį. Sistema sudės image-to-video promptą – nukopijuok į Kling, Runway, Veo ar Sora.",
-            "patikra": "Ar prompte yra keyframe, trukmė ≤5 s ir same style/product? Ar pradžia gali atitikti tavo hero still?",
+            "tldr": "Trumpai: Aprašyk raktinį kadrą / sceną, pasirink trukmę (3–5 s) ir kameros judesį. Sistema sudės I2V (video iš kadro) promptą – nukopijuok į Kling, Runway, Veo ar Sora.",
+            "patikra": "Ar prompte yra raktinis kadras, trukmė 3 s pirma, viena kamera ir vienas veiksmas? Ar žiūrėjai paskutinę sekundę – etiketė skaitoma, nėra naujų objektų? Jei reikia prekės balso – palik klipą tylų ir rašyk balsą atskirai (ne Veo native garsą ant to paties failo).",
             "footer": "Toliau – skaidrė 17: Video įrankiai, formatas ir CPI"
           }
         },
         {
           "id": 13.5,
           "title": "Video įrankiai, formatas ir CPI",
-          "subtitle": "2026 matrix + kaina už tinkamą clipą",
+          "subtitle": "2026 matrica + kaina už tinkamą klipą",
           "type": "content-block",
           "content": {
             "sections": [
@@ -15565,23 +15584,30 @@
               },
               {
                 "heading": "2026 video įrankių matrica",
-                "body": "Seedance 2.0 – directed motion + daug refs. Kling 3.0 – balance kokybė/kaina, I2V. Veo 3.1 – aukščiausia kokybė + native audio. Sora 2 – OpenAI ekosistema, 1–2 image refs. Synthesia – avatarai / mokymai. InVideo / CapCut – social šablonai ir montažas.",
+                "body": "Seedance 2.0 – valdomas judesys + daug pavyzdžių nuotraukų. Kling 3.0 – balansas kokybė/kaina, I2V. Veo 3.1 – aukščiausia kokybė + įtaisytas garsas. Sora 2 – OpenAI ekosistema, 1–2 pavyzdžių nuotraukos. Synthesia – avatarai / mokymai. InVideo / CapCut – socialiniai šablonai ir montažas.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Pasirink vieną įrankį ir sugeneruok vieną 3–5 s I2V klipą. Užsirašyk, kiek retry prireikė (CPI pastaba).",
+                "body": "Pasirink vieną įrankį ir sugeneruok vieną 3–5 s I2V klipą. Užsirašyk, kiek bandymų iš naujo prireikė (CPI pastaba).",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Kopijuojamas promptas",
                 "body": "Trumpo klipo + CPI pastaba.",
-                "copyable": "Vaizdo klipas iš keyframe: [1–2 sakiniai veiksmo].\nFormatas: [16:9 / 9:16]. Trukmė: 3–5 sek. Stilius: [nurodyk].\nCPI pastaba: kiek retry prireikė iki usable? [N]"
+                "copyable": "Vaizdo klipas iš raktinio kadro: [1–2 sakiniai veiksmo].\nFormatas: [16:9 / 9:16]. Trukmė: 3–5 sek. Stilius: [nurodyk].\nCPI pastaba: kiek bandymų prireikė iki tinkamo? [N]"
               },
               {
                 "heading": "Patikra",
-                "body": "Ar failas atsisiųstas? Ar komercinės teisės OK? Koks CPI (retry įskaičiuoti)?",
+                "body": "Ar failas atsisiųstas? Ar komercinės teisės tinka? Koks CPI (bandymus įskaičiuok)? Jei reikia prekės balso – tylus I2V + balsas atskirai, ne native garsas ant to paties klipo.",
                 "blockVariant": "accent"
+              },
+              {
+                "heading": "Garsas: tame pačiame generate ar atskirai?",
+                "body": "Dialogas ar aplinka viename generate – Veo klasė: garsą rašyk tame pačiame prompte. Prekės balsas / licencija – tylus I2V + balsas atskirai + maišymas (saugesnis klientui). Niekada nedėk native garso ir naujo balso ant to paties klipo, jei nežinai, kurį išmesi.",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
               },
               {
                 "heading": "Visi video įrankiai (apžvalga)",
@@ -15605,7 +15631,7 @@
           "id": 13.51,
           "title": "Savitikra: video promptas ir formatas",
           "shortTitle": "Savitikra: video",
-          "subtitle": "3 klausimai prieš post-prod ir garsą",
+          "subtitle": "3 klausimai prieš montažą ir garsą",
           "type": "warm-up-quiz",
           "content": {
             "questions": [
@@ -15659,7 +15685,7 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "DI video = žalia medžiaga (raw), ne galutinis deliverable. Profesionali praktika: sumontuok 3–5 s klipus, color grade, tekstas/overlay, audio mix, export pagal platformą (CapCut / Premiere).",
+                "body": "DI video = žalia medžiaga, ne galutinis failas. Profesionali praktika: sumontuok 3–5 s klipus, sulygink spalvas, pridėk tekstą, maišyk garsą, eksportuok pagal platformą (CapCut / Premiere).",
                 "blockVariant": "accent"
               },
               {
@@ -15670,8 +15696,8 @@
                 "imageAlt": "Montažas: kirpimas, spalvos, garsas, eksportas"
               },
               {
-                "heading": "Minimalus checklist",
-                "body": "(1) Surink 2–4 klipus pagal scenarijų / VO. (2) Nukirpk silpnus kadrus; hook pirmose 1–2 s. (3) Spalvos vienodos. (4) VO arba bed + SFX. (5) Loudness orientyras ~−14 LUFS (muzika) / ~−16 (VO mix) – klausyk ausimis. (6) Export 9:16 arba 16:9.",
+                "heading": "Minimalus patikros sąrašas",
+                "body": "(1) Surink 2–4 klipus pagal scenarijų / balsą. (2) Nukirpk silpnus kadrus; kablukas pirmose 1–2 s. (3) Spalvos vienodos. (4) Balsas arba fonas + efektai. (5) Garsumo orientyras ~−14 LUFS (muzika) / ~−16 (balso maišymas) – klausyk ausimis. (6) Export 9:16 arba 16:9.",
                 "blockVariant": "brand"
               },
               {
@@ -15682,11 +15708,11 @@
               {
                 "heading": "Kopijuojamas šablonas",
                 "body": "Montažo planas 15–30 s.",
-                "copyable": "Montažo planas (15–30 s):\n0–3 s: [hook klipas]\n3–8 s: [produktas / nauda]\n8–15 s: [įrodymas / detalė]\nPabaiga: [CTA kadras + tekstas]\nGarsas: [VO / bed] | teisės: [licensed]"
+                "copyable": "Montažo planas (15–30 s):\n0–3 s: [kabluko klipas]\n3–8 s: [produktas / nauda]\n8–15 s: [įrodymas / detalė]\nPabaiga: [kvietimo veikti kadras + tekstas]\nGarsas: [balsas / fonas] | teisės: [komercinė licencija]"
               },
               {
                 "heading": "Patikra",
-                "body": "Ar be DI „magic“ klipas skaitomas kaip istorija? Ar garsas neslopina VO?",
+                "body": "Ar be DI „stebuklo“ klipas skaitomas kaip istorija? Ar fonas neslopina balso?",
                 "blockVariant": "accent"
               }
             ],
@@ -15702,7 +15728,7 @@
             "title": "Garsas",
             "subtitle": "Toliau: pirma garsas (balsas ar fonas), tada kirpimai; balsas / efektai / muzika ir licencijos komerciniam darbui.",
             "sectionNumber": "3",
-            "footer": "Toliau – skaidrė 21: Audio-first ir muzika",
+            "footer": "Toliau – skaidrė 21: Pirma garsas ir muzika",
             "nextSteps": [
               "Pirma garsas – balsas arba foninės muzikos trukmė, tada kirpimai",
               "Balsas, efektai ir muzika – trys sluoksniai",
@@ -15714,7 +15740,7 @@
               "lead": "Video skyrius – prieš garsą.",
               "items": [
                 "Video = trumpi klipai + formatas + kaina už tinkamą klipą.",
-                "Vaizdas → video grandinė su keyframe.",
+                "Vaizdas → video grandinė su raktiniu kadru.",
                 "Montažas – kirpimas / spalvos / garsas po generavimo."
               ]
             }
@@ -15729,27 +15755,32 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Pirma garsas (audio-first): pirma balsas arba foninės muzikos trukmė, tada video kirpimai pagal ritmą. Muzikai aprašyk nuotaiką, stilių, tempą, instrumentus. Klientui / reklamai – licensed stack; Suno/Udio – demo, ne klientui.",
+                "body": "Pirma garsas: pirma balsas arba foninės muzikos trukmė, tada video kirpimai pagal ritmą. Muzikai aprašyk nuotaiką, stilių, tempą, instrumentus. Klientui / reklamai – licencijuotas rinkinys; Suno/Udio – demo, ne klientui.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Jei turi VO – pirmiausia sugeneruok ar įrašyk VO. Jei tik bed – nukopijuok muzikos promptą. Pažymėk license intent.",
+                "body": "Jei turi balsą – pirmiausia sugeneruok ar įrašyk balsą. Jei tik fonas – nukopijuok muzikos promptą. Pažymėk, ar licencija tinka komercijai.",
                 "blockVariant": "brand"
               },
               {
-                "heading": "Kopijuojamas promptas – bed",
+                "heading": "Kopijuojamas promptas – fonas",
                 "body": "Foninės muzikos šablonas.",
                 "copyable": "Sukurk foninės muzikos fragmentą, 30–60 sekundžių.\nNuotaika: [ramus / energingas]. Stilius: [akustinė / elektroninė / pianinas].\nTempo: [lėtas / vidutinis]. Be vokalo. Naudojimas: [reklama / prezentacija] – reikia komercinės licencijos."
               },
               {
-                "heading": "Kopijuojamas promptas – VO",
-                "body": "Voiceover šablonas (ElevenLabs ar pan.).",
+                "heading": "Kopijuojamas promptas – balsas",
+                "body": "Balso šablonas (ElevenLabs ar pan.).",
                 "copyable": "Voiceover, [LT/EN], tonas [profesionalus / draugiškas], tempo [ramus].\nTekstas: [įklijuok 2–4 sakinius scenarijaus].\nBe foninės muzikos faile – tik balsas. Vėliau sumaišysiu su bed."
               },
               {
+                "heading": "Kopijuojama balso kortelė",
+                "body": "Rašyk ausiai – tas pats tempas visoje serijoje.",
+                "copyable": "Rolė: [kam kalba]. Tonas: [šiltas / ramus]. Tempą laikyk tą patį.\nŽodynėlis: [prekės ženklas] = [kaip tarti].\nPirma išbandyk 3 eilutes: kablukas / nauda / kvietimas. Tada visą tekstą.\nFonas: be vokalo, tylus, palik vietos balsui. License: commercial."
+              },
+              {
                 "heading": "Patikra",
-                "body": "Ar bed neslopina VO? Ar licencija leidžia reklamą?",
+                "body": "Ar išbandei 3 inkaro eilutes prieš visą tekstą? Ar fonas eina po balsu ir palieka jam vietos? Ar tarimas / tempas tas pats visoje serijoje?",
                 "blockVariant": "accent"
               },
               {
@@ -15768,37 +15799,37 @@
                 "collapsedByDefault": true
               }
             ],
-            "footer": "Toliau – skaidrė 22: Licencijos ir loudness"
+            "footer": "Toliau – skaidrė 22: Licencijos ir garsumas"
           },
-          "shortTitle": "Audio-first ir muzika"
+          "shortTitle": "Pirma garsas ir muzika"
         },
         {
           "id": 13.7,
           "title": "Garsai, licencijos ir loudness",
-          "shortTitle": "Licencijos ir loudness",
-          "subtitle": "SFX, commercial OK?, LUFS",
+          "shortTitle": "Licencijos ir garsumas",
+          "subtitle": "Efektai, ar galima komercijai, LUFS",
           "type": "content-block",
           "content": {
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Atskirk SFX nuo muzikos. Komerciniam darbui – licensed įrankiai. Orientyras loudness: ~−14 LUFS (muzika) / ~−16 (VO mix) – galutinį sprendimą priimk klausydamas. Kampanijos Legal / C2PA – skaidrėje „Verslas ir rizikos“.",
+                "body": "Atskirk efektus nuo muzikos. Komerciniam darbui – licencijuoti įrankiai. Orientyras garsumui: ~−14 LUFS (muzika) / ~−16 (balso maišymas) – galutinį sprendimą priimk klausydamas. Kampanijos teisės / C2PA – skaidrėje „Verslas ir rizikos“.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Teisių checklist (5 punktai)",
-                "body": "(1) Terms / License. (2) Ar planas leidžia komercinį? (3) YouTube / reklama / podcast? (4) Attribution? (5) Užrašyk: „Licencija leidžia / neleidžia – [įrankis, data].“",
+                "heading": "Teisių patikros sąrašas (5 punktai)",
+                "body": "(1) Naudojimo taisyklės / licencija. (2) Ar planas leidžia komercinį? (3) YouTube / reklama / podcast? (4) Autorius nurodyti? (5) Užrašyk: „Licencija leidžia / neleidžia – [įrankis, data].“",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Prieš viešą naudojimą atidaryk ToS; užsirašyk „commercial OK?“ taip/ne.",
+                "body": "Prieš viešą naudojimą atidaryk naudojimo taisykles; užsirašyk „ar galima komercijai?“ taip/ne.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Kopijuojamas promptas",
-                "body": "SFX šablonas.",
-                "copyable": "Sukurk trumpą garsą: [pvz. „švelnus perėjimo whoosh, 1 sekunda“].\nFormatas: WAV arba MP3. Be muzikos – tik SFX."
+                "body": "Efektų šablonas.",
+                "copyable": "Sukurk trumpą garsą: [pvz. „švelnus perėjimo whoosh, 1 sekunda“].\nFormatas: WAV arba MP3. Be muzikos – tik efektas."
               },
               {
                 "heading": "Patikra",
@@ -15823,7 +15854,7 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Prieš publikaciją žinosi, ką tikrinsi: rezultatus (KPI), teises, DI žymą (C2PA / disclosure) ir bent vieną A/B hipotezę. Detalės – žemiau.",
+                "body": "Prieš publikaciją žinosi, ką tikrinsi: rezultatus (KPI), teises, DI žymą (C2PA) ir bent vieną A/B hipotezę. Detalės – žemiau.",
                 "blockVariant": "accent"
               },
               {
@@ -15852,7 +15883,7 @@
               },
               {
                 "heading": "Prieš publikuojant (QA ir versijos)",
-                "body": "Patikrink: (1) Tekstas vaize. (2) Brand. (3) Formatas. (4) Žinutė. (5) Brand safety. (6) Teisės. (7) Disclosure / C2PA / watermark. (8) Reference lock.\n\nFailai: V1, V2, V3 + kas pasikeitė prompte.",
+                "body": "Patikrink: (1) Tekstas vaizde. (2) Brand. (3) Formatas. (4) Žinutė. (5) Brand safety. (6) Teisės. (7) Disclosure / C2PA / watermark. (8) Reference lock.\n\nFailai: V1, V2, V3 + kas pasikeitė prompte.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -15874,44 +15905,44 @@
               },
               {
                 "heading": "Patikra",
-                "body": "Ar prieš publikaciją patikrinai teises, disclosure/C2PA ir bent vieną A/B hipotezę? Jei ne – grįžk į privalomą bloką ir checklist.",
+                "body": "Ar prieš publikaciją patikrinai teises, DI žymą (C2PA) ir bent vieną A/B hipotezę? Jei ne – grįžk į privalomą bloką ir patikros sąrašą. Vertinimo šabloną (3 kriterijai) rasi išskleidę „Vertinimo rubrika“ — nukopijuok ir įvertink savo artefaktą.",
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Toliau – skaidrė 24: Darbo eiga: brief–publikacija"
+            "footer": "Toliau – skaidrė 24: Darbo eiga: užduotis–publikacija"
           }
         },
         {
           "id": 13.11,
-          "title": "Darbo eiga: nuo brief iki publikacijos",
-          "subtitle": "Brief → prompt → variantai → iteracija → testavimas",
+          "title": "Darbo eiga: nuo užduoties aprašo iki publikacijos",
+          "subtitle": "Užduotis → promptas → variantai → kartojimas → testavimas",
           "type": "content-block",
           "content": {
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Pilnas verslo ciklas: (1) Marketing brief (užduoties aprašas). (2) Prompt + brand + pavyzdžių nuotraukos. (3) 3–5 variantų / trumpi video iš kadro. (4) Iteracija. (5) Platforma. (6) Testas. (7) Optimizacija.",
+                "body": "Pilnas verslo ciklas: (1) Užduoties aprašas. (2) Promptas + ženklas + pavyzdžių nuotraukos. (3) 3–5 variantai / trumpi video iš kadro. (4) Kartojimas. (5) Platforma. (6) Testas. (7) Tobulinimas.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Darbo eigos schema",
-                "body": "7 žingsniai nuo brief iki optimizacijos. Paspausk žingsnį – paaiškinimas apačioje.",
+                "body": "7 žingsniai nuo užduoties aprašo iki tobulinimo. Paspausk žingsnį – paaiškinimas apačioje.",
                 "image": "turinio_workflow",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Nukopijuok žemiau esantį šabloną ir užpildyk – brief į vaizdo promptą.",
+                "body": "Nukopijuok žemiau esantį šabloną ir užpildyk – nuo užduoties aprašo prie vaizdo prompto.",
                 "blockVariant": "brand"
               },
               {
-                "heading": "Brief į promptą",
-                "body": "Žemiau – šablonas, kaip brief paversti į vaizdo promptą.",
+                "heading": "Užduoties aprašas į promptą",
+                "body": "Žemiau – šablonas, kaip užduoties aprašą paversti į vaizdo promptą.",
                 "copyable": "Brief: Tikslas [Awareness / Engagement / Conversion]. Auditorija: [aprašyk]. Platforma: [pvz. Instagram 1:1].\nVaizdo promptas: [subjektas] + [veiksmas/kontekstas] + [aplinka]. Stilius: [brand – spalvos, tonas].\nBrand: [1–2 sakiniai]. Variantų skaičius: 3–5 (skirtingi kampai ar kompozicijos)."
               },
               {
                 "heading": "Patikra",
-                "body": "Ar brief turi aiškų tikslą ir auditoriją? Ar promptas atitinka brand (spalvos, tonas)? Ar sugeneravai 3–5 variantus testui?",
+                "body": "Ar užduoties aprašas turi aiškų tikslą ir auditoriją? Ar promptas atitinka ženklą (spalvos, tonas)? Ar sugeneravai 3–5 variantus testui?",
                 "blockVariant": "accent"
               },
               {
@@ -15924,7 +15955,7 @@
             ],
             "footer": "Toliau – skaidrė 25: Žodynėlis"
           },
-          "shortTitle": "Darbo eiga: brief–publikacija"
+          "shortTitle": "Darbo eiga: užduotis–publikacija"
         },
         {
           "id": 13.8,
@@ -16069,7 +16100,7 @@
                 "color": "brand",
                 "items": [
                   "3–5 pavyzdžių nuotraukos skirtingais kampais",
-                  "Taisyklė „tas pats produktas / stilius“ + Consistency lab"
+                  "Taisyklė „tas pats produktas / stilius“ + nuoseklumo dirbtuvė"
                 ]
               },
               {
@@ -16096,7 +16127,7 @@
                 "color": "brand",
                 "items": [
                   "KPI, A/B, teisės ir DI žyma (C2PA) prieš publikaciją",
-                  "Darbo eiga nuo brief iki patikros"
+                  "Darbo eiga nuo užduoties aprašo iki patikros"
                 ]
               }
             ],
@@ -16141,7 +16172,7 @@
           "content": {
             "whyBenefit": "Po šio testo žinosi, ar esi pasiruošęs finaliniam Turinio inžinerijos projektui (Modulis 15).",
             "duration": "~12–18 min",
-            "firstActionCTA": "Atsakyk į 12 klausimų – vaizdai, video, garsas, pipeline, audio-first, licencijos, C2PA, rizikos ir workflow.",
+            "firstActionCTA": "Atsakyk į 12 klausimų apie vaizdus, video, garsą ir teises.",
             "microWinPhrase": "Kiekvienas teisingas atsakymas parodo, kad moki formuluoti turinio promptus.",
             "thresholds": {
               "pass": 70,
@@ -16155,45 +16186,45 @@
           "id": 140.5,
           "title": "Savitikra prieš testą",
           "shortTitle": "Savitikra",
-          "subtitle": "3 klausimai: brandas, garsas, kelias į M15",
+          "subtitle": "3 klausimai: tikslas, tas pats vaizdas, kelias į M15",
           "type": "warm-up-quiz",
           "content": {
             "questions": [
               {
                 "id": "m14-warm-1",
-                "question": "Kaip sumažinti chaotišką brandą socialinių vaizdų serijoje?",
+                "question": "Prieš generuojant hero vaizdą, ką pirmiausia pasirinkti?",
                 "options": [
-                  "Nurodyti brand spalvas, toną, vizualinį identitetą ir proporcijas pagal platformą",
-                  "Rašyti tik „padaryk gražu“ ir keisti įrankį",
-                  "Nurodyti tik failo pavadinimą",
-                  "Nurodyti tik muzikos BPM"
+                  "Kampanijos tikslą: atpažįstamumas, įsitraukimas ar konversija – tada vizualą",
+                  "Tik įrankį ir palikti tikslą „kaip išeis“",
+                  "Tik failo pavadinimą",
+                  "Tik muzikos BPM"
                 ],
                 "correct": 0,
-                "explanation": "Čia stipru: brand consistency + aiškios proporcijos (pvz. 1:1 feed / 9:16 Stories) mažina atsitiktinį stilių. Jei supainiojai – prisimink stilų ir proporcijų skaidrę."
+                "explanation": "Čia stipru: A/E/C (atpažįstamumas / įsitraukimas / konversija) pasako, ką pabrėžti vaizde. Jei supainiojai – grįžk prie kampanijos tikslų."
               },
               {
                 "id": "m14-warm-2",
-                "question": "Ką reiškia audio-first mąstymas turinio kelyje?",
+                "question": "Kaip išlaikyti tą patį produktą ar personažą keliuose kadruose?",
                 "options": [
-                  "Planuoti garsą (VO, SFX, muziką) kartu su ritmu ir kadrais, ne tik „pridėti muziką gale“",
-                  "Naudoti tik muzikos generatorių be scenos",
-                  "Visada rinktis ilgiausią takelį",
-                  "Ignoruoti licencijas, jei garsas trumpas"
+                  "3–5 pavyzdžių nuotraukos skirtingais kampais ir taisyklė „tas pats produktas / stilius“",
+                  "Vienas ilgas promptas be pavyzdžių ir tikėtis, kad serija sutaps",
+                  "Keisti įrankį po kiekvieno kadro",
+                  "Nurodyti tik failo pavadinimą"
                 ],
                 "correct": 0,
-                "explanation": "Čia stipru: garsas = VO + SFX + muzika ir tempas. Jei galvojai tik apie „muziką“ – grįžk prie garso aprašymo ir audio-first logikos."
+                "explanation": "Čia stipru: vienas promptas neužrakina tapatybės. Jei serija „plaukioja“ – prisimink pavyzdžių nuotraukas ir taisyklę „tas pats produktas“."
               },
               {
                 "id": "m14-warm-3",
                 "question": "Po testo ką darysi pirmiausia Modulyje 15?",
                 "options": [
-                  "Privalomą greitą startą: hero vaizdas + promptas + brief (MUST), o video/garsą – jei nori optional keliu",
+                  "Pirmas artefaktas: hero vaizdas + promptas + trumpas brief; video ir garsas – jei nori sujungti",
                   "Iš karto montuoti 3 min filmą be brief",
                   "Praleisti hero ir eiti tik į muziką",
                   "Laukti, kol DI pats pasirinks kampanijos tikslą"
                 ],
                 "correct": 0,
-                "explanation": "Forward bridge: M15 privalomas minimumas – greitas startas (hero). Optional full – video, garsas, montažas. Taip nešvaistai laiko prieš turėdamas bazinį artefaktą."
+                "explanation": "Pirma vienas vaizdas su promptu. Video/garsas – jei nori sujungti dalis."
               }
             ],
             "footer": "Toliau – skaidrė 3: Klausimai"
@@ -16202,7 +16233,7 @@
         {
           "id": 141,
           "title": "Klausimai",
-          "subtitle": "Vaizdai, video, garsas, pipeline",
+          "subtitle": "Vaizdai, video, garsas, grandinė",
           "type": "test-section",
           "testQuestions": [
             {
@@ -16210,13 +16241,13 @@
               "type": "mcq",
               "question": "Ką turi apimti geras vaizdo promptas?",
               "options": [
-                "Tik spalvas",
+                "Detaliai aprašyti tik apšvietimą ir palikti stilių „kaip išeis“",
                 "Subjektas, stilius, proporcijos ir ko vengti",
-                "Tik proporcijas",
-                "Tik vieną sakinį"
+                "Nurodyti įrankį ir seed numerį, be subjekto",
+                "Rašyti ilgą nuotaikos aprašymą be formato ir be „ko vengti“"
               ],
               "correct": 1,
-              "explanation": "Geras vaizdo promptas apima: ką rodoma (subjektas, vieta), stilių (fotorealistiškas, iliustracija), proporcijas (16:9, 1:1) ir ko vengti (pvz. tekstų vaize).",
+              "explanation": "Geras vaizdo promptas apima: ką rodoma (subjektas, vieta), stilių (fotorealistiškas, iliustracija), proporcijas (16:9, 1:1) ir ko vengti (pvz. tekstų vaizde).",
               "relatedSlideId": 13.2
             },
             {
@@ -16225,13 +16256,13 @@
               "scenarioContext": "Reikia LinkedIn postų serijos: visi vaizdai turi atrodyti kaip vienas prekės ženklas, o Stories – vertikalūs.",
               "question": "Ką būtina nurodyti prompte, kad sumažintum chaotišką brandą ir pataikytum formatą?",
               "options": [
-                "Tik žodį „gražu“ ir bet kokį įrankį",
-                "Brand spalvas, toną, vizualinį identitetą ir proporcijas (pvz. 1:1 feed / 9:16 Stories)",
-                "Tik failo pavadinimą ir trukmę sekundėmis",
-                "Tik muzikos BPM"
+                "Nurodyti tik nuotaiką („profesionalu“) ir palikti formatą įrankiui",
+                "Ženklo spalvas, toną ir proporcijas (pvz. 1:1 feed / 9:16 Stories)",
+                "Nurodyti tik failo pavadinimą ir trukmę, be ženklo taisyklių",
+                "Nurodyti tik muzikos tempą – vaizdas esą susidėlios pats"
               ],
               "correct": 1,
-              "explanation": "Brand consistency (spalvos, tonas, identitetas) + aiškios proporcijos pagal platformą – pagrindas, kad DI negeneruotų atsitiktinio stiliaus.",
+              "explanation": "Ženklo nuoseklumas (spalvos, tonas) ir aiškios proporcijos pagal platformą – pagrindas, kad DI negeneruotų atsitiktinio stiliaus.",
               "relatedSlideId": 13.3
             },
             {
@@ -16239,10 +16270,10 @@
               "type": "mcq",
               "question": "Ką reikia nurodyti trumpam vaizdo įrašui?",
               "options": [
-                "Tik trukmę",
+                "Nurodyti tik įrankį (Kling ar Runway) ir tikėtis, kad scena susidėlios",
                 "Scenarijų – kas vyksta, kiek sekundžių, kokiu tonu",
-                "Tik toną",
-                "Tik formatą"
+                "Prašyti „dinamiško video“ be kadrų ir be trukmės",
+                "Nurodyti tik 9:16 ir palikti veiksmą tuščią"
               ],
               "correct": 1,
               "explanation": "Trumpas vaizdo įrašas reikalauja aiškaus scenarijaus: kas vyksta, kiek sekundžių, kokiu tonu (profesionalus, dinamiškas, ramus).",
@@ -16253,10 +16284,10 @@
               "type": "mcq",
               "question": "Ką aprašyti muzikos generavimui?",
               "options": [
-                "Tik instrumentus",
+                "Nurodyti tik BPM ir tikėtis, kad nuotaika susidėlios",
                 "Nuotaiką, stilių, tempo ir, jei reikia, instrumentus ar vokalą",
-                "Tik tempo",
-                "Tik trukmę"
+                "Prašyti „gražios muzikos reklamai“ be stiliaus ir be naudojimo tikslo",
+                "Nurodyti tik trukmę (30 s) be nuotaikos"
               ],
               "correct": 1,
               "explanation": "Muzikos generavimui reikia aprašyti: nuotaiką (linksma, rami), stilių (pop, akustinė), tempo (lėtas, vidutinis) ir, jei reikia, instrumentus ar vokalą.",
@@ -16268,27 +16299,27 @@
               "scenarioContext": "Planuoji viešą kampaniją, kurioje DI sukurtas veidas arba balsas atrodys kaip realus žmogus.",
               "question": "Ką svarbu įvertinti prieš publikavimą?",
               "options": [
-                "Tik vaizdo ryškumą",
-                "Sutikimą, autorių teises ir deepfake riziką – žr. skaidrę Verslas ir rizikos",
-                "Tik spalvų paletę",
-                "Tik socialinio tinklo algoritmą"
+                "Tik vaizdo ryškumą ir spalvų paletę",
+                "Sutikimą, autorių teises ir deepfake riziką",
+                "Tik tai, ar veidas atrodo pakankamai tikroviškai",
+                "Tik socialinio tinklo algoritmo taisykles"
               ],
               "correct": 1,
-              "explanation": "Veidas ir balsas reklamoje kelia etikos ir teisės klausimus: sutikimas, kieno atvaizdas, įrankio taisyklės. Apžvelgiama skaidrėje „Verslas ir rizikos“ (Legal / rizikos blokas).",
+              "explanation": "Veidas ir balsas reklamoje kelia etikos ir teisės klausimus: sutikimas, kieno atvaizdas, įrankio taisyklės. Jei klysti – grįžk į rizikos skaidrę.",
               "relatedSlideId": 13.101
             },
             {
               "id": "m14-q6",
               "type": "mcq",
-              "question": "Pilname ciklui nuo marketing brief iki publikacijos – kas logiška iškart po brief?",
+              "question": "Reikia sukurti 15 s produkto reklamą iš vieno marketingo užduoties aprašo. Kuri generavimo grandinė logiškiausia?",
               "options": [
-                "Publikuoti pirmą atsitiktinį vaizdą",
-                "Formuluoti promptą su brand atitikimu ir planuoti kelis variantus testui",
-                "Praleisti variantus ir naudoti tik vieną kadrą",
-                "Nerašyti scenarijaus – tik formatą"
+                "Video → užduotis → vaizdas → muzika",
+                "Užduotis → konceptas / promptas → pagrindinis vaizdas → video → balsas / muzika → montažas → patikra",
+                "Muzika → publikacija → vaizdas → užduotis",
+                "Pagrindinis vaizdas → publikacija → video"
               ],
               "correct": 1,
-              "explanation": "Po brief seka promptas (su brand nuoseklumu), keli variantai, iteracija, adaptacija platformoms, testavimas ir optimizavimas – žr. skaidrę „Workflow: nuo brief iki publikacijos“.",
+              "explanation": "Logiška darbo eiga: pirma užduotis ir kryptis, tada vaizdas, tada video ir garsas, galiausiai montažas ir patikra. Iškart generuoti galutinį video ar publikuoti be patikros – brangu ir chaotiška.",
               "relatedSlideId": 13.11
             },
             {
@@ -16297,10 +16328,10 @@
               "scenarioContext": "Tavo tikslas – conversion reklama Instagram Stories formatu. Reikia hero vaizdo su aiškiu produktu ir vieta antraštei.",
               "question": "Kuris promptas tinkamiausias šiai situacijai?",
               "options": [
-                "Sukurk gražų vaizdą, kad žmonės atkreiptų dėmesį.",
-                "Sukurk vertikalų 9:16 produkto hero vaizdą: [produktas] pirmame plane, švarus fonas, brand spalvos [X], vieta antraštei viršuje, aiškus veiksmo kvietimo plotas apačioje, be atsitiktinio teksto vaizde.",
-                "Sukurk bet kokį 1:1 vaizdą su daug detalių ir daug teksto.",
-                "Sukurk meninį vaizdą be produkto, svarbu tik emocija."
+                "Sukurk dėmesį traukiantį 9:16 vaizdą be produkto – svarbu tik emocija.",
+                "Sukurk vertikalų 9:16 produkto hero: [produktas] pirmame plane, švarus fonas, ženklo spalvos [X], vieta antraštei viršuje, veiksmo kvietimas apačioje, be atsitiktinio teksto vaizde.",
+                "Sukurk 1:1 vaizdą su daug detalių ir teksto vaizde – produktas antrame plane.",
+                "Sukurk meninį 9:16 kadrą be vietos antraštei – tik atmosfera, produktas nebūtinas."
               ],
               "correct": 1,
               "explanation": "Conversion vizualui reikia aiškaus formato, produkto, brand taisyklių ir vietos tekstui. Vien emocija ar abstraktus grožis geriau tinka awareness etapui.",
@@ -16319,20 +16350,20 @@
               ],
               "correct": 1,
               "explanation": "Image → video grandinė padeda išlaikyti tą patį stilių, objektą ir spalvas. Ilgą video vienu promptu geriau keisti trumpomis, aiškiomis scenomis.",
-              "relatedSlideId": 13.4
+              "relatedSlideId": 13.12
             },
             {
               "id": "m14-q9",
               "type": "mcq",
-              "question": "Kodėl prieš brangų video generavimą verta turėti storyboard / stills?",
+              "question": "Kodėl prieš brangų video generavimą verta paruošti storyboard arba still kadrus?",
               "options": [
-                "Kad failas būtų didesnis",
-                "Kad užrakintum kompoziciją ir sumažintum retry / CPI",
-                "Kad nereikėtų brief",
-                "Kad galėtum praleisti teises"
+                "Kad padidėtų failo dydis ir eksportas būtų sunkesnis",
+                "Kad prieš video patikrintum kompoziciją, scenų logiką ir sumažintum nereikalingus generavimus bei kainą",
+                "Kad nebereikėtų užduoties aprašo ir galėtum iškart publikuoti",
+                "Kad nebereikėtų tikrinti naudojimo teisių prieš publikaciją"
               ],
               "correct": 1,
-              "explanation": "Stills / storyboard užrakina vizualą pigiai; video modelis tada dirba judesį. Tai mažina atsitiktinumą ir kainą už tinkamą clipą (CPI).",
+              "explanation": "Still kadrai užrakina vizualą pigiai; video modelis tada dirba judesį. Taip mažini atsitiktinumą ir kainą už tinkamą klipą.",
               "relatedSlideId": 13.12
             },
             {
@@ -16341,41 +16372,41 @@
               "question": "Ką reiškia audio-first darbo eiga?",
               "options": [
                 "Pirma video, tada bet koks garsas",
-                "Pirma užbaigi VO (arba bed trukmę), tada kirpi / generuoji video pagal audio pacing",
+                "Pirma užbaigi VO (arba foninės muzikos trukmę), tada kirpi / generuoji video pagal garso ritmą",
                 "Tik SFX be muzikos",
                 "Tik tylų export"
               ],
               "correct": 1,
-              "explanation": "Audio-first: VO ar bed diktuoja montažo ritmą. Jei audio „plaukioja“, video atrodo atsijungęs.",
+              "explanation": "Audio-first: balsas arba foninė muzika diktuoja montažo ritmą. Jei garsas „plaukioja“, video atrodo atsijungęs.",
               "relatedSlideId": 13.6
             },
             {
               "id": "m14-q11",
               "type": "scenario",
-              "scenarioContext": "Klientui reikia foninės muzikos reklamai YouTube su monetizacija.",
-              "question": "Kurį pasirinkimą rinktis pirmiausia?",
+              "scenarioContext": "Klientui reikia DI generuotos foninės muzikos mokamai YouTube reklamai.",
+              "question": "Ką reikia patikrinti prieš pasirenkant įrankį?",
               "options": [
-                "Suno free demo be licencijos patikros",
-                "Licensed stack (ElevenMusic, Soundraw ar Beatoven) ir ToS patikra",
-                "Bet kokį failą iš interneto",
-                "Tylą, nes muzika neleidžiama"
+                "Ar muzika skamba pakankamai garsiai reklamos fone",
+                "Ar pasirinkta licencija leidžia komercinį naudojimą ir monetizaciją",
+                "Ar įrankis turi nemokamą planą be registracijos",
+                "Ar kūrinys sugeneruojamas greičiau nei per minutę"
               ],
               "correct": 1,
-              "explanation": "Klientui / reklamai / monetizacijai – licensed įrankiai. Suno/Udio tinka demo, ne „tikriausiai niekas nepagaus“.",
+              "explanation": "Klientui ir mokamai reklamai svarbu, ar licencija leidžia komercinį naudojimą ir monetizaciją. Demo ar greitas failas be teisių patikros netinka.",
               "relatedSlideId": 13.7
             },
             {
               "id": "m14-q12",
               "type": "mcq",
-              "question": "Kas yra C2PA / disclosure praktika prieš publikuojant DI turinį?",
+              "question": "Kam naudojami C2PA / Content Credentials?",
               "options": [
-                "Tik gražus failo pavadinimas",
-                "Provenance žymėjimas: Content Credentials / watermark ir, kur reikia, žmogui matoma DI žyma",
-                "Tik spalvų korekcija",
-                "Tik ilgesnis promptas"
+                "Vaizdo raiškai padidinti prieš publikaciją",
+                "Turinio kilmei ir jo pakeitimų istorijai fiksuoti bei perduoti",
+                "Promptui sutrumpinti, kad modelis mažiau klystų",
+                "Spalvoms automatiškai koreguoti pagal ženklą"
               ],
               "correct": 1,
-              "explanation": "EU AI Act Art. 50 ir platformų politikos reikalauja atpažįstamo sintetinio turinio: C2PA, watermark (pvz. SynthID), žmogui matoma žyma.",
+              "explanation": "C2PA / Content Credentials fiksuoja kilmę: kas ir kaip sukūrė ar pakeitė failą. Žmogui matoma DI žyma yra atskira disclosure praktika; neišnykstantis watermark (pvz. SynthID) – dar kitas sluoksnis, ne pats C2PA.",
               "relatedSlideId": 13.101
             }
           ]
@@ -16387,14 +16418,14 @@
           "type": "test-results",
           "content": {
             "passedMessage": "Sveikiname! Dabar gali pereiti prie Modulio 15: Turinio inžinerijos projektas.",
-            "failedMessage": "Siūlau dar kartą peržiūrėti Modulio 13 skaidres – pipeline, vaizdai, video, garsas, licencijos, C2PA.",
+            "failedMessage": "Siūlau dar kartą peržiūrėti Modulio 13 skaidres – grandinę, vaizdus, video, garsą, licencijas, C2PA.",
             "thresholdExplanation": "Kai pasieksi ≥70 %, gali pereiti prie projekto. Mažiau nei 70 % – rekomenduoju peržiūrėti Modulio 13 skaidres.",
             "useCaseBlock": {
               "heading": "Kitas žingsnis: Modulis 15",
               "body": "Paruošk bent hero vaizdą (greitas startas); jei nori – mini kampaniją: video, garsas ir montažas. Įrankiai – skiltyje „Įrankiai“.",
               "blockVariant": "accent"
             },
-            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – įtvirtinti žinias po Turinio kelio testo.\nINPUT: Ką tik baigiau Modulio 14 – vaizdai, video, garsas, pipeline, audio-first, C2PA.\nOUTPUT: Užduok 3 klausimus: (1) Kurį artefaktą kursiu Modulyje 15? (2) Kas buvo naujausia? (3) Ką noriu išbandyti pirmiausia? Po mano atsakymų duok vieną konkretų patarimą.",
+            "reflectionPrompt": "Po testo užduok 3 klausimus: (1) Kurį artefaktą kursiu pirma — vaizdą, video ar garsą?\n(2) Kas buvo nauja? (3) Ką išbandysiu per 24 val.? Po atsakymų — vienas konkretus patarimas.",
             "reflectionTitle": "Refleksijos promptas"
           }
         },
@@ -16420,11 +16451,11 @@
               {
                 "heading": "Kopijuojamas promptas",
                 "body": "Naudok viename DI pokalbyje.",
-                "copyable": "Tu esi turinio pipeline asistentas. Tema: [APRAŠYK].\n1) BRIEF: tikslas (A/E/C), auditorija, platforma, proporcijos.\n2) STILLS / STORYBOARD: 2–3 kadrai (kas, stilius, ko vengti).\n3) VIDEO ARBA AUDIO-FIRST: jei video – I2V iš hero; jei garsas – VO/SFX/muzika + tempas.\n4) TEISĖS: licencija komerciniam naudojimui; veidai/balsai – sutikimas.\n5) DISCLOSURE: C2PA / Content Credentials arba žmogui matoma DI žyma.\nOUTPUT: checklist lentelė (žingsnis | statusas | rizika) + 1 kitas veiksmas."
+                "copyable": "Tu esi turinio grandinės asistentas. Tema: [APRAŠYK].\n1) Užduotis: tikslas (A/E/C), auditorija, platforma, proporcijos.\n2) Kadrai: 2–3 kadrai (kas, stilius, ko vengti).\n3) Video arba pirma garsas: jei video – video iš kadro iš hero; jei garsas – balsas / efektai / muzika + tempas.\n4) Teisės: licencija komerciniam naudojimui; veidai/balsai – sutikimas.\n5) DI žyma (C2PA): Content Credentials arba žmogui matoma DI žyma.\nIšvestis: checklist lentelė (žingsnis | statusas | rizika) + 1 kitas veiksmas."
               },
               {
                 "heading": "Patikra",
-                "body": "Jei trūksta licencijos arba disclosure – nepublikuok; grįžk prie garso teisių ir verslo/rizikų temų Modulyje 13. Jei checklist pilnas – esi pasiruošęs Modulio 15 greitam startui.",
+                "body": "Jei trūksta licencijos arba disclosure – nepublikuok; grįžk prie garso teisių ir verslo/rizikų temų Modulyje 13. Jei checklist pilnas – esi pasiruošęs Modulio 15 greitam startui. Antras bandymas: keisk tik vieną dalyką (kadrą ar vieną lauką), ne visą promptą.",
                 "blockVariant": "accent"
               }
             ],
@@ -16454,7 +16485,7 @@
       "id": 15,
       "title": "Finalinis projektas (Turinio kelias)",
       "subtitle": "Greitas startas arba mini kampanija",
-      "description": "Privaloma: pagrindinis vaizdas su promptu. Jei nori – video, garsas ir montažas.",
+      "description": "Pagrindinis vaizdas su promptu. Jei nori – video, garsas ir montažas.",
       "icon": "Rocket",
       "level": "practice",
       "duration": "20 min / 60–90 min",
@@ -16465,7 +16496,7 @@
         {
           "id": 150,
           "title": "Turinio inžinerijos projektas",
-          "subtitle": "Privaloma: hero vaizdas; neprivaloma: video, garsas, montažas",
+          "subtitle": "Vienas vaizdas arba mini kampanija",
           "type": "practice-intro",
           "content": {
             "whyBenefit": "Po projekto turėsi hero vaizdą su naudotu promptu ir brief; jei nori – mini kampanijos paketą (video + garsas + montažas) ir šablonus tolesniam darbui.",
@@ -16474,8 +16505,8 @@
             "firstActionCTA": "Pradėk greitu keliu: vienas hero vaizdas su naudotu promptu. Kai hero atliktas – gali eiti į santrauką; pilnam keliui – tęsk video, garsą ir montažą.",
             "recommendedStart": "Po pasirinkimo: greitas kelias baigiasi hero vaizdu; pilnas – tęsia neprivalomus video, garso ir montažo žingsnius.",
             "recommendedSlideIds": [150.5, 150.25],
-            "primaryPathIntro": "Privalomas minimumas: greitas startas (hero vaizdas). Po jo gali eiti į santrauką.",
-            "taskOneLiner": "Užbaik greitą startą (hero vaizdas), kad užbaigtum modulį; video, garsas ir montažas – neprivalomas pilnas kelias.",
+            "primaryPathIntro": "Pirmas artefaktas: greitas startas (hero vaizdas). Po jo gali eiti į santrauką.",
+            "taskOneLiner": "Užbaik greitą startą (hero vaizdas). Video, garsas ir montažas – jei nori sujungti dalis.",
             "howToUseModule": {
               "heading": "Pasirink kelią",
               "short": {
@@ -16497,12 +16528,12 @@
           "type": "practice-scenario",
           "content": {
             "scenarioTitle": "Greitas startas",
-            "scenarioDescription": "Per ~20 min sukurk vieną hero vaizdą, naudotą promptą ir 2 eilučių brief. Tai privalomas minimumas M15 užbaigimui.",
+            "scenarioDescription": "Per ~20 min: hero vaizdas + naudotas promptas + 2 eilučių brief. To pakanka eiti į santrauką.",
             "taskFrame": "Užduotis",
             "scenario": {
               "narrativeLead": "Parašyk trumpą brief: tikslas, auditorija, platforma. Tada sugeneruok vieną hero vaizdą ir išsaugok promptą."
             },
-            "template": "Brief: tikslas [Awareness / Engagement / Conversion], auditorija [kam], platforma [kur bus naudojama].\nSukurk hero vaizdą: [OBJEKTAS ir veiksmas], aplinka [KONTEKSTAS], stilius [STILIUS], proporcijos [1:1 / 16:9 / 9:16].\nBrand: spalvos [X], tonas [profesionalus / draugiškas / premium]. Be teksto vaizde, jei jo nereikia.",
+            "template": "Brief: tikslas [Awareness / Engagement / Conversion], auditorija [kam], platforma [kur bus naudojama].\nSukurk hero vaizdą: [OBJEKTAS ir veiksmas], aplinka [KONTEKSTAS], stilius [STILIUS], proporcijos [1:1 / 16:9 / 9:16].\nBrand: spalvos [X], tonas [profesionalus / draugiškas / premium]. Be teksto vaizde, jei jo nereikia.\nStiliaus užraktas (nekaitaliok): [15+ žodžių]. Modelis šiai serijai: [vienas].",
             "templateLabel": "Promptas – greitam hero vaizdui",
             "instructions": {
               "title": "Žingsniai",
@@ -16514,8 +16545,13 @@
                 },
                 {
                   "step": 2,
-                  "title": "Sugeneruok hero vaizdą ir išsaugok promptą",
-                  "description": "Artefaktas: hero vaizdas + promptas + brief."
+                  "title": "Užrakink stilių ir modelį",
+                  "description": "15+ žodžių antraštę rašyk pažodžiui. Vienas modelis visai serijai – nekelk į kitą viduryje."
+                },
+                {
+                  "step": 3,
+                  "title": "Sugeneruok pagrindinį vaizdą ir išsaugok promptą",
+                  "description": "Artefaktas: pagrindinis vaizdas + promptas + užduoties aprašas + stiliaus užraktas."
                 }
               ]
             },
@@ -16527,25 +16563,30 @@
         {
           "id": 150.25,
           "title": "Projekto ciklas: šaka ir iteracija",
-          "subtitle": "Greitas startas arba neprivalomas pilnas kelias",
+          "subtitle": "Vienas vaizdas arba mini kampanija",
           "type": "content-block",
           "content": {
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Greitas kelias: brief → vienas hero vaizdas → promptas → korekcija → santrauka. Pilnas kelias (neprivaloma): hero → 3–5 s I2V → VO/bed → montažas 15–30 s → QA + disclosure.",
+                "body": "Greitas kelias: užduoties aprašas → vienas pagrindinis vaizdas → promptas → korekcija → santrauka. Pilnas kelias: tas pats vaizdas → trumpas video → garsas → montažas.",
                 "blockVariant": "accent",
                 "image": "m15_practice_loop",
-                "imageAlt": "Turinio projekto ciklas: greitas kelias ir pilnas mini kampanijos kelias"
+                "imageAlt": "Turinio projekto ciklas: greitas kelias ir mini kampanijos kelias"
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Įvardyk kelią: greitą (tik hero vaizdas) ar pilną (video → garsas → montažas). Užsirašyk pirmą artefaktą vienu sakiniu.",
+                "body": "Įvardyk kelią: greitą (tik vaizdas) ar pilną (video → garsas → montažas). Užsirašyk pirmą rezultatą vienu sakiniu.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Užrakto kortelė",
+                "body": "Viena kortelė visai serijai: modelis · stiliaus antraštė (15+ žodžių, pažodžiui) · 3–5 pavyzdžių nuotraukos · balsas (tonas + žodynėlis) · teisės · DI žyma. Nekelk modelio viduryje.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Patikra",
-                "body": "Ar aiškus pirmas artefaktas (hero vaizdas + promptas + brief)? Ar žinai kitą žingsnį – santrauka (greitas) ar „Scenarijus: Vaizdas“ (pilnas)?",
+                "body": "Ar turi pagrindinį vaizdą, promptą ir trumpą užduoties aprašą? Kitas žingsnis – santrauka ar video?",
                 "blockVariant": "accent"
               }
             ],
@@ -16557,30 +16598,30 @@
           "id": 150.26,
           "title": "Kontrolinis taškas: projekto kelias",
           "shortTitle": "Kontrolinis taškas",
-          "subtitle": "Turinio kelias – patvirtink kelią prieš scenarijus",
+          "subtitle": "Ar eisi toliau su video, ar jau turi vaizdą?",
           "type": "path-step",
           "content": {
-            "title": "Ar aiškus tavo projekto kelias?",
+            "title": "Ar jau turi pagrindinį vaizdą?",
             "pathLabel": "Turinio projekto kelias",
             "stepNumber": 1,
             "stepTotal": 1,
-            "body": "Prieš tęsiant pasitikrink kelią. Jei hero vaizdas atliktas ir renkiesi greitą kelią – eik į santrauką. Jei nori mini kampanijos – tęsk į optional scenarijus (vaizdas → video → garsas → montažas).",
+            "body": "Jei jau turi pagrindinį vaizdą ir promptą – gali eiti į santrauką. Jei nori sujungti vaizdą, video ir garsą – tęsk kitus žingsnius.",
             "sections": [
               {
-                "heading": "Greitas kelias (privalomas minimumas)",
-                "body": "Vienas **hero vaizdas** su naudotu promptu ir 2 eilučių brief („Greitas startas: hero vaizdas“). To pakanka M15 užbaigti – tada **eik į santrauką**."
+                "heading": "Jau turi vaizdą",
+                "body": "Vienas **pagrindinis vaizdas** su naudotu promptu ir 2 eilučių užduoties aprašu. To pakanka – tada **eik į santrauką**."
               },
               {
-                "heading": "Pilnas kelias (neprivalomas)",
-                "body": "Hero → **video** (3–5 s) → **garsas** (VO/bed) → **montažas** → QA. Mini kampanijos paketas (optional scenarijus)."
+                "heading": "Einai toliau",
+                "body": "Tas pats vaizdas → **trumpas video** → **garsas** (balsas arba fonas) → **montažas**. Tai sujungia dalis."
               },
               {
                 "heading": "Patikra",
-                "body": "Kurį kelią renkiesi – greitą (santrauka) ar pilną (scenarijus: vaizdas)? Koks tavo pirmas artefaktas?"
+                "body": "Einai į santrauką, ar tęsi su video? Ką jau turi?"
               },
               {
                 "heading": "Pirmas veiksmas per 48 val.",
-                "body": "Publikuok arba išsiųsk vieną hero (arba vieną 3–5 s klipą) su naudotu promptu. Užsirašyk, kas „išsikraipė“ – tai kitas consistency lock darbas.",
+                "body": "Publikuok arba išsiųsk vieną vaizdą (arba vieną 3–5 s klipą) su naudotu promptu. Užsirašyk, kas pasikeitė tarp bandymų.",
                 "blockVariant": "brand"
               }
             ],
@@ -16590,26 +16631,28 @@
         {
           "id": 151,
           "title": "Scenarijus: Vaizdas",
-          "subtitle": "Optional: keyframe pilnam keliui",
+          "subtitle": "Raktinis kadras serijai",
           "type": "practice-scenario",
           "optional": true,
-          "badgeVariant": "optional",
           "content": {
             "scenarioTitle": "Vaizdas (pilnas kelias)",
-            "scenarioDescription": "Optional. Jei jau turi hero vaizdą iš greito starto – gali skip ir eiti į santrauką, arba naudoti jį kaip keyframe. Kitaip sukurk hero vaizdą savo temai. Artefaktas: vaizdas + promptas.",
-            "taskFrame": "Užduotis",
-            "scenario": {
-              "narrativeLead": "Jei greitas startas jau atliktas – gali skip arba naudoti tą patį hero kaip keyframe kitam žingsniui (trumpas vaizdo įrašas). Šis vaizdas bus pradžios kadras video generavimui."
+            "scenarioDescription": "Jei greito starto vaizdas jau tinka kaip raktinis kadras — eik į video. Čia kurk tik jei reikia kito kadro. Artefaktas: vaizdas + promptas.",
+            "taskFrame": {
+              "task": "Paruošk raktinį kadrą serijai: tas pats produktas, tas pats stilius.",
+              "doneWhen": "Turi vaizdą ir promptą; kadras tinka kaip video pradžia."
             },
-            "template": "Hero vaizdas / keyframe: [KĄ RODOMI]. Aplinka: [KONTEKSTAS]. Stilius: [nurodyk]. Brand spalvos: [X]. Proporcijos: [1:1 / 16:9 / 9:16]. Palik vietos antraštei, jei reikės.",
+            "scenario": {
+              "narrativeLead": "Jei greito starto vaizdas jau tinka kaip raktinis kadras — eik į video. Čia kurk tik jei reikia kito kadro."
+            },
+            "template": "Raktinis kadras: [KĄ RODOMI]. Aplinka: [KONTEKSTAS]. Stilius: [nurodyk]. Ženklo spalvos: [X]. Proporcijos: [1:1 / 16:9 / 9:16]. Palik vietos antraštei, jei reikės.",
             "templateLabel": "Promptas – nukopijuok į vaizdų įrankį",
             "instructions": {
               "title": "Žingsniai",
               "steps": [
                 {
                   "step": 1,
-                  "title": "Sugeneruok hero vaizdą / keyframe (arba skip)",
-                  "description": "Jei greitas kelias baigtas – eik į santrauką. Kitaip: vaizdas + promptas → trumpas vaizdo įrašas."
+                  "title": "Pasirink arba sukurk raktinį kadrą",
+                  "description": "Tas pats vaizdas tinka – eik į video. Reikia kito – įklijuok promptą į vaizdų įrankį."
                 }
               ]
             },
@@ -16621,26 +16664,28 @@
         {
           "id": 152,
           "title": "Scenarijus: Trumpas vaizdo įrašas",
-          "subtitle": "Optional: 3–5 s I2V iš keyframe",
+          "subtitle": "3–5 s klipas iš raktinio kadro",
           "type": "practice-scenario",
           "optional": true,
-          "badgeVariant": "optional",
           "content": {
             "scenarioTitle": "Trumpas vaizdo įrašas",
-            "scenarioDescription": "Optional: naudok hero vaizdą (iš greito starto arba ankstesnio scenarijaus) kaip keyframe ir sugeneruok 3–5 s klipą (arba 2 klipus). Artefaktas: vaizdo įrašas / nuoroda + promptas + CPI pastaba.",
-            "taskFrame": "Užduotis",
-            "scenario": {
-              "narrativeLead": "Naudok video prompto šabloną iš Modulio 13 ir hero vaizdą kaip pradžios kadrą. Tikslas – išlaikyti tą patį stilių, spalvas ir objektą."
+            "scenarioDescription": "Naudok pagrindinį vaizdą kaip raktinį kadrą ir sugeneruok 3 s klipą: viena kamera, vienas veiksmas. Artefaktas: vaizdo įrašas / nuoroda + promptas + CPI pastaba.",
+            "taskFrame": {
+              "task": "Sugeneruok 3 s I2V klipą iš raktinio kadro: viena kamera, vienas veiksmas.",
+              "doneWhen": "Žiūrėjai paskutinę sekundę: etiketė skaitoma, nėra naujų objektų, keitei tik vieną dalyką. Jei įrankis priima pabaigos kadrą – pridėjai jį; pirmas = raktinis, paskutinis = ką turi matyti pabaigoje."
             },
-            "template": "Animacija iš hero vaizdo: 3–5 sek. Scenarijus: [APRAŠYK]. Kamera juda [lėtai į priekį / šonu / stabiliai]. Tonas: [profesionalus / dinamiškas / ramus]. Formatas: [16:9 / 9:16]. Same style, same colors. CPI pastaba: retry [N].",
+            "scenario": {
+              "narrativeLead": "Naudok I2V ciklo šabloną iš Modulio 13 ir raktinį kadrą kaip pradžią. Tikslas – invariantai + paskutinio kadro patikra, ne tik „ar stilius liko“."
+            },
+            "template": "Pradžia: pridedamas raktinis kadras. Laikyk tapatybę ir kadravimą.\nKas nekinta: [produktas / etiketė / spalvos / šviesa iš kairės].\nObjektas daro: [vienas veiksmažodis].\nKamera: [vienas judesys]. Be orbitos, be tilt, be kelių judesių.\nTrukmė: 3 s pirma. Paskutinis kadras: etiketė skaitoma, nėra naujų objektų.\nJei įrankis moka: pridėk ir pabaigos kadrą (ką turi matyti pabaigoje).",
             "templateLabel": "Promptas – nukopijuok į video įrankį",
             "instructions": {
               "title": "Žingsniai",
               "steps": [
                 {
                   "step": 1,
-                  "title": "Sugeneruok video iš hero vaizdo",
-                  "description": "Artefaktas: vaizdo įrašas arba nuoroda + promptas. Patikrink, ar stilius neišsikraipė."
+                  "title": "Sugeneruok 3 s klipą ir žiūrėk paskutinį kadrą",
+                  "description": "Artefaktas: vaizdo įrašas arba nuoroda + promptas. Baigta, kai paskutinė sekundė švari. Jei įrankis priima pabaigos kadrą – pridėk jį."
                 }
               ]
             },
@@ -16651,58 +16696,62 @@
         },
         {
           "id": 153,
-          "title": "Scenarijus: Garsas (VO arba bed)",
-          "subtitle": "Optional: VO arba 30–60 sek. bed + teisės",
+          "title": "Scenarijus: Balsas arba fonas",
+          "subtitle": "Balsas ausiai + 3 inkaro eilutės",
           "type": "practice-scenario",
           "optional": true,
-          "badgeVariant": "optional",
           "content": {
-            "scenarioTitle": "Garsas",
-            "scenarioDescription": "Optional: sugeneruok VO arba 30–60 sek. foninę muziką. Artefaktas: failas / nuoroda + promptas + „commercial OK?“.",
-            "taskFrame": "Užduotis",
-            "scenario": {
-              "narrativeLead": "Naudok muzikos prompto šabloną iš Modulio 13 ir suderink nuotaiką su hero vaizdu bei video. Prieš naudojimą pažymėk, ar licencija leidžia viešą naudojimą."
+            "scenarioTitle": "Balsas arba fonas",
+            "scenarioDescription": "Rašyk ausiai: žodynėlis + 3 inkaro eilutės, tada visas balsas. Fonas – po balsu. Viena eilutė: ar galima naudoti viešai?",
+            "taskFrame": {
+              "task": "Išbandyk 3 inkaro eilutes tuo pačiu tempu, tada visą balsą.",
+              "doneWhen": "Tempą ir tarimą laikiai tą patį; fonas palieka vietos balsui; teisės pažymėtos."
             },
-            "template": "Variantas A (bed): 30–60 sek., nuotaika […], be vokalo, license intent: commercial.\nVariantas B (VO): [2–4 sakiniai], tonas […], tik balsas.",
-            "templateLabel": "Promptas – nukopijuok į muzikos įrankį",
+            "scenario": {
+              "narrativeLead": "Driftas – tai tempas ir tarimas, ne „blogas balsas“. Pirma 3 eilutės. Fonas palieka vietos balsui."
+            },
+            "template": "Rolė: [kam kalba]. Tonas: [šiltas / ramus]. Tempą laikyk tą patį.\nŽodynėlis: [prekės ženklas] = [kaip tarti].\nPirma išbandyk 3 eilutes: kablukas / nauda / kvietimas. Tada visą tekstą.\nFonas: be vokalo, tylus, palik vietos balsui. Teisės: commercial.",
+            "templateLabel": "Promptas – nukopijuok į balso įrankį",
             "instructions": {
               "title": "Žingsniai",
               "steps": [
                 {
                   "step": 1,
-                  "title": "Sugeneruok muziką arba garsą ir išsaugok promptą",
-                  "description": "Artefaktas: failas arba nuoroda + promptas + vienas sakinys apie naudojimo teises."
+                  "title": "Išbandyk 3 inkaro eilutes, tada visą balsą",
+                  "description": "Artefaktas: failas arba nuoroda + promptas + žodynėlis. Fonas – po balsu."
                 }
               ]
             },
             "footer": "Toliau – skaidrė 8: Scenarijus: Montažas"
           },
           "recommended": false,
-          "shortTitle": "Scenarijus: Garsas"
+          "shortTitle": "Balsas arba fonas"
         },
         {
           "id": 154,
           "title": "Scenarijus: Montažas",
-          "subtitle": "Optional: 15–30 s iš 2–4 klipų",
+          "subtitle": "15–30 s iš 2–4 klipų",
           "type": "practice-scenario",
           "optional": true,
-          "badgeVariant": "optional",
           "content": {
             "scenarioTitle": "Montažas",
-            "scenarioDescription": "Optional: sudėk 15–30 s galutinį klipą iš 2–4 I2V kadrų + VO arba bed. Artefaktas: export / nuoroda + checklist (teisės, disclosure, CPI).",
-            "taskFrame": "Užduotis",
-            "scenario": {
-              "narrativeLead": "Naudok CapCut ar pan. DI = raw. Hook pirmose 1–2 s. Pažymėk disclosure ir teises."
+            "scenarioDescription": "Sudėk 15–30 s visumą iš 2–4 klipų + balsas arba fonas. Artefaktas: failas / nuoroda + teisės + DI žyma + CPI pastaba.",
+            "taskFrame": {
+              "task": "Sumontuok 15–30 s klipą: kablukas pirmose 1–2 s, tada eksportuok.",
+              "doneWhen": "Yra exportas, teisės pažymėtos, DI žyma parašyta, CPI pastaba (kiek bandymų)."
             },
-            "template": "Montažo planas (15–30 s):\n0–3 s: [hook]\n3–8 s: [produktas / nauda]\n8–15 s: [detalė]\nPabaiga: [CTA]\nGarsas: [VO / bed] | teisės: [licensed]\nDisclosure: DI sukurta su [įrankis]. CPI pastaba: [N retry].",
-            "templateLabel": "Montažo checklist",
+            "scenario": {
+              "narrativeLead": "DI duoda žalią medžiagą. Kablukas pirmose 1–2 s. Prieš eksportą pažymėk teises ir DI žymą."
+            },
+            "template": "Montažo planas (15–30 s):\n0–3 s: [kablukas]\n3–8 s: [produktas / nauda]\n8–15 s: [detalė]\nPabaiga: [kvietimas veikti]\nGarsas: [balsas / fonas] | teisės: [licensed]\nDI žyma: sukurta su [įrankis]. CPI pastaba: [N bandymų].",
+            "templateLabel": "Montažo patikros sąrašas",
             "instructions": {
               "title": "Žingsniai",
               "steps": [
                 {
                   "step": 1,
                   "title": "Sumontuok ir eksportuok",
-                  "description": "Artefaktas: failas / nuoroda + teisės + disclosure + CPI pastaba."
+                  "description": "Artefaktas: failas / nuoroda + teisės + DI žyma + CPI pastaba."
                 }
               ]
             },
@@ -16718,10 +16767,10 @@
           "type": "summary",
           "content": {
             "introHeading": "Ką išmokai",
-            "introBody": "Sveikiname! Užbaigei greitą startą arba pilną mini kampanijos kelią. Turi artefaktą, promptą ir aiškesnį kelią: hero → video → garsas → montažas.",
+            "introBody": "Sveikiname! Užbaigei greitą startą arba mini kampaniją. Turi promptus ir rezultatus: pagrindinį vaizdą, o jei tęsei – video, garsą ir montažą.",
             "stats": [
               {
-                "label": "Quick start",
+                "label": "Greitas startas",
                 "value": "1"
               },
               {
@@ -16739,9 +16788,9 @@
                 "icon": "Image",
                 "color": "brand",
                 "items": [
-                  "Brief: tikslas, auditorija, platforma",
-                  "Hero vaizdas / keyframe su brand spalvomis",
-                  "Artefaktas: paveikslas + naudotas promptas + V1/V2 pastaba, jei kartojai"
+                  "Užduoties aprašas: tikslas, auditorija, platforma",
+                  "Pagrindinis vaizdas su ženklo spalvomis",
+                  "Artefaktas: vaizdas + naudotas promptas + V1/V2 pastaba, jei kartojai"
                 ]
               },
               {
@@ -16749,23 +16798,23 @@
                 "icon": "Video",
                 "color": "violet",
                 "items": [
-                  "Image → video iš hero keyframe",
+                  "Video iš raktinio kadro (I2V)",
                   "3–5 s klipai, tas pats stilius",
                   "Artefaktas: įrašas / nuoroda + promptas + CPI"
                 ]
               },
               {
-                "heading": "Garsas, montažas ir checklist",
+                "heading": "Garsas, montažas ir patikros sąrašas",
                 "icon": "Music",
                 "color": "amber",
                 "items": [
-                  "Audio-first: VO arba bed + teisės",
-                  "Optional montažas 15–30 s",
-                  "Checklist: brief, promptas, refs?, disclosure?, CPI?"
+                  "Pirma garsas: balsas arba fonas + teisės",
+                  "15–30 s montažas, jei jungei dalis",
+                  "Sąrašas: užduoties aprašas, promptas, teisės, DI žyma, CPI"
                 ]
               },
               {
-                "heading": "Kitas Žingsnis",
+                "heading": "Kitas žingsnis",
                 "icon": "ArrowRight",
                 "color": "emerald",
                 "items": [
@@ -16775,15 +16824,15 @@
               }
             ],
             "reflectionTitle": "Refleksijos promptas",
-            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – įtvirtinti turinio inžinerijos projekto rezultatus.\nINPUT: Ką tik baigiau Modulį 15: sukūriau quick start hero vaizdą arba pilną mini kampanijos kelią (hero vaizdas → video → muzika) su naudotais promptais.\nOUTPUT: Užduok 3 klausimus: (1) Kurį artefaktą ar promptą panaudosiu darbe per 24 val.? (2) Kas pagerėjo tarp V1 ir V2 arba ką keisčiau kitame bandyme? (3) Ar aiškiai užrašiau naudojimo teises? Po mano atsakymų duok vieną konkretų patarimą.",
+            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – įtvirtinti turinio projekto rezultatus.\nINPUT: Ką tik baigiau Modulį 15: sukūriau greito starto vaizdą arba mini kampaniją (vaizdas → video → garsas) su naudotais promptais.\nOUTPUT: Užduok 3 klausimus: (1) Kurį artefaktą ar promptą panaudosiu darbe per 24 val.? (2) Kas pagerėjo tarp V1 ir V2 arba ką keisčiau kitame bandyme? (3) Ar aiškiai užrašiau naudojimo teises? Po mano atsakymų duok vieną konkretų patarimą.",
             "tagline": "Vaizdas + video + muzika = vienas kelias turinio inžinerijai.",
             "nextStepCTA": "Atidaryk modulių sąrašą ir pasirink kitą kelią arba pakartok praktiką",
-            "firstAction24h": "Per 24–48 val. panaudok quick start hero vaizdą arba vieną mini kampanijos elementą realiame projekte (socialinis tinklas, skaidrė ar fonas).",
-            "abilityBefore": "Neturėjai mini kampanijos ar hero vaizdo su išsaugotais promptais.",
+            "firstAction24h": "Per 24–48 val. panaudok greito starto vaizdą arba vieną mini kampanijos elementą realiame projekte (socialinis tinklas, skaidrė ar fonas).",
+            "abilityBefore": "Neturėjai mini kampanijos ar pagrindinio vaizdo su išsaugotais promptais.",
             "abilityAfter": "Turi greito starto ar mini kampanijos artefaktą ir gali jį pakartoti kitai temai.",
             "ownWorkLabel": "Tavo kampanijos / kanalo kontekstas",
-            "ownWorkPlaceholder": "Pvz. LinkedIn anonsas, produkto landing hero…",
-            "ownWorkTemplate": "META: Tu esi turinio direktorius.\nINPUT: Mano kanalas ir tikslas: {{context}}\nOUTPUT: Duok 1 hero vaizdo promptą (stilius, proporcijos, tekstas kadre) ir 3 Patikros punktus."
+            "ownWorkPlaceholder": "Pvz. LinkedIn anonsas, produkto pagrindinis vaizdas…",
+            "ownWorkTemplate": "META: Tu esi turinio direktorius.\nINPUT: Mano kanalas ir tikslas: {{context}}\nOUTPUT: Duok 1 pagrindinio vaizdo promptą (stilius, proporcijos, tekstas kadre) ir 3 Patikros punktus."
           },
           "shortTitle": "Projekto santrauka"
         }
@@ -18063,7 +18112,7 @@
         {
           "id": 173,
           "title": "Bonus: brief checklist per 5 min",
-          "subtitle": "Optional prieš Modulį 18",
+          "subtitle": "Papildomai prieš Modulį 18",
           "shortTitle": "Bonus checklist",
           "type": "content-block",
           "optional": true,

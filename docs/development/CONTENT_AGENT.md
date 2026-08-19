@@ -70,6 +70,7 @@
 - **DI**, ne „AI“ (išskyrus citatas ar produktų pavadinimus kaip ChatGPT, Claude).
 - **Lietuviškos raidės:** ž, ė, ą, ų, ū, š, č, į – visur. Dažnos klaidos: `perziureti`→`peržiūrėti`, `Ziniu`→`Žinių`, `zemelapis`→`žemėlapis`, `Ka ismokote`→`Ką išmokote`, `ypac`→`ypač`, `role`→`rolė`, `struktura`→`struktūra`.
 - Angliški terminai – **TERM** (paprastas paaiškinimas vienu sakiniu), jei būtina.
+- **LT chrome (M5 etalonas, visiems moduliams):** kataloge `brief` → `užduoties aprašas`; `draftas` niekur — tik `juodraštis`. Skaidrėse `brief` / `storyline` po pirmo gloss (M5 = 45.5). `QC lab` KEEP; bare `QC` → `kokybės patikra`. Trukmė = `duration` laukas, ne skaičius antraštėje (pvz. ne „15 min sprintas“). Pamoka: `docs/development/lessons/content-agent.md`.
 
 ### 3.1.1 Moduliai 10–12 (Agentų kelias)
 

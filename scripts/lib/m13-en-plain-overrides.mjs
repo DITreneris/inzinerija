@@ -12,9 +12,21 @@ export const slide130EnPlain = {
     'You will keep the same product or style across a series and plan sound before cuts',
     'You will know what to measure and what to check before publishing (rights, AI label)',
   ],
+  heroText: 'Images, video, audio.',
   heroSubText: 'For marketing and communication specialists – visual and audio content with AI.',
   firstActionCTA:
     'In 1–2 minutes open one image tool (e.g. ChatGPT with DALL·E or Ideogram) and generate one image from your description.',
+  howToUseModule: {
+    heading: 'Choose a path',
+    short: {
+      label: 'Short path',
+      description: 'Without extra slides (composition, MASTER templates, glossary).',
+    },
+    full: {
+      label: 'Full path',
+      description: 'All slides, including extras.',
+    },
+  },
 };
 
 export const slide132EnPlain = {
@@ -59,6 +71,45 @@ export const slide152EnPlain = {
   title: 'Edit after generation',
   shortTitle: 'Edit',
   subtitle: 'AI = raw material; cut, color, mix',
+  sections: [
+    {
+      heading: 'In short',
+      body: 'AI video is raw material, not the final deliverable. Professional practice: edit 3–5 s clips, color grade, text/overlay, mix audio, export for the platform (CapCut / Premiere).',
+      blockVariant: 'accent',
+    },
+    {
+      heading: 'Edit diagram',
+      body: 'Four steps – Cut → Grade → Mix → Export. Tap a stage.',
+      blockVariant: 'brand',
+      image: 'm13_postprod_steps',
+      imageAlt: 'Edit: cut, color, mix, export',
+    },
+    {
+      heading: 'Minimum checklist',
+      body: '(1) Gather 2–4 clips to the script / VO. (2) Cut weak frames; hook in the first 1–2 s. (3) Keep colors consistent. (4) VO or bed + SFX. (5) Loudness guide ~−14 LUFS (music) / ~−16 (VO mix) – trust your ears. (6) Export 9:16 or 16:9.',
+      blockVariant: 'brand',
+    },
+    {
+      heading: 'Do this now',
+      body: 'Write a 4-line edit plan for your mini clip.',
+      blockVariant: 'brand',
+    },
+    {
+      heading: 'Copyable template',
+      body: 'Edit plan for 15–30 s.',
+      copyable: `Edit plan (15–30 s):
+0–3 s: [hook clip]
+3–8 s: [product / benefit]
+8–15 s: [proof / detail]
+End: [CTA frame + text]
+Audio: [VO / bed] | rights: [licensed]`,
+    },
+    {
+      heading: 'Check',
+      body: 'Without AI “magic”, does the clip still read as a story? Does the bed drown the VO?',
+      blockVariant: 'accent',
+    },
+  ],
 };
 
 export const slide156EnPlain = {
@@ -72,6 +123,15 @@ export const slide156EnPlain = {
     'Licenses for commercial work',
     'Loudness guide and a listen-through check',
   ],
+  recap: {
+    heading: 'What you already know?',
+    lead: 'The video section comes before audio.',
+    items: [
+      'Video = short clips + format + cost per usable clip.',
+      'Image-to-video chain with a keyframe.',
+      'Edit – cut / color / audio after generation.',
+    ],
+  },
 };
 
 export const slide115EnPlain = {
@@ -83,6 +143,114 @@ export const slide115EnPlain = {
   ],
   contentSubtitle:
     'Next: prompt formula, style and ratios, same product in a series, then the builder. Pick tools after the style slide.',
+  recap: {
+    heading: 'What you already know?',
+    lead: 'Before the image section – the media chain.',
+    items: [
+      'Generative media chain: brief → frames → refs → video → audio → check.',
+      'You lock frames before expensive video generation.',
+      'The chain checklist is a plan for your topic, not a generator prompt.',
+    ],
+  },
+};
+
+export const slide112EnPlain = {
+  shortTitle: 'Media chain',
+  subtitle: 'From the brief to a check – 6 steps without expensive guesswork',
+  sections: [
+    {
+      heading: 'In short',
+      body: 'You win with a clear work chain (from brief to check), not the “best model”. One prompt straight into video often means expensive retries – lock the plan, frames and reference photos first, then short clips, audio and a check.',
+      blockVariant: 'accent',
+    },
+    {
+      heading: 'Chain diagram',
+      body: '6 steps – tap a stage. For the business cycle (brief → A/B) see the slide “Workflow: from brief to publication”.',
+      blockVariant: 'brand',
+      image: 'm13_media_pipeline',
+      imageAlt: 'Generative media chain: brief, frames, refs, I2V, audio, check',
+    },
+    {
+      heading: 'Why these 6 steps',
+      body: 'The six diagram steps are the technical spine. The checklist below is practice for your topic (not a second step list).',
+      blockVariant: 'brand',
+    },
+    {
+      heading: 'Do this now',
+      body: 'Fill the checklist for your topic – this is a plan, not a generator prompt.',
+      blockVariant: 'brand',
+    },
+    {
+      heading: 'Copyable template',
+      body: 'Chain checklist – copy and fill it in.',
+      copyable: `Chain checklist:
+Brief: goal [awareness / engagement / conversion], audience [who], platform [where].
+Brand: colors [X], tone [Y].
+Frames: main + [0–2] extras (lock before video).
+Refs: [product/character – 3–5 angles] / none.
+Clips: [2–4] × 3–5 s (I2V – image-to-video), not one long clip.
+Audio: [voice first / bed only] + rights [licensed / demo].
+Edit: cut + color + mix.
+Check: brand | message | format | rights | AI label (C2PA / disclosure).`,
+    },
+    {
+      heading: 'Check',
+      body: 'Before video, do you have at least one locked frame? Do you know whether sound will be voice-first or bed only?',
+      blockVariant: 'accent',
+    },
+    {
+      heading: 'Where to use this',
+      body: 'Ad clips, short social video, product demos, internal explainers.',
+      blockVariant: 'terms',
+      collapsible: true,
+      collapsedByDefault: true,
+    },
+  ],
+};
+
+export const slide12BasicsEnPlain = {
+  sections: [
+    {
+      heading: 'In short',
+      body: 'A good image prompt covers what is shown (subject, place, action), style (photoreal, illustration), ratio (e.g., 16:9, 1:1) and what to avoid.',
+      blockVariant: 'accent',
+    },
+    {
+      heading: 'Formula and three layers',
+      body: 'Image = Object + Context + Aesthetics (style). Layers: object (what is shown), context (place, action), aesthetics (style, light).',
+      blockVariant: 'brand',
+      image: 'm13_prompt_stack',
+      imageAlt: 'Image prompt: object, context, aesthetics',
+    },
+    {
+      heading: 'Minimum requirements',
+      body: 'At least 3–7 words; avoid vague words (“nice”, “interesting” with no context); use concrete nouns. A style keyword crowns the idea.',
+      blockVariant: 'brand',
+    },
+    {
+      heading: 'Do this now',
+      body: 'Open one image tool and copy the prompt below. Replace [DESCRIPTION] with your topic.',
+      blockVariant: 'brand',
+    },
+    {
+      heading: 'Copyable prompt',
+      body: 'Image prompt template – copy and fill [DESCRIPTION].',
+      copyable:
+        'Create an image: [DESCRIPTION]. Style: professional, bright, minimal. Ratio: 16:9. Do not add text inside the image.',
+    },
+    {
+      heading: 'Check',
+      body: 'Did the image match the description? If not – add place, lighting or style, or say “no text in the image”.',
+      blockVariant: 'accent',
+    },
+    {
+      heading: 'Why this works',
+      body: 'Start with “create an image” (or “generate an image”) plus a concrete ask – the tool then knows the task.',
+      blockVariant: 'terms',
+      collapsible: true,
+      collapsedByDefault: true,
+    },
+  ],
 };
 
 export const slide136EnPlain = {
@@ -94,10 +262,19 @@ export const slide136EnPlain = {
   ],
   contentSubtitle:
     'Next: short script, image-to-video (I2V), format and cost per usable clip. Pick tools on the video tools slide.',
+  recap: {
+    heading: 'What you already know?',
+    lead: 'The image section is the base for video.',
+    items: [
+      'An image prompt = object + context + style.',
+      'Style, ratios and the same product in a series.',
+      'Reference photos – same product / same style for the set.',
+    ],
+  },
 };
 
 export const slide147EnPlain = {
-  subtitle: 'Image-to-video: keyframe → 3–5 s → camera → same style',
+  subtitle: 'Image-to-video (I2V): keyframe → 3–5 s → camera → same style',
 };
 
 export const slide111EnPlain = {
@@ -108,7 +285,7 @@ export const slide111EnPlain = {
 
 export const slide1101EnPlain = {
   trumpai:
-    'Before you publish you will know what to check: results (KPI), rights, an AI label (C2PA / disclosure) and at least one A/B hypothesis. Details below.',
+    'Before you publish you will know what to check: results (KPI), rights, an AI label (C2PA) and at least one A/B hypothesis. Details below.',
 };
 
 export const slide18ExtraTermsEn = [
@@ -208,7 +385,10 @@ OUTPUT: Ask 3 questions: (1) Which chain step will I apply today? (2) What was n
 function applyM1315RebuildGuards(mod) {
   if (mod.id === 13) {
     const s31 = mod.slides.find((s) => s.id === 13.31);
-    if (s31) s31.shortTitle = 'Quick check: style';
+    if (s31) {
+      s31.shortTitle = 'Quick check: style';
+      if (s31.content) s31.content.footer = 'Next – slide 8: Same look';
+    }
     const s51 = mod.slides.find((s) => s.id === 13.51);
     if (s51) s51.shortTitle = 'Quick check: video';
     const s37 = mod.slides.find((s) => s.id === 13.37);
@@ -226,9 +406,9 @@ function applyM1315RebuildGuards(mod) {
       s47.shortTitle = 'I2V builder';
       if (s47.content) {
         s47.content.tldr =
-          'In short: Describe the keyframe / scene, pick duration (3–5 s) and camera move. The system builds an image-to-video prompt – copy it into Kling, Runway, Veo or Sora.';
+          'In short: Describe the keyframe / scene, pick duration (3–5 s) and camera move. The system builds an I2V (image-to-video) prompt – copy it into Kling, Runway, Veo or Sora.';
         s47.content.patikra =
-          'Does the prompt include a keyframe, duration 3–5 s, and same style/product? Can the opening match your hero still?';
+          'Does the prompt include a keyframe, 3 s first, one camera and one action? Did you watch the last second – label readable, no new objects? If you need a brand voice – keep the clip silent and write voice separately (do not stack Veo native sound on the same file).';
       }
     }
   }
@@ -237,7 +417,7 @@ function applyM1315RebuildGuards(mod) {
     if (s26) {
       s26.title = 'Checkpoint: project path';
       s26.shortTitle = 'Checkpoint';
-      s26.subtitle = 'Content path – confirm your path before scenarios';
+      s26.subtitle = 'Have an image? Continue to video or go to the summary?';
       if (s26.content?.sections?.[3]) {
         s26.content.sections[3].heading = 'First action within 48 hours';
       }
@@ -255,6 +435,7 @@ function applyM1315RebuildGuards(mod) {
  */
 export function applyM13EnPlainOverrides(mod) {
   applyM1315RebuildGuards(mod);
+  applyM1315EnFiller(mod);
   if (mod.id !== 13) return;
 
   const s130 = mod.slides.find((s) => s.id === 130);
@@ -262,8 +443,10 @@ export function applyM13EnPlainOverrides(mod) {
     Object.assign(s130.content, {
       whyBenefit: slide130EnPlain.whyBenefit,
       outcomes: [...slide130EnPlain.outcomes],
+      heroText: slide130EnPlain.heroText,
       heroSubText: slide130EnPlain.heroSubText,
       firstActionCTA: slide130EnPlain.firstActionCTA,
+      howToUseModule: structuredClone(slide130EnPlain.howToUseModule),
     });
   }
 
@@ -283,14 +466,7 @@ export function applyM13EnPlainOverrides(mod) {
     s52.title = slide152EnPlain.title;
     s52.shortTitle = slide152EnPlain.shortTitle;
     s52.subtitle = slide152EnPlain.subtitle;
-    if (s52.content?.sections) {
-      for (const sec of s52.content.sections) {
-        if (sec.heading === 'Post-production schema' || sec.heading === 'Montazo schema' || sec.heading === 'Montažo schema') {
-          sec.heading = 'Edit diagram';
-          if (sec.imageAlt) sec.imageAlt = 'Edit: cut, grade, mix, export';
-        }
-      }
-    }
+    if (s52.content) s52.content.sections = structuredClone(slide152EnPlain.sections);
   }
 
   const s56 = mod.slides.find((s) => s.id === 13.56);
@@ -300,6 +476,7 @@ export function applyM13EnPlainOverrides(mod) {
       s56.content.title = slide156EnPlain.title;
       s56.content.subtitle = slide156EnPlain.contentSubtitle;
       s56.content.nextSteps = [...slide156EnPlain.nextSteps];
+      s56.content.recap = structuredClone(slide156EnPlain.recap);
     }
   }
 
@@ -307,12 +484,26 @@ export function applyM13EnPlainOverrides(mod) {
   if (s15?.content) {
     s15.content.nextSteps = [...slide115EnPlain.nextSteps];
     s15.content.subtitle = slide115EnPlain.contentSubtitle;
+    s15.content.recap = structuredClone(slide115EnPlain.recap);
+  }
+
+  const s12 = mod.slides.find((s) => s.id === 13.12);
+  if (s12) {
+    s12.shortTitle = slide112EnPlain.shortTitle;
+    s12.subtitle = slide112EnPlain.subtitle;
+    if (s12.content) s12.content.sections = structuredClone(slide112EnPlain.sections);
+  }
+
+  const s12basics = mod.slides.find((s) => s.id === 13.2);
+  if (s12basics?.content) {
+    s12basics.content.sections = structuredClone(slide12BasicsEnPlain.sections);
   }
 
   const s36 = mod.slides.find((s) => s.id === 13.36);
   if (s36?.content) {
     s36.content.nextSteps = [...slide136EnPlain.nextSteps];
     s36.content.subtitle = slide136EnPlain.contentSubtitle;
+    s36.content.recap = structuredClone(slide136EnPlain.recap);
   }
 
   const s47 = mod.slides.find((s) => s.id === 13.47);
@@ -332,7 +523,7 @@ export function applyM13EnPlainOverrides(mod) {
         if (sec.heading === 'In short' || sec.heading === 'Trumpai') {
           sec.heading = 'In short';
           sec.body =
-            'Full business cycle: (1) Marketing brief. (2) Prompt + brand + reference photos. (3) 3–5 variants / short image-to-video. (4) Iteration. (5) Platform. (6) Test. (7) Optimisation.';
+            'Full business cycle: (1) Marketing brief. (2) Prompt + brand + reference photos. (3) 3–5 variants / short image-to-video. (4) Iteration. (5) Platform. (6) Test. (7) Optimization.';
         }
       }
       // Ensure In short comes before workflow diagram
@@ -352,6 +543,12 @@ export function applyM13EnPlainOverrides(mod) {
     if (t) {
       t.heading = 'In short';
       t.body = slide1101EnPlain.trumpai;
+    }
+    const p101 = s101.content.sections.find((s) => s.heading === 'Check' || s.heading === 'Patikra');
+    if (p101) {
+      p101.heading = 'Check';
+      p101.body =
+        'Before publishing, did you check rights, an AI label (C2PA) and at least one A/B hypothesis? If not – go back to the required block and the check list. The evaluation template (3 criteria) is under “Evaluation rubric” – copy it and score your artifact.';
     }
   }
 
@@ -405,13 +602,13 @@ export function applyM13EnPlainOverrides(mod) {
     13.3:
       'Style: photorealistic, acrylic, 3D, drawing. Aspect ratio (frame width×height): 1:1 square, 16:9 wide, 9:16 vertical (stories).',
     13.4:
-      'A short video needs a clear script, tone and camera. Prefer 2–4 short clips (3–5 s) over one long try – lock stills before expensive video.',
+      'A short video needs a clear script, tone and camera. Prefer 2–4 short clips (3–5 s) over one long try – lock frames before expensive video.',
     13.5:
-      'Video: format (16:9 / 9:16), length 3–5 s. Track cost per usable clip (CPI) = generation + retries / usable clips – not only €/s. Use the matrix for a quick pick.',
+      'Video: format (16:9 / 9:16), length 3–5 s. Track cost per usable clip (CPI) = generation + retries / usable clips – not only €/s. Brand voice – silent I2V + voice separately, not native sound on the same clip.',
     13.6:
-      'Sound first (audio-first): plan voice or bed length first, then cut video to that pacing. For music describe mood, style, tempo, instruments. Client / ads – licensed stack; Suno/Udio – demo, not client work.',
+      'Sound first: plan voice or bed length first, then cut video to that pacing. For music describe mood, style, tempo, instruments. Client / ads – licensed stack; Suno/Udio – demo, not client work.',
     13.35:
-      'Optional library: if one solution is enough – pick a MASTER template or one ready prompt. Workflow and 8 scenarios are for deeper practice (expand).',
+      'Optional library: if one solution is enough – pick a MASTER template or one ready prompt. Ready prompts work only with a style lock (same product / 15+ word header / one model). Workflow and 8 scenarios are for deeper practice (expand).',
   };
   for (const [idStr, body] of Object.entries(trumpaiEn)) {
     const s = mod.slides.find((x) => x.id === Number(idStr));
@@ -423,9 +620,433 @@ export function applyM13EnPlainOverrides(mod) {
   }
 
   const s35 = mod.slides.find((s) => s.id === 13.35);
-  if (s35) s35.subtitle = '5-step workflow, #1000Books, ready prompts';
+  if (s35) {
+    s35.subtitle = '5-step workflow, #1000Books, ready prompts';
+    const patikra35 = s35.content?.sections?.find(
+      (sec) => sec.heading === 'Check' || sec.heading === 'Patikra'
+    );
+    if (patikra35) {
+      patikra35.heading = 'Check';
+      patikra35.body =
+        'Did you use at least 3 fields from the MASTER template (subject, style, composition, lighting, colors)? Did you run a Ready prompt with the same lock, not an empty style?';
+    }
+    for (const sec of s35.content?.sections ?? []) {
+      if (!/^Ready prompt/i.test(sec.heading || '') && !/^Ready promptas/i.test(sec.heading || '')) {
+        continue;
+      }
+      sec.collapsible = true;
+      sec.collapsedByDefault = true;
+      if (!sec.blockVariant) sec.blockVariant = 'terms';
+      if (sec.heading?.includes('Logo') || sec.heading?.includes('Logotipas')) {
+        sec.body =
+          'For a logo – copy and fill the brackets. Before you run it, paste the style lock and the model name.';
+      } else if (sec.heading?.includes('Social')) {
+        sec.body =
+          'For a social post – a template with a text field. Before you run it, paste the style lock and the model name.';
+      } else if (sec.heading?.includes('Poster') || sec.heading?.includes('Plakatas')) {
+        sec.body =
+          'For an event poster – add date, place and style. Before you run it, paste the style lock and the model name.';
+      }
+    }
+  }
+
+  const s5 = mod.slides.find((s) => s.id === 13.5);
+  if (s5?.content?.sections) {
+    const patikra = s5.content.sections.find(
+      (sec) => sec.heading === 'Check' || sec.heading === 'Patikra'
+    );
+    if (patikra) {
+      patikra.heading = 'Check';
+      patikra.body =
+        'Did you download the file? Do commercial rights fit? What is the CPI (count retries)? Brand voice – silent I2V + voice separately, not native sound on the same clip.';
+    }
+    const forkHeading = 'Sound: same generate or separate?';
+    const existingFork = s5.content.sections.find(
+      (sec) =>
+        sec.heading === forkHeading ||
+        sec.heading === 'Garsas: tame pačiame generate ar atskirai?'
+    );
+    if (existingFork) {
+      existingFork.heading = forkHeading;
+      existingFork.body =
+        'Dialog or ambient in one generate – Veo class: write sound in the same prompt. Brand voice / license – silent I2V + voice separately + mix (safer for a client). Never stack native sound and a new voice on the same clip if you do not know which you will drop.';
+    } else {
+      const patikraIdx = s5.content.sections.findIndex(
+        (sec) => sec.heading === 'Check' || sec.heading === 'Patikra'
+      );
+      const forkSec = {
+        heading: forkHeading,
+        body: 'Dialog or ambient in one generate – Veo class: write sound in the same prompt. Brand voice / license – silent I2V + voice separately + mix (safer for a client). Never stack native sound and a new voice on the same clip if you do not know which you will drop.',
+        blockVariant: 'terms',
+        collapsible: true,
+        collapsedByDefault: true,
+      };
+      if (patikraIdx >= 0) s5.content.sections.splice(patikraIdx + 1, 0, forkSec);
+      else s5.content.sections.push(forkSec);
+    }
+  }
+
+  const s6 = mod.slides.find((s) => s.id === 13.6);
+  if (s6?.content?.sections) {
+    for (const sec of s6.content.sections) {
+      if (sec.heading === 'Do this now' || sec.heading === 'Daryk dabar') {
+        sec.heading = 'Do this now';
+        sec.body =
+          'If you have voice-over – generate or record the voice first. If bed only – copy the music prompt. Mark whether the license allows commercial use.';
+      }
+      if (sec.heading === 'Kopijuojamas promptas – fonas' || sec.heading === 'Copyable prompt – bed') {
+        sec.heading = 'Copyable prompt – bed';
+      }
+      if (sec.heading === 'Kopijuojamas promptas – balsas' || sec.heading === 'Copyable prompt – voice-over') {
+        sec.heading = 'Copyable prompt – voice-over';
+        sec.body = 'Voice-over template (ElevenLabs or similar).';
+      }
+      if (sec.heading === 'Kopijuojama balso kortelė' || sec.heading === 'Copyable voice card') {
+        sec.heading = 'Copyable voice card';
+        sec.body = 'Write for the ear – keep the same tempo across the series.';
+        sec.copyable = `Role: [who they speak to]. Tone: [warm / calm]. Keep the same tempo.
+Glossary: [brand] = [how to say it].
+First try 3 lines: hook / benefit / ask. Then the full script.
+Bed: no vocal, quiet, leave room for the voice. License: commercial.`;
+      }
+      if (sec.heading === 'Check' || sec.heading === 'Patikra') {
+        sec.heading = 'Check';
+        sec.body =
+          'Did you try 3 anchor lines before the full script? Does the bed come after the voice and leave room? Same tempo / pronunciation across the series?';
+      }
+    }
+  }
+
+  const s7 = mod.slides.find((s) => s.id === 13.7);
+  if (s7) {
+    s7.subtitle = 'Sound effects, commercial use, LUFS';
+    if (s7.content?.sections) {
+      const t = s7.content.sections.find((x) => x.heading === 'In short' || x.heading === 'Trumpai');
+      if (t) {
+        t.heading = 'In short';
+        t.body =
+          'Separate effects from music. For client work use licensed tools. Loudness guide: about −14 LUFS (music) / −16 (voice mix) – decide by listening. Campaign rights / C2PA – see “Business and risks”.';
+      }
+      const d = s7.content.sections.find((x) => x.heading === 'Do this now' || x.heading === 'Daryk dabar');
+      if (d) {
+        d.body = 'Before public use, open the terms; write down “commercial OK?” yes/no.';
+      }
+    }
+  }
 
   applyM13pTrimCopyables(mod);
+}
+
+/** Walk stubs that survive slideMeta – M13 businessExamples + M14/M15 chrome. */
+function applyM1315EnFiller(mod) {
+  if (mod.id === 13 && Array.isArray(mod.businessExamples)) {
+    mod.businessExamples = [
+      { title: 'Image generation', description: 'Prompts, style, ratios, tools' },
+      { title: 'Video and audio', description: 'Short clips and AI-generated sound' },
+    ];
+  }
+  if (mod.id === 14 && Array.isArray(mod.businessExamples)) {
+    mod.businessExamples = [
+      { title: 'Image and video prompts', description: 'Formats, tools, quality' },
+      { title: 'Content-path knowledge', description: '12 questions before the Module 15 project' },
+    ];
+  }
+  if (mod.id === 15 && Array.isArray(mod.businessExamples)) {
+    mod.businessExamples = [
+      { title: 'Quick start', description: 'One main image with a task note and prompt' },
+      { title: 'Mini campaign path', description: 'Image → video → audio' },
+    ];
+  }
+
+  if (mod.id === 15) {
+    const s150 = mod.slides.find((s) => s.id === 150);
+    if (s150?.content) {
+      s150.content.howToUseModule = {
+        heading: 'Choose a path',
+        short: {
+          label: 'Quick start',
+          description: '~20 min – one main image.',
+        },
+        full: {
+          label: 'Full path',
+          description: '~60–90 min – image, video, audio and edit.',
+        },
+      };
+      s150.content.whyBenefit =
+        'After the project you will have a main image with the prompt you used and a short task note. If you want – also video, audio and an edit.';
+      s150.content.firstActionCTA =
+        'Start with one main image: copy the prompt into an image tool and save the result.';
+      s150.content.recommendedStart =
+        'The quick path ends with one image. The full path continues – video, audio, edit.';
+      s150.content.primaryPathIntro =
+        'One main image is enough to go to the summary. Video, audio and edit are for joining the pieces.';
+      s150.content.taskOneLiner =
+        'Make one main image with a prompt. If you want a mini campaign – continue to video, audio and edit.';
+      s150.subtitle = 'One main image or a mini campaign';
+    }
+
+    const s026 = mod.slides.find((s) => s.id === 150.26);
+    if (s026?.content) {
+      s026.content.title = 'Do you have a main image?';
+      s026.content.pathLabel = 'Content project path';
+      s026.subtitle = 'Have an image? Continue to video or go to the summary?';
+      s026.content.body =
+        'If you already have a main image and a prompt – you can go to the summary. If you want to join image, video and audio – continue the next steps.';
+      s026.content.sections = [
+        {
+          heading: 'You already have an image',
+          body: 'One **main image** with the prompt you used and a 2-line task note. That is enough – then **go to the summary**.',
+        },
+        {
+          heading: 'You continue',
+          body: 'The same image → **short video** → **audio** (voice or bed) → **edit**. That joins the pieces.',
+        },
+        {
+          heading: 'Check',
+          body: 'Are you going to the summary, or continuing with video? What do you already have?',
+        },
+        {
+          heading: 'First action within 48 hours',
+          body: 'Publish or send one image (or one 3–5 s clip) with the prompt you used. Note what changed between tries.',
+          blockVariant: 'brand',
+        },
+      ];
+    }
+
+    const s025 = mod.slides.find((s) => s.id === 150.25);
+    if (s025?.content?.sections) {
+      s025.subtitle = 'One image or a mini campaign';
+      s025.content.sections = [
+        {
+          heading: 'In short',
+          body: 'Quick path: task note → one main image → prompt → tweak → summary. Full path: the same image → short video → audio → edit.',
+          blockVariant: 'accent',
+          image: 'm15_practice_loop',
+          imageAlt: 'Content project loop: quick path and mini-campaign path',
+        },
+        {
+          heading: 'Do this now',
+          body: 'Name your path: quick (image only) or full (video → audio → edit). Write the first result in one sentence.',
+          blockVariant: 'brand',
+        },
+        {
+          heading: 'Lock card',
+          body: 'One card for the series: model · style header (15+ words, verbatim) · 3–5 reference photos · voice (tone + glossary) · rights · AI label. Do not switch models mid-way.',
+          blockVariant: 'brand',
+        },
+        {
+          heading: 'Check',
+          body: 'Do you have a main image, a prompt and a short task note? Next step – summary or video?',
+          blockVariant: 'accent',
+        },
+      ];
+    }
+
+    const scenarioEn = {
+      150.5: {
+        scenarioDescription:
+          'In ~20 min: a hero image + the prompt you used + a 2-line brief. That is enough to go to the summary.',
+        narrativeLead:
+          'Write a short task note: goal, who, where you will use it. Lock a 15+ word style header and one model for the series. Then paste the prompt into an image tool.',
+        stepTitle: 'Write a 2-line task note',
+        stepDescription: 'Goal, who, and where you will use it.',
+        templateLabel: 'Prompt – paste into an image tool',
+      },
+      151: {
+        scenarioDescription:
+          'If the quick-start image already works as the keyframe — go to video. Build here only if you need a different frame. Artifact: image + prompt.',
+        narrativeLead:
+          'If the quick-start image already works as the keyframe — go to video. Build here only if you need a different frame.',
+        stepTitle: 'Choose or create a keyframe',
+        stepDescription:
+          'Same image works – go to video. Need another – paste the prompt into an image tool.',
+        templateLabel: 'Prompt – paste into an image tool',
+      },
+      152: {
+        scenarioDescription:
+          'Turn the keyframe into a 3 s I2V clip: one camera, one action. Paste the prompt into a video tool (Runway, Kling, Veo or similar).',
+        narrativeLead:
+          'Use the I2V cycle: invariants + last-frame check, not only “did the style hold”.',
+        stepTitle: 'Generate a 3 s clip and watch the last frame',
+        stepDescription: 'Save the clip or link and the prompt. Done when the last second is clean.',
+        templateLabel: 'Prompt – paste into a video tool',
+      },
+      153: {
+        scenarioDescription:
+          'Write for the ear: glossary + 3 anchor lines, then the full voice. Bed after the voice. One line: can you use it publicly?',
+        narrativeLead:
+          'Drift is tempo and pronunciation, not a “bad voice”. Try 3 lines first. Bed leaves room for the voice.',
+        stepTitle: 'Try 3 anchor lines, then the full voice',
+        stepDescription: 'Save the file or link, the prompt, and the glossary. Bed comes after the voice.',
+        templateLabel: 'Prompt – paste into a voice tool',
+      },
+      154: {
+        scenarioDescription:
+          'Join image, video and audio into a 15–30 s whole. Use an edit tool (CapCut or similar). This is a plan, not a long prompt.',
+        narrativeLead:
+          'AI gives the raw clips. Hook in the first 1–2 seconds. Before export, mark rights and an AI label.',
+        stepTitle: 'Assemble and export',
+        stepDescription: 'File or link + rights + an AI label.',
+        templateLabel: 'Edit plan – use in an edit tool',
+      },
+    };
+    for (const [idStr, pack] of Object.entries(scenarioEn)) {
+      const s = mod.slides.find((x) => x.id === Number(idStr));
+      if (!s?.content) continue;
+      s.content.scenarioDescription = pack.scenarioDescription;
+      if (s.content.scenario) s.content.scenario.narrativeLead = pack.narrativeLead;
+      const step = s.content.instructions?.steps?.[0];
+      if (step) {
+        step.title = pack.stepTitle;
+        step.description = pack.stepDescription;
+      }
+      if (pack.templateLabel) {
+        s.content.templateLabel = pack.templateLabel;
+      }
+      if (s.content.instructions) {
+        s.content.instructions.title = 'Steps';
+      }
+      if (s.practicalTask) {
+        s.practicalTask.placeholder = 'Paste the prompt you used…';
+        if (pack.templateLabel) s.practicalTask.templateLabel = pack.templateLabel;
+      }
+    }
+
+    const s1505 = mod.slides.find((s) => s.id === 150.5);
+    if (s1505?.content?.instructions?.steps?.length >= 3) {
+      s1505.content.instructions.steps[1] = {
+        step: 2,
+        title: 'Lock style and model',
+        description:
+          'Write the 15+ word header verbatim. One model for the series – do not switch mid-way.',
+      };
+      s1505.content.instructions.steps[2] = {
+        step: 3,
+        title: 'Generate the main image and save the prompt',
+        description: 'Artifact: main image + prompt + task note + style lock.',
+      };
+      s1505.content.template = `Brief: goal [Awareness / Engagement / Conversion], audience [who], platform [where].
+Create a hero image: [SUBJECT and action], setting [CONTEXT], style [STYLE], ratio [1:1 / 16:9 / 9:16].
+Brand: colors [X], tone [professional / friendly / premium]. No text in the image unless needed.
+Style lock (do not rewrite): [15+ words]. Model for this series: [one].`;
+    }
+    const s151 = mod.slides.find((s) => s.id === 151);
+    if (s151?.content) {
+      s151.title = 'Scenario: Image';
+      s151.subtitle = 'A keyframe for the series';
+      s151.shortTitle = 'Scenario: Image';
+      s151.content.taskFrame = {
+        task: 'Prepare a keyframe for the series: same product, same style.',
+        doneWhen: 'You have an image and a prompt; the frame works as the video start.',
+      };
+      s151.content.template =
+        'Keyframe: [WHAT IS SHOWN]. Setting: [CONTEXT]. Style: [STYLE]. Brand colors: [X]. Ratio: [1:1 / 16:9 / 9:16]. Leave space for a headline if needed.';
+    }
+    const s152 = mod.slides.find((s) => s.id === 152);
+    if (s152?.content) {
+      s152.content.taskFrame = {
+        task: 'Generate a 3 s I2V clip from the keyframe: one camera, one action.',
+        doneWhen:
+          'You watched the last second: label readable, no new objects, you changed only one thing. If the tool accepts an end frame – you attached it; first = keyframe, last = what must remain at the end.',
+      };
+      s152.content.template = `Start: attach the keyframe. Keep identity and framing.
+What does not change: [product / label / colors / light from the left].
+The subject does: [one verb].
+Camera: [one move]. No orbit, no tilt, no stacked moves.
+Duration: 3 s first. Last frame: label readable, no new objects.
+If the tool supports it: also attach an end frame (what must remain at the end).`;
+      if (s152.content.instructions?.steps?.[0]) {
+        s152.content.instructions.steps[0].title =
+          'Generate a 3 s clip and watch the last frame';
+        s152.content.instructions.steps[0].description =
+          'Artifact: video file or link + prompt. Done when the last second is clean. If the tool accepts an end frame – attach it.';
+      }
+    }
+    const s153 = mod.slides.find((s) => s.id === 153);
+    if (s153?.content) {
+      s153.title = 'Scenario: Voice or bed';
+      s153.subtitle = 'Write for the ear + 3 anchor lines';
+      s153.shortTitle = 'Voice or bed';
+      s153.content.taskFrame = {
+        task: 'Try 3 anchor lines at the same tempo, then the full voice.',
+        doneWhen:
+          'Tempo and pronunciation stayed the same; the bed leaves room for the voice; rights are marked.',
+      };
+      s153.content.template = `Role: [who they speak to]. Tone: [warm / calm]. Keep the same tempo.
+Glossary: [brand] = [how to say it].
+First try 3 lines: hook / benefit / ask. Then the full script.
+Bed: no vocal, quiet, leave room for the voice. Rights: commercial.`;
+    }
+    const s154 = mod.slides.find((s) => s.id === 154);
+    if (s154?.content) {
+      s154.title = 'Scenario: Edit';
+      s154.subtitle = '15–30 s from 2–4 clips';
+      s154.shortTitle = 'Scenario: Edit';
+      s154.content.taskFrame = {
+        task: 'Assemble a 15–30 s clip: hook in the first 1–2 s, then export.',
+        doneWhen: 'You have an export, rights marked, an AI label, and a CPI note (how many tries).',
+      };
+    }
+
+    const s158 = mod.slides.find((s) => s.id === 158);
+    if (s158?.content?.sections) {
+      s158.content.introHeading = 'What you learned';
+      s158.content.introBody =
+        'You have prompts and results: a main image, and if you continued – video, audio and an edit.';
+      if (Array.isArray(s158.content.stats) && s158.content.stats[0]) {
+        s158.content.stats[0].label = 'Quick start';
+        if (s158.content.stats[2]) s158.content.stats[2].value = 'saved';
+      }
+      s158.content.firstAction24h =
+        'Within 24–48 hours, use the quick-start image or one mini-campaign piece in a real project (social post, slide, or background).';
+      s158.content.abilityBefore =
+        'You had no mini campaign or main image with saved prompts.';
+      s158.content.abilityAfter =
+        'You have a quick-start or mini-campaign artifact and can repeat it for another topic.';
+      s158.content.ownWorkPlaceholder = 'e.g. LinkedIn announcement, product hero…';
+      s158.content.sections = [
+        {
+          heading: 'Image',
+          icon: 'Image',
+          color: 'brand',
+          items: [
+            'Brief: goal, audience, platform',
+            'Hero image / keyframe with brand colors',
+            'Artifact: image + prompt used + a V1/V2 note if you iterated',
+          ],
+        },
+        {
+          heading: 'Short video',
+          icon: 'Video',
+          color: 'violet',
+          items: [
+            'Image-to-video from the hero keyframe',
+            '3–5 s clips, same style',
+            'Artifact: clip / link + prompt + CPI',
+          ],
+        },
+        {
+          heading: 'Audio, edit and checklist',
+          icon: 'Music',
+          color: 'amber',
+          items: [
+            'Sound first: voice or bed + rights',
+            '15–30 s edit if you joined the pieces',
+            'List: task note, prompt, rights, AI label',
+          ],
+        },
+        {
+          heading: 'Next step',
+          icon: 'ArrowRight',
+          color: 'emerald',
+          items: [
+            'Go back to the module list – repeat the practice with another topic or open another advanced path (data analysis 7–9, agents 10–12).',
+            'Save your best prompts – you will reuse them as templates.',
+          ],
+        },
+      ];
+    }
+  }
 }
 
 /** M13P-TRIM EN twins – ordered by copyable index (walk uses one copyableBySlide per slide). */
@@ -454,6 +1075,14 @@ Start: image-to-video from hero keyframe. Same style, same colors.`,
 2) I2V 3–5 s from that frame: camera […], same product / same style.
 (If you need longer – second keyframe, then edit.)`,
       },
+      {
+        heading: 'Copyable I2V cycle',
+        copyable: `Start: attach the keyframe. Keep identity and framing.
+What does not change: [product / label / colors / light from the left].
+The subject does: [one verb].
+Camera: [one move]. No orbit, no tilt, no stacked moves.
+Duration: 3 s first. Last frame: label readable, no new objects.`,
+      },
     ],
     13.35: [
       {
@@ -470,17 +1099,23 @@ Format: [1:1 / 16:9 / 9:16]. Avoid: [what to avoid].`,
       {
         heading: 'Ready prompt: Logo',
         copyable:
-          'Create a logo for [business area] company [name]. Style [minimal/modern], colors [x], transparent/white background, deliver 3 variants.',
+          'Create a logo for [business area] company [name]. Style [minimal/modern], colors [x], transparent/white background, deliver 3 variants.\nStyle lock: [15+ words, verbatim]. Model: [one].',
+        collapsible: true,
+        collapsedByDefault: true,
       },
       {
         heading: 'Ready prompt: Social post',
         copyable:
-          'From this text [paste], create a LinkedIn/Facebook illustration. Look [corporate], colors [x], format 1:1 or 4:5, no text / with CTA text [if needed].',
+          'From this text [paste], create a LinkedIn/Facebook illustration. Look [corporate], colors [x], format 1:1 or 4:5, no text / with CTA text [if needed].\nStyle lock: [15+ words, verbatim]. Model: [one].',
+        collapsible: true,
+        collapsedByDefault: true,
       },
       {
         heading: 'Ready prompt: Poster',
         copyable:
-          "Create a bold poster for event [name], date/place [x], style [x], include exact text: '…'.",
+          "Create a bold poster for event [name], date/place [x], style [x], include exact text: '…'.\nStyle lock: [15+ words, verbatim]. Model: [one].",
+        collapsible: true,
+        collapsedByDefault: true,
       },
     ],
     13.6: [
@@ -495,6 +1130,13 @@ Tempo: [slow / medium]. No vocals. Use: [ads / presentation] – needs a commerc
         copyable: `Voiceover, [EN], tone [professional / friendly], tempo [calm].
 Script: [paste 2–4 scenario sentences].
 No bed in the file – voice only. Mix with bed later.`,
+      },
+      {
+        heading: 'Copyable voice card',
+        copyable: `Role: [who they speak to]. Tone: [warm / calm]. Keep the same tempo.
+Glossary: [brand] = [how to say it].
+First try 3 lines: hook / benefit / ask. Then the full script.
+Bed: no vocal, quiet, leave room for the voice. License: commercial.`,
       },
       {
         heading: 'English MASTER template (universal)',

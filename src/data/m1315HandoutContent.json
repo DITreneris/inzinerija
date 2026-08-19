@@ -1,31 +1,29 @@
 {
-  "title": "Turinio inžinerijos kelio atmintinė (moduliai 13–15)",
-  "subtitle": "DI vaizdas, video, muzika ir teisių patikra – naudok kaip mini kampanijos kontrolinį lapą.",
+  "title": "Turinio kelio atmintinė",
+  "subtitle": "Problema → promptas → DI įrankis. Įklijuok ir dirbk.",
   "modalityChecklist": [
-    "Vaizdas – kai reikia hero vizualo, prezentacijos kadro arba socialinio įrašo.",
-    "Video – kai reikia parodyti judesį, procesą arba 5–10 sek. sceną iš jau sukurto vaizdo.",
-    "Muzika arba garsas – kai reikia nuotaikos, fono arba trumpų garso efektų.",
-    "Jei abejoji, pradėk nuo vieno hero vaizdo ir tik tada tęsk į video ar muziką."
+    "Vaizdas – įklijuok promptą į vaizdų įrankį (Midjourney, ChatGPT ar pan.).",
+    "Video – raktinį kadrą paversk 3–5 s klipu video įrankyje.",
+    "Garsas – balsas arba fonas garso įrankyje; viena eilutė apie teises.",
+    "Montažas – sudėk dalis montažo įrankyje (CapCut ar pan.)."
   ],
-  "imagePromptTemplate": "Brief: tikslas [Awareness / Engagement / Conversion], auditorija [kam], platforma [kur]. Sukurk hero vaizdą: [objektas ir veiksmas], aplinka [kontekstas], stilius [stilius], proporcijos [1:1 / 16:9 / 9:16]. Brand: spalvos [X], tonas [draugiškas / profesionalus / premium]. Be teksto vaizde, jei jo nereikia.",
-  "videoPromptTemplate": "Paversk šį hero vaizdą 5–10 sek. video scena. Judesys: [kas juda]. Kamera: [lėtas priartėjimas / šoninis judesys / statinis kadras]. Išlaikyk tą patį stilių, spalvas ir pagrindinį objektą. Nepakeisk brand elementų.",
-  "musicPromptTemplate": "Sukurk 30–60 sek. foninės muzikos aprašą: nuotaika [rami / energinga / premium], tempas [lėtas / vidutinis / greitas], instrumentai [2–3], naudojimas [video / podcast / reklama]. Be vokalo, jei tekstas trukdytų.",
+  "imagePromptTemplate": "Brief: tikslas [Awareness / Engagement / Conversion], auditorija [kam], platforma [kur bus naudojama].\nSukurk hero vaizdą: [OBJEKTAS ir veiksmas], aplinka [KONTEKSTAS], stilius [STILIUS], proporcijos [1:1 / 16:9 / 9:16].\nBrand: spalvos [X], tonas [profesionalus / draugiškas / premium]. Be teksto vaizde, jei jo nereikia.\nStiliaus užraktas (nekaitaliok): [15+ žodžių]. Modelis šiai serijai: [vienas].\nTeisės: patikrink, ar įrankis leidžia viešą naudojimą.",
+  "videoPromptTemplate": "Pradžia: raktinis kadras. Kas nekinta: [produktas / etiketė / spalvos]. Objektas daro: [vienas veiksmažodis]. Kamera: [vienas judesys]. 3 s pirma. Paskutinis kadras: etiketė skaitoma, nėra naujų objektų.\nTeisės: tas pats kadras, tas pats stilius – nekeisk svetimų ženklų.",
+  "musicPromptTemplate": "Rolė: [kam kalba]. Tonas: [šiltas / ramus]. Tempą laikyk tą patį. Žodynėlis: [ženklas] = [kaip tarti]. 3 eilutės: kablukas / nauda / kvietimas. Fonas po balsu, be vokalo. License: commercial.\nTeisės: ar galima naudoti viešai?",
+  "montagePromptTemplate": "Montažo planas (15–30 s):\n0–3 s: [kablukas]\n3–8 s: [produktas / nauda]\n8–15 s: [detalė]\nPabaiga: [CTA]\nGarsas: [balsas / fonas] | teisės: [licensed]\nDI žyma: sukurta su [įrankis].",
   "rightsChecklist": [
-    "Patikrink įrankio naudojimo teises: ar leidžiama komercinė paskirtis?",
-    "Nenaudok svetimų logotipų, veidų ar prekės ženklų be leidimo.",
-    "Jei turinys bus viešas, išsaugok promptą, įrankį, datą ir licencijos nuorodą.",
-    "Jei vaizdas ar garsas panašus į realų žmogų ar kūrinį, rinkis saugesnę alternatyvą."
+    "Prie kiekvieno prompto – viena eilutė: ar galima naudoti viešai?"
   ],
   "deliveryChecklist": [
-    "Brief: tikslas, auditorija, platforma.",
-    "Bent vienas promptas ir sugeneruotas rezultatas arba nuoroda.",
-    "Jei darei pilną kelią – V1/V2 pokytis ir kodėl pasirinkai finalą.",
-    "Vienas sakinys apie naudojimo teises.",
-    "Pirmas realus panaudojimas per 24–48 val."
+    "Užduoties aprašas: tikslas, kam, kur.",
+    "Bent vienas promptas ir rezultatas arba nuoroda.",
+    "Jei jungei visumą – video + garsas + montažas.",
+    "Pirmas realus panaudojimas per 24–48 val.",
+    "Užraktas vienoje kortelėje: modelis · stiliaus antraštė · pavyzdžiai · balsas · teisės · DI žyma."
   ],
-  "reflectionSummary": "Per 24–48 val. panaudok vieną promptą tikrame projekte. Užrašyk: kas pavyko, ką koregavai V2 ir kokią teisių patikrą atlikai.",
+  "reflectionSummary": "Per 24–48 val. panaudok vieną promptą tikrame projekte. Užrašyk: kas pavyko, ką koregavai ir ar teisės aiškios.",
   "nextPageHeading": "Ką daryti per 48 val.",
-  "nextPageIntro": "Turinio kelias baigtas tada, kai turi ne tik gražų rezultatą, bet ir promptą, brief, teisių patikrą ir aiškų pirmą panaudojimą.",
+  "nextPageIntro": "Kelias baigtas tada, kai turi ne tik rezultatą, bet ir promptą, kurį gali įklijuoti dar kartą.",
   "primaryCtaLabel": "Ekosistemos žemėlapis (blog)",
   "secondaryCtaLabels": {
     "decide": "Nuspręsk kitą žingsnį (Decide)",

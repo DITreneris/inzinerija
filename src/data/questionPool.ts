@@ -14,7 +14,7 @@ export const QUESTION_POOL: TestQuestion[] = [
   {
     id: 'pool-meta-1',
     type: 'mcq',
-    question: 'Nuo ko geriausia pradėti promptą?',
+    question: 'Kuris blokas pirmas mūsų 6 blokų modelyje?',
     options: [
       'Nuo rolės ir tikslo (Meta)',
       'Nuo rezultatų formato (Output)',
@@ -23,10 +23,10 @@ export const QUESTION_POOL: TestQuestion[] = [
     ],
     correct: 0,
     explanation:
-      'Meta blokas yra svarbiausias – jis nustato kontekstą visam likusiam promptui.',
+      'Šiame modelyje pirmas blokas yra Meta – rolė, tikslas ir auditorija. Tai šio kurso seka, ne universalus dėsnis.',
     hint: 'Pagalvok, kas nustato kas esu ir kodėl rašau kontekstą.',
     bloomLevel: 1,
-    relatedSlideId: 8,
+    relatedSlideId: 5,
     category: 'meta',
   },
   {
@@ -39,7 +39,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Meta blokas apima viską: KAS esi (rolė), KOKIA patirtis ir KAM skirtas rezultatas (auditorija).',
     hint: 'Prisimink: Meta = rolė + patirtis + tikslinė auditorija.',
     bloomLevel: 2,
-    relatedSlideId: 8,
+    relatedSlideId: 5,
     category: 'meta',
   },
   {
@@ -57,7 +57,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Meta blokas apibrėžia KAS esi, KOKIA patirtis ir KAM skirtas rezultatas.',
     hint: 'Meta = kas aš esu, ką žinau, kam rašau.',
     bloomLevel: 1,
-    relatedSlideId: 8,
+    relatedSlideId: 5,
     category: 'meta',
   },
   {
@@ -70,7 +70,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Teisingai! DI adaptuoja savo atsakymo lygį pagal nurodytą rolę. Ekspertinė rolė = detalesnis, gilesnis atsakymas.',
     hint: 'Pagalvok: ar skiriasi atsakymas kai klausi eksperto vs pradedančiojo?',
     bloomLevel: 3,
-    relatedSlideId: 8,
+    relatedSlideId: 5,
     category: 'meta',
   },
 
@@ -92,7 +92,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Konkretus input = konkretūs duomenys: 250k EUR, +15%, 1200 užsakymų.',
     hint: 'Input – tai faktai, skaičiai ir duomenys, ne nuotaikos ar klausimai.',
     bloomLevel: 1,
-    relatedSlideId: 9,
+    relatedSlideId: 6,
     category: 'input',
   },
   {
@@ -110,7 +110,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Geras Input = konkretūs skaičiai ir metrikos, ne abstrakčios frazės.',
     hint: 'Input blokas reikalauja konkrečių faktų – skaičiai, datos, metrikos.',
     bloomLevel: 2,
-    relatedSlideId: 9,
+    relatedSlideId: 6,
     category: 'input',
   },
   {
@@ -123,7 +123,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Neteisingai. Be konkretaus Input, DI generuos bendrinį tekstą be tavo konteksto. Visada pateik konkrečius duomenis.',
     hint: 'Pagalvok: ar DI žino tavo pardavimų skaičius be Input?',
     bloomLevel: 3,
-    relatedSlideId: 9,
+    relatedSlideId: 6,
     category: 'input',
   },
   {
@@ -141,7 +141,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Rezultato formatas (lentelė, sąrašas, kalba) priklauso Output blokui, ne Input.',
     hint: 'Input = duomenys. Kas iš šių yra formatas, ne duomenys?',
     bloomLevel: 2,
-    relatedSlideId: 9,
+    relatedSlideId: 6,
     category: 'input',
   },
 
@@ -159,7 +159,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Formatas (sąrašas, 5 punktai, kalba) – tai Output bloko atsakomybė.',
     hint: 'Kuris blokas nustato rezultato formatą ir struktūrą?',
     bloomLevel: 2,
-    relatedSlideId: 10,
+    relatedSlideId: 7,
     category: 'output',
   },
   {
@@ -177,7 +177,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Output blokas nurodo TIKSLŲ formatą: lentelė, 5 stulpeliai, lietuvių kalba.',
     hint: 'Output = KO nori (formatas, struktūra, kalba).',
     bloomLevel: 1,
-    relatedSlideId: 10,
+    relatedSlideId: 7,
     category: 'output',
   },
   {
@@ -190,7 +190,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Neteisingai. Be formato nurodymo (lentelė, sąrašas, ataskaita) DI pasirinks savo formatą, kuris gali netikti.',
     hint: 'Ar nori, kad DI spręstų už tave, koks bus rezultato formatas?',
     bloomLevel: 3,
-    relatedSlideId: 10,
+    relatedSlideId: 7,
     category: 'output',
   },
   {
@@ -208,7 +208,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Geras Output apibrėžia formatą (lentelė), struktūrą (5 stulpeliai), kalbą (lietuviškai) ir apimtį (500 žodžių).',
     hint: 'Geras Output = konkretus formatas + struktūra + kalba + apimtis.',
     bloomLevel: 2,
-    relatedSlideId: 10,
+    relatedSlideId: 7,
     category: 'output',
   },
 
@@ -230,7 +230,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Reasoning blokas nurodo MĄSTYMO SEKĄ: 1) Analizuoti 2) Palyginti 3) Rekomenduoti.',
     hint: 'Reasoning = mąstymo seka. Pagalvok apie žingsnius prieš atsakymą.',
     bloomLevel: 1,
-    relatedSlideId: 11,
+    relatedSlideId: 9,
     category: 'reasoning',
   },
   {
@@ -243,7 +243,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Teisingai! Minimalus promptas = Meta + Input + Output (3 blokai). Reasoning pridedamas, kai reikia sudėtingesnio mąstymo.',
     hint: 'Pagalvok: ar paprastas klausimas „Išversk šį sakinį“ reikalauja mąstymo sekos?',
     bloomLevel: 4,
-    relatedSlideId: 11,
+    relatedSlideId: 9,
     category: 'reasoning',
   },
   {
@@ -261,7 +261,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Geras Reasoning = aiški mąstymo seka su numeruotais žingsniais.',
     hint: 'Reasoning = numeruota seka: analizuok, palygink, rekomenduok.',
     bloomLevel: 2,
-    relatedSlideId: 11,
+    relatedSlideId: 9,
     category: 'reasoning',
   },
   {
@@ -279,7 +279,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Chain-of-thought technika nurodo DI mąstyti žingsnis po žingsnio – tai Reasoning bloko esmė.',
     hint: 'Kuri technika skatina mąstyti žingsnis po žingsnio?',
     bloomLevel: 3,
-    relatedSlideId: 11,
+    relatedSlideId: 9,
     category: 'reasoning',
   },
 
@@ -301,20 +301,20 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Quality Control = tikrinimo kriterijai: Ar logiška? Ar pilna? Ar tikslūs faktai?',
     hint: 'Quality = tikrink save prieš atsakant.',
     bloomLevel: 1,
-    relatedSlideId: 12,
+    relatedSlideId: 10,
     category: 'quality',
   },
   {
     id: 'pool-quality-2',
     type: 'true-false',
     question:
-      'Quality Control blokas tikrina rezultatą tik po to, kai DI jau sugeneravo atsakymą.',
-    isTrue: false,
+      'Quality Control kriterijus rašai į promptą, kad DI patikrintų atsakymą prieš pateikdamas.',
+    isTrue: true,
     explanation:
-      'Quality Control kriterijus nustatome PRIEŠ generavimą – tai instrukcija DI tikrink save.',
-    hint: 'Pagalvok: ar Quality Control yra instrukcija DI, ar veiksmas po rezultato?',
+      'Teisingai. Quality Control yra instrukcija prompte: DI tikrina atsakymą prieš pateikdamas. Kriterijus nustatai prieš generavimą.',
+    hint: 'QC yra prompto dalis, ne atskiras veiksmas po atsakymo.',
     bloomLevel: 4,
-    relatedSlideId: 12,
+    relatedSlideId: 10,
     category: 'quality',
   },
   {
@@ -332,7 +332,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       '„Nežinau“ taisyklė – vienas iš efektyviausių būdų mažinti haliucinacijas.',
     hint: 'Kas atsitinka, kai DI bandoma atsakyti į klausimą, kurio atsakymo nežino?',
     bloomLevel: 3,
-    relatedSlideId: 12,
+    relatedSlideId: 10,
     category: 'quality',
   },
   {
@@ -345,7 +345,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Teisingai – Quality yra „papildomas“ blokas. Minimalus promptas = Meta + Input + Output. Tačiau Quality labai rekomenduojamas sudėtingesniems promptams.',
     hint: 'Prisimink: kurie 3 blokai yra „privalomas minimumas“?',
     bloomLevel: 2,
-    relatedSlideId: 12,
+    relatedSlideId: 10,
     category: 'quality',
   },
 
@@ -367,7 +367,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Temperature 0.8–1.0 = kūrybiškesnis. Temperature 0.1–0.3 = tikslesnis, faktinis.',
     hint: 'Kuris parametras kontroliuoja kūrybiškumą vs tikslumą?',
     bloomLevel: 2,
-    relatedSlideId: 13,
+    relatedSlideId: 11,
     category: 'advanced',
   },
   {
@@ -380,7 +380,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Neteisingai. Temperature 0.1 = labai tikslus, faktinis, nuspėjamas. Temperature 0.9 = kūrybiškas, įvairus.',
     hint: 'Žema temperature = žemas „kūrybiškumo“ lygis.',
     bloomLevel: 2,
-    relatedSlideId: 13,
+    relatedSlideId: 11,
     category: 'advanced',
   },
   {
@@ -398,7 +398,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'max_tokens apriboja DI atsakymo ilgį žodžiais/tokenais. Naudinga, kai reikia trumpo atsakymo.',
     hint: 'Token = maždaug žodis. Max tokens = maksimalus žodžių skaičius.',
     bloomLevel: 1,
-    relatedSlideId: 13,
+    relatedSlideId: 11,
     category: 'advanced',
   },
   {
@@ -416,7 +416,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Temperature (kūrybiškumas) ir max_tokens (ilgis) – du pagrindiniai Advanced bloko parametrai.',
     hint: 'Advanced blokas = techniniai nustatymai. Kokie du pagrindiniai?',
     bloomLevel: 1,
-    relatedSlideId: 13,
+    relatedSlideId: 11,
     category: 'advanced',
   },
 
@@ -432,7 +432,7 @@ export const QUESTION_POOL: TestQuestion[] = [
     explanation: '6 blokai: Meta, Input, Output, Reasoning, Quality, Advanced.',
     hint: 'Prisimink: M-I-O-R-Q-A sistema.',
     bloomLevel: 1,
-    relatedSlideId: 14,
+    relatedSlideId: 12,
     category: 'bendra',
   },
   {
@@ -450,7 +450,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Minimalus = 3 blokai: KAS esi (Meta) + KĄ turi (Input) + KO nori (Output).',
     hint: 'Kurie 3 blokai yra „privalomas minimumas“?',
     bloomLevel: 2,
-    relatedSlideId: 14,
+    relatedSlideId: 12,
     category: 'bendra',
   },
   {
@@ -462,21 +462,21 @@ export const QUESTION_POOL: TestQuestion[] = [
       { left: 'Input', right: 'Konkretūs duomenys ir faktai' },
       { left: 'Output', right: 'Rezultato formatas ir struktūra' },
       { left: 'Reasoning', right: 'Mąstymo seka ir logika' },
-      { left: 'Quality', right: 'Kokybes tikrinimo kriterijai' },
+      { left: 'Quality', right: 'Kokybės tikrinimo kriterijai' },
       { left: 'Advanced', right: 'Techniniai parametrai (temperature)' },
     ],
     explanation:
       'Kiekvienas iš 6 blokų turi aiškų atsakomybę. Kai visi veikia kartu – rezultatas nuspėjamas.',
     hint: 'Kuris blokas atsako į: kas esu, ką turiu, ko noriu, kaip mąstyti, ar gerai, kokie nustatymai?',
     bloomLevel: 2,
-    relatedSlideId: 14,
+    relatedSlideId: 12,
     category: 'bendra',
   },
   {
     id: 'pool-bendra-4',
     type: 'ordering',
     question:
-      'Surikiuok 6 blokus nuo svarbiausio iki mažiausiai svarbaus (pagal prioritetą):',
+      'Surikiuok blokus pagal 6 blokų modelio seką (nuo pirmo iki paskutinio).',
     correctOrder: [
       'Meta (rolė ir kontekstas)',
       'Input (duomenys)',
@@ -497,7 +497,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Meta, Input, Output – privalomi (top 3). Reasoning, Quality, Advanced – papildomi.',
     hint: 'Pirmi trys blokai yra privalomas minimumas aiškiam rezultatui gauti.',
     bloomLevel: 3,
-    relatedSlideId: 14,
+    relatedSlideId: 12,
     category: 'bendra',
   },
 
@@ -519,7 +519,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Workflow apibrėžia formatą, reikalavimus ir laukiamą rezultatą.',
     hint: 'Workflow = struktūruotas procesas su aiškiu galutiniu rezultatu.',
     bloomLevel: 2,
-    relatedSlideId: 3,
+    relatedSlideId: 15,
     category: 'workflow',
   },
   {
@@ -532,7 +532,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Neteisingai. Workflow turi aiškią struktūrą, etapus ir laukiamą rezultatą. Pokalbis = laisva forma.',
     hint: 'Ar pokalbis turi aiškų planą ir laukiamą formatą?',
     bloomLevel: 2,
-    relatedSlideId: 3,
+    relatedSlideId: 15,
     category: 'workflow',
   },
   {
@@ -550,7 +550,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Workflow = aiški seka su etapais (brief, struktūra, turinys, formatavimas, peržiūra).',
     hint: 'Workflow visada turi aiškų žingsnių planą.',
     bloomLevel: 2,
-    relatedSlideId: 3,
+    relatedSlideId: 15,
     category: 'workflow',
   },
 
@@ -567,7 +567,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Few-shots pateikia 1–2 pavyzdžius, po to prašo naujų. Zero-shot – be pavyzdžių.',
     hint: 'Few reiškia keli – tai technika, kuri naudoja kelis pavyzdžius.',
     bloomLevel: 1,
-    relatedSlideId: 5,
+    relatedSlideId: 14,
     category: 'technikos',
   },
   {
@@ -585,7 +585,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Zero-shot = DI atlieka užduotį be pateiktų pavyzdžių, remdamasis tik instrukcija.',
     hint: 'Zero = nulis, shot = bandymas/pavyzdys. Zero-shot = be pavyzdžių.',
     bloomLevel: 1,
-    relatedSlideId: 5,
+    relatedSlideId: 14,
     category: 'technikos',
   },
   {
@@ -598,7 +598,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Neteisingai. Promptų seka = kelių atskirų promptų grandinė, kur kiekvieno rezultatas naudojamas kitame.',
     hint: 'Chaining = grandinė. Ar grandinė yra vienas ilgas elementas?',
     bloomLevel: 2,
-    relatedSlideId: 5,
+    relatedSlideId: 14,
     category: 'technikos',
   },
 
@@ -622,7 +622,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Promptas turi Meta (rolė), Input (duomenis) ir Output (lentelė), bet neturi Reasoning – kaip DI turėtų analizuoti.',
     hint: 'Palygink: kas jau yra (rolė, duomenys, formatas) ir ko trūksta iš 6 blokų.',
     bloomLevel: 4,
-    relatedSlideId: 11,
+    relatedSlideId: 9,
     category: 'reasoning',
   },
   {
@@ -642,7 +642,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Blogas rezultatas = nestruktūruotas promptas. Pridėjus Meta, Output ir Quality – rezultatas bus nuspėjamas.',
     hint: 'Pagalvok: kiek 6 blokų sistemos elementų trūksta šiame prompte?',
     bloomLevel: 3,
-    relatedSlideId: 16,
+    relatedSlideId: 12,
     category: 'bendra',
   },
   {
@@ -658,7 +658,7 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Reasoning blokas nurodo mąstymo seką: 1) Analizuok duomenis, 2) Išskirk problemines sritis, 3) Pateik rekomendacijas.',
     hint: 'Kuris blokas atsako į klausimą KAIP mąstyti prieš atsakant?',
     bloomLevel: 4,
-    relatedSlideId: 11,
+    relatedSlideId: 9,
     category: 'reasoning',
   },
   {
@@ -668,17 +668,17 @@ export const QUESTION_POOL: TestQuestion[] = [
       'Rašai promptą naujo SaaS produkto aprašymui. Tavo promptas: „Tu esi kopyraiteris. Parašyk produkto aprašymą mano svetainei. Produktas kainuoja 49 EUR/mėn ir automatizuoja 80% rutininių užduočių.“',
     question: 'Kuri iš šių rekomendacijų MAŽIAUSIAI pagerins šį promptą?',
     options: [
-      'Pakeisti DI modelį iš GPT-4 į GPT-3.5',
+      'Pakeisti DI įrankį / modelį (palikti tą patį promptą)',
       'Pridėti Output bloką: SEO optimizuotas, 500 žodžių, su CTA mygtukais',
       'Pridėti Quality bloką: tikslūs faktai, be perdėjimo',
       'Pridėti Reasoning bloką: pirma analizuok konkurentus, tada rask unikalumus',
     ],
     correct: 0,
     explanation:
-      'DI modelio pakeitimas (GPT-4 vs GPT-3.5) mažiau padeda nei pridėti struktūrinius blokus (Output, Quality, Reasoning). Modelio keitimas liečia tik įrankį, o ne prompto struktūrą.',
+      'Įrankio ar modelio keitimas mažiau padeda nei pridėti struktūrinius blokus (Output, Quality, Reasoning). Keitimas liečia tik įrankį, o ne prompto struktūrą.',
     hint: 'Kuris pakeitimas yra apie įrankius, o ne apie prompto struktūrą?',
     bloomLevel: 4,
-    relatedSlideId: 16,
+    relatedSlideId: 12,
     category: 'bendra',
   },
 ];

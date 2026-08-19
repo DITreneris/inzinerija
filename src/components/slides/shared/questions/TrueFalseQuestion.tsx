@@ -64,12 +64,6 @@ export function TrueFalseQuestion({
         </div>
       </div>
 
-      <ConfidenceSelector
-        value={confidence}
-        onChange={(level) => onConfidence?.(level)}
-        disabled={showResults}
-      />
-
       <div className="grid grid-cols-2 gap-3">
         {/* Tiesa button */}
         <button
@@ -113,6 +107,14 @@ export function TrueFalseQuestion({
           {en ? 'False' : 'Netiesa'}
         </button>
       </div>
+
+      {onConfidence ? (
+        <ConfidenceSelector
+          value={confidence}
+          onChange={onConfidence}
+          disabled={showResults}
+        />
+      ) : null}
 
       {/* Progressive hint */}
       {showHint && question.hint && !showResults && (

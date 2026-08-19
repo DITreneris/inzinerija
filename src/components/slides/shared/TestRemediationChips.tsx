@@ -112,20 +112,20 @@ const LINKS_M14: LinkSpec[] = [
   {
     targetModuleId: 13,
     slideId: 13.12,
-    labelLt: 'Pipeline / CPI',
-    labelEn: 'Pipeline / CPI',
+    labelLt: 'Grandinė / CPI',
+    labelEn: 'Media chain / CPI',
   },
   {
     targetModuleId: 13,
     slideId: 13.3,
-    labelLt: 'Brandas ir formatas',
+    labelLt: 'Ženklas ir formatas',
     labelEn: 'Brand and format',
   },
   {
     targetModuleId: 13,
     slideId: 13.6,
-    labelLt: 'Garsas / audio-first',
-    labelEn: 'Audio-first',
+    labelLt: 'Pirma garsas',
+    labelEn: 'Sound first',
   },
   {
     targetModuleId: 13,
@@ -142,14 +142,42 @@ const LINKS_M14: LinkSpec[] = [
   {
     targetModuleId: 13,
     slideId: 13.11,
-    labelLt: 'Brief → publikacija',
-    labelEn: 'Brief → publication',
+    labelLt: 'Užduotis → publikacija',
+    labelEn: 'Task → publish',
   },
 ];
 
-function linksFor(moduleId: 8 | 11 | 14): LinkSpec[] {
+const LINKS_M17: LinkSpec[] = [
+  {
+    targetModuleId: 16,
+    slideId: 16.4,
+    labelLt: 'Problema prieš sprendimą',
+    labelEn: 'Problem before solution',
+  },
+  {
+    targetModuleId: 16,
+    slideId: 16.6,
+    labelLt: 'Vertė nėra funkcija',
+    labelEn: 'Value is not a feature',
+  },
+  {
+    targetModuleId: 16,
+    slideId: 16.18,
+    labelLt: 'Ribos',
+    labelEn: 'Limits',
+  },
+  {
+    targetModuleId: 16,
+    slideId: 16.101,
+    labelLt: 'Brief fazės',
+    labelEn: 'Brief phases',
+  },
+];
+
+function linksFor(moduleId: 8 | 11 | 14 | 17): LinkSpec[] {
   if (moduleId === 8) return LINKS_M8;
   if (moduleId === 11) return LINKS_M11;
+  if (moduleId === 17) return LINKS_M17;
   return LINKS_M14;
 }
 
@@ -159,7 +187,7 @@ export default function TestRemediationChips({
   onGoToModule,
   sourceModuleId,
 }: {
-  testModuleId: 8 | 11 | 14;
+  testModuleId: 8 | 11 | 14 | 17;
   locale: StepExplanationsLocale;
   onGoToModule?: (
     moduleId: number,

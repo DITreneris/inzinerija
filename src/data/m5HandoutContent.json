@@ -1,6 +1,6 @@
 {
   "title": "Modulio 5 atmintinė. Prezentacijos sprintas.",
-  "subtitle": "Brief → storyline → draftas → QC (25–30 min)",
+  "subtitle": "Užduoties aprašas → argumentų seka → juodraštis → kokybės patikra (25–30 min)",
   "toolsIntro": "DI (struktūra ir turinys): ChatGPT, Claude, Gemini. Įrankio medis: Gamma (rekomenduojama) · Copilot/Office · Canva. Kiti – pagal poreikį.",
   "toolsBullets": [
     "ChatGPT, Claude, Gemini – struktūra ir turinys",
@@ -10,13 +10,13 @@
   "masterPrompt": "Sukurk 8 skaidrių prezentacijos struktūrą (ne pilną turinį). Tema: [Įrašyti]. Auditorija: [Įrašyti]. Kiekvienai skaidrei pateik: pavadinimą ir 2–3 pagrindines mintis. Formatas: numeruotas sąrašas. Tonas: aiškus, non-tech.",
   "fullPromptPrinciple": "META + INPUT + OUTPUT + REASONING + QUALITY + ADVANCED. Storyline: sprendimas + 3 argumentai + CTA; antraštės = teiginiai.",
   "sequenceSteps": [
-    "Brief – tema, auditorija, tikslas, skaidrių skaičius, tonas",
-    "Storyline – sprendimas, 3 argumentai, CTA",
+    "Užduoties aprašas (brief) – tema, auditorija, tikslas, skaidrių skaičius, tonas",
+    "Argumentų seka (storyline) – sprendimas, 3 argumentai, CTA",
     "Struktūra – 8 skaidrių planas (teiginys + 2 bullet)",
     "Turinys – DI → įrankis (Gamma / Copilot / Canva)",
-    "QC – 6 punktai + soft proof"
+    "Kokybės patikra – 6 punktai + soft proof"
   ],
-  "briefDefinition": "Brief – orientacija DI: tema, auditorija, tikslas, skaidrių skaičius, tonas/formatas. Storyline papildo: ką auditorija turi nuspręsti.",
+  "briefDefinition": "Užduoties aprašas (brief) – orientacija DI: tema, auditorija, tikslas, skaidrių skaičius, tonas/formatas. Argumentų seka (storyline) papildo: ką auditorija turi nuspręsti.",
   "qualityCheckPoints": [
     "Ar aiškus tikslas?",
     "Ar atitinka auditoriją?",

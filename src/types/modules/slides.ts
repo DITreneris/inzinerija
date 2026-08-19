@@ -1242,7 +1242,14 @@ export interface PracticeScenarioSampleFile {
 export interface PracticeScenarioSlideContent {
   scenarioTitle?: string;
   scenarioDescription?: string;
-  taskFrame?: { task: string; doneWhen: string };
+  taskFrame?: { task: string; doneWhen: string } | string;
+  template?: string;
+  templateLabel?: string;
+  scenario?: { narrativeLead?: string };
+  instructions?: {
+    title?: string;
+    steps?: { step: number; title: string; description: string }[];
+  };
   sampleFile?: PracticeScenarioSampleFile;
   reflectionPromptAfter?: string;
 }

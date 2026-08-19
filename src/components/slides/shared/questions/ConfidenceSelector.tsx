@@ -1,10 +1,12 @@
 /**
- * F3-1: Metakognityvinis pasitikėjimo pasirinkimas prieš atsakant.
- * "Kiek esi tikras?" – Tikras / Spėju / Nežinau.
+ * F3-1: Optional metacognition after the learner answers.
+ * "Kiek esi tikras?" – Tikras / Spėju / Nežinau. Does not gate submit.
  */
 import { ThumbsUp, HelpCircle, MinusCircle } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { getConfidenceLabels, type ConfidenceLevel } from './confidenceLabels';
 import { useLocale } from '../../../../contexts/LocaleContext';
+import { getT } from '../../../../i18n';
 
 export type { ConfidenceLevel };
 
@@ -30,6 +32,8 @@ export function ConfidenceSelector({
   compact = false,
   ariaLabel,
 }: ConfidenceSelectorProps) {
+  useTranslation();
+  const t = getT('testPractice');
   const { locale } = useLocale();
   const labels = getConfidenceLabels(locale);
   const levels: ConfidenceLevel[] = ['sure', 'guess', 'unsure'];
@@ -37,9 +41,12 @@ export function ConfidenceSelector({
     ariaLabel ?? (locale === 'en' ? 'How sure are you?' : 'Kiek esi tikras?');
 
   return (
-    <div className="mb-4" role="group" aria-label={resolvedAriaLabel}>
-      <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">
+    <div className="mt-4" role="group" aria-label={resolvedAriaLabel}>
+      <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-0.5">
         {locale === 'en' ? 'How sure are you?' : 'Kiek esi tikras?'}
+      </p>
+      <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">
+        {t('confidenceOptional')}
       </p>
       <div className={`flex flex-wrap gap-2 ${compact ? 'gap-1.5' : ''}`}>
         {levels.map((level) => {

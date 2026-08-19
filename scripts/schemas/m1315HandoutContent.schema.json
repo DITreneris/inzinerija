@@ -32,6 +32,7 @@
     "imagePromptTemplate": { "type": "string", "minLength": 1 },
     "videoPromptTemplate": { "type": "string", "minLength": 1 },
     "musicPromptTemplate": { "type": "string", "minLength": 1 },
+    "montagePromptTemplate": { "type": "string", "minLength": 1 },
     "rightsChecklist": {
       "type": "array",
       "minItems": 1,

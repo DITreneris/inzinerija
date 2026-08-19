@@ -1,6 +1,6 @@
 {
   "title": "Module 5 handout. Presentation sprint.",
-  "subtitle": "Brief → storyline → draft → QC (25–30 min)",
+  "subtitle": "Brief → storyline → draft → quality check (25–30 min)",
   "toolsIntro": "AI (structure and content): ChatGPT, Claude, Gemini. Tool tree: Gamma (recommended) · Copilot/Office · Canva. Others as needed.",
   "toolsBullets": [
     "ChatGPT, Claude, Gemini – structure and content",
@@ -14,7 +14,7 @@
     "Storyline – decision, 3 arguments, CTA",
     "Structure – 8-slide plan (assertion + 2 bullets)",
     "Content – AI → tool (Gamma / Copilot / Canva)",
-    "QC – 6 points + soft proof"
+    "Quality check – 6 points + soft proof"
   ],
   "briefDefinition": "Brief orients AI: topic, audience, goal, slide count, tone/format. Storyline adds: what the audience must decide.",
   "qualityCheckPoints": [

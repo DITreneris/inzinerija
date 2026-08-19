@@ -1,7 +1,7 @@
 # TODO Done snapshot (2026-08) – archyvas, ne SOT
 
 > **Statusas:** Docs Lean closeout po **M1012-DEEP** · **LANG-SOT** · **UJ-MUST** · **M16–18 authoring/TE/plain** · **M13 plain + TRIM** · **toolchain 1.6.1** · **M10–12 content audit + katalogas + SCHEME-CENTRAL W1** · **CATALOG-HOME**.  
-> **Gyvas working failas:** repo šaknies [`TODO.md`](../../../TODO.md) (open: §1.3 I5/Should · §1.4 MON · §1.5 Deferred · §1.7 TOOL-5).  
+> **Gyvas working failas:** repo šaknies [`TODO.md`](../../../TODO.md) (open: §1.3 I5/Should · §1.3a Walk RAW `152–158` · §1.3b C-S* · §1.4 MON · §1.5 Deferred · §1.7 TOOL-5).  
 > **Ankstesnis snapshot:** [`TODO_DONE_SPRINTS_2026-07-31.md`](TODO_DONE_SPRINTS_2026-07-31.md).  
 > **Ne naudoti** kaip prioritetų šaltinį agentams.
 
@@ -104,6 +104,26 @@ Open residual (live TODO §1.3): **T01 I5** parked · **Should** 2-as pass.
 | **M11-ITEMS** | q8 HITL prieš siuntimą; q6 grandinė be RFP; q1/q3/q7 distractoriai | [x] 2026-08-16 |
 | **M11-WALK** | Owner walk `110`→`113` | [x] 2026-08-16 · no RAW |
 | **M12-WALK** | Owner walk M12 | [x] 2026-08-16 · no RAW |
+
+---
+
+## Unreleased 2026-08-17…18 (po 1.6.3 training cut; ne 1.6.4 / ne re-pin)
+
+| ID / tema | Užduotis | Status |
+| --- | --- | --- |
+| **M14-W1** | Path Test items + chrome (leak, EN twins) | [x] 2026-08-17 |
+| **LANG-M1315** | LT║EN I0 + I1A + W1–W3 + I2 chrome | [x] 2026-08-17/18 |
+| **M15-W2** | `158` Greitas startas | [x] 2026-08-17 |
+| **M2 unlock** | Submit be 15× pasitikėjimo; fair stems | [x] 2026-08-17 |
+| **M15-EMPTY / GRID / PROMPTS / I3** | Compact praktika + `isM15` + 4 promptai | [x] 2026-08-18 |
+| **I2-M14** | First-screen + chip’ai + 0 % ne M2 | [x] 2026-08-18 |
+| **I2-M13** | MUST first-screen + ciklas + i2vGen i18n | [x] 2026-08-18 |
+| **M14-ITEMS** | Q6/Q9/Q11/Q12/Q5 kokybė (ne 12 rewrite) | [x] 2026-08-18 |
+| **C-M1–M3** | Craft Banga 1 Stage + Patikra | [x] 2026-08-18 |
+| **M5 polish** | 47 trukmė · stem’ai · body/atmintinė · katalogas chrome | [x] 2026-08-18 |
+| **Path Test leftovers** | Pasitikėjimas po atsakymo; ordering lock; I0 | [x] 2026-08-18 |
+
+Open residual (live TODO): **Walk RAW** liekana `152–158` · **C-S1–S4** · **T01 I5** parked · **Should** 2-as pass.
 
 ---
 

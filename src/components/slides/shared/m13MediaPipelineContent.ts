@@ -4,7 +4,7 @@ import type { M10Locale } from './m10DiagramContent';
 export type M13Locale = M10Locale;
 
 const STEPS_LT = [
-  { label: 'Brief + ženklas', desc: 'Tikslas, auditorija' },
+  { label: 'Užduotis + ženklas', desc: 'Tikslas, auditorija' },
   { label: 'Kadrai', desc: 'Scenarijaus piešiniai' },
   { label: 'Referencų užraktas', desc: 'Tas pats produktas' },
   { label: 'Trumpi I2V', desc: '3–5 s' },
@@ -17,7 +17,7 @@ const STEPS_EN = [
   { label: 'Frames', desc: 'Storyboard stills' },
   { label: 'Reference lock', desc: 'Same product' },
   { label: 'Short I2V', desc: '3–5 s' },
-  { label: 'Audio + edit', desc: 'Audio first' },
+  { label: 'Audio + edit', desc: 'Sound first' },
   { label: 'QA + AI label', desc: 'Rights, disclosure' },
 ] as const;
 
@@ -48,7 +48,7 @@ export function getM13MediaPipelineExplanations(
       },
       {
         title: '5. Audio + edit',
-        body: 'Audio first: voice-over (or bed only) sets duration; then cut, color grade and mix. Montage follows sound, not the other way around.',
+        body: 'Sound first: voice-over (or bed only) sets duration; then cut, color grade and mix. Montage follows sound, not the other way around.',
       },
       {
         title: '6. QA + AI label',
@@ -59,7 +59,7 @@ export function getM13MediaPipelineExplanations(
 
   return [
     {
-      title: '1. Brief + ženklas',
+      title: '1. Užduotis + ženklas',
       body: 'Prieš generavimą užrašyk: tikslą (atpažįstamumas / įsitraukimas / konversija), kam skirta, kur rodysi, spalvas ir toną. Be to DI „gražu“, bet ne tavo kampanijai.',
     },
     {
@@ -76,11 +76,11 @@ export function getM13MediaPipelineExplanations(
     },
     {
       title: '5. Garsas + montažas',
-      body: 'Pirmiausia garsas: balsas (arba tik fonas) diktuoja trukmę; tada kirpimas, spalvos ir mix. Montažas seka garsą, ne atvirkščiai.',
+      body: 'Pirmiausia garsas: balsas (arba tik fonas) diktuoja trukmę; tada kirpimas, spalvos ir maišymas. Montažas seka garsą, ne atvirkščiai.',
     },
     {
       title: '6. Patikra + DI žyma',
-      body: 'Patikrink ženklą, žinutę, formatą, teises ir disclosure (C2PA / žmogui matoma DI žyma). Verslo ciklą (brief → A/B → optimizacija) žr. skaidrę „Darbo eiga: nuo brief iki publikacijos“.',
+      body: 'Patikrink ženklą, žinutę, formatą, teises ir DI žymą (C2PA / žmogui matoma žyma). Verslo ciklą (užduoties aprašas → A/B → tobulinimas) žr. skaidrę „Darbo eiga: nuo užduoties aprašo iki publikacijos“.',
     },
   ];
 }
@@ -101,7 +101,7 @@ export function getM13MediaPipelineChrome(locale: M13Locale) {
   return {
     title: 'Generatyvinės medijos grandinė',
     hint: 'Paspausk žingsnį – paaiškinimas apačioje',
-    aria: 'Šeši žingsniai: brief, kadrai, referencų užraktas, trumpi I2V, garsas ir montažas, patikra ir DI žyma',
+    aria: 'Šeši žingsniai: užduotis, kadrai, referencų užraktas, trumpi I2V, garsas ir montažas, patikra ir DI žyma',
     regionAria: 'Generatyvinės medijos grandinė – šeši žingsniai',
     youAreHere: 'Tu esi čia:',
     navAria: 'Grandinės žingsnių pasirinkimas',

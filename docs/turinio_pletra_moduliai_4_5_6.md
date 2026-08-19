@@ -1396,19 +1396,19 @@ Pradiniame plane numatyta **dvi atskiros skaidrės:** (1) **4.6a Haliucinacijos*
   1. Ar galiu nurodyti šaltinius RAG prompte ir žinau, ką rašyti, jei informacijos šaltiniuose nėra? („Nežinau“, cituoti šaltinį.)
   2. Ar žinau, kaip mažinti haliucinacijas ir tikrinti atsakymus? (šaltiniai, cross-check, „nežinau“ taisyklė.)
   3. Ar galiu suformuluoti neutralų promptą ir atpažinti manipuliaciją (šališką formuluotę, leading question)?
-- **Kas toliau? (blokas su nuorodomis į Modulį 5):** Kitas žingsnis – **Modulis 5: 15 min prezentacijos sprintas** (sukursite prezentacijos draftą iš turimos informacijos) ir **mini suvokimo testas** (patikrinsite sprinto ir workflow principus: brief, struktūra, įrankis, kokybės patikra). Po sėkmingo testo (≥70%) – rekomenduojama pereiti į **Modulį 6: Praktika** (vienas integruotas projektas).
+- **Kas toliau? (blokas su nuorodomis į Modulį 5):** Kitas žingsnis – **Modulis 5: 25–30 min prezentacijos sprintas** (sukursite prezentacijos juodraštį iš turimos informacijos) ir **mini suvokimo testas** (patikrinsite sprinto ir darbo eigos principus: užduoties aprašas, struktūra, įrankis, kokybės patikra). Po sėkmingo testo (≥70%) – rekomenduojama pereiti į **Modulį 6: Praktika** (vienas integruotas projektas).
 - **Pirmas veiksmas per 24–48 val. (blokas, User Journey rekomendacija):** „Šiandien atidaryk DI ir užduok vieną RAG klausimą su šaltiniais. Arba nukopijuok RAG mini-šabloną iš skaidrės 4.2 arba anti-haliucinacinį šabloną iš 4.6a ir panaudok vienoje darbo užklausoje – nurodyk šaltinius arba patikrink vieną DI atsakymą.“ Skaidrėje – atskiras trumpas blokas (1–2 sakiniai), kad rezultatas būtų apčiuopiamas per 48 val.
 - **Kur pritaikyti? (blokas, VARTOTOJU_ATSILIEPIMAI M5):** „RAG ir žinių patikrinimas – kai reikia ataskaitų pagal dokumentus, šaltinius ar duomenis (Eurostat, įmonės dokumentai). Haliucinacijų mažinimas – prieš publikavimą ar sprendimų priėmimą pagal DI išvestį. Manipuliacijų atpažinimas – etiška nauda ir objektyvesni atsakymai.“ Skaidrėje – 2–3 sakiniai, atskiras blokas (pvz. terms arba brand).
-- **Motyvacija į Modulį 5:** „Kitas žingsnis – **Modulis 5: 15 min prezentacijos sprintas** (iš turimos info) + **mini suvokimo testas**. Susikursite prezentacijos draftą ir pasitikrinsite sprinto bei workflow principus (brief, struktūra, įrankis, kokybė) prieš praktiką.“
+- **Motyvacija į Modulį 5:** „Kitas žingsnis – **Modulis 5: 25–30 min prezentacijos sprintas** (iš turimos info) + **mini suvokimo testas**. Susikursite prezentacijos juodraštį ir pasitikrinsite sprinto bei darbo eigos principus (užduoties aprašas, struktūra, įrankis, kokybė) prieš praktiką.“
 - **Pastaba UI:** Skaidrėje – apžvalga, blokas „Prieš testą: 3 klausimai sau“ (3 konkretūs klausimai), blokas **„Pirmas veiksmas per 24–48 val.“**, blokas **„Kur pritaikyti?“** (2–3 sakiniai), blokas „Kas toliau?“ (nuorodos į Modulį 5 ir 6), CTA į Modulį 5.
 
 ---
 
 ## 3. Prezentacijos sprintas (Modulis 5) – Apply+Gate (sprintas + mini testas)
 
-- **Level:** `test` (katalogo unlock); **copy / pedagogika:** Apply+Gate – draftas pirmiausia, tada mini vartai.
+- **Level:** `test` (katalogo unlock); **copy / pedagogika:** Apply+Gate – juodraštis pirmiausia, tada mini vartai.
 - **Oficiali eilė:** [`docs/MODULIO_5_SKAIDRIU_EILES.md`](MODULIO_5_SKAIDRIU_EILES.md).
-- **Trukmė:** ~25–30 min (sprintas + QC + mini testas).
+- **Trukmė:** ~25–30 min (sprintas + kokybės patikra + mini testas).
 - **Klausimų skaičius:** mini testas 5; warm-up 4 (prieš test-intro).
 - **Formatas:** (1) **Sprintas** – 47 (brief + 8 struktūra) → **47.2** (storyline) → 47.5 (vienintelis 6 blokų + įrankio medis) → 510 (timed šablonas + soft proof) → **510.5** (QC lab), (2) **Just‑in‑time** 515, (3) **warm-up → mini testas** → results → optional **516** Rescue (M5 Path-test išimtis: warm-up prieš test-intro).
 - **Atrakinimas:** Modulis 5 atrakintas po Modulio 4 užbaigimo.
@@ -1418,8 +1418,8 @@ Pradiniame plane numatyta **dvi atskiros skaidrės:** (1) **4.6a Haliucinacijos*
 
 **Paskirtis:** Vertė ir „ką daryti dabar“ aiškios per 60–120 s. Rodymas – **atskiroje intro skaidrėje (action-intro)** prieš skaidrę 47, po to skaidrė 47 (workflow + įrankiai).
 
-- **Vertė (vienas sakinys):** „Per 15 min susikursi prezentacijos draftą su brief, struktūra ir kokybės patikra – paruošta prieš Modulio 6 projektą.“
-- **Trukmė:** ~15–18 min (sprintas + mini testas) – **būtina rodyti** modulio viduje (pvz. hero arba intro).
+- **Vertė (vienas sakinys):** „Per ~25–30 min susikursi prezentacijos juodraštį su užduoties aprašu, struktūra ir kokybės patikra – paruošta prieš Modulio 6 projektą.“
+- **Trukmė:** ~25–30 min (sprintas + kokybės patikra + mini testas) – **būtina rodyti** modulio viduje (pvz. hero arba intro).
 - **Pirmas veiksmas (firstActionCTA):** „Nukopijuok 8 skaidrių šabloną žemiau, užpildyk [Tema] ir [Auditorija], paleisk DI.“ Hierarchija: šablonas pirmas; workflow – optional (intro atsakinga už hook, 47 – detalė).
 
 ### 3.0a Modulio 5 intro skaidrė (action-intro su reveal)
@@ -1432,17 +1432,18 @@ Pradiniame plane numatyta **dvi atskiros skaidrės:** (1) **4.6a Haliucinacijos*
 
 **Turinys (kopijuojami į UI/JSON):**
 
-- **whyBenefit (hook fazėje):** „Per 15 min – paruoštas prezentacijos draftas. Brief, struktūra, kokybės patikra – vienas šablonas, vienas rezultatas.“
+- **whyBenefit (hook fazėje):** „Per ~25–30 min – paruoštas prezentacijos juodraštis. Užduoties aprašas, argumentų seka, struktūra, kokybės patikra – vienas kelias, vienas rezultatas.“
 - **ctaText:** „Pamatyk, kas laukia – per 1 minutę!“
-- **Hero (tik po reveal):** heroStat: „Modulis 5: Prezentacijos sprintas.“ heroText: „15 min – 8 skaidrių prezentacija su DI.“ heroSubText: „Brief → struktūra → turinys. Šiame modulyje nukopijuosi šabloną, užpildysi [Tema] ir [Auditorija], paleisi DI – gauksi paruoštą draftą.“
-- **firstActionCTA (po reveal):** „Toliau: atidaryk skaidrę „Per 15 min – 8 skaidrių prezentacija“ ir nukopijuok 8 skaidrių šabloną. Užpildyk [Tema], [Auditorija], paleisk DI.“
-- **duration:** „~25–30 min (sprintas + QC + mini testas)“
-- **audience:** „Skirta tiems, kurie baigė Modulį 4 ir nori sukurti prezentacijos draftą su storyline ir QC prieš Modulio 6 projektą.“
-- **outcomes (3–5 punktai):** (1) Susikurti brief (tema, auditorija, tikslas) ir storyline kryptį. (2) Sugeneruoti 8 skaidrių struktūrą su DI. (3) Gauti paruoštą draftą ir greitai patikrinti kokybę. (4) Po sėkmingo mini testo – pereiti į Modulį 6. (5) Parsisiųsti **Modulio 5 atmintinę** (PDF).
-- **handoutPromise (privalomas, rodomas po reveal):** „Po šio modulio galėsi parsisiųsti **Modulio 5 atmintinę** (PDF): sprinto esmė, brief, storyline, 8 skaidrių šablonas ir mini testo santrauka.“
-- **firstActionCTA:** nukreipti į skaidrę **„Kas yra 15 min sprintas ir ką daryti pirmiausia“** (id 47) – ne seną antraštę „Per 15 min – 8 skaidrių…“.
+- **Hero (tik po reveal):** heroStat: „Modulis 5: Prezentacijos sprintas.“ heroText: „25–30 min – 8 skaidrių prezentacija su DI.“ heroSubText: „Užduoties aprašas (brief) → argumentų seka (storyline) → struktūra → turinys → kokybės patikra. Nukopijuosi šablonus, užpildysi [Tema] ir [Auditorija], paleisi DI – gausi juodraštį prieš Modulį 6.“
+- **firstActionCTA (po reveal):** „Toliau: atidaryk skaidrę „Kas yra sprintas?“ ir nukopijuok 8 skaidrių šabloną. Užpildyk [Tema], [Auditorija], paleisk DI.“
+- **duration:** „~25–30 min (sprintas + kokybės patikra + mini testas)“
+- **audience:** „Skirta tiems, kurie baigė Modulį 4 ir nori sukurti prezentacijos juodraštį su argumentų seka (storyline) ir kokybės patikra prieš Modulio 6 projektą.“
+- **outcomes (3–5 punktai):** (1) Susikurti užduoties aprašą (brief): tema, auditorija, tikslas. (2) Suformuluoti argumentų seką (storyline): sprendimas + 3 argumentai + kvietimas veikti. (3) Sugeneruoti 8 skaidrių struktūrą ir juodraštį su DI. (4) Atlikti QC lab ir mini testą (≥70% → Modulis 6). (5) Parsisiųsti **Modulio 5 atmintinę** (PDF).
+- **handoutPromise (privalomas, rodomas po reveal):** „Po šio modulio galėsi parsisiųsti **Modulio 5 atmintinę** (PDF): sprintas, užduoties aprašas, argumentų seka, 8 skaidrių šablonas, kokybės patikra ir testo santrauka.“
+- **firstActionCTA:** nukreipti į skaidrę **„Kas yra sprintas?“** (id 47 `shortTitle`) – ne seną antraštę su „15 min“.
 
-**Fazių juosta (1 sakinys):** „Šiame modulyje: Sprintas (brief → struktūra → turinys → QC) → Pagalba (kai prireikia) → Mini testas.“
+**Fazių juosta (1 sakinys):** „Šiame modulyje: Sprintas (užduoties aprašas → struktūra → turinys → kokybės patikra) → Pagalba (kai prireikia) → Mini testas.“
+Katalogo kortelė (ModulesPage): be `brief` / `draftas` / `QC` – `užduoties aprašas` / `juodraštis` / `kokybės patikra`. Pirmas gloss – 45.5.
 
 ### 3.0b Skaidrė 47: preCopyCheckBlock (mini checkpoint prieš copy-paste)
 
@@ -1457,7 +1458,7 @@ Pradiniame plane numatyta **dvi atskiros skaidrės:** (1) **4.6a Haliucinacijos*
   **Teisingas:** B.  
   **Paaiškinimas:** „Pilnas brief (tema, auditorija, tikslas, apimtis, tonas) leidžia DI greitai ir tiksliai sugeneruoti struktūrą. Be to DI „spėlioja“ ir pateikia bendrybes.“
 
-- **Klausimas 2 (optional):** „Kokia logiška seka 15 min sprinto?“  
+- **Klausimas 2 (optional):** „Kokia logiška seka prezentacijos sprinto?“  
   **Variantai:** (A) Iš karto pilnas turinys → tada struktūra; (B) Brief → struktūra (8 skaidrės) → turinys → kokybės patikra; (C) Tik įrankio pasirinkimas; (D) Tik kokybės patikra.  
   **Teisingas:** B.  
   **Paaiškinimas:** „Brief nustato kryptį, struktūra – karkasą, turinys – užpildymas, kokybės patikra – paskutinis žingsnis prieš pristatymą.“
@@ -1488,14 +1489,14 @@ Eilė: žr. [`MODULIO_5_SKAIDRIU_EILES.md`](MODULIO_5_SKAIDRIU_EILES.md).
 **Įvado ekranas (prieš pradedant mini testą):**
 
 - **Antraštė:** Mini testas po sprinto.
-- **Tekstas:** Pirmiausia atlikote **15 min prezentacijos sprintą** (sukūrėte prezentacijos draftą iš turimos informacijos). Šis mini testas patikrina, ar supratote esminius principus: aiškų brief, struktūrą, įrankio pasirinkimą ir greitą kokybės patikrą.
-- **Micro-win frazė (User Journey):** „Jei jau atlikote 15 min sprintą – jūs pasiruošę. Šis testas tik sustiprina žinias.“
+- **Tekstas:** Pirmiausia atlikai **prezentacijos sprintą** (sukūrei prezentacijos juodraštį iš turimos informacijos). Šis mini testas patikrina, ar supranti esminius principus: aiškų brief, struktūrą, įrankio pasirinkimą ir greitą kokybės patikrą.
+- **Micro-win frazė (User Journey):** „Jei jau atlikai sprintą – tu pasiruošęs. Šis testas tik sustiprina žinias.“
 - **Slenksčiai:** Rezultatas **≥70%** – rekomenduojama pereiti prie Modulio 6 (praktika). Rezultatas **&lt;70%** – rekomenduojama dar kartą pakartoti sprintą ir peržiūrėti Modulio 4 „Struktūruotą procesą“ (4.1b) bei „Prezentacijų kūrimo workflow“ (4.1-workflow-ex).
 - **CTA:** Pradėti mini testą.
 
 **Rezultatų ekranas – jei &lt;70%:**
 
-- **Pranešimas:** Rezultatas [X]%. Rekomenduojame **pakartoti 15 min sprintą** (patikslinti brief ir struktūrą), tada vėl atlikti mini testą.
+- **Pranešimas:** Rezultatas [X]%. Rekomenduojame **pakartoti prezentacijos sprintą** (patikslinti brief ir struktūrą), tada vėl atlikti mini testą.
 - **Nuorodos:** Jei UI leidžia – nuorodos į Modulio 4 skaidres: 4.1b (struktūruotas procesas) ir 4.1-workflow-ex (prezentacijos workflow).
 - **CTA:** Pakartoti sprintą | Bandyti mini testą dar kartą.
 
@@ -1503,7 +1504,7 @@ Eilė: žr. [`MODULIO_5_SKAIDRIU_EILES.md`](MODULIO_5_SKAIDRIU_EILES.md).
 
 - **Pranešimas:** Sveikiname! Jūsų rezultatas [X]%. Turite veikiančią prezentacijos struktūrą ir suprantate sprinto logiką – galite pereiti į Modulio 6 praktiką.
 - **Ką tai reiškia? (slenksčių aiškumas, opcionaliai):** „Pasiekę ≥70% parodėte, kad suprantate brief, struktūrą ir kokybės patikrą – galite pereiti prie projekto. Jei gavote mažiau – rekomenduojame dar kartą peržiūrėti sprintą ir žemiau nurodytas skaidres.“ (Rodyti po pranešimo arba prieš „Kur pritaikyti?“ – 1–2 sakiniai.)
-- **Kur pritaikyti? / Pirmas veiksmas per 24–48 val. (M5 MUST, User Journey):** „Panaudok tą patį 15 min sprinto šabloną kitai prezentacijai – darbo susitikimui, pitch ar ataskaitai. Brief + 8 skaidrės + kokybės patikra.“ (Atskiras trumpas blokas rezultatų ekrane, vizualiai paryškintas – pvz. accent – kad konversija į „naudosiu“ būtų aiškesnė.)
+- **Kur pritaikyti? / Pirmas veiksmas per 24–48 val. (M5 MUST, User Journey):** „Panaudok tą patį sprinto šabloną kitai prezentacijai – darbo susitikimui, pitch ar ataskaitai. Brief + 8 skaidrės + kokybės patikra.“ (Atskiras trumpas blokas rezultatų ekrane, vizualiai paryškintas – pvz. accent – kad konversija į „naudosiu“ būtų aiškesnė.)
 - **CTA:** Pradėti Modulį 6: Praktika (projektas).
 
 ### 3.2 Modulio 5 klausimų bankas (SOT)
@@ -1737,7 +1738,7 @@ Eilė: žr. [`MODULIO_5_SKAIDRIU_EILES.md`](MODULIO_5_SKAIDRIU_EILES.md).
 - **Nuoseklumas su 1–3:** Ta pati triada Learn → Test → Practice palaikoma (Moduliai 4 → 5 → 6).
 - **Bloom taksonomija:**
   - Modulis 4: **Suprasti** (RAG, Deep research, tokenai, manipuliacijos, patikrinimas) ir **Taikyti** (pavyzdžiai, šablonai).
-  - Modulis 5: **Taikyti / Suprasti** (15 min sprintas + mini testas).
+  - Modulis 5: **Taikyti / Suprasti** (25–30 min prezentacijos sprintas + mini testas).
   - Modulis 6: **Taikyti / Analizuoti / Kurti** (vienas projektas su sinteze).
 - **Progresyvus sudėtingumas:** Modulis 6 reikalauja visko iš 4 ir 1–3 – tai atitinka „capstone“ tipo užduotį.
 - **Praktika:** Vienas projektas mažina kognityvinę apkrovą lyginant su keliais atskirais scenarijais ir leidžia giliau įsigilinti.
@@ -1777,7 +1778,7 @@ Eilė: žr. [`MODULIO_5_SKAIDRIU_EILES.md`](MODULIO_5_SKAIDRIU_EILES.md).
 
 ### 6.3 Integracija tarp naujų modulių
 
-- **4 → 5:** Modulio 4 santraukoje (4.7) aiškiai nurodyti: „Kitas žingsnis – **Modulis 5: 15 min prezentacijos sprintas** + **mini suvokimo testas**“ (ką tiksliai dalyvis padarys ir ką pasitikrins).
+- **4 → 5:** Modulio 4 santraukoje (4.7) aiškiai nurodyti: „Kitas žingsnis – **Modulis 5: 25–30 min prezentacijos sprintas** + **mini suvokimo testas**“ (ką tiksliai dalyvis padarys ir ką pasitikrins).
 - **5 → 6:** Testo rezultatų ekrane (kaip Modulio 2) – CTA: „Pradėti Modulį 6: Projekto kūrimas“ (arba „Praktika: projektas“).
 - **1–3 ↔ 4–6:**
   - Modulio 4 pradžioje (4.1a „Konteksto inžinerija: kaip valdyti DI“ ir 4.1a2 „4 dedamosios“) – savokos, apibrėžimas ir konceptualus skaidymas (sutapatintas su Anthropic, Google, OpenAI); įvade (4.1) – nuorodos į 6 blokus, workflow ir Modulio 1 santrauką.

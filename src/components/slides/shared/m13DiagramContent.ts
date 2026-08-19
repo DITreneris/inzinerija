@@ -53,7 +53,7 @@ export function getM13AecExplanations(locale: M10Locale): StepExplanation[] {
   return [
     {
       title: 'Atpažįstamumas',
-      body: 'Pritrauk dėmesį emocija ir kontrastu. Tipiniai formatai: viršelis, baneris, social postas. Daugiau emocijos nei aiškumo.',
+      body: 'Pritrauk dėmesį emocija ir kontrastu. Tipiniai formatai: viršelis, baneris, įrašas socialiniame tinkle. Daugiau emocijos nei aiškumo.',
     },
     {
       title: 'Įsitraukimas',
@@ -61,7 +61,7 @@ export function getM13AecExplanations(locale: M10Locale): StepExplanation[] {
     },
     {
       title: 'Konversija',
-      body: 'Skatink veiksmą – produktas, pasiūlymas, kvietimas veikti (CTA) matomas; pirmiausia aiškumas ir pasitikėjimas. Tipiška: reklamos maketas, landingo pagrindinis vaizdas (hero), „pirk dabar“ blokas.',
+      body: 'Skatink veiksmą – produktas, pasiūlymas, kvietimas veikti (CTA) matomas; pirmiausia aiškumas ir pasitikėjimas. Tipiška: reklamos maketas, tinklalapio pagrindinis vaizdas (hero), „pirk dabar“ blokas.',
     },
   ];
 }

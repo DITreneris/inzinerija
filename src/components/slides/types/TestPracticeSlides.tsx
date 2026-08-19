@@ -38,6 +38,10 @@ import {
   TestResultsReflectionBlock,
 } from '../shared';
 import type { Progress } from '../../../utils/progress';
+import {
+  getCompactPracticeContent,
+  resolveCompactTaskFrame,
+} from '../../../utils/compactPractice';
 import { resolveM9JourneySlots } from '../../../utils/resolveM9JourneyCopy';
 import {
   stickyClasses,
@@ -242,13 +246,12 @@ function isQuestionAnswered(
   return answers[q.id] !== undefined;
 }
 
-type IncompleteReasonKind = 'answer' | 'confidence' | 'matching';
+type IncompleteReasonKind = 'answer' | 'matching' | 'ordering';
 
-/** Trūkstamų atsakymų/pasitikėjimo sąrašas disabled submit mygtukui */
+/** Trūkstamų atsakymų sąrašas disabled submit mygtukui (pasitikėjimas neprivalomas) */
 function getIncompleteReasons(
   questions: TestQuestion[],
   answers: Record<string, number>,
-  confidence: Record<string, ConfidenceLevel>,
   completedSpecial: Set<string>
 ): Array<{ n: number; kind: IncompleteReasonKind }> {
   const reasons: Array<{ n: number; kind: IncompleteReasonKind }> = [];
@@ -257,12 +260,13 @@ function getIncompleteReasons(
     const qType = getQuestionType(q);
     const answered = isQuestionAnswered(q, answers, completedSpecial);
     if (!answered) {
-      reasons.push({
-        n,
-        kind: qType === 'matching' ? 'matching' : 'answer',
-      });
-    } else if (confidence[q.id] == null) {
-      reasons.push({ n, kind: 'confidence' });
+      const kind: IncompleteReasonKind =
+        qType === 'matching'
+          ? 'matching'
+          : qType === 'ordering'
+            ? 'ordering'
+            : 'answer';
+      reasons.push({ n, kind });
     }
   });
   return reasons;
@@ -482,10 +486,8 @@ export function TestSectionSlide({
     }
     setLastCategoryScores(catScores);
 
-    const allAnswered = resolvedQuestions.every(
-      (q) =>
-        isQuestionAnswered(q, answers, completedSpecial) &&
-        confidence[q.id] != null
+    const allAnswered = resolvedQuestions.every((q) =>
+      isQuestionAnswered(q, answers, completedSpecial)
     );
     if (allAnswered) {
       onComplete(Math.max(0, score));
@@ -496,30 +498,19 @@ export function TestSectionSlide({
     specialScores,
     hints,
     completedSpecial,
-    confidence,
     onComplete,
   ]);
 
-  const allAnswered = resolvedQuestions.every(
-    (q) =>
-      isQuestionAnswered(q, answers, completedSpecial) &&
-      confidence[q.id] != null
+  const allAnswered = resolvedQuestions.every((q) =>
+    isQuestionAnswered(q, answers, completedSpecial)
   );
-  const answeredCount = resolvedQuestions.filter(
-    (q) =>
-      isQuestionAnswered(q, answers, completedSpecial) &&
-      confidence[q.id] != null
+  const answeredCount = resolvedQuestions.filter((q) =>
+    isQuestionAnswered(q, answers, completedSpecial)
   ).length;
   const totalCount = resolvedQuestions.length;
   const incompleteReasons = useMemo(
-    () =>
-      getIncompleteReasons(
-        resolvedQuestions,
-        answers,
-        confidence,
-        completedSpecial
-      ),
-    [resolvedQuestions, answers, confidence, completedSpecial]
+    () => getIncompleteReasons(resolvedQuestions, answers, completedSpecial),
+    [resolvedQuestions, answers, completedSpecial]
   );
 
   return (
@@ -587,103 +578,90 @@ export function TestSectionSlide({
           moduleId,
           imageAlt: q.question,
         });
+        const questionN = qIdx + 1;
+        const questionCard =
+          type === 'true-false' ? (
+            <TrueFalseQuestion
+              question={q}
+              questionIndex={qIdx}
+              userAnswer={userAnswer}
+              showResults={showResults}
+              showHint={showHint}
+              confidence={confidence[q.id]}
+              onConfidence={(level: ConfidenceLevel) =>
+                handleConfidence(q.id, level)
+              }
+              onAnswer={handleAnswer}
+              onRequestHint={handleRequestHint}
+            />
+          ) : type === 'matching' ? (
+            <MatchingQuestion
+              question={q}
+              questionIndex={qIdx}
+              showResults={showResults}
+              showHint={showHint}
+              confidence={confidence[q.id]}
+              onConfidence={(level: ConfidenceLevel) =>
+                handleConfidence(q.id, level)
+              }
+              onComplete={handleSpecialComplete}
+              onRequestHint={handleRequestHint}
+            />
+          ) : type === 'ordering' ? (
+            <OrderingQuestion
+              question={q}
+              questionIndex={qIdx}
+              showResults={showResults}
+              showHint={showHint}
+              confidence={confidence[q.id]}
+              onConfidence={(level: ConfidenceLevel) =>
+                handleConfidence(q.id, level)
+              }
+              onComplete={handleSpecialComplete}
+              onRequestHint={handleRequestHint}
+            />
+          ) : type === 'scenario' ? (
+            <ScenarioQuestion
+              question={q}
+              questionIndex={qIdx}
+              userAnswer={userAnswer}
+              showResults={showResults}
+              showHint={showHint}
+              confidence={confidence[q.id]}
+              onConfidence={(level: ConfidenceLevel) =>
+                handleConfidence(q.id, level)
+              }
+              onAnswer={handleAnswer}
+              onRequestHint={handleRequestHint}
+              onRemediationLink={
+                onGoToModule ? handleRemediationLink : undefined
+              }
+            />
+          ) : (
+            <McqQuestion
+              question={q}
+              questionIndex={qIdx}
+              userAnswer={userAnswer}
+              showResults={showResults}
+              showHint={showHint}
+              confidence={confidence[q.id]}
+              onConfidence={(level: ConfidenceLevel) =>
+                handleConfidence(q.id, level)
+              }
+              onAnswer={handleAnswer}
+              onRequestHint={handleRequestHint}
+              stemVisual={stemVisual}
+              onRemediationLink={
+                onGoToModule ? handleRemediationLink : undefined
+              }
+            />
+          );
 
-        switch (type) {
-          case 'true-false':
-            return (
-              <TrueFalseQuestion
-                key={q.id}
-                question={q}
-                questionIndex={qIdx}
-                userAnswer={userAnswer}
-                showResults={showResults}
-                showHint={showHint}
-                confidence={confidence[q.id]}
-                onConfidence={(level: ConfidenceLevel) =>
-                  handleConfidence(q.id, level)
-                }
-                onAnswer={handleAnswer}
-                onRequestHint={handleRequestHint}
-              />
-            );
-
-          case 'matching':
-            return (
-              <MatchingQuestion
-                key={q.id}
-                question={q}
-                questionIndex={qIdx}
-                showResults={showResults}
-                showHint={showHint}
-                confidence={confidence[q.id]}
-                onConfidence={(level: ConfidenceLevel) =>
-                  handleConfidence(q.id, level)
-                }
-                onComplete={handleSpecialComplete}
-                onRequestHint={handleRequestHint}
-              />
-            );
-
-          case 'ordering':
-            return (
-              <OrderingQuestion
-                key={q.id}
-                question={q}
-                questionIndex={qIdx}
-                showResults={showResults}
-                showHint={showHint}
-                confidence={confidence[q.id]}
-                onConfidence={(level: ConfidenceLevel) =>
-                  handleConfidence(q.id, level)
-                }
-                onComplete={handleSpecialComplete}
-                onRequestHint={handleRequestHint}
-              />
-            );
-
-          case 'scenario':
-            return (
-              <ScenarioQuestion
-                key={q.id}
-                question={q}
-                questionIndex={qIdx}
-                userAnswer={userAnswer}
-                showResults={showResults}
-                showHint={showHint}
-                confidence={confidence[q.id]}
-                onConfidence={(level: ConfidenceLevel) =>
-                  handleConfidence(q.id, level)
-                }
-                onAnswer={handleAnswer}
-                onRequestHint={handleRequestHint}
-                onRemediationLink={
-                  onGoToModule ? handleRemediationLink : undefined
-                }
-              />
-            );
-
-          default: // 'mcq' or undefined
-            return (
-              <McqQuestion
-                key={q.id}
-                question={q}
-                questionIndex={qIdx}
-                userAnswer={userAnswer}
-                showResults={showResults}
-                showHint={showHint}
-                confidence={confidence[q.id]}
-                onConfidence={(level: ConfidenceLevel) =>
-                  handleConfidence(q.id, level)
-                }
-                onAnswer={handleAnswer}
-                onRequestHint={handleRequestHint}
-                stemVisual={stemVisual}
-                onRemediationLink={
-                  onGoToModule ? handleRemediationLink : undefined
-                }
-              />
-            );
-        }
+        return (
+          <div key={q.id} id={`test-q-${questionN}`}>
+            {questionCard}
+          </div>
+        );
       })}
 
       {!showResults && !isCompleted && (
@@ -712,14 +690,15 @@ export function TestSectionSlide({
               </p>
               <ul className="space-y-1 list-none">
                 {incompleteReasons.map(({ n, kind }) => (
-                  <li
-                    key={`${n}-${kind}`}
-                    className="text-sm text-amber-700 dark:text-amber-300"
-                  >
-                    {kind === 'confidence' &&
-                      t('submitBlockedConfidence', { n })}
-                    {kind === 'answer' && t('submitBlockedAnswer', { n })}
-                    {kind === 'matching' && t('submitBlockedMatching', { n })}
+                  <li key={`${n}-${kind}`}>
+                    <a
+                      href={`#test-q-${n}`}
+                      className="text-sm text-amber-700 dark:text-amber-300 underline-offset-2 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 rounded"
+                    >
+                      {kind === 'answer' && t('submitBlockedAnswer', { n })}
+                      {kind === 'matching' && t('submitBlockedMatching', { n })}
+                      {kind === 'ordering' && t('submitBlockedOrdering', { n })}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -746,15 +725,15 @@ const CATEGORY_META: Record<
   string,
   { label: string; color: string; slideId: number }
 > = {
-  meta: { label: 'Meta', color: 'rose', slideId: 8 },
-  input: { label: 'Input', color: 'orange', slideId: 9 },
-  output: { label: 'Output', color: 'amber', slideId: 10 },
-  reasoning: { label: 'Reasoning', color: 'emerald', slideId: 11 },
-  quality: { label: 'Quality', color: 'brand', slideId: 12 },
-  advanced: { label: 'Advanced', color: 'violet', slideId: 13 },
-  workflow: { label: 'Workflow', color: 'cyan', slideId: 3 },
-  technikos: { label: 'Technikos', color: 'amber', slideId: 5 },
-  bendra: { label: 'Bendra sistema', color: 'brand', slideId: 14 },
+  meta: { label: 'Meta', color: 'rose', slideId: 5 },
+  input: { label: 'Input', color: 'orange', slideId: 6 },
+  output: { label: 'Output', color: 'amber', slideId: 7 },
+  reasoning: { label: 'Reasoning', color: 'emerald', slideId: 9 },
+  quality: { label: 'Quality', color: 'brand', slideId: 10 },
+  advanced: { label: 'Advanced', color: 'violet', slideId: 11 },
+  workflow: { label: 'Workflow', color: 'cyan', slideId: 15 },
+  technikos: { label: 'Technikos', color: 'amber', slideId: 14 },
+  bendra: { label: 'Bendra sistema', color: 'brand', slideId: 12 },
 };
 
 const CATEGORY_LABEL_EN: Record<string, string> = {
@@ -1173,7 +1152,7 @@ export function TestResultsSlide({
   }
 
   // Module 8 (Duomenų analizės kelias) results – analogiškai M11
-  if (moduleId === 8 && rawScore > 0) {
+  if (moduleId === 8) {
     const passedMessage = t('m8PassedMessage');
     const failedMessage = t('m8FailedMessage');
     const m8Module = getModulesSync(locale)?.find((m) => m.id === 8);
@@ -1294,7 +1273,7 @@ export function TestResultsSlide({
   }
 
   // Module 11 (Agentų kelias) results – content-driven from slide 112
-  if (moduleId === 11 && rawScore > 0) {
+  if (moduleId === 11) {
     const m11Module = getModulesSync(locale)?.find((m) => m.id === 11);
     const m11ResultsSlide = m11Module?.slides?.find((s) => s.id === 112);
     const m11Content = m11ResultsSlide?.content as
@@ -1483,7 +1462,7 @@ export function TestResultsSlide({
   }
 
   // Module 14 (Turinio kelias) results – content-driven from slide 142
-  if (moduleId === 14 && rawScore > 0) {
+  if (moduleId === 14) {
     const m14Module = getModulesSync(locale)?.find((m) => m.id === 14);
     const m14ResultsSlide = m14Module?.slides?.find((s) => s.id === 142);
     const m14Content = m14ResultsSlide?.content as
@@ -1661,6 +1640,180 @@ export function TestResultsSlide({
     );
   }
 
+  if (moduleId === 17) {
+    const m17Module = getModulesSync(locale)?.find((m) => m.id === 17);
+    const m17ResultsSlide = m17Module?.slides?.find((s) => s.id === 172);
+    const m17Content = m17ResultsSlide?.content as
+      | Record<string, unknown>
+      | undefined;
+    const passedMessage =
+      (typeof m17Content?.passedMessage === 'string'
+        ? m17Content.passedMessage
+        : null) ??
+      (locale === 'en'
+        ? 'Great work! The brief looks narrow enough – you can go to the Module 18 project.'
+        : 'Sveikiname! Brief’as atrodo pakankamai siauras – gali eiti į Modulio 18 projektą.');
+    const failedMessage =
+      (typeof m17Content?.failedMessage === 'string'
+        ? m17Content.failedMessage
+        : null) ??
+      (locale === 'en'
+        ? 'Review Module 16 again – the 5 card fields, triage, the user cycle and 01_MVP_BRIEF.md.'
+        : 'Verta grįžti prie Modulio 16: kortelės 5 laukų, triage (Būtina/Galima/Nekuriame), naudotojo ciklo ir 01_MVP_BRIEF.md.');
+    const thresholdExplanation =
+      typeof m17Content?.thresholdExplanation === 'string'
+        ? m17Content.thresholdExplanation
+        : null;
+    const useCaseBlockObj = m17Content?.useCaseBlock as
+      | { heading?: string; body?: string; blockVariant?: string }
+      | undefined;
+    const useCaseHeading =
+      typeof useCaseBlockObj?.heading === 'string'
+        ? useCaseBlockObj.heading
+        : locale === 'en'
+          ? 'Next step: Module 18'
+          : 'Kitas žingsnis: Modulis 18';
+    const useCaseBody =
+      typeof useCaseBlockObj?.body === 'string' ? useCaseBlockObj.body : null;
+
+    const m17TestSectionIndex = getTestSectionSlideIndex(17, locale);
+    const handleRetryM17Test = () => {
+      if (onGoToModule && m17TestSectionIndex >= 0) {
+        onGoToModule(17, m17TestSectionIndex);
+      }
+    };
+
+    return (
+      <div className="space-y-6">
+        {passed ? (
+          <>
+            <StatusPanel
+              tone="success"
+              size="hero"
+              asStatus
+              icon={
+                <CheckCircle className="w-10 h-10 text-emerald-600 dark:text-emerald-400" />
+              }
+              title={t('passedTitleDefault')}
+            >
+              <p className="text-gray-700 dark:text-gray-300 mb-6">
+                {passedMessage}
+              </p>
+            </StatusPanel>
+            {thresholdExplanation && (
+              <Banner
+                variant="terms"
+                className="p-5 rounded-xl !border-slate-400"
+                ariaLabel={t('resultMeaningAria')}
+              >
+                <h4 className="font-bold text-gray-900 dark:text-white mb-2">
+                  {t('whatItMeansHeading')}
+                </h4>
+                <p
+                  className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}
+                >
+                  {thresholdExplanation}
+                </p>
+              </Banner>
+            )}
+            {useCaseBody && (
+              <Banner
+                variant="warning"
+                className="p-5 rounded-xl !bg-accent-50 dark:!bg-accent-900/20 !border-accent-500"
+                ariaLabel={t('whereToApplyShortAria')}
+              >
+                <h4 className="font-bold text-gray-900 dark:text-white mb-2">
+                  {useCaseHeading}
+                </h4>
+                <p
+                  className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}
+                >
+                  {useCaseBody}
+                </p>
+              </Banner>
+            )}
+            <div className="flex flex-wrap gap-3 justify-center">
+              {onNextSlide && (
+                <CTAButton
+                  variant="primary"
+                  onClick={onNextSlide}
+                  className="px-6 py-3"
+                  aria-label={t('m17ContinueToBonuses')}
+                >
+                  <ChevronRight className="w-5 h-5" />
+                  {t('m17ContinueToBonuses')}
+                </CTAButton>
+              )}
+              {onGoToModule && (
+                <CTAButton
+                  variant="secondary"
+                  onClick={() => onGoToModule(18)}
+                  className="px-6 py-3"
+                  aria-label={t('startModule18Aria')}
+                >
+                  {t('startModule18Aria')}
+                </CTAButton>
+              )}
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="bg-amber-50 dark:bg-amber-900/20 p-8 rounded-xl border-2 border-amber-200 dark:border-amber-800 text-center">
+              <h3
+                className={`${typographyClasses.h2} mb-2 text-gray-900 dark:text-white`}
+              >
+                {t('resultLabel')} {animatedScore}%
+              </h3>
+              <p className="text-gray-700 dark:text-gray-300 mb-6">
+                {failedMessage}
+              </p>
+              <div className="flex flex-wrap gap-3 justify-center">
+                {onGoToModule && (
+                  <CTAButton
+                    variant="secondary"
+                    onClick={() => onGoToModule(16, undefined, 17)}
+                    className="px-6 py-3"
+                    aria-label={t('viewModule16Aria')}
+                  >
+                    {t('viewModule16Aria')}
+                  </CTAButton>
+                )}
+                {onGoToModule && m17TestSectionIndex >= 0 && (
+                  <CTAButton
+                    variant="primary"
+                    onClick={handleRetryM17Test}
+                    className="px-6 py-3"
+                    aria-label={t('retryTestAria')}
+                  >
+                    {t('retryTestAria')}
+                  </CTAButton>
+                )}
+              </div>
+            </div>
+            {onGoToModule && (
+              <TestRemediationChips
+                testModuleId={17}
+                sourceModuleId={17}
+                locale={locale === 'en' ? 'en' : 'lt'}
+                onGoToModule={onGoToModule}
+              />
+            )}
+          </>
+        )}
+        {typeof m17Content?.reflectionPrompt === 'string' && (
+          <TestResultsReflectionBlock
+            reflectionPrompt={m17Content.reflectionPrompt}
+            reflectionTitle={
+              typeof m17Content.reflectionTitle === 'string'
+                ? m17Content.reflectionTitle
+                : undefined
+            }
+          />
+        )}
+      </div>
+    );
+  }
+
   // Module 2 (and default) results with F2 features
   return (
     <div className="space-y-6">
@@ -1686,8 +1839,8 @@ export function TestResultsSlide({
           {passed
             ? t('wellDoneNextHint')
             : locale === 'en'
-              ? 'We recommend reviewing Module 1, especially the 6-block section (slides 8–16). You can retake the test.'
-              : 'Rekomenduojame peržiūrėti Modulį 1, ypač 6 blokų skyrių (skaidrės 8–16). Gali pakartoti testą.'}
+              ? 'We recommend reviewing Module 1, especially the 6-block section (Meta–Advanced). You can retake the test.'
+              : 'Rekomenduojame peržiūrėti Modulį 1, ypač 6 blokų skyrių (Meta–Advanced). Gali pakartoti testą.'}
         </p>
         {getLastMaxStreak() >= 3 && (
           <div className="inline-flex items-center gap-1.5 mt-3 px-3 py-1 rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 text-sm font-medium">
@@ -1877,7 +2030,6 @@ function RemediationRetryBlock({
               showResults={showResults}
               showHint={false}
               confidence={undefined}
-              onConfidence={() => {}}
               onAnswer={handleAnswer}
               onRequestHint={() => {}}
             />
@@ -1892,7 +2044,6 @@ function RemediationRetryBlock({
             showResults={showResults}
             showHint={false}
             confidence={undefined}
-            onConfidence={() => {}}
             onAnswer={handleAnswer}
             onRequestHint={() => {}}
           />
@@ -2108,6 +2259,7 @@ export function PracticeIntroSlide({
   const introContent = getPracticeIntroContent(slide);
   const isM9 = moduleId === 9;
   const isM12 = moduleId === 12;
+  const isM15 = moduleId === 15;
   const m12PathChoices = isM12 ? (introContent.pathChoices ?? []) : [];
   const defaultM12PathId =
     introContent.recommendedPathId ??
@@ -3068,7 +3220,7 @@ export function PracticeIntroSlide({
           {t('m9WorkflowFirstFooter')}
         </p>
       )}
-      {!isM9 && !isM12 && (
+      {!isM9 && !isM12 && !isM15 && (
         <>
           <div className="flex flex-wrap items-center gap-2 mb-3">
             <h3
@@ -3154,7 +3306,7 @@ export function PracticeIntroSlide({
         </StatusPanel>
       )}
 
-      {isM12 ? null : isM9 ? (
+      {isM12 || isM15 ? null : isM9 ? (
         <details className="group rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/80 overflow-hidden">
           <summary className="list-none cursor-pointer px-4 py-3 font-bold text-gray-900 dark:text-white flex items-center justify-between gap-2 hover:bg-gray-50 dark:hover:bg-gray-900/50 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-inset">
             <span className="flex items-center gap-2">
@@ -3931,6 +4083,108 @@ export function PracticeScenarioSlide({
   const [selectedBranchingIndex, setSelectedBranchingIndex] = useState<
     number | null
   >(null);
+  const compactContent = getCompactPracticeContent(slide);
+  if (compactContent && (moduleId === 15 || !slide.scenario)) {
+    const compactFrame = resolveCompactTaskFrame(compactContent, locale);
+    const compactSteps = compactContent.instructions?.steps ?? [];
+    return (
+      <div className="space-y-6">
+        {compactContent.scenarioDescription && (
+          <p
+            className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}
+          >
+            {compactContent.scenarioDescription}
+          </p>
+        )}
+        {compactContent.scenario?.narrativeLead && (
+          <p
+            className="text-brand-700 dark:text-brand-300 italic text-sm border-l-4 border-brand-400 dark:border-brand-600 pl-3 py-1"
+            role="complementary"
+            aria-label={t('scenarioIntroAria')}
+          >
+            {compactContent.scenario.narrativeLead}
+          </p>
+        )}
+        {compactFrame && (
+          <div
+            className="space-y-2 rounded-xl border-2 border-brand-200 dark:border-brand-800 bg-brand-50/50 dark:bg-brand-900/20 p-4"
+            role="region"
+            aria-label={t('taskFrameAria')}
+          >
+            <p className="text-sm font-bold text-brand-900 dark:text-brand-100">
+              {locale === 'en' ? 'Task:' : 'Užduotis:'}{' '}
+              <span className="font-normal">{compactFrame.task}</span>
+            </p>
+            <p
+              className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}
+            >
+              <span className="font-semibold">{t('doneWhenLabel')}</span>{' '}
+              {compactFrame.doneWhen}
+            </p>
+          </div>
+        )}
+        {compactContent.template && !slide.practicalTask?.template && (
+          <div className="bg-white dark:bg-gray-800 border-2 border-accent-200 dark:border-accent-800 rounded-xl p-4">
+            <div className="flex items-start justify-between gap-3 mb-2">
+              <p className="text-sm font-semibold text-accent-800 dark:text-accent-200">
+                {compactContent.templateLabel ??
+                  (locale === 'en' ? 'Prompt' : 'Promptas')}
+              </p>
+              <CopyButton
+                text={compactContent.template}
+                ariaLabel={
+                  locale === 'en'
+                    ? `Copy ${compactContent.templateLabel ?? 'prompt'}`
+                    : `Kopijuoti ${compactContent.templateLabel ?? 'promptą'}`
+                }
+              />
+            </div>
+            <p className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-line font-mono">
+              {compactContent.template}
+            </p>
+          </div>
+        )}
+        {compactSteps.length > 0 && (
+          <ol className="space-y-3">
+            {compactSteps.map((step) => (
+              <li
+                key={step.step}
+                className="flex items-start gap-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-3"
+              >
+                <span
+                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-500 text-sm font-bold text-white"
+                  aria-hidden
+                >
+                  {step.step}
+                </span>
+                <div>
+                  <p className="font-semibold text-gray-900 dark:text-white text-sm">
+                    {step.title}
+                  </p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-0.5">
+                    {step.description}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        )}
+        {onRenderTask()}
+        {onGoToSummary && (
+          <div className="flex justify-end">
+            <button
+              type="button"
+              onClick={onGoToSummary}
+              className="text-sm font-medium text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 hover:underline focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 rounded px-2 py-1.5"
+              aria-label={t('goToPracticeSummaryAria')}
+            >
+              {locale === 'en' ? '→ To summary' : '→ Į santrauką'}
+            </button>
+          </div>
+        )}
+      </div>
+    );
+  }
   if (!slide.scenario) return null;
 
   const m9Slots =
@@ -3959,7 +4213,9 @@ export function PracticeScenarioSlide({
   const reflectionPromptAfter =
     reflectionOverride ??
     (moduleId === 9 ? t('m9DefaultReflectionAfter') : undefined);
-  const taskFrame = practiceContent?.taskFrame;
+  const taskFrameRaw = practiceContent?.taskFrame;
+  const taskFrame =
+    taskFrameRaw && typeof taskFrameRaw === 'object' ? taskFrameRaw : undefined;
   const sampleFile = practiceContent?.sampleFile;
   const sampleLabel = m9Slots?.sampleFileLabel ?? sampleFile?.label;
 

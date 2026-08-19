@@ -1,9 +1,9 @@
 # Promptų anatomija – Plėtros roadmap
 
-> **Atnaujinta:** 2026-08-16 | Roadmap **v4.27** (12 live per Supabase · M7–18 corporate iki 2027-01 · training **v1.6.3** · live pin **v1.6.2** kol neperpinsi · T01–T08 + T09 Must ✅ · hygiene **41**)  
-> **App live:** 1.6.2 (pin) · **Training cut:** **1.6.3**. **Ne** retag 1.6.1.  
+> **Atnaujinta:** 2026-08-19 | Roadmap **v4.36** (kiss + Unreleased gate-green · corp15 slice · hygiene **40** · training **v1.6.3** · live pin **v1.6.2**)  
+> **App live:** 1.6.2 (pin) · **Training cut:** **1.6.3**. **Ne** retag 1.6.1. **Ne** 1.6.4 / re-pin šiuo sync.  
 > **Done santrauka:** [`CODEBASE_WHAT_IS_DONE.md`](docs/development/CODEBASE_WHAT_IS_DONE.md) · [`CHANGELOG.md`](CHANGELOG.md) · archive [`TODO_DONE_SPRINTS_2026-08.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-08.md)  
-> **Open darbai:** [`TODO.md`](TODO.md) T01 I5 parked · Should 2-as pass · §1.4 MON (1/4/5/7/CRO) · §1.5 Deferred (D3) · §1.7 TOOL-5 · §1.6 Caveats B2. Learning P0/P1 **nėra**.
+> **Open darbai:** [`TODO.md`](TODO.md) T01 I5 parked · Should 2-as pass · §1.4 MON (1/4/5/7/CRO) · §1.5 Deferred (D3) · §1.7 TOOL-5 · §1.6 Caveats B2. Learning P0/P1 lentelė tuščia. Craft Should C-S1–S4 ✅.
 
 **Nuosavybė:** šis repo = turinio / pedagogikos / UI kokybės OS. Marketingas (env, PostHog, CRO) → kitas repo.  
 **Principas:** M1–9 production; **M10–12 corporate + content freeze**; **M13–15 corporate + learner plain**; M16–18 authoring + TE + plain ✅ · TE Could closed.  
@@ -17,16 +17,16 @@ M1–6 pilnai · M7–9 production tier 9 · M10–15 corporate cuts ✅ · M10�
 
 ### Open gaps (production ladder)
 
-| Horizon | Scope                          | Status                                                                | Prioritetas   |
-| ------- | ------------------------------ | --------------------------------------------------------------------- | ------------- |
-| **A**   | M1–9 corporate micro polish    | **done**                                                              | —             |
-| **B**   | M10–12 corporate production    | **done** + testerio Must T01–T08 + T09 ✅ (I5 parked; hygiene **41**) | TODO §1.3     |
-| **C**   | M13–15 corporate production    | **done** · learner plain ✅ · M13P-TRIM ✅                            | —             |
-| **M79** | M7–9 scheme / skaitomumo ROI   | **done**                                                              | archive       |
-| **E**   | Transfer & Retention (UJ-MUST) | **done**                                                              | archive       |
-| **D**   | M16–18 Kodo inžinerija         | authoring+TE+ritmas+plain ✅ · D3 future                              | Deferred §1.5 |
-| **UX**  | Katalogas / Home kelionė       | **done** (CATALOG-HOME 2026-08-12)                                    | —             |
-| **MON** | marketing (env, PostHog, CRO)  | out of scope                                                          | TODO §1.4     |
+| Horizon | Scope                          | Status                                                                                                                                                                                                                                                        | Prioritetas        |
+| ------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
+| **A**   | M1–9 corporate micro polish    | **done**                                                                                                                                                                                                                                                      | —                  |
+| **B**   | M10–12 corporate production    | **done** + testerio Must T01–T08 + T09 ✅ (I5 parked; hygiene **40**)                                                                                                                                                                                         | TODO §1.3          |
+| **C**   | M13–15 corporate production    | **done** · learner plain ✅ · M13P-TRIM ✅ · **M14 W1 + ITEMS ✅** · LANG W1–W3 ✅ · M15 walk FAIL + I2-M14 ✅ · **I2-M13 ✅** · craft Banga 1–3 C-M* + C-S1–S4 ✅ · Walk RAW `151–158` ✅ · corp15 sync ✅ · **kiss + slice honesty ✅** · Could C-C* parked | TODO §1.3a / §1.3b |
+| **M79** | M7–9 scheme / skaitomumo ROI   | **done**                                                                                                                                                                                                                                                      | archive            |
+| **E**   | Transfer & Retention (UJ-MUST) | **done**                                                                                                                                                                                                                                                      | archive            |
+| **D**   | M16–18 Kodo inžinerija         | authoring+TE+ritmas+plain ✅ · **M17 analog ✅** · D3 future                                                                                                                                                                                                  | Deferred §1.5      |
+| **UX**  | Katalogas / Home kelionė       | **done** (CATALOG-HOME 2026-08-12)                                                                                                                                                                                                                            | —                  |
+| **MON** | marketing (env, PostHog, CRO)  | out of scope                                                                                                                                                                                                                                                  | TODO §1.4          |
 
 ---
 
@@ -34,7 +34,7 @@ M1–6 pilnai · M7–9 production tier 9 · M10–15 corporate cuts ✅ · M10�
 
 ### Done context (ne open)
 
-- Corporate12/15 cuts ✅ · M1012-DEEP + content audit freeze (hygiene **41**) ✅ · M13–18 plain ✅ · SCHEME-CENTRAL W1 ✅ · CATALOG-HOME ✅ · M10 testerio Must T01–T08 + T09 ✅.
+- Corporate12/15 cuts ✅ · M1012-DEEP + content audit freeze (hygiene **40**) ✅ · M13–18 plain ✅ · M14 Path Test items ✅ · SCHEME-CENTRAL W1 ✅ · CATALOG-HOME ✅ · M10 testerio Must T01–T08 + T09 ✅.
 - Archive: [`TODO_DONE_SPRINTS_2026-08.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-08.md).
 
 ### Horizon D – M16–18 Kodo inžinerija
@@ -99,17 +99,19 @@ CI: schema, lint, test, **governance**, MVP + M1–9 + corporate12 + corporate15
 
 ## 6. Nuorodos
 
-| Kas                   | Kur                                                                                               |
-| --------------------- | ------------------------------------------------------------------------------------------------- |
-| Open TODO             | `TODO.md` §1                                                                                      |
-| Done / metrikos       | `CODEBASE_WHAT_IS_DONE.md`, `CHANGELOG.md`                                                        |
-| Agent start           | `DOCUMENTATION_QUICK_REF.md`                                                                      |
-| Docs lean             | `DOCS_MAINTENANCE.md` §1c                                                                         |
-| Release QA            | `RELEASE_QA_CHECKLIST.md`, `RELEASE_QA_RUN.md`                                                    |
-| M10–12 SOT            | `turinio_pletra_moduliai_10_11_12.md`                                                             |
-| M10–12 content freeze | [`M10_M12_CONTENT_DEEP_AUDIT_2026-08.md`](docs/development/M10_M12_CONTENT_DEEP_AUDIT_2026-08.md) |
-| M16–18 SOT (D)        | `turinio_pletra_moduliai_16_17_18.md`                                                             |
-| Marketing handoff     | `DEPLOYMENT.md`, `MON_P0_EXECUTION_PLAN.md`                                                       |
-| Done TODO snapshot    | [`TODO_DONE_SPRINTS_2026-08.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-08.md)           |
+| Kas                   | Kur                                                                                                                                                        |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Open TODO             | `TODO.md` §1                                                                                                                                               |
+| Done / metrikos       | `CODEBASE_WHAT_IS_DONE.md`, `CHANGELOG.md`                                                                                                                 |
+| Agent start           | `DOCUMENTATION_QUICK_REF.md`                                                                                                                               |
+| Docs lean             | `DOCS_MAINTENANCE.md` §1c                                                                                                                                  |
+| Release QA            | `RELEASE_QA_CHECKLIST.md`, `RELEASE_QA_RUN.md`                                                                                                             |
+| M10–12 SOT            | `turinio_pletra_moduliai_10_11_12.md`                                                                                                                      |
+| M10–12 content freeze | [`M10_M12_CONTENT_DEEP_AUDIT_2026-08.md`](docs/development/M10_M12_CONTENT_DEEP_AUDIT_2026-08.md)                                                          |
+| M13–15 learner walk   | [`M13_M15_LEARNER_WALK_INTAKE.md`](docs/development/intake/M13_M15_LEARNER_WALK_INTAKE.md)                                                                 |
+| M13–15 craft MoSCoW   | [`M13_M15_CRAFT_MOSCOW_2026-08.md`](docs/development/intake/M13_M15_CRAFT_MOSCOW_2026-08.md) · C-M1–M3 + C-S1–S4 ✅ · Could [`TODO.md`](TODO.md) **§1.3b** |
+| M16–18 SOT (D)        | `turinio_pletra_moduliai_16_17_18.md`                                                                                                                      |
+| Marketing handoff     | `DEPLOYMENT.md`, `MON_P0_EXECUTION_PLAN.md`                                                                                                                |
+| Done TODO snapshot    | [`TODO_DONE_SPRINTS_2026-08.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-08.md)                                                                    |
 
-**Sinchronas:** open gaps ↔ TODO §1 · **2026-08-16** 12 live per Supabase · M7–18 corporate iki 2027-01 · T09 + hygiene liekana **41** (ROADMAP **v4.26**).
+**Sinchronas:** open gaps ↔ TODO §1 · **2026-08-19** docs meta sync · kiss + Unreleased gate-green ✅ · 12 live per Supabase · M7–18 corporate iki 2027-01 · T09 + hygiene liekana **40** (ROADMAP **v4.36**).

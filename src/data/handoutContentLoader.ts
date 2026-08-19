@@ -127,6 +127,7 @@ export interface M1315HandoutContent {
   imagePromptTemplate: string;
   videoPromptTemplate: string;
   musicPromptTemplate: string;
+  montagePromptTemplate?: string;
   rightsChecklist: string[];
   deliveryChecklist: string[];
   reflectionSummary: string;

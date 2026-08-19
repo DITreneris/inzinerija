@@ -1,31 +1,29 @@
 {
-  "title": "Content engineering path handout (modules 13–15)",
-  "subtitle": "AI image, video, music, and rights check – use this as a mini-campaign checklist.",
+  "title": "Content path handout",
+  "subtitle": "Problem → prompt → AI tool. Paste and work.",
   "modalityChecklist": [
-    "Image – when you need a hero visual, presentation frame, or social post.",
-    "Video – when you need movement, a process, or a 5–10 second scene from an existing image.",
-    "Music or sound – when you need mood, background, or short sound effects.",
-    "When unsure, start with one hero image and only then continue to video or music."
+    "Image – paste the prompt into an image tool (Midjourney, ChatGPT, or similar).",
+    "Video – turn the keyframe into a 3–5 s clip in a video tool.",
+    "Audio – voice or bed in an audio tool; one line on rights.",
+    "Edit – join the pieces in an edit tool (CapCut or similar)."
   ],
-  "imagePromptTemplate": "Brief: goal [Awareness / Engagement / Conversion], audience [who], platform [where]. Create a hero image: [object and action], environment [context], style [style], ratio [1:1 / 16:9 / 9:16]. Brand: colors [X], tone [friendly / professional / premium]. No text in the image unless needed.",
-  "videoPromptTemplate": "Turn this hero image into a 5–10 second video scene. Motion: [what moves]. Camera: [slow zoom / side movement / static frame]. Keep the same style, colors, and main object. Do not change brand elements.",
-  "musicPromptTemplate": "Create a 30–60 second background music brief: mood [calm / energetic / premium], tempo [slow / medium / fast], instruments [2–3], usage [video / podcast / ad]. No vocals if words would distract.",
+  "imagePromptTemplate": "Brief: goal [Awareness / Engagement / Conversion], audience [who], platform [where].\nCreate a hero image: [SUBJECT and action], setting [CONTEXT], style [STYLE], ratio [1:1 / 16:9 / 9:16].\nBrand: colors [X], tone [professional / friendly / premium]. No text in the image unless needed.\nStyle lock (do not rewrite): [15+ words]. Model for this series: [one].\nRights: check that the tool allows public use.",
+  "videoPromptTemplate": "Start: keyframe. What does not change: [product / label / colors]. The subject does: [one verb]. Camera: [one move]. 3 s first. Last frame: label readable, no new objects.\nRights: same frame, same style – do not change other people's marks.",
+  "musicPromptTemplate": "Role: [who they speak to]. Tone: [warm / calm]. Keep the same tempo. Glossary: [brand] = [how to say it]. 3 lines: hook / benefit / ask. Bed after the voice, no vocal. License: commercial.\nRights: can you use it publicly?",
+  "montagePromptTemplate": "Edit plan (15–30 s):\n0–3 s: [hook]\n3–8 s: [product / benefit]\n8–15 s: [detail]\nEnd: [CTA]\nAudio: [voice / bed] | rights: [licensed]\nAI label: made with [tool].",
   "rightsChecklist": [
-    "Check the tool's usage rights: is commercial use allowed?",
-    "Do not use other people's logos, faces, or trademarks without permission.",
-    "If the content will be public, save the prompt, tool, date, and license link.",
-    "If an image or sound resembles a real person or work, choose a safer alternative."
+    "Next to each prompt – one line: can you use it publicly?"
   ],
   "deliveryChecklist": [
-    "Brief: goal, audience, platform.",
-    "At least one prompt and a generated result or link.",
-    "If you did the full path – V1/V2 change and why you chose the final.",
-    "One sentence about usage rights.",
-    "First real use within 24–48 hours."
+    "Task note: goal, who, where.",
+    "At least one prompt and a result or link.",
+    "If you joined the pieces – video + audio + edit.",
+    "First real use within 24–48 hours.",
+    "One lock card: model · style header · refs · voice · rights · AI label."
   ],
-  "reflectionSummary": "Within 24–48 hours, use one prompt in a real project. Write down what worked, what you adjusted in V2, and which rights check you performed.",
+  "reflectionSummary": "Within 24–48 hours, use one prompt in a real project. Write what worked, what you changed, and whether rights are clear.",
   "nextPageHeading": "What to do within 48 hours",
-  "nextPageIntro": "The Content path is complete when you have not just a good result, but also a prompt, brief, rights check, and clear first use.",
+  "nextPageIntro": "The path is done when you have not just a result, but a prompt you can paste again.",
   "primaryCtaLabel": "Ecosystem map (blog)",
   "secondaryCtaLabels": {
     "decide": "Decide your next step (Decide)",

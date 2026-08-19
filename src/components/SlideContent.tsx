@@ -28,6 +28,7 @@ import {
   resolveM9JourneySlots,
 } from '../utils/resolveM9JourneyCopy';
 import { applyM9PracticeTemplate } from '../utils/applyM9JourneyTheme';
+import { synthesizeCompactPracticalTask } from '../utils/compactPractice';
 import { lazyWithRetry } from '../utils/lazyWithRetry';
 import { PracticalTask } from './slides';
 import { LoadingSpinner } from './ui';
@@ -433,17 +434,20 @@ export default function SlideContent({
 
   // Practical Task wrapper component
   const PracticalTaskSection = () => {
-    if (!slide.practicalTask) return null;
-    let task = slide.practicalTask;
+    const compactTask = slide.practicalTask
+      ? null
+      : synthesizeCompactPracticalTask(slide, locale);
+    if (!slide.practicalTask && !compactTask) return null;
+    let task = slide.practicalTask ?? compactTask!;
     if (moduleId === 9 && (slide.id === 93.1 || slide.id === 93.2)) {
       const slots = resolveM9JourneySlots(
         progress.moduleJourneyFocus?.[9],
         locale.startsWith('en') ? 'en' : 'lt'
       );
       task = {
-        ...slide.practicalTask,
+        ...task,
         template: applyM9PracticeTemplate(
-          slide.practicalTask.template ?? '',
+          task.template ?? '',
           slots.themePlaceholder,
           slots.sampleColumns
         ),

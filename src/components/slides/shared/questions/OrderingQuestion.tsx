@@ -1,11 +1,5 @@
-import { useState, useCallback, useMemo } from 'react';
-import {
-  ArrowUp,
-  ArrowDown,
-  CheckCircle,
-  Lightbulb,
-  GripVertical,
-} from 'lucide-react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
+import { ArrowUp, ArrowDown, CheckCircle, Lightbulb } from 'lucide-react';
 import type { TestQuestion } from '../../../../types/modules';
 import { ConfidenceSelector } from './ConfidenceSelector';
 import type { ConfidenceLevel } from './ConfidenceSelector';
@@ -24,21 +18,29 @@ interface OrderingQuestionProps {
   onRequestHint: (questionId: string) => void;
 }
 
+function scoreOrder(items: string[], correctOrder: string[]): number {
+  let correctCount = 0;
+  items.forEach((item, idx) => {
+    if (item === correctOrder[idx]) correctCount++;
+  });
+  return correctOrder.length > 0 ? correctCount / correctOrder.length : 0;
+}
+
 /**
  * Ordering question – reorder items using up/down buttons.
- * Score = fraction of items in correct position (0–1).
+ * Current order is the answer (reported on mount and every move).
+ * Local "Check order" is an optional preview, not a submit lock.
  */
 export function OrderingQuestion({
   question,
   questionIndex,
-  showResults: _showResults,
+  showResults,
   showHint,
   confidence,
   onConfidence,
   onComplete,
   onRequestHint,
 }: OrderingQuestionProps) {
-  void _showResults;
   const { locale } = useLocale();
   const en = locale === 'en';
   const correctOrder = useMemo(
@@ -51,29 +53,28 @@ export function OrderingQuestion({
   const [items, setItems] = useState<string[]>(initialItems);
   const [isChecked, setIsChecked] = useState(false);
 
+  useEffect(() => {
+    onComplete(question.id, scoreOrder(items, correctOrder));
+  }, [items, correctOrder, onComplete, question.id]);
+
   const moveItem = useCallback(
     (fromIdx: number, direction: 'up' | 'down') => {
-      if (isChecked) return;
+      if (showResults) return;
       const toIdx = direction === 'up' ? fromIdx - 1 : fromIdx + 1;
       if (toIdx < 0 || toIdx >= items.length) return;
+      if (isChecked) setIsChecked(false);
       setItems((prev) => {
         const next = [...prev];
         [next[fromIdx], next[toIdx]] = [next[toIdx], next[fromIdx]];
         return next;
       });
     },
-    [isChecked, items.length]
+    [showResults, isChecked, items.length]
   );
 
   const handleCheck = useCallback(() => {
     setIsChecked(true);
-    let correctCount = 0;
-    items.forEach((item, idx) => {
-      if (item === correctOrder[idx]) correctCount++;
-    });
-    const score =
-      correctOrder.length > 0 ? correctCount / correctOrder.length : 0;
-    onComplete(question.id, score);
+    onComplete(question.id, scoreOrder(items, correctOrder));
   }, [items, correctOrder, onComplete, question.id]);
 
   return (
@@ -106,12 +107,6 @@ export function OrderingQuestion({
         </p>
       )}
 
-      <ConfidenceSelector
-        value={confidence}
-        onChange={(level) => onConfidence?.(level)}
-        disabled={isChecked}
-      />
-
       <div className="space-y-2">
         {items.map((item, idx) => {
           const isCorrectPosition = isChecked && item === correctOrder[idx];
@@ -128,7 +123,6 @@ export function OrderingQuestion({
                   : 'border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/30'
               }`}
             >
-              {/* Position number */}
               <span
                 className={`w-7 h-7 flex items-center justify-center rounded-full text-sm font-bold flex-shrink-0 ${
                   isChecked
@@ -141,16 +135,11 @@ export function OrderingQuestion({
                 {idx + 1}
               </span>
 
-              {/* Grip icon */}
-              <GripVertical className="w-4 h-4 text-gray-400 flex-shrink-0" />
-
-              {/* Item text */}
               <span className="flex-1 text-sm text-gray-800 dark:text-gray-200 font-medium">
                 {item}
               </span>
 
-              {/* Move buttons */}
-              {!isChecked && (
+              {!showResults && (
                 <div className="flex flex-col gap-0.5 flex-shrink-0">
                   <button
                     onClick={() => moveItem(idx, 'up')}
@@ -175,7 +164,6 @@ export function OrderingQuestion({
                 </div>
               )}
 
-              {/* Result icons */}
               {isChecked && isCorrectPosition && (
                 <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0" />
               )}
@@ -189,8 +177,15 @@ export function OrderingQuestion({
         })}
       </div>
 
-      {/* Check button */}
-      {!isChecked && (
+      {onConfidence ? (
+        <ConfidenceSelector
+          value={confidence}
+          onChange={onConfidence}
+          disabled={showResults}
+        />
+      ) : null}
+
+      {!isChecked && !showResults && (
         <CTAButton
           variant="primary"
           onClick={handleCheck}
@@ -202,7 +197,6 @@ export function OrderingQuestion({
         </CTAButton>
       )}
 
-      {/* Progressive hint */}
       {showHint && question.hint && !isChecked && (
         <div className="mt-3 p-3 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
           <div className="flex items-start gap-2">

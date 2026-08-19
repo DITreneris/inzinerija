@@ -11,7 +11,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
   {
     id: 'pool-meta-1',
     type: 'mcq',
-    question: "What's the best place to start a prompt?",
+    question: "Which block comes first in this course's 6-block model?",
     options: [
       'With role and goal (Meta)',
       'With output format (Output)',
@@ -20,10 +20,10 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
     ],
     correct: 0,
     explanation:
-      'The Meta block is the most important – it sets the context for the rest of the prompt.',
+      "In this course's model the first block is Meta – role, goal, and audience. That is this course's sequence, not a universal law.",
     hint: "Think about what sets the 'who I am' and 'why I'm writing' context.",
     bloomLevel: 1,
-    relatedSlideId: 8,
+    relatedSlideId: 5,
     category: 'meta',
   },
   {
@@ -36,7 +36,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       'The Meta block covers everything: WHO you are (role), WHAT experience, and WHO the result is for (audience).',
     hint: 'Remember: Meta = role + experience + target audience.',
     bloomLevel: 2,
-    relatedSlideId: 8,
+    relatedSlideId: 5,
     category: 'meta',
   },
   {
@@ -54,7 +54,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       'The Meta block defines WHO you are, WHAT experience you have, and WHO the result is for.',
     hint: 'Meta = who I am, what I know, who I write for.',
     bloomLevel: 1,
-    relatedSlideId: 8,
+    relatedSlideId: 5,
     category: 'meta',
   },
   {
@@ -67,7 +67,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       'Correct! AI adapts its answer level to the specified role. Expert role = more detailed, deeper answer.',
     hint: 'Think: does the answer differ when you ask an expert vs a beginner?',
     bloomLevel: 3,
-    relatedSlideId: 8,
+    relatedSlideId: 5,
     category: 'meta',
   },
 
@@ -88,7 +88,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
     explanation: 'Concrete input = concrete data: 250k EUR, +15%, 1200 orders.',
     hint: 'Input is facts, numbers, and data – not mood or questions.',
     bloomLevel: 1,
-    relatedSlideId: 9,
+    relatedSlideId: 6,
     category: 'input',
   },
   {
@@ -106,7 +106,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       'Good Input = concrete numbers and metrics, not abstract phrases.',
     hint: 'The Input block requires concrete facts – numbers, dates, metrics.',
     bloomLevel: 2,
-    relatedSlideId: 9,
+    relatedSlideId: 6,
     category: 'input',
   },
   {
@@ -119,7 +119,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       'Wrong. Without concrete Input, AI will generate generic text without your context. Always provide specific data.',
     hint: 'Think: does AI know your sales numbers without Input?',
     bloomLevel: 3,
-    relatedSlideId: 9,
+    relatedSlideId: 6,
     category: 'input',
   },
   {
@@ -137,7 +137,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       'Result format (table, list, language) belongs in the Output block, not Input.',
     hint: 'Input = data. Which of these is a format, not data?',
     bloomLevel: 2,
-    relatedSlideId: 9,
+    relatedSlideId: 6,
     category: 'input',
   },
 
@@ -154,7 +154,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
     explanation: "Format (list, 5 points, language) is the Output block's job.",
     hint: "Which block sets the result's format and structure?",
     bloomLevel: 2,
-    relatedSlideId: 10,
+    relatedSlideId: 7,
     category: 'output',
   },
   {
@@ -172,7 +172,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       'The Output block specifies the EXACT format: table, 5 columns, English language.',
     hint: 'Output = WHAT you want (format, structure, language).',
     bloomLevel: 1,
-    relatedSlideId: 10,
+    relatedSlideId: 7,
     category: 'output',
   },
   {
@@ -185,7 +185,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       'Wrong. Without specifying the format (table, list, report), AI will choose its own format, which may not fit your needs.',
     hint: 'Do you want AI to decide what the result format should be?',
     bloomLevel: 3,
-    relatedSlideId: 10,
+    relatedSlideId: 7,
     category: 'output',
   },
   {
@@ -203,7 +203,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       'Good Output defines the format (table), structure (5 columns), language (English), and length (500 words).',
     hint: 'Good Output = specific format + structure + language + length.',
     bloomLevel: 2,
-    relatedSlideId: 10,
+    relatedSlideId: 7,
     category: 'output',
   },
 
@@ -225,7 +225,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       'The Reasoning block specifies the THOUGHT SEQUENCE: 1) Analyze 2) Compare 3) Recommend.',
     hint: 'Reasoning = thought sequence. Think about steps before the answer.',
     bloomLevel: 1,
-    relatedSlideId: 11,
+    relatedSlideId: 9,
     category: 'reasoning',
   },
   {
@@ -238,7 +238,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       'Correct! Minimal prompt = Meta + Input + Output (3 blocks). Add Reasoning when you need more complex thinking.',
     hint: "Think: does a simple 'Translate this sentence' need a reasoning sequence?",
     bloomLevel: 4,
-    relatedSlideId: 11,
+    relatedSlideId: 9,
     category: 'reasoning',
   },
   {
@@ -256,7 +256,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       'Good Reasoning = a clear thought sequence with numbered steps.',
     hint: 'Reasoning = numbered sequence: analyze, compare, recommend.',
     bloomLevel: 2,
-    relatedSlideId: 11,
+    relatedSlideId: 9,
     category: 'reasoning',
   },
   {
@@ -270,7 +270,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       "Chain-of-thought tells AI to think step by step – that's the essence of the Reasoning block.",
     hint: 'Which technique encourages step-by-step thinking?',
     bloomLevel: 3,
-    relatedSlideId: 11,
+    relatedSlideId: 9,
     category: 'reasoning',
   },
 
@@ -292,20 +292,20 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       'Quality Control = check criteria: Is it logical? Is it complete? Are facts accurate?',
     hint: 'Quality = check yourself before answering.',
     bloomLevel: 1,
-    relatedSlideId: 12,
+    relatedSlideId: 10,
     category: 'quality',
   },
   {
     id: 'pool-quality-2',
     type: 'true-false',
     question:
-      'The Quality Control block only checks the result after AI has already generated the answer.',
-    isTrue: false,
+      'You write Quality Control criteria into the prompt so the model checks the answer before showing it.',
+    isTrue: true,
     explanation:
-      "We set Quality Control criteria BEFORE generation – it's an instruction to AI to 'check yourself'.",
-    hint: 'Think: is Quality Control an instruction to AI, or an action after the result?',
+      'Correct. Quality Control is an instruction in the prompt: the model checks the answer before showing it. You set the criteria before generation.',
+    hint: 'QC is part of the prompt, not a separate step after the answer.',
     bloomLevel: 4,
-    relatedSlideId: 12,
+    relatedSlideId: 10,
     category: 'quality',
   },
   {
@@ -323,7 +323,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       "The 'I don't know' rule is one of the most effective ways to reduce hallucinations.",
     hint: "What happens when AI tries to answer a question it doesn't know the answer to?",
     bloomLevel: 3,
-    relatedSlideId: 12,
+    relatedSlideId: 10,
     category: 'quality',
   },
   {
@@ -336,7 +336,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       "Correct – Quality is an 'extra' block. Minimal prompt = Meta + Input + Output. However, Quality is highly recommended for complex prompts.",
     hint: 'Remember: which 3 blocks are the "minimum requirement"?',
     bloomLevel: 2,
-    relatedSlideId: 12,
+    relatedSlideId: 10,
     category: 'quality',
   },
 
@@ -358,7 +358,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       'Temperature 0.8–1.0 = more creative. Temperature 0.1–0.3 = more precise, factual.',
     hint: 'Which parameter controls creativity vs precision?',
     bloomLevel: 2,
-    relatedSlideId: 13,
+    relatedSlideId: 11,
     category: 'advanced',
   },
   {
@@ -370,7 +370,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       'Wrong. Temperature 0.1 = very precise, factual, predictable. Temperature 0.9 = creative, varied.',
     hint: 'Low temperature = low "creativity" level.',
     bloomLevel: 2,
-    relatedSlideId: 13,
+    relatedSlideId: 11,
     category: 'advanced',
   },
   {
@@ -388,7 +388,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       'max_tokens limits the AI answer length in words/tokens. Useful when you need a short answer.',
     hint: 'Token ≈ word. Max tokens = maximum word count.',
     bloomLevel: 1,
-    relatedSlideId: 13,
+    relatedSlideId: 11,
     category: 'advanced',
   },
   {
@@ -407,7 +407,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       'Temperature (creativity) and max_tokens (length) – the two main Advanced block parameters.',
     hint: 'The Advanced block = technical settings. What are the two main ones?',
     bloomLevel: 1,
-    relatedSlideId: 13,
+    relatedSlideId: 11,
     category: 'advanced',
   },
 
@@ -423,7 +423,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
     explanation: '6 blocks: Meta, Input, Output, Reasoning, Quality, Advanced.',
     hint: 'Remember: M-I-O-R-Q-A system.',
     bloomLevel: 1,
-    relatedSlideId: 14,
+    relatedSlideId: 12,
     category: 'bendra',
   },
   {
@@ -441,7 +441,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       'Minimum = 3 blocks: WHO you are (Meta) + WHAT you have (Input) + WHAT you want (Output).',
     hint: 'Which 3 blocks are the "minimum requirement"?',
     bloomLevel: 2,
-    relatedSlideId: 14,
+    relatedSlideId: 12,
     category: 'bendra',
   },
   {
@@ -460,13 +460,14 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       'Each of the 6 blocks has a clear responsibility. When all work together – the result is predictable.',
     hint: 'Which block answers: who am I, what I have, what I want, how to think, is it good, what settings?',
     bloomLevel: 2,
-    relatedSlideId: 14,
+    relatedSlideId: 12,
     category: 'bendra',
   },
   {
     id: 'pool-bendra-4',
     type: 'ordering',
-    question: 'Order the 6 blocks from most to least important (by priority):',
+    question:
+      "Order the 6 blocks as this course's model sequences them (first to last).",
     correctOrder: [
       'Meta (role and context)',
       'Input (data)',
@@ -487,7 +488,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       'Meta, Input, Output – required (top 3). Reasoning, Quality, Advanced – optional.',
     hint: 'The first three blocks are the minimum requirement for a clear result.',
     bloomLevel: 3,
-    relatedSlideId: 14,
+    relatedSlideId: 12,
     category: 'bendra',
   },
 
@@ -508,7 +509,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
     explanation: 'Workflow defines format, requirements, and expected result.',
     hint: 'Workflow = structured process with a clear end result.',
     bloomLevel: 2,
-    relatedSlideId: 3,
+    relatedSlideId: 15,
     category: 'workflow',
   },
   {
@@ -520,7 +521,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       'Wrong. Workflow has a clear structure, stages, and expected result. Chat = free form.',
     hint: 'Does a chat have a clear plan and expected format?',
     bloomLevel: 2,
-    relatedSlideId: 3,
+    relatedSlideId: 15,
     category: 'workflow',
   },
   {
@@ -538,7 +539,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       'Workflow = a clear sequence with stages (brief, structure, content, formatting, review).',
     hint: 'Workflow always has a clear step-by-step plan.',
     bloomLevel: 2,
-    relatedSlideId: 3,
+    relatedSlideId: 15,
     category: 'workflow',
   },
 
@@ -555,7 +556,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       'Few-shot gives 1–2 examples, then asks for new ones. Zero-shot – no examples.',
     hint: "'Few' means 'a few' – a technique that uses several examples.",
     bloomLevel: 1,
-    relatedSlideId: 5,
+    relatedSlideId: 14,
     category: 'technikos',
   },
   {
@@ -573,7 +574,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       'Zero-shot = AI performs the task without any given examples, relying only on the instruction.',
     hint: 'Zero = none, shot = attempt/example. Zero-shot = no examples.',
     bloomLevel: 1,
-    relatedSlideId: 5,
+    relatedSlideId: 14,
     category: 'technikos',
   },
   {
@@ -585,7 +586,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       "Wrong. Prompt chaining = a chain of separate prompts, where each one's result is used in the next.",
     hint: 'Chaining = chain. Is a chain one long element?',
     bloomLevel: 2,
-    relatedSlideId: 5,
+    relatedSlideId: 14,
     category: 'technikos',
   },
 
@@ -609,7 +610,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       'The prompt has Meta (role), Input (data), and Output (table), but no Reasoning – how should AI analyze the data.',
     hint: "Compare: what's already there (role, data, format) and what's missing from the 6 blocks.",
     bloomLevel: 4,
-    relatedSlideId: 11,
+    relatedSlideId: 9,
     category: 'reasoning',
   },
   {
@@ -629,7 +630,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       'Bad result = unstructured prompt. Adding Meta, Output, and Quality makes the result predictable.',
     hint: 'Think: how many 6-block elements are missing from this prompt?',
     bloomLevel: 3,
-    relatedSlideId: 16,
+    relatedSlideId: 12,
     category: 'bendra',
   },
   {
@@ -645,7 +646,7 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       'The Reasoning block specifies the thought sequence: 1) Analyze data, 2) Identify problem areas, 3) Provide recommendations.',
     hint: 'Which block answers the question HOW to think before answering?',
     bloomLevel: 4,
-    relatedSlideId: 11,
+    relatedSlideId: 9,
     category: 'reasoning',
   },
   {
@@ -655,17 +656,17 @@ export const QUESTION_POOL_EN: TestQuestion[] = [
       'You\'re writing a prompt for a new SaaS product description. Your prompt: "You are a copywriter. Write a product description for my website. The product costs 49 EUR/month and automates 80% of routine tasks."',
     question: 'Which of these recommendations would LEAST improve this prompt?',
     options: [
-      'Switch AI model from GPT-4 to GPT-3.5',
+      'Switch the AI tool or model (keep the same prompt)',
       'Add an Output block: SEO-optimized, 500 words, with CTA buttons',
       'Add a Quality block: accurate facts, no exaggeration',
       'Add a Reasoning block: first analyze competitors, then find unique points',
     ],
     correct: 0,
     explanation:
-      "Changing the AI model (GPT-4 vs GPT-3.5) helps less than adding structural blocks (Output, Quality, Reasoning). Changing the model affects only the tool, not the prompt's structure.",
+      "Switching the tool or model helps less than adding structural blocks (Output, Quality, Reasoning). That change affects only the tool, not the prompt's structure.",
     hint: 'Which change is about tools, not prompt structure?',
     bloomLevel: 4,
-    relatedSlideId: 16,
+    relatedSlideId: 12,
     category: 'bendra',
   },
 ];
